@@ -1,0 +1,45 @@
+name: Autocreate GUL17
+
+on:
+  workflow_dispatch:
+
+jobs:
+  autogen:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Check out GUL14 repo
+        run: |
+          git clone https://github.com/gul-cpp/gul14.git gul14
+          git -C gul14 checkout bugfix/for_cpp17
+
+      - name: Convert for C++17
+        run: |
+          cp -f make_gul17.sh gul14/tools
+          cd gul14/tools
+          ./make_gul17.sh
+
+      - name: Move files to GUL17
+        run: |
+          rm -Rf include src tests debian data examples tools
+          cp -r gul14/include .
+          cp -r gul14/src .
+          cp -r gul14/tests .
+          cp -r gul14/debian .
+          cp -r gul14/data .
+          cp -r gul14/examples .
+          cp -r gul14/tools .
+          cp gul14/README* .
+          cp gul14/meson.build .
+          cp gul14/*.spec .
+
+      - name: Commit updated files
+        uses: EndBug/add-and-commit@v9
+        with:
+          fetch: false
+          add: "['include', 'src', 'tests', 'debian', 'data', 'examples', 'tools', 'README*', 'meson.build', '*.spec']"
+          message: "[ci] Bump release version"
+          committer_name: GitHub Actions
