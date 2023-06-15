@@ -1,0 +1,26 @@
+Source: @NAME@
+Priority: optional
+Maintainer: Fini Jastrow <ulf.fini.jastrow@desy.de>
+Build-Depends: debhelper (>=9), meson (>=0.48), ninja-build (>=1.5.1)
+Standards-Version: 3.9.7
+Section: libs
+Homepage: https://stash.desy.de/projects/GUL/repos/libgul
+
+Package: @NAME@
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: @CONFLICTS@
+Description: general utility library
+ The general utility library for C++17 contains often-used utility
+ functions and types that form the foundation for other
+ libraries and programs.
+
+Package: @NAME-DEV@
+Section: libdevel
+Architecture: any
+Depends: @NAME@ (= ${binary:Version}), ${misc:Depends}
+Conflicts: @CONFLICTS-DEV@
+Description: general utility library
+ The general utility library for C++17 contains often-used utility
+ functions and types that form the foundation for other
+ libraries and programs.

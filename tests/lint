@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# This calls our linter with useful options
+# 
+# Because the filter is only working in 'positive' mode, but string_view.h has so
+# many warnings that it shall be ignored, this is a bit complicated.
+
+if [ $# -lt 1 ]; then
+	echo "Usage: `basename "$0"` [options] <source0> [... <sourceN>]"
+	echo "Please specify one or more C++ implementation files."
+	exit 1
+fi
+
+HEADERLIST=`find ../include -type f -print | grep -v '/\(string_view\|optional\).h$' | sed 's/^/{"name":"/;s/$/"}/' | tr '\n' ','`
+
+echo clang-tidy $@
+
+clang-tidy \
+	-config="{Checks: 'bugprone*,cppcore*,readability*,performance*,modernize*,misc*,clang-analyzer*,-clang-analyzer-alpha.core.CastToStruct,-readability-else-after-return', \
+	CheckOptions: [{ key: readability-braces-around-statements.ShortStatementLines, value: '3' }]}" \
+	'-header-filter=.*' -line-filter=[${HEADERLIST}] $@ \
+	-- -I../include  -I../include/gul17 -std=c++17
