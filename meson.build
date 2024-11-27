@@ -10,6 +10,7 @@ project('gul17', 'cpp',
         'libdir=lib',
         'includedir=lib/include',
         'warning_level=3',
+        'default_library=both',
     ],
     version : run_command(
         [

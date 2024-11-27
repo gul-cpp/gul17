@@ -54,33 +54,51 @@ endif
 
 deps = dependency('threads')
 
-libgul = shared_library(
-    meson.project_name(), libgul_src + [ version_cc ],
-    soversion : so_version,
-    cpp_args : add_cpp_args + [ '-DGUL_COMPILING_SHARED_LIB' ],
-    dependencies : deps,
-    include_directories : inc,
-    gnu_symbol_visibility : 'hidden',
-    install : true
-)
-libgul_static = static_library(
-    meson.project_name(), libgul_src + [ version_cc ],
-    cpp_args : add_cpp_args + [ '-DGUL_USING_STATIC_LIB_OR_OBJECTS' ],
-    dependencies : deps,
-    include_directories : inc,
-    install : true
-)
-libgul_dep = declare_dependency(
-    dependencies : deps,
-    include_directories : inc,
-    link_with : libgul,
-)
-libgul_static_dep = declare_dependency(
-    dependencies : deps,
-    include_directories : inc,
-    link_with : libgul_static,
-    compile_args : [ '-DGUL_USING_STATIC_LIB_OR_OBJECTS' ],
-)
+## Static and shared libraries
+
+if get_option('default_library') in ['both', 'static']
+    libgul_static = static_library(
+        meson.project_name(), libgul_src + [ version_cc ],
+        cpp_args : add_cpp_args + [ '-DGUL_USING_STATIC_LIB_OR_OBJECTS' ],
+        dependencies : deps,
+        include_directories : inc,
+        install : true
+    )
+
+    libgul_static_dep = declare_dependency(
+        dependencies : deps,
+        include_directories : inc,
+        link_with : libgul_static,
+        compile_args : [ '-DGUL_USING_STATIC_LIB_OR_OBJECTS' ],
+    )
+
+    libgul = libgul_static
+    libgul_dep = libgul_static_dep
+endif
+
+if get_option('default_library') in ['both', 'shared']
+    libgul_shared = shared_library(
+        meson.project_name(), libgul_src + [ version_cc ],
+        soversion : so_version,
+        cpp_args : add_cpp_args + [ '-DGUL_COMPILING_SHARED_LIB' ],
+        dependencies : deps,
+        include_directories : inc,
+        gnu_symbol_visibility : 'hidden',
+        install : true
+    )
+
+    libgul_shared_dep = declare_dependency(
+        dependencies : deps,
+        include_directories : inc,
+        link_with : libgul_shared,
+    )
+
+    libgul = libgul_shared
+    libgul_dep = libgul_shared_dep
+endif
+
+
+## Pkg-config file
 
 pkg = import('pkgconfig')
 pkg.generate(
