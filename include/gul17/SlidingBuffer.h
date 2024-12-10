@@ -106,7 +106,7 @@ enum class ShrinkBehavior { keep_front_elements, keep_back_elements };
  * impulse response filter.
  *
  * This container uses an accompanying iterator class called SlidingBufferIterator.
- * See SlidingBufferExposed for a std::variant with a different (more performant) iterator
+ * See SlidingBufferExposed for a variant with a different (more performant) iterator
  * interface.
  *
  * Iterator invalidation is specified at SlidingBufferIterator.
@@ -1027,7 +1027,7 @@ protected:
 };
 
 /**
- * A std::variant of SlidingBuffer that exposes the underlying container through its iterator
+ * A variant of SlidingBuffer that exposes the underlying container through its iterator
  * interface.
  * The direct iterator access to the underlying buffer offers a performance benefit in
  * some cases. However, it comes at the cost of limited flexibility. SlidingBufferExposed
