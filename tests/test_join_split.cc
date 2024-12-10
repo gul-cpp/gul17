@@ -4,7 +4,7 @@
  * \date   Created on August 31, 2018
  * \brief  Test suite for join(), split(), and split_sv().
  *
- * \copyright Copyright 2018-2021 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -25,9 +25,11 @@
 #include <queue>
 #include <regex>
 #include <set>
+#include <string_view>
 #include <string>
 #include <type_traits>
 #include <vector>
+
 #include "gul17/catch.h"
 #include "gul17/join_split.h"
 #include "gul17/SmallVector.h"
@@ -36,7 +38,6 @@ using namespace std::literals::string_literals;
 using gul17::SmallVector;
 using gul17::split;
 using gul17::split_sv;
-using std::string_view;
 using gul17::join;
 
 TEST_CASE("split(std::string_view, std::string_view) with default return type", "[join_split]")
