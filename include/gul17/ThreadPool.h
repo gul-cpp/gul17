@@ -301,15 +301,15 @@ public:
      *        objects
      */
     template <typename Function>
-    TaskHandle<invoke_result_t<Function, ThreadPool&>>
+    TaskHandle<std::invoke_result_t<Function, ThreadPool&>>
     add_task(Function fct, TimePoint start_time = {}, std::string name = {})
     {
         static_assert(
-            is_invocable<Function, ThreadPool&>::value
-            || is_invocable<Function>::value,
+            std::is_invocable<Function, ThreadPool&>::value
+            || std::is_invocable<Function>::value,
             "Invalid function signature: Must be T fct() or T fct(ThreadPool&)");
 
-        using Result = invoke_result_t<Function, ThreadPool&>;
+        using Result = std::invoke_result_t<Function, ThreadPool&>;
 
         TaskHandle<Result> task_handle = [this, &fct, start_time, &name]()
             {
@@ -344,8 +344,8 @@ public:
     }
 
     template <typename Function,
-        std::enable_if_t<is_invocable<Function>::value, bool> = true>
-    TaskHandle<invoke_result_t<Function>>
+        std::enable_if_t<std::is_invocable<Function>::value, bool> = true>
+    TaskHandle<std::invoke_result_t<Function>>
     add_task(Function fct, TimePoint start_time = {}, std::string name = {})
     {
         return add_task(
@@ -354,8 +354,8 @@ public:
     }
 
     template <typename Function,
-        std::enable_if_t<is_invocable<Function, ThreadPool&>::value, bool> = true>
-    TaskHandle<invoke_result_t<Function, ThreadPool&>>
+        std::enable_if_t<std::is_invocable<Function, ThreadPool&>::value, bool> = true>
+    TaskHandle<std::invoke_result_t<Function, ThreadPool&>>
     add_task(Function fct, Duration delay_before_start, std::string name = {})
     {
         return add_task(std::move(fct),
@@ -363,8 +363,8 @@ public:
     }
 
     template <typename Function,
-        std::enable_if_t<is_invocable<Function>::value, bool> = true>
-    TaskHandle<invoke_result_t<Function>>
+        std::enable_if_t<std::is_invocable<Function>::value, bool> = true>
+    TaskHandle<std::invoke_result_t<Function>>
     add_task(Function fct, Duration delay_before_start, std::string name = {})
     {
         return add_task(std::move(fct),
@@ -372,16 +372,16 @@ public:
     }
 
     template <typename Function,
-        std::enable_if_t<is_invocable<Function, ThreadPool&>::value, bool> = true>
-    TaskHandle<invoke_result_t<Function, ThreadPool&>>
+        std::enable_if_t<std::is_invocable<Function, ThreadPool&>::value, bool> = true>
+    TaskHandle<std::invoke_result_t<Function, ThreadPool&>>
     add_task(Function fct, std::string name)
     {
         return add_task(std::move(fct), TimePoint{}, std::move(name));
     }
 
     template <typename Function,
-        std::enable_if_t<is_invocable<Function>::value, bool> = true>
-    TaskHandle<invoke_result_t<Function>>
+        std::enable_if_t<std::is_invocable<Function>::value, bool> = true>
+    TaskHandle<std::invoke_result_t<Function>>
     add_task(Function fct, std::string name)
     {
         return add_task(std::move(fct), TimePoint{}, std::move(name));
