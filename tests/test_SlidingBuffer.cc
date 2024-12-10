@@ -61,7 +61,7 @@ auto generic_debugdump(std::ostream& s, typename BufferT::size_type len,
     return s << '\n';
 }
 
-// A SlidingBuffer std::variant that allows to dump the underlying container
+// A SlidingBuffer variant that allows to dump the underlying container
 // and the state of the buffer all in one to a stream.
 // We use this to inspect the operations, if they handled internally as expected.
 template<typename ElementT, std::size_t fixed_capacity = 0u,

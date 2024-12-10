@@ -148,8 +148,9 @@ split(std::string_view text, std::string_view delimiter,
  * Separate a string at all occurrences of a delimiter described by a regular expression,
  * returning the strings between the delimiters in a container.
  *
- * This function is a std::variant of split(std::string_view, std::string_view, ContainerInsertFct)
- * that accepts a std::regex object to describe the delimiter:
+ * This function is a variant of
+ * split(std::string_view, std::string_view, ContainerInsertFct) that accepts a std::regex
+ * object to describe the delimiter:
  * \code
  * // Return type is std::vector<std::string>
  * auto parts = split("one\ntwo\nthree"s, std::regex{"[^[:print:]]"});
