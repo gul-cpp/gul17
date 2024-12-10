@@ -1,0 +1,16 @@
+<map id="escape.cc" name="escape.cc">
+<area shape="rect" id="node1" title="Implementation of escape(), unescape()." alt="" coords="130,5,217,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,64,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="88,80,147,107"/>
+<area shape="rect" id="node4" href="$escape_8h.html" title="Declaration of escape(), unescape()." alt="" coords="171,80,291,107"/>
+<area shape="rect" id="node8" href="$string__util_8h.html" title="Declaration of string utility functions." alt="" coords="323,80,461,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="296,155,355,181"/>
+<area shape="rect" id="node6" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="257,229,381,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="174,155,271,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="563,155,619,181"/>
+<area shape="rect" id="node10" title=" " alt="" coords="643,155,714,181"/>
+<area shape="rect" id="node11" href="$traits_8h.html" title="Some metaprogramming traits for the General Utility Library." alt="" coords="430,155,538,181"/>
+<area shape="rect" id="node12" title=" " alt="" coords="489,229,575,256"/>
+<area shape="rect" id="node13" title=" " alt="" coords="599,229,691,256"/>
+<area shape="rect" id="node14" title=" " alt="" coords="405,229,465,256"/>
+</map>

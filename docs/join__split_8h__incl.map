@@ -1,0 +1,15 @@
+<map id="join_split.h" name="join_split.h">
+<area shape="rect" id="node1" title="Implementation of join(), split(), and split_sv()." alt="" coords="166,5,259,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="33,155,104,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="31,80,90,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="129,155,187,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="7,229,99,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="216,80,279,107"/>
+<area shape="rect" id="node7" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="376,229,500,256"/>
+<area shape="rect" id="node8" href="$string__util_8h.html" title="Declaration of string utility functions." alt="" coords="303,80,442,107"/>
+<area shape="rect" id="node10" title=" " alt="" coords="476,155,573,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="345,155,401,181"/>
+<area shape="rect" id="node11" href="$traits_8h.html" title="Some metaprogramming traits for the General Utility Library." alt="" coords="212,155,320,181"/>
+<area shape="rect" id="node12" title=" " alt="" coords="244,229,331,256"/>
+<area shape="rect" id="node13" title=" " alt="" coords="160,229,220,256"/>
+</map>

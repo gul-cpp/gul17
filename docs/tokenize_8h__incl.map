@@ -1,0 +1,14 @@
+<map id="tokenize.h" name="tokenize.h">
+<area shape="rect" id="node1" title="Implementation of tokenize(), tokenize_sv()." alt="" coords="113,5,203,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="57,155,115,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="57,80,120,107"/>
+<area shape="rect" id="node4" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="5,229,129,256"/>
+<area shape="rect" id="node5" href="$string__util_8h.html" title="Declaration of string utility functions." alt="" coords="195,80,334,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="499,155,596,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="323,155,379,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="404,155,475,181"/>
+<area shape="rect" id="node9" href="$traits_8h.html" title="Some metaprogramming traits for the General Utility Library." alt="" coords="191,155,299,181"/>
+<area shape="rect" id="node10" title=" " alt="" coords="153,229,240,256"/>
+<area shape="rect" id="node11" title=" " alt="" coords="264,229,356,256"/>
+<area shape="rect" id="node12" title=" " alt="" coords="380,229,440,256"/>
+</map>
