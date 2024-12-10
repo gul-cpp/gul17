@@ -365,13 +365,7 @@ namespace gul17 {
  * <dd>Copyright 2018 Tristan Brindle.
  *     Distributed under the Boost Software License, Version 1.0 (see
  *     \ref license_boost_1_0 and \ref span.h for details).</dd>
- *
- * <dt>\ref traits.h</dt>
- * <dd>Copyright 2015-2017 Michael Park (implementations of invoke, invoke_result,
- *     invoke_result_t, is_invocable, is_invocable_r), copyright 2021-2024 Deutsches
- *     Elektronen-Synchrotron (DESY), Hamburg (other implementations and modifications).
- *     Distributed under the Boost Software License, Version 1.0 (see
- *     \ref license_boost_1_0 and \ref traits.h for details).</dd>
+ * </dl>
  */
 
 /**
