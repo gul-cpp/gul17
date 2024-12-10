@@ -28,13 +28,13 @@
 #include <random>
 #include <sstream>
 
-#include "gul14/catch.h"
-#include "gul14/to_number.h"
-#include "gul14/num_util.h"
+#include "gul17/catch.h"
+#include "gul17/to_number.h"
+#include "gul17/num_util.h"
 
 using namespace std::literals::string_literals;
 using namespace Catch::Matchers;
-using gul14::to_number;
+using gul17::to_number;
 
 // Allowed deviation from ideal result in ULP
 int constexpr long_double_lenience = 3;
@@ -162,7 +162,7 @@ TEMPLATE_TEST_CASE("to_number(): Floating point types", "[to_number]", float, do
     auto const lenience = sizeof(TestType) > sizeof(double) ? long_double_lenience : double_lenience;
     for (auto const& test : cases) {
         CAPTURE(test.input);
-        REQUIRE(gul14::within_ulp(to_number<TestType>(test.input).value(),
+        REQUIRE(gul17::within_ulp(to_number<TestType>(test.input).value(),
             TestType(test.output), lenience) == true);
     }
     std::array<TestCase, 12> special_cases = {{
@@ -259,7 +259,7 @@ TEMPLATE_TEST_CASE("to_number(): min and subnormal floating point", "[to_number]
         ss.str("");
         ss << num;
         CAPTURE(ss.str());
-        REQUIRE(true == gul14::within_ulp(to_number<TestType>(ss.str()).value(), num, lenience));
+        REQUIRE(true == gul17::within_ulp(to_number<TestType>(ss.str()).value(), num, lenience));
     }
 }
 
@@ -272,7 +272,7 @@ TEMPLATE_TEST_CASE("to_number(): max and overflow floating point", "[to_number]"
     auto numb = ss.str();
 
     auto const lenience = sizeof(TestType) > sizeof(double) ? long_double_lenience : double_lenience;
-    REQUIRE(true == gul14::within_ulp(to_number<TestType>(numb).value(), max, lenience));
+    REQUIRE(true == gul17::within_ulp(to_number<TestType>(numb).value(), max, lenience));
 
     if (numb[0] < '9')
         ++numb[0];
@@ -297,7 +297,7 @@ TEMPLATE_TEST_CASE("to_number(): lowest and overflow floating point", "[to_numbe
     auto numb = ss.str();
 
     auto const lenience = sizeof(TestType) > sizeof(double) ? long_double_lenience : double_lenience;
-    REQUIRE(true == gul14::within_ulp(to_number<TestType>(numb).value(), lowest, lenience));
+    REQUIRE(true == gul17::within_ulp(to_number<TestType>(numb).value(), lowest, lenience));
 
     assert(numb[0] == '-');
     if (numb[1] < '9')
@@ -385,10 +385,10 @@ TEMPLATE_TEST_CASE("to_number(): random round trip conversion", "[to_number]",
             REQUIRE(std::signbit(num) == std::signbit(*converted));
         } else if (not std::isnormal(num)) {
             CAPTURE("subnormal " + std::to_string(++i_sub));
-            REQUIRE(true == gul14::within_ulp(*converted, num, 30));
+            REQUIRE(true == gul17::within_ulp(*converted, num, 30));
         } else {
             CAPTURE("normal " + std::to_string(++i_nor));
-            REQUIRE(true == gul14::within_ulp(*converted, num, 3));
+            REQUIRE(true == gul17::within_ulp(*converted, num, 3));
         }
     }
 }
@@ -406,24 +406,24 @@ TEMPLATE_TEST_CASE("to_number(): Convert floating-point values with many leading
     auto const lenience = 0;
 
     auto const test1 = to_number<TestType>("00000000000000000000000000000000000000000000000000.1");
-    REQUIRE(gul14::within_ulp(test1.value(), TestType(0.1l), lenience) == true);
+    REQUIRE(gul17::within_ulp(test1.value(), TestType(0.1l), lenience) == true);
 
     auto const test2 = to_number<TestType>("00000000000000000000000000000000000000000000000000.1"
             "00000000000000000000000000000000000000000000000000");
-    REQUIRE(gul14::within_ulp(test2.value(), TestType(0.1l), lenience) == true);
+    REQUIRE(gul17::within_ulp(test2.value(), TestType(0.1l), lenience) == true);
 
     auto const test3 = to_number<TestType>("00000000000000000000000000000000000000000000000001"
             "e000000000000000000000000000000000000000000000000000");
-    REQUIRE(gul14::within_ulp(test3.value(), TestType(1.0l), lenience) == true);
+    REQUIRE(gul17::within_ulp(test3.value(), TestType(1.0l), lenience) == true);
 
     auto const test4 = to_number<TestType>("00000000000000000000000000000000000000000000000000.1e"
             "0000000000000000000000000000000000000000000000000");
-    REQUIRE(gul14::within_ulp(test4.value(), TestType(0.1l), lenience) == true);
+    REQUIRE(gul17::within_ulp(test4.value(), TestType(0.1l), lenience) == true);
 
     // higher lenience here:
     auto const test5 = to_number<TestType>("0.00000000000000000000000000000000000000000000000001"
             "e0000000000000000000000000000000000000000000000001");
-    REQUIRE(gul14::within_ulp(test5.value(), TestType(1.0e-49l), lenience + 1) == true);
+    REQUIRE(gul17::within_ulp(test5.value(), TestType(1.0e-49l), lenience + 1) == true);
 }
 
 /* Disabled because Apple clang 15.0.0 has insufficient constexpr support
@@ -433,7 +433,7 @@ TEMPLATE_TEST_CASE("to_number(): Convert \"42\" to integer types, constexpr", "[
                    unsigned long long)
 {
     constexpr auto cstr = "42";
-    constexpr gul14::string_view sv{ cstr, 2 };
+    constexpr std::string_view sv{ cstr, 2 };
     constexpr auto a = to_number<TestType>(sv);
     REQUIRE(a == 42);
 }
@@ -442,18 +442,18 @@ TEMPLATE_TEST_CASE("to_number(): Convert \"-42\" to integer types, constexpr", "
                    signed char, short, int, long, long long)
 {
     constexpr auto cstr = "-42";
-    constexpr gul14::string_view sv{ cstr, 3 };
+    constexpr std::string_view sv{ cstr, 3 };
     constexpr auto a = to_number<TestType>(sv);
     REQUIRE(a == -42);
 }
 */
 
-/* Disabled because gul14::string_view::find_first_of() is not really constexpr
+/* Disabled because std::string_view::find_first_of() is not really constexpr
 TEMPLATE_TEST_CASE("to_number(): Floating-point types, constexpr", "[to_number]",
                    float, double, long double)
 {
     constexpr auto cstr = "-42.2e1";
-    constexpr gul14::string_view sv{ cstr, 7 };
+    constexpr std::string_view sv{ cstr, 7 };
 
     constexpr auto a = to_number<TestType>(sv);
     REQUIRE(a == TestType{ -42.2e1 });
@@ -472,7 +472,7 @@ TEST_CASE("test pow10()", "[to_number]")
         int lenience_;
 
         int deviation() const {
-            return std::abs(error_in_ulp(gul14::detail::pow10(exponent_), reference_));
+            return std::abs(error_in_ulp(gul17::detail::pow10(exponent_), reference_));
         }
     };
 
@@ -544,11 +544,11 @@ TEST_CASE("test pow10()", "[to_number]")
     }
 
     // Overflows...
-    REQUIRE(std::isinf(gul14::detail::pow10(5000)));
-    REQUIRE(std::isinf(gul14::detail::pow10(8192)));
+    REQUIRE(std::isinf(gul17::detail::pow10(5000)));
+    REQUIRE(std::isinf(gul17::detail::pow10(8192)));
 
-    REQUIRE(gul14::detail::pow10(-5000) == 0);
-    REQUIRE(gul14::detail::pow10(-8192) == 0);
+    REQUIRE(gul17::detail::pow10(-5000) == 0);
+    REQUIRE(gul17::detail::pow10(-8192) == 0);
 }
 
 // vi:ts=4:sw=4:sts=4:et

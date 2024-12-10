@@ -22,9 +22,9 @@
 
 #include <cfloat>
 
-#include "gul14/to_number.h"
+#include "gul17/to_number.h"
 
-namespace gul14 {
+namespace gul17 {
 
 namespace detail {
 
@@ -95,4 +95,4 @@ long double pow10(int exponent)
 
 } // namespace detail
 
-} // namespace gul14
+} // namespace gul17

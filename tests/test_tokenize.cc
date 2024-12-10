@@ -28,16 +28,16 @@
 #include <stack>
 #include <type_traits>
 #include <unordered_set>
-#include "gul14/catch.h"
-#include "gul14/SmallVector.h"
-#include "gul14/string_view.h"
-#include "gul14/tokenize.h"
-#include "gul14/case_ascii.h"
+#include "gul17/catch.h"
+#include "gul17/SmallVector.h"
+#include <string_view>
+#include "gul17/tokenize.h"
+#include "gul17/case_ascii.h"
 
 using namespace std::literals;
 
-using gul14::tokenize;
-using gul14::tokenize_sv;
+using gul17::tokenize;
+using gul17::tokenize_sv;
 
 
 #define TEST_BOTH_INTO(tokens) \
@@ -47,8 +47,8 @@ using gul14::tokenize_sv;
         INFO("Test using tokenize"s + (i == 1 ? "_sv" : "") + "()")
 
 TEMPLATE_TEST_CASE("tokenize(\"Hello World\")", "[tokenize]",
-    std::vector<std::string>, std::vector<gul14::string_view>,
-    (gul14::SmallVector<std::string, 2>), (gul14::SmallVector<gul14::string_view, 3>))
+    std::vector<std::string>, std::vector<std::string_view>,
+    (gul17::SmallVector<std::string, 2>), (gul17::SmallVector<std::string_view, 3>))
 {
     auto token = std::vector<TestType>{
         tokenize<TestType>("Hello World"),
@@ -66,8 +66,8 @@ TEMPLATE_TEST_CASE("tokenize(\"Hello World\")", "[tokenize]",
 }
 
 TEMPLATE_TEST_CASE("tokenize(): \" Hello World\" with odd whitespace", "[tokenize]",
-    std::vector<std::string>, std::vector<gul14::string_view>,
-    (gul14::SmallVector<std::string, 2>), (gul14::SmallVector<gul14::string_view, 3>))
+    std::vector<std::string>, std::vector<std::string_view>,
+    (gul17::SmallVector<std::string, 2>), (gul17::SmallVector<std::string_view, 3>))
 {
     auto token = std::vector<TestType>{
         tokenize<TestType>("\t Hello\n\rWorld\t\t  "),
@@ -83,8 +83,8 @@ TEMPLATE_TEST_CASE("tokenize(): \" Hello World\" with odd whitespace", "[tokeniz
 }
 
 TEMPLATE_TEST_CASE("tokenize(): custom delimiters and null characters", "[tokenize]",
-    std::vector<std::string>, std::vector<gul14::string_view>,
-    (gul14::SmallVector<std::string, 2>), (gul14::SmallVector<gul14::string_view, 3>))
+    std::vector<std::string>, std::vector<std::string_view>,
+    (gul17::SmallVector<std::string, 2>), (gul17::SmallVector<std::string_view, 3>))
 {
     const auto input = "\t Hel\0lo\n\rWorld\t\t  "s;
     auto token = std::vector<TestType>{
@@ -102,8 +102,8 @@ TEMPLATE_TEST_CASE("tokenize(): custom delimiters and null characters", "[tokeni
 }
 
 TEMPLATE_TEST_CASE("tokenize(): empty delimiter string", "[tokenize]",
-    std::vector<std::string>, std::vector<gul14::string_view>,
-    (gul14::SmallVector<std::string, 2>), (gul14::SmallVector<gul14::string_view, 3>))
+    std::vector<std::string>, std::vector<std::string_view>,
+    (gul17::SmallVector<std::string, 2>), (gul17::SmallVector<std::string_view, 3>))
 {
     auto token = std::vector<TestType>{
         tokenize<TestType>("Hello World", ""),
@@ -138,7 +138,7 @@ TEMPLATE_TEST_CASE("tokenize(\"Hello World\") into associative containers", "[to
 }
 
 TEMPLATE_TEST_CASE("tokenize(\"Hello World\") into std::list and std::queue", "[tokenize]",
-    std::list<std::string>, std::deque<gul14::string_view>, std::queue<std::string>)
+    std::list<std::string>, std::deque<std::string_view>, std::queue<std::string>)
 {
     auto token = std::vector<TestType>{
         tokenize<TestType>("Hello World"),
@@ -173,11 +173,11 @@ TEMPLATE_TEST_CASE("tokenize(\"Hello World\") into std::stack", "[tokenize]",
 }
 
 TEMPLATE_TEST_CASE("tokenize(\"Hello World\")'s return type", "[tokenize]",
-    std::vector<std::string>, std::vector<gul14::string_view>,
-    (gul14::SmallVector<std::string, 2>), (gul14::SmallVector<gul14::string_view, 3>),
+    std::vector<std::string>, std::vector<std::string_view>,
+    (gul17::SmallVector<std::string, 2>), (gul17::SmallVector<std::string_view, 3>),
     std::set<std::string>, std::multiset<std::string>,
     std::unordered_set<std::string>, std::unordered_multiset<std::string>,
-    std::list<std::string>, std::deque<gul14::string_view>, std::queue<std::string>,
+    std::list<std::string>, std::deque<std::string_view>, std::queue<std::string>,
     std::stack<std::string>)
 {
     decltype(auto) ret = tokenize<TestType>("A Three Legged Horse");
@@ -192,7 +192,7 @@ TEST_CASE("tokenize(\"Hello World\")'s default return type", "[tokenize]")
     decltype(auto) ret = tokenize("A Three Legged Horse");
     REQUIRE(std::is_same<std::remove_const_t<decltype(ret)>, DefaultReturnType>::value == true);
 
-    using DefaultSVReturnType = std::vector<gul14::string_view>;
+    using DefaultSVReturnType = std::vector<std::string_view>;
     decltype(auto) ret_sv = tokenize_sv("A Three Legged Horse");
     REQUIRE(std::is_same<std::remove_const_t<decltype(ret_sv)>, DefaultSVReturnType>::value == true);
 }
@@ -200,7 +200,7 @@ TEST_CASE("tokenize(\"Hello World\")'s default return type", "[tokenize]")
 TEST_CASE("tokenize(\"Hello World\") into std::map", "[tokenize]")
 {
     using TestType = std::map<std::string, std::string>;
-    auto emplace = [](TestType& c, gul14::string_view sv) { c.emplace(std::string{ sv }, gul14::uppercase_ascii(sv)); };
+    auto emplace = [](TestType& c, std::string_view sv) { c.emplace(std::string{ sv }, gul17::uppercase_ascii(sv)); };
 
     auto token = std::vector<TestType>{
         tokenize<TestType>("Hello World", " ", emplace),
@@ -226,14 +226,14 @@ TEST_CASE("tokenize(\"Hello World\") into std::map", "[tokenize]")
 TEST_CASE("tokenize() into bool", "[tokenize]")
 {
     auto to_find = "4"s;
-    auto checker = [&to_find] (bool& present, gul14::string_view s) {
+    auto checker = [&to_find] (bool& present, std::string_view s) {
             present |= (s == to_find);
         };
 
-    auto is_present = gul14::tokenize<bool>("10  3 5  12 ", gul14::default_whitespace_characters, checker);
+    auto is_present = gul17::tokenize<bool>("10  3 5  12 ", gul17::default_whitespace_characters, checker);
     REQUIRE(is_present == false);
     to_find = "3"s;
-    is_present = gul14::tokenize<bool>("10  3 5  12 ", gul14::default_whitespace_characters, checker);
+    is_present = gul17::tokenize<bool>("10  3 5  12 ", gul17::default_whitespace_characters, checker);
     REQUIRE(is_present == true);
 }
 

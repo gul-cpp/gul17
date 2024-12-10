@@ -20,13 +20,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul14/cat.h"
-#include "gul14/catch.h"
+#include "gul17/cat.h"
+#include "gul17/catch.h"
 
 using namespace std::literals;
-using gul14::cat;
+using gul17::cat;
 
-TEST_CASE("gul14::cat() works for fixed test cases from 0 to 6 arguments", "[cat]")
+TEST_CASE("gul17::cat() works for fixed test cases from 0 to 6 arguments", "[cat]")
 {
     REQUIRE(cat() == "");
     REQUIRE(cat("Lo") == "Lo");

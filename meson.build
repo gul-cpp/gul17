@@ -3,9 +3,9 @@
 # Increase the major project version in project() on API breaking changes.
 # Increase the minor project version in project() on API extensions
 
-project('gul14', 'cpp',
+project('gul17', 'cpp',
     default_options : [
-        'cpp_std=c++14',
+        'cpp_std=c++17',
         'warning_level=3',
     ],
     version : '2.12',

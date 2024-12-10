@@ -5,11 +5,11 @@ Copyright: 2018-2024 libgul contributors
            2018-2024 DESY
 License: LGPL-2.1+
 
-Files: include/gul14/catch.h
+Files: include/gul17/catch.h
 Copyright: 2019 Two Blue Cubes Ltd.
 License: BSL-1.0
 
-Files: include/gul14/date.h
+Files: include/gul17/date.h
 Copyright: 2015-2017 Howard Hinnant
            2016 Adrian Colomitchi
            2017 Florian Dang
@@ -19,33 +19,33 @@ Copyright: 2015-2017 Howard Hinnant
            2022 libgul contributors (L. Fröhlich)
 License: Expat
 
-Files: include/gul14/expected.h
+Files: include/gul17/expected.h
 Copyright: 2017 Sy Brand
            2023-2024 libgul contributors (L. Fröhlich)
 License: CC0
 
-Files: include/gul14/optional.h
+Files: include/gul17/optional.h
 Copyright: 2011-2012 Andrzej Krzemienski
            2019 libgul contributors (L. Fröhlich)
 License: BSL-1.0
 
-Files: include/gul14/span.h
+Files: include/gul17/span.h
 Copyright: 2018 Tristan Brindle
            2019 libgul contributors (L. Fröhlich)
 License: BSL-1.0
 
-Files: include/gul14/string_view.h
+Files: include/gul17/string_view.h
 Copyright: 2012-2015 Marshall Clow
            2015 Beman Dawes
            2018 libgul contributors (L. Fröhlich)
 License: BSL-1.0
 
-Files: include/gul14/traits.h
+Files: include/gul17/traits.h
 Copyright: 2015-2017 Michael Park
            2021-2024 libgul contributors (L. Fröhlich, U.F. Jastrow)
 License: BSL-1.0
 
-Files: include/gul14/variant.h
+Files: include/gul17/variant.h
 Copyright: 2015-2017 Michael Park
            2023-2024 libgul contributors (L. Fröhlich)
 License: BSL-1.0

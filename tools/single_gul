@@ -56,15 +56,15 @@ recurse_header()
 echo "" > "${outfile}"
 
 echo "Collecting all header files..."
-recurse_header "include/gul14/gul.h"
+recurse_header "include/gul17/gul.h"
 echo "            " `echo "${processed}" | tr -s ':' ' ' | wc \
 	| tr -s '[:space:]' ' ' | sed 's/[0-9]\+ \([0-9]\+\) [0-9]\+/\1/'` " files"
 
 echo "Collecting all code files..."
 num=0
 cat << END >> ${outfile}
-#ifndef GUL14_SINGLEFILE_CPP_FILES
-#define GUL14_SINGLEFILE_CPP_FILES
+#ifndef GUL17_SINGLEFILE_CPP_FILES
+#define GUL17_SINGLEFILE_CPP_FILES
 END
 
 for infile in src/*.cc ; do
@@ -87,7 +87,7 @@ for infile in src/*.cc ; do
 	done < "${infile}"
 done
 cat << END >> ${outfile}
-#endif // GUL14_SINGLEFILE_CPP_FILES
+#endif // GUL17_SINGLEFILE_CPP_FILES
 END
 
 echo "            " "${num}" " files"

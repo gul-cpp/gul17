@@ -28,18 +28,18 @@
 #include <string>
 #include <type_traits>
 #include <vector>
-#include "gul14/catch.h"
-#include "gul14/join_split.h"
-#include "gul14/SmallVector.h"
+#include "gul17/catch.h"
+#include "gul17/join_split.h"
+#include "gul17/SmallVector.h"
 
 using namespace std::literals::string_literals;
-using gul14::SmallVector;
-using gul14::split;
-using gul14::split_sv;
-using gul14::string_view;
-using gul14::join;
+using gul17::SmallVector;
+using gul17::split;
+using gul17::split_sv;
+using std::string_view;
+using gul17::join;
 
-TEST_CASE("split(string_view, string_view) with default return type", "[join_split]")
+TEST_CASE("split(std::string_view, std::string_view) with default return type", "[join_split]")
 {
     auto const x = split("Hello world", " ");
     using ReturnType = typename std::remove_const_t<decltype(x)>;
@@ -50,9 +50,9 @@ TEST_CASE("split(string_view, string_view) with default return type", "[join_spl
     REQUIRE(x[1] == "world");
 }
 
-TEMPLATE_TEST_CASE("split(string_view, string_view)", "[join_split]",
-    std::vector<std::string>, std::vector<gul14::string_view>,
-    (SmallVector<std::string, 3>), (SmallVector<gul14::string_view, 4>))
+TEMPLATE_TEST_CASE("split(std::string_view, std::string_view)", "[join_split]",
+    std::vector<std::string>, std::vector<std::string_view>,
+    (SmallVector<std::string, 3>), (SmallVector<std::string_view, 4>))
 {
     auto const x = split<TestType>("Testmenoe", "X");
     using ReturnType = typename std::remove_const<decltype(x)>::type;
@@ -84,7 +84,7 @@ TEMPLATE_TEST_CASE("split(string_view, string_view)", "[join_split]",
 }
 
 TEMPLATE_TEST_CASE("split<std::list<...>>()", "[join_split]",
-    std::list<std::string>, std::list<gul14::string_view>)
+    std::list<std::string>, std::list<std::string_view>)
 {
     auto const x = split<TestType>("Hello World", " ");
 
@@ -94,9 +94,9 @@ TEMPLATE_TEST_CASE("split<std::list<...>>()", "[join_split]",
 }
 
 TEMPLATE_TEST_CASE("split<std::queue<...>>()", "[join_split]",
-    std::queue<std::string>, std::queue<gul14::string_view>)
+    std::queue<std::string>, std::queue<std::string_view>)
 {
-    auto emplace = [](TestType& c, gul14::string_view sv) { c.emplace(sv); };
+    auto emplace = [](TestType& c, std::string_view sv) { c.emplace(sv); };
 
     auto const x = split<TestType>("Hello World", " ", emplace);
 
@@ -108,7 +108,7 @@ TEMPLATE_TEST_CASE("split<std::queue<...>>()", "[join_split]",
 TEMPLATE_TEST_CASE("split() with associative containers", "[join_split]",
     std::set<std::string>, std::multiset<std::string>)
 {
-    auto emplace = [](TestType& c, gul14::string_view sv) { c.emplace(sv); };
+    auto emplace = [](TestType& c, std::string_view sv) { c.emplace(sv); };
 
     auto const x = split<TestType>("Hello World", " ", emplace);
 
@@ -117,9 +117,9 @@ TEMPLATE_TEST_CASE("split() with associative containers", "[join_split]",
     REQUIRE(std::find(x.begin(), x.end(), "World") != x.end());
 }
 
-TEMPLATE_TEST_CASE("split(string_view, regex)", "[join_split]",
-    std::vector<std::string>, std::vector<gul14::string_view>,
-    (SmallVector<std::string, 3>), (SmallVector<gul14::string_view, 4>))
+TEMPLATE_TEST_CASE("split(std::string_view, regex)", "[join_split]",
+    std::vector<std::string>, std::vector<std::string_view>,
+    (SmallVector<std::string, 3>), (SmallVector<std::string_view, 4>))
 {
     auto const x = split<TestType>("Testmenoe", std::regex{ "X" });
     REQUIRE(x.size() == 1);
@@ -147,7 +147,7 @@ TEST_CASE("split_sv() with default return type", "[join_split]")
     auto tok = split_sv(a, " ");
 
     using ReturnType = typename std::remove_const<decltype(tok)>::type;
-    static_assert(std::is_same<ReturnType, std::vector<gul14::string_view>>::value == true,
+    static_assert(std::is_same<ReturnType, std::vector<std::string_view>>::value == true,
         "split_sv() returns wrong type");
 
     REQUIRE(tok.size() == 2);
@@ -161,8 +161,8 @@ TEST_CASE("split_sv() with default return type", "[join_split]")
 }
 
 TEMPLATE_TEST_CASE("split_sv()", "[join_split]",
-    std::vector<std::string>, std::vector<gul14::string_view>,
-    (SmallVector<std::string, 2>), (SmallVector<gul14::string_view, 3>))
+    std::vector<std::string>, std::vector<std::string_view>,
+    (SmallVector<std::string, 2>), (SmallVector<std::string_view, 3>))
 {
     auto tok = split_sv<TestType>("Testmenoe", "X");
     using ReturnType = typename std::remove_const<decltype(tok)>::type;
@@ -204,7 +204,7 @@ TEMPLATE_TEST_CASE("split_sv()", "[join_split]",
 }
 
 TEMPLATE_TEST_CASE("split_sv<std::list<...>>()", "[join_split]",
-    std::list<std::string>, std::list<gul14::string_view>)
+    std::list<std::string>, std::list<std::string_view>)
 {
     auto const x = split_sv<TestType>("Hello World", " ");
 
@@ -214,9 +214,9 @@ TEMPLATE_TEST_CASE("split_sv<std::list<...>>()", "[join_split]",
 }
 
 TEMPLATE_TEST_CASE("split_sv<std::queue<...>>()", "[join_split]",
-    std::queue<std::string>, std::queue<gul14::string_view>)
+    std::queue<std::string>, std::queue<std::string_view>)
 {
-    auto emplace = [](TestType& c, gul14::string_view sv) { c.emplace(sv); };
+    auto emplace = [](TestType& c, std::string_view sv) { c.emplace(sv); };
 
     auto const x = split_sv<TestType>("Hello World", " ", emplace);
 
@@ -228,7 +228,7 @@ TEMPLATE_TEST_CASE("split_sv<std::queue<...>>()", "[join_split]",
 TEMPLATE_TEST_CASE("split_sv() with associative containers", "[join_split]",
     std::set<std::string>, std::multiset<std::string>)
 {
-    auto emplace = [](TestType& c, gul14::string_view sv) { c.emplace(sv); };
+    auto emplace = [](TestType& c, std::string_view sv) { c.emplace(sv); };
 
     auto const x = split_sv<TestType>("Hello World", " ", emplace);
 
@@ -244,12 +244,12 @@ TEST_CASE("join()", "[join_split]")
     REQUIRE(join(std::vector<std::string>{ { "xyzzy" } }, "lalala") == "xyzzy");
     REQUIRE(join(std::vector<std::string>{ { "A" }, { "B" } }, "lalala") == "AlalalaB");
 
-    REQUIRE(join(std::vector<string_view>{ }, "lalala") == "");
-    REQUIRE(join(std::vector<string_view>{ { "" } }, "lalala") == "");
-    REQUIRE(join(std::vector<string_view>{ { "xyzzy" } }, "lalala") == "xyzzy"s);
-    REQUIRE(join(std::vector<string_view>{ { "A" }, { "B" } }, "lalala") == "AlalalaB");
+    REQUIRE(join(std::vector<std::string_view>{ }, "lalala") == "");
+    REQUIRE(join(std::vector<std::string_view>{ { "" } }, "lalala") == "");
+    REQUIRE(join(std::vector<std::string_view>{ { "xyzzy" } }, "lalala") == "xyzzy"s);
+    REQUIRE(join(std::vector<std::string_view>{ { "A" }, { "B" } }, "lalala") == "AlalalaB");
 
-    std::forward_list<gul14::string_view> list;
+    std::forward_list<std::string_view> list;
     REQUIRE(join(list, "-") == "");
     REQUIRE(join(list.begin(), list.end(), "-") == "");
 

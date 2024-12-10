@@ -25,11 +25,11 @@
 #include <atomic>
 #include <stdexcept>
 
-#include "gul14/catch.h"
-#include "gul14/ThreadPool.h"
-#include "gul14/time_util.h"
+#include "gul17/catch.h"
+#include "gul17/ThreadPool.h"
+#include "gul17/time_util.h"
 
-using namespace gul14;
+using namespace gul17;
 using namespace std::literals;
 
 //
@@ -51,12 +51,12 @@ TEST_CASE("TaskHandle: cancel()", "[ThreadPool]")
 
     std::atomic<bool> stop{ false };
 
-    auto task1 = pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
-    auto task2 = pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
-    auto task3 = pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
+    auto task1 = pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
+    auto task2 = pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
+    auto task3 = pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
 
     while (task1.get_state() == TaskState::pending)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
 
     REQUIRE(task1.get_state() == TaskState::running);
     REQUIRE(task2.get_state() == TaskState::pending);
@@ -93,9 +93,9 @@ TEST_CASE("TaskHandle: is_complete()", "[ThreadPool][TaskHandle]")
 
     std::atomic<bool> stop{ false };
 
-    auto task1 = pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
-    auto task2 = pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
-    auto task3 = pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
+    auto task1 = pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
+    auto task2 = pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
+    auto task3 = pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
 
     REQUIRE(task1.is_complete() == false);
     REQUIRE(task2.is_complete() == false);
@@ -113,16 +113,16 @@ TEST_CASE("TaskHandle: get_state()", "[ThreadPool][TaskHandle]")
 
     std::atomic<bool> stop{ false };
 
-    auto task1 = pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
-    auto task2 = pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
-    auto task3 = pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
+    auto task1 = pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
+    auto task2 = pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
+    auto task3 = pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
 
-    auto t0 = gul14::tic();
+    auto t0 = gul17::tic();
     while (task1.get_state() != TaskState::running)
     {
-        if (gul14::toc(t0) > 1.0)
+        if (gul17::toc(t0) > 1.0)
             FAIL("Timeout waiting for work item to start");
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
     }
 
     // id1 might have been assigned to the work thread already, but in any case the other
@@ -135,12 +135,12 @@ TEST_CASE("TaskHandle: get_state()", "[ThreadPool][TaskHandle]")
 
     stop = true;
 
-    t0 = gul14::tic();
+    t0 = gul17::tic();
     while (task1.get_state() == TaskState::running)
     {
-        if (gul14::toc(t0) > 1.0)
+        if (gul17::toc(t0) > 1.0)
             FAIL("Timeout waiting for work item to stop");
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
     }
 
     REQUIRE(task1.get_state() == TaskState::complete);
@@ -185,7 +185,7 @@ TEST_CASE("ThreadPool: add_task() for functions without ThreadPool&", "[ThreadPo
     std::atomic<bool> done{ false };
 
     pool->add_task(
-        [&start]() { while (!start) gul14::sleep(10us); });
+        [&start]() { while (!start) gul17::sleep(10us); });
     auto handle = pool->add_task(
         [&done]() { done = true; }, "Task 2");
 
@@ -196,7 +196,7 @@ TEST_CASE("ThreadPool: add_task() for functions without ThreadPool&", "[ThreadPo
     start = true;
 
     while (not pool->is_idle())
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
 
     REQUIRE(done);
 
@@ -217,12 +217,12 @@ TEST_CASE("ThreadPool: add_task() for functions without ThreadPool&", "[ThreadPo
         "task 3 (usually runs first)");
 
     while (last_job == 0)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
     REQUIRE(last_job >= 2);
     REQUIRE(last_job <= 3);
 
     while (pool->count_pending() > 1)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
 
     REQUIRE(task1.get_state() == TaskState::pending);
     task1.cancel();
@@ -239,12 +239,12 @@ TEST_CASE("ThreadPool: add_task() for functions without ThreadPool&", "[ThreadPo
         "task 3 (usually runs first)");
 
     while (last_job == 0)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
     REQUIRE(last_job >= 2);
     REQUIRE(last_job <= 3);
 
     while (pool->count_pending() > 1)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
 
     REQUIRE(task1.get_state() == TaskState::pending);
     task1.cancel();
@@ -263,7 +263,7 @@ TEST_CASE("ThreadPool: add_task(f(ThreadPool&, ...))", "[ThreadPool]")
     std::atomic<bool> done{ false };
 
     pool->add_task(
-        [&start](ThreadPool&) { while (!start) gul14::sleep(10us); });
+        [&start](ThreadPool&) { while (!start) gul17::sleep(10us); });
     auto handle = pool->add_task(
         [&done](ThreadPool&) { done = true; }, "Task 2");
 
@@ -274,7 +274,7 @@ TEST_CASE("ThreadPool: add_task(f(ThreadPool&, ...))", "[ThreadPool]")
     start = true;
 
     while (not pool->is_idle())
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
 
     REQUIRE(done);
 
@@ -295,12 +295,12 @@ TEST_CASE("ThreadPool: add_task(f(ThreadPool&, ...))", "[ThreadPool]")
         "task 3 (usually runs first)");
 
     while (last_job == 0)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
     REQUIRE(last_job >= 2);
     REQUIRE(last_job <= 3);
 
     while (pool->count_pending() > 1)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
 
     REQUIRE(task1.get_state() == TaskState::pending);
     task1.cancel();
@@ -318,12 +318,12 @@ TEST_CASE("ThreadPool: add_task(f(ThreadPool&, ...))", "[ThreadPool]")
         "task 3 (usually runs first)");
 
     while (last_job == 0)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
     REQUIRE(last_job >= 2);
     REQUIRE(last_job <= 3);
 
     while (pool->count_pending() > 1)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
 
     REQUIRE(task1.get_state() == TaskState::pending);
     task1.cancel();
@@ -339,12 +339,12 @@ TEST_CASE("ThreadPool: cancel_pending_tasks()", "[ThreadPool]")
 
     std::atomic<bool> stop{ false };
 
-    auto task1 = pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
-    auto task2 = pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
-    auto task3 = pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
+    auto task1 = pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
+    auto task2 = pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
+    auto task3 = pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
 
     while (task1.get_state() == TaskState::pending)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
 
     REQUIRE(task1.get_state() != TaskState::complete);
     REQUIRE(task1.get_state() != TaskState::canceled);
@@ -377,7 +377,7 @@ TEST_CASE("ThreadPool: count_pending()", "[ThreadPool]")
     for (std::size_t i = 0; i <= 10; ++i)
     {
         REQUIRE(pool->is_full() == false);
-        pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
+        pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
     }
 
     // One work item might already be executing, the queue should have 10 or 11 pending
@@ -408,12 +408,12 @@ TEST_CASE("ThreadPool: get_pending_task_names()", "[ThreadPool]")
 
     std::atomic<bool> stop{ false };
 
-    pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); }, "1");
-    pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); }, "2");
-    pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); }, "3");
+    pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); }, "1");
+    pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); }, "2");
+    pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); }, "3");
 
     while (pool->count_pending() == 3)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
 
     auto pending_names = pool->get_pending_task_names();
     REQUIRE(pending_names.size() == 2);
@@ -434,11 +434,11 @@ TEST_CASE("ThreadPool: get_running_task_names()", "[ThreadPool]")
 
     std::atomic<bool> stop{ false };
 
-    pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); }, "1");
-    pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); }, "2");
+    pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); }, "1");
+    pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); }, "2");
 
     while (pool->count_pending() == 2)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
 
     auto running_names = pool->get_running_task_names();
     REQUIRE(running_names.size() == 1);
@@ -456,17 +456,17 @@ TEST_CASE("ThreadPool: is_full()", "[ThreadPool]")
 
     std::atomic<bool> stop{ false };
 
-    pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
+    pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
 
     // Wait until the first task is running
     while (pool->count_pending() > 0)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
 
     // Enqueue tasks up to the capacity of the pool
     for (std::size_t i = 1; i <= pool->capacity(); ++i)
     {
         REQUIRE(pool->is_full() == false);
-        pool->add_task([&stop]() { while (!stop) gul14::sleep(10us); });
+        pool->add_task([&stop]() { while (!stop) gul17::sleep(10us); });
     }
 
     // One work item is currently executing, the queue is full
@@ -510,7 +510,7 @@ TEST_CASE("ThreadPool: Run 100 functions on a single thread, check order", "[Thr
     {
         REQUIRE(pool->count_pending() <= functions.size());
         REQUIRE(pool->count_pending() <= pool->capacity());
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
     }
 
     REQUIRE(output.size() == 100);
@@ -538,7 +538,7 @@ TEST_CASE("ThreadPool: Run 100 functions on 4 threads", "[ThreadPool]")
                     std::lock_guard<std::mutex> lock(mutex);
                     output.push_back(i);
                 }
-                gul14::sleep(100us);
+                gul17::sleep(100us);
             });
     }
 
@@ -546,7 +546,7 @@ TEST_CASE("ThreadPool: Run 100 functions on 4 threads", "[ThreadPool]")
     {
         REQUIRE(pool->count_pending() <= 100);
         REQUIRE(pool->count_pending() <= pool->capacity());
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
     }
 
     REQUIRE(output.size() == 100);
@@ -573,20 +573,20 @@ TEST_CASE("ThreadPool: Capacity limit", "[ThreadPool]")
             [&go]()
             {
                 while (!go)
-                    gul14::sleep(100us);
+                    gul17::sleep(100us);
             });
     }
 
     // Wait until first job has started
     while (pool->count_pending() != max_jobs - 1)
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
 
     // Add yet another task, filling the queue
     pool->add_task(
         [&go]()
         {
             while (!go)
-                gul14::sleep(100us);
+                gul17::sleep(100us);
         });
     REQUIRE(pool->is_full());
 
@@ -597,7 +597,7 @@ TEST_CASE("ThreadPool: Capacity limit", "[ThreadPool]")
     while (not pool->is_idle())
     {
         REQUIRE(pool->count_pending() <= max_jobs);
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
     }
 
     REQUIRE_NOTHROW(pool->add_task([]() {}));
@@ -641,7 +641,7 @@ TEST_CASE("ThreadPool: Tasks scheduling their own continuation", "[ThreadPool]")
         });
 
     while (not pool->is_idle())
-        gul14::sleep(1ms);
+        gul17::sleep(1ms);
 
     {
         std::lock_guard<std::mutex> lock(mutex);

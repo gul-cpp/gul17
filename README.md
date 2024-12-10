@@ -1,6 +1,6 @@
-# General Utility Library for C++14
+# General Utility Library for C++17
 
-The General Utility Library for C++14 (GUL14) contains often-used utility functions and
+The General Utility Library for C++17 (GUL17) contains often-used utility functions and
 types that form the foundation for other libraries and programs. The main fields covered
 by the library are:
 
@@ -14,7 +14,7 @@ by the library are:
   * Core guideline support library (GSL) excerpts
   * Backports from new standard library extensions
 
-To get started, have a look at the [documentation website](https://gul14.info/)
+To get started, have a look at the [documentation website](https://gul17.info/)
 
 Here you find more detailed information on:
 
@@ -30,17 +30,17 @@ Here you find more detailed information on:
 
 ## Installing with vcpkg
 
-GUL14 is available from the [vcpkg](https://vcpkg.io/) package manager. Once you have
+GUL17 is available from the [vcpkg](https://vcpkg.io/) package manager. Once you have
 vcpkg installed, just run:
 
-        vcpkg install gul14
+        vcpkg install gul17
 
 ## Building <a name="Building"></a>
 
 Clone this repository:
 
-        git clone https://github.com/gul-cpp/gul14.git
-        cd gul14
+        git clone https://github.com/gul-cpp/gul17.git
+        cd gul17
 
 Use meson to configure the build you want to have. A list of the
 [build options](#Build-configuration-switches) is given below. Build directory name can be
@@ -115,10 +115,10 @@ In addition to meson's standard switches there are:
 
 The ``deb-*name`` switch can be used to configure the debian package building
 process with non-standard packet names. The substring '@0@' will be replaced by
-the canonical packet name (i.e. 'libgul14'). Although non-standard packages
+the canonical packet name (i.e. 'libgul17'). Although non-standard packages
 automatically conflict with standard packages care must be taken to keep the
 install target system consistent (i.e. install always only one variant of
-libgul14).
+libgul17).
 
 The ``deb-vers-ext`` switch forces the package names and versions to be based on
 the latest 'git external tag'. This is a tag in the git repository that does not
@@ -303,7 +303,7 @@ That tags are used to tag specific points in time when a packet has been created
 from the project. Its form is ``name_1.2.3``, and again 1, 2, and 3 donate
 version number parts, that might or might not be semantic (see recommended
 format in the description of the deb-vers-tags option). These tags can be used
-to create packet names in the form libgul14-1-2-3 (with ``-D
+to create packet names in the form libgul17-1-2-3 (with ``-D
 deb-vers-pack=true`` set in meson). Note that the ``name_`` part is ignored and
 can be arbitrary, as long as it does not start with lower case 'v'. The amount
 of numbers is arbitrary and just all ``_`` or ``.`` get substituted by ``-`` to
@@ -320,7 +320,7 @@ version tag is ``v0.1`` and it is 3 commits behind; and the external tag version
 is ``D_18_11_7`` and it is 5 commits behind.
 
     deb-vers-tag   dev-vers-pack
-        'v'            false            libgul14_0.1.3.deb                       ->   libgul14.so.0.1
-        'v'            true             libgul14-0-1_0.1.3.deb                   ->   libgul14.so.0.1
-        'D_'           false            libgul14_18.11.7.p5.deb                  ->   libgul14.so.18.11.7
-        'D_'           true             libgul14-18-11-7_18.11.7.p5.deb          ->   libgul14.so.18.11.7
+        'v'            false            libgul17_0.1.3.deb                       ->   libgul17.so.0.1
+        'v'            true             libgul17-0-1_0.1.3.deb                   ->   libgul17.so.0.1
+        'D_'           false            libgul17_18.11.7.p5.deb                  ->   libgul17.so.18.11.7
+        'D_'           true             libgul17-18-11-7_18.11.7.p5.deb          ->   libgul17.so.18.11.7

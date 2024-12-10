@@ -28,11 +28,11 @@
 #include <random>
 #include <string>
 #include <type_traits>
-#include "gul14/catch.h"
-#include "gul14/SmallVector.h"
+#include "gul17/catch.h"
+#include "gul17/SmallVector.h"
 
 using namespace std::literals::string_literals;
-using gul14::SmallVector;
+using gul17::SmallVector;
 
 namespace {
 

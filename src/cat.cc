@@ -20,9 +20,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul14/cat.h"
+#include "gul17/cat.h"
 
-namespace gul14 {
+namespace gul17 {
 
 
 std::string cat(const ConvertingStringView& s1, const ConvertingStringView& s2)
@@ -60,4 +60,4 @@ std::string cat(std::initializer_list<ConvertingStringView> pieces)
     return str;
 }
 
-} // namespace gul14
+} // namespace gul17

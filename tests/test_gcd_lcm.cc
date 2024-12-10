@@ -22,11 +22,11 @@
 
 #include <type_traits>
 
-#include "gul14/catch.h"
-#include "gul14/gcd_lcm.h"
+#include "gul17/catch.h"
+#include "gul17/gcd_lcm.h"
 
-using gul14::gcd;
-using gul14::lcm;
+using gul17::gcd;
+using gul17::lcm;
 
 TEST_CASE("gcd(): Explicit test cases", "[gcd_lcm]")
 {

@@ -20,10 +20,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul14/version.h"
+#include "gul17/version.h"
 
 // The "@ string @" sequences are replaced with the actual strings by the meson build
 // system and written into the build directory as version.cc. That file is compiled and
 // linked if specified.
-char const* gul14::version_git{ "@GIT_FULL_API_VERSION@" };
-char const* gul14::version_api{ "@LIBGUL_API_VERSION@" };
+char const* gul17::version_git{ "@GIT_FULL_API_VERSION@" };
+char const* gul17::version_api{ "@LIBGUL_API_VERSION@" };

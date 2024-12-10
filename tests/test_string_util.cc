@@ -25,19 +25,19 @@
 #include <sstream>
 #include <vector>
 
-#include "gul14/catch.h"
-#include "gul14/SmallVector.h"
-#include "gul14/string_util.h"
+#include "gul17/catch.h"
+#include "gul17/SmallVector.h"
+#include "gul17/string_util.h"
 
-using gul14::hex_string;
-using gul14::repeat;
-using gul14::safe_string;
+using gul17::hex_string;
+using gul17::repeat;
+using gul17::safe_string;
 
 using namespace std::literals;
 
 TEST_CASE("hex_digits", "[string_util]")
 {
-    REQUIRE(gul14::hex_digits.size() == 16);
+    REQUIRE(gul17::hex_digits.size() == 16);
 }
 
 TEST_CASE("hex_string(Integer)", "[string_util]")
@@ -65,7 +65,7 @@ TEST_CASE("hex_string(Integer)", "[string_util]")
     REQUIRE(hex_string(static_cast<int64_t>(0xdeadbeef00000000LL)) == "deadbeef00000000");
 }
 
-TEST_CASE("hex_string(Iterator, Iterator, string_view)", "[string_util]")
+TEST_CASE("hex_string(Iterator, Iterator, std::string_view)", "[string_util]")
 {
     std::array<unsigned char, 4> uc{ { 0, 15, 16, 255 } };
     REQUIRE(hex_string(uc.begin(), uc.begin()) == "");
@@ -88,7 +88,7 @@ TEST_CASE("hex_string(Iterator, Iterator, string_view)", "[string_util]")
             "0000000000000100 ffffffffffffffff 0000000000000000");
 }
 
-TEST_CASE("hex_string(Array, string_view)", "[string_util]")
+TEST_CASE("hex_string(Array, std::string_view)", "[string_util]")
 {
     uint16_t us[] = { 256, 255 };
     REQUIRE(hex_string(us) == "010000ff");
@@ -99,7 +99,7 @@ TEST_CASE("hex_string(Array, string_view)", "[string_util]")
     REQUIRE(hex_string(sll, " ") == "0000000000000100 ffffffffffffffff 0000000000000000");
 }
 
-TEST_CASE("hex_string(Container, string_view)", "[string_util]")
+TEST_CASE("hex_string(Container, std::string_view)", "[string_util]")
 {
     std::array<unsigned char, 4> uc{ { 0, 15, 16, 255 } };
     REQUIRE(hex_string(uc) == "000f10ff");
@@ -109,7 +109,7 @@ TEST_CASE("hex_string(Container, string_view)", "[string_util]")
     REQUIRE(hex_string(us) == "010000ff");
     REQUIRE(hex_string(us, "-") == "0100-00ff");
 
-    gul14::SmallVector<int64_t, 3> sll = { 256, -1, 0 };
+    gul17::SmallVector<int64_t, 3> sll = { 256, -1, 0 };
     REQUIRE(hex_string(sll) == "0000000000000100ffffffffffffffff0000000000000000");
     REQUIRE(hex_string(sll, "/") == "0000000000000100/ffffffffffffffff/0000000000000000");
 }

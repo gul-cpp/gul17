@@ -20,18 +20,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul14/catch.h"
-#include "gul14/date.h"
-#include "gul14/span.h"
-#include "gul14/string_view.h"
+#include "gul17/catch.h"
+#include "gul17/date.h"
+#include "gul17/span.h"
+#include <string_view>
 
 using namespace std::literals;
 
-TEST_CASE("gul14::string_view accepts a string as both char * and std::string, and both "
-          "compare equal", "[string_view]")
+TEST_CASE("std::string_view accepts a string as both char * and std::string, and both "
+          "compare equal", "[std::string_view]")
 {
-    REQUIRE( gul14::string_view{"Test"} == gul14::string_view{"Test"s} );
-    REQUIRE( gul14::string_view{""} == gul14::string_view{""s} );
+    REQUIRE( std::string_view{"Test"} == std::string_view{"Test"s} );
+    REQUIRE( std::string_view{""} == std::string_view{""s} );
 }
 
 TEMPLATE_TEST_CASE("span", "[span]", signed char, unsigned char, short, unsigned short,
@@ -39,7 +39,7 @@ TEMPLATE_TEST_CASE("span", "[span]", signed char, unsigned char, short, unsigned
 {
     TestType arr[5] { 1, 2, 3, 4, 5 };
 
-    gul14::span<TestType> s;
+    gul17::span<TestType> s;
     REQUIRE(s.empty());
 
     s = arr;
@@ -51,7 +51,7 @@ TEMPLATE_TEST_CASE("span", "[span]", signed char, unsigned char, short, unsigned
 
 TEST_CASE("date", "[date]")
 {
-    using namespace gul14::date;
+    using namespace gul17::date;
 
     constexpr year_month_day ymd = 2015_y/March/22;
 

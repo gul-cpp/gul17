@@ -23,14 +23,14 @@
 #include <limits>
 #include <regex>
 
-#include "gul14/escape.h"
-#include "gul14/string_util.h"
+#include "gul17/escape.h"
+#include "gul17/string_util.h"
 
 using namespace std::literals::string_literals;
 
-namespace gul14 {
+namespace gul17 {
 
-std::string escape(string_view in)
+std::string escape(std::string_view in)
 {
     static_assert(std::numeric_limits<signed char>::min() == -128,
                   "Unsupported char type");
@@ -77,11 +77,11 @@ std::string escape(string_view in)
     return escaped;
 }
 
-std::string unescape(string_view in)
+std::string unescape(std::string_view in)
 {
     auto const static re = std::regex{ R"(\\(["\\nrt]|x[[:xdigit:]]{2}))" };
-    auto rit  = std::regex_iterator<string_view::const_iterator>{ in.cbegin(), in.cend(), re };
-    auto const rend = std::regex_iterator<string_view::const_iterator>{ };
+    auto rit  = std::regex_iterator<std::string_view::const_iterator>{ in.cbegin(), in.cend(), re };
+    auto const rend = std::regex_iterator<std::string_view::const_iterator>{ };
     auto last = decltype(*rit){ };
 
     if (rit == rend)
@@ -124,6 +124,6 @@ std::string unescape(string_view in)
     return unescaped;
 }
 
-} // namespace gul14
+} // namespace gul17
 
 // vi:ts=4:sw=4:sts=4:et

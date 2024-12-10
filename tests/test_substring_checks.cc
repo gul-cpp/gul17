@@ -20,13 +20,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul14/catch.h"
-#include "gul14/substring_checks.h"
+#include "gul17/catch.h"
+#include "gul17/substring_checks.h"
 
 using namespace std::literals;
-using namespace gul14;
+using namespace gul17;
 
-TEST_CASE("contains(string_view, string_view)", "[substring_checks]")
+TEST_CASE("contains(std::string_view, std::string_view)", "[substring_checks]")
 {
     auto constexpr test_constexprness = contains("Hello World", "Hello");
     REQUIRE(test_constexprness);
@@ -42,7 +42,7 @@ TEST_CASE("contains(string_view, string_view)", "[substring_checks]")
     REQUIRE(!contains("", "aaa"));
 }
 
-TEST_CASE("contains(string_view, char)", "[substring_checks]")
+TEST_CASE("contains(std::string_view, char)", "[substring_checks]")
 {
     auto constexpr test_constexprness = contains("Hello World", 'H');
     REQUIRE(test_constexprness);
@@ -55,7 +55,7 @@ TEST_CASE("contains(string_view, char)", "[substring_checks]")
     REQUIRE(!contains("Hello World", '\0'));
 }
 
-TEST_CASE("contains_nocase(string_view, string_view)", "[substring_checks]")
+TEST_CASE("contains_nocase(std::string_view, std::string_view)", "[substring_checks]")
 {
     auto constexpr test_constexprness = contains_nocase("Hello World", "Hello");
     REQUIRE(test_constexprness);
@@ -77,7 +77,7 @@ TEST_CASE("contains_nocase(string_view, string_view)", "[substring_checks]")
     REQUIRE(!contains_nocase("", "aaa"));
 }
 
-TEST_CASE("contains_nocase(string_view, char)", "[substring_checks]")
+TEST_CASE("contains_nocase(std::string_view, char)", "[substring_checks]")
 {
     auto constexpr test_constexprness = contains_nocase("Hello World", 'H');
     REQUIRE(test_constexprness);
@@ -93,7 +93,7 @@ TEST_CASE("contains_nocase(string_view, char)", "[substring_checks]")
     REQUIRE(!contains_nocase("Hello World", '\0'));
 }
 
-TEST_CASE("ends_with(string_view, string_view)", "[substring_checks]")
+TEST_CASE("ends_with(std::string_view, std::string_view)", "[substring_checks]")
 {
     auto constexpr test_constexprness = ends_with("Hello World", "Hello World2");
     REQUIRE(!test_constexprness);
@@ -107,7 +107,7 @@ TEST_CASE("ends_with(string_view, string_view)", "[substring_checks]")
     REQUIRE(!ends_with("Hello World", "\0"s));
 }
 
-TEST_CASE("ends_with(string_view, char)", "[substring_checks]")
+TEST_CASE("ends_with(std::string_view, char)", "[substring_checks]")
 {
     auto constexpr test_constexprness = ends_with("Hello World", 'd');
     REQUIRE(test_constexprness);
@@ -117,7 +117,7 @@ TEST_CASE("ends_with(string_view, char)", "[substring_checks]")
     REQUIRE(ends_with("Hello World\0"s, '\0'));
 }
 
-TEST_CASE("ends_with_nocase(string_view, string_view)", "[substring_checks]")
+TEST_CASE("ends_with_nocase(std::string_view, std::string_view)", "[substring_checks]")
 {
     auto constexpr test_constexprness = ends_with_nocase("Hello World", "Hello");
     REQUIRE(!test_constexprness);
@@ -134,7 +134,7 @@ TEST_CASE("ends_with_nocase(string_view, string_view)", "[substring_checks]")
     REQUIRE(!ends_with_nocase("Hello World", "\0"s));
 }
 
-TEST_CASE("ends_with_nocase(string_view, char)", "[substring_checks]")
+TEST_CASE("ends_with_nocase(std::string_view, char)", "[substring_checks]")
 {
     auto constexpr test_constexprness = ends_with_nocase("Hello World", 'd');
     REQUIRE(test_constexprness);
@@ -146,7 +146,7 @@ TEST_CASE("ends_with_nocase(string_view, char)", "[substring_checks]")
     REQUIRE(ends_with_nocase("Hello World\0"s, '\0'));
 }
 
-TEST_CASE("equals_nocase(string_view, string_view)", "[substring_checks]")
+TEST_CASE("equals_nocase(std::string_view, std::string_view)", "[substring_checks]")
 {
     auto constexpr test_constexprness = equals_nocase("Hello World", "HELLO WORLD");
     REQUIRE(test_constexprness == true);
@@ -155,7 +155,7 @@ TEST_CASE("equals_nocase(string_view, string_view)", "[substring_checks]")
     REQUIRE(equals_nocase("Hello", "HELL") == false);
 }
 
-TEST_CASE("starts_with(string_view, string_view)", "[substring_checks]")
+TEST_CASE("starts_with(std::string_view, std::string_view)", "[substring_checks]")
 {
     auto constexpr test_constexprness = starts_with("Hello World", "Hello");
     REQUIRE(test_constexprness);
@@ -169,7 +169,7 @@ TEST_CASE("starts_with(string_view, string_view)", "[substring_checks]")
     REQUIRE(!starts_with("Hello World", "\0"s));
 }
 
-TEST_CASE("starts_with(string_view, char)", "[substring_checks]")
+TEST_CASE("starts_with(std::string_view, char)", "[substring_checks]")
 {
     auto constexpr test_constexprness = starts_with("Hello World", 'H');
     REQUIRE(test_constexprness);
@@ -179,7 +179,7 @@ TEST_CASE("starts_with(string_view, char)", "[substring_checks]")
     REQUIRE(starts_with("\0Hello World"s, '\0'));
 }
 
-TEST_CASE("starts_with_nocase(string_view, string_view)", "[substring_checks]")
+TEST_CASE("starts_with_nocase(std::string_view, std::string_view)", "[substring_checks]")
 {
     auto constexpr test_constexprness = starts_with_nocase("Hello World", "Hello");
     REQUIRE(test_constexprness);
@@ -196,7 +196,7 @@ TEST_CASE("starts_with_nocase(string_view, string_view)", "[substring_checks]")
     REQUIRE(!starts_with_nocase("Hello World", "\0"s));
 }
 
-TEST_CASE("starts_with_nocase(string_view, char)", "[substring_checks]")
+TEST_CASE("starts_with_nocase(std::string_view, char)", "[substring_checks]")
 {
     auto constexpr test_constexprness = starts_with_nocase("Hello World", 'H');
     REQUIRE(test_constexprness);

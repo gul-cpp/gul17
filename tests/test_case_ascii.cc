@@ -21,11 +21,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul14/case_ascii.h"
-#include "gul14/catch.h"
+#include "gul17/case_ascii.h"
+#include "gul17/catch.h"
 
 using namespace std::literals;
-using namespace gul14;
+using namespace gul17;
 
 TEST_CASE("lowercase_ascii()", "[case_ascii]")
 {

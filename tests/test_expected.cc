@@ -23,9 +23,9 @@
 #include <memory>
 #include <string>
 
-#include "gul14/catch.h"
-#include "gul14/expected.h"
-#include "gul14/optional.h" // to check if there are clashing declarations, e.g. in_place_t
+#include "gul17/catch.h"
+#include "gul17/expected.h"
+#include <optional>
 
 using namespace std::literals;
 
@@ -35,10 +35,10 @@ using namespace std::literals;
 
 namespace {
 
-gul14::expected<int, std::string> unexpected_if_negative(int value)
+gul17::expected<int, std::string> unexpected_if_negative(int value)
 {
     if (value < 0)
-        return gul14::unexpected<std::string>("error");
+        return gul17::unexpected<std::string>("error");
 
     return value;
 }
@@ -48,7 +48,7 @@ gul14::expected<int, std::string> unexpected_if_negative(int value)
 TEMPLATE_TEST_CASE("expected: Default constructor", "[expected]", int, std::string,
     std::unique_ptr<int>)
 {
-    gul14::expected<TestType, std::string> ex;
+    gul17::expected<TestType, std::string> ex;
     REQUIRE(ex.value() == TestType{});
 }
 
@@ -63,12 +63,12 @@ TEST_CASE("expected: and_then()", "[expected]")
 
 TEST_CASE("expected: has_value()", "[expected]")
 {
-    gul14::expected<int, std::string> ex;
+    gul17::expected<int, std::string> ex;
 
     REQUIRE(ex.has_value() == true);
     REQUIRE(*ex == 0);
 
-    ex = gul14::unexpected<std::string>("error");
+    ex = gul17::unexpected<std::string>("error");
     REQUIRE(ex.has_value() == false);
     REQUIRE(ex.error() == "error");
 
@@ -79,11 +79,11 @@ TEST_CASE("expected: has_value()", "[expected]")
 
 TEST_CASE("value()", "[expected]")
 {
-    gul14::expected<int, std::string> ex{ 42 };
+    gul17::expected<int, std::string> ex{ 42 };
 
     REQUIRE(ex.value() == 42);
 
-    ex = gul14::unexpected<std::string>("error");
-    REQUIRE_THROWS_AS(ex.value(), gul14::bad_expected_access<void>); // base class
-    REQUIRE_THROWS_AS(ex.value(), gul14::bad_expected_access<std::string>); // derived class
+    ex = gul17::unexpected<std::string>("error");
+    REQUIRE_THROWS_AS(ex.value(), gul17::bad_expected_access<void>); // base class
+    REQUIRE_THROWS_AS(ex.value(), gul17::bad_expected_access<std::string>); // derived class
 }

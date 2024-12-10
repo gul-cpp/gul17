@@ -24,16 +24,16 @@
 #include <random>
 #include <sstream>
 
-#include "gul14/cat.h"
-#include "gul14/catch.h"
-#include "gul14/join_split.h"
-#include "gul14/SlidingBuffer.h"
-#include "gul14/trim.h"
-#include "gul14/tokenize.h"
+#include "gul17/cat.h"
+#include "gul17/catch.h"
+#include "gul17/join_split.h"
+#include "gul17/SlidingBuffer.h"
+#include "gul17/trim.h"
+#include "gul17/tokenize.h"
 
 using namespace std::literals::string_literals;
-using gul14::SlidingBuffer;
-using gul14::SlidingBufferExposed;
+using gul17::SlidingBuffer;
+using gul17::SlidingBufferExposed;
 
 // A dummy struct for tests with nontrivial elements.
 struct MyStruct {
@@ -61,7 +61,7 @@ auto generic_debugdump(std::ostream& s, typename BufferT::size_type len,
     return s << '\n';
 }
 
-// A SlidingBuffer variant that allows to dump the underlying container
+// A SlidingBuffer std::variant that allows to dump the underlying container
 // and the state of the buffer all in one to a stream.
 // We use this to inspect the operations, if they handled internally as expected.
 template<typename ElementT, std::size_t fixed_capacity = 0u,
@@ -188,7 +188,7 @@ void do_dumping_tests(T& buff)
 
     std::stringstream s2{ };
     s2 << buff;
-    REQUIRE_THAT(gul14::trim(s2.str()), Catch::Matchers::Matches(
+    REQUIRE_THAT(gul17::trim(s2.str()), Catch::Matchers::Matches(
                 "141.4  131.3  121.2  111.1  101  90.9  80.8  70.7  60.6  50.5"));
 }
 
@@ -325,7 +325,7 @@ TEST_CASE("SlidingBuffer resize", "[SlidingBuffer]")
         REQUIRE(buff.capacity() == 5);
         std::stringstream s{ };
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6"));
         auto buffa = buff;
 
@@ -335,7 +335,7 @@ TEST_CASE("SlidingBuffer resize", "[SlidingBuffer]")
         REQUIRE(buff.capacity() == 5);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6"));
 
         buff.resize(8);
@@ -344,7 +344,7 @@ TEST_CASE("SlidingBuffer resize", "[SlidingBuffer]")
         REQUIRE(buff.capacity() == 8);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6"));
 
         buff.resize(11);
@@ -353,7 +353,7 @@ TEST_CASE("SlidingBuffer resize", "[SlidingBuffer]")
         REQUIRE(buff.capacity() == 11);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6"));
         REQUIRE(*buff.begin() == 10);
 
@@ -363,7 +363,7 @@ TEST_CASE("SlidingBuffer resize", "[SlidingBuffer]")
         REQUIRE(buff.capacity() == 6);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6"));
 
         buff.resize(5);
@@ -372,7 +372,7 @@ TEST_CASE("SlidingBuffer resize", "[SlidingBuffer]")
         REQUIRE(buff.capacity() == 5);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6"));
 
         buffa.resize(4);
@@ -381,7 +381,7 @@ TEST_CASE("SlidingBuffer resize", "[SlidingBuffer]")
         REQUIRE(buffa.capacity() == 4);
         s.str("");
         s << buffa;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7"));
 
         buff.resize(3);
@@ -390,7 +390,7 @@ TEST_CASE("SlidingBuffer resize", "[SlidingBuffer]")
         REQUIRE(buff.capacity() == 3);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8"));
 
         buff.resize(0);
@@ -428,7 +428,7 @@ TEST_CASE("SlidingBuffer resize", "[SlidingBuffer]")
         REQUIRE(buff.back() == 3);
         std::stringstream s{ };
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4  3"));
 
         auto buffa = buff;
@@ -439,7 +439,7 @@ TEST_CASE("SlidingBuffer resize", "[SlidingBuffer]")
         REQUIRE(buff.capacity() == 12);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4  3"));
 
         buff.resize(12);
@@ -448,7 +448,7 @@ TEST_CASE("SlidingBuffer resize", "[SlidingBuffer]")
         REQUIRE(buff.capacity() == 12);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4  3"));
 
         buff.resize(15);
@@ -457,92 +457,92 @@ TEST_CASE("SlidingBuffer resize", "[SlidingBuffer]")
         REQUIRE(buff.capacity() == 15);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4  3"));
 
         buff = buffa;
         buff.resize(14);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4  3"));
         buff = buffa;
         buff.resize(13);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4  3"));
         buff = buffa;
         buff.resize(12);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4  3"));
         buff = buffa;
         buff.resize(11);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4  3"));
         buff = buffa;
         buff.resize(10);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4  3"));
         buff = buffa;
         buff.resize(9);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4  3"));
         buff = buffa;
         buff.resize(8); // no change
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4  3"));
         buff = buffa;
         buff.resize(7);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4"));
         buff = buffa;
         buff.resize(6);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5"));
         buff = buffa;
         buff.resize(5);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6"));
         buff = buffa;
         buff.resize(4);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7"));
         buff = buffa;
         buff.resize(3);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8"));
         buff = buffa;
         buff.resize(2);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9"));
         buff = buffa;
         buff.resize(1);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10"));
     }
     SECTION("filling pattern 3") {
@@ -574,28 +574,28 @@ TEST_CASE("SlidingBuffer resize", "[SlidingBuffer]")
         REQUIRE(buff.capacity() == 8);
         std::stringstream s{ };
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4  3"));
 
         auto buffa = buff;
         buff.resize(12);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6  5  4  3"));
 
         buff = buffa;
         buff.resize(5);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7  6"));
 
         buff = buffa;
         buff.resize(4);
         s.str("");
         s << buff;
-        REQUIRE_THAT(gul14::trim(s.str()), Catch::Matchers::Matches(
+        REQUIRE_THAT(gul17::trim(s.str()), Catch::Matchers::Matches(
             "10  9  8  7"));
     }
 }
@@ -1078,7 +1078,7 @@ TEST_CASE("SlidingBuffer: mixed directions", "[SlidingBuffer]")
         std::stringstream s{ };
         s.str("");
         s << buf;
-        REQUIRE(gul14::trim(s.str()) == "1  2");
+        REQUIRE(gul17::trim(s.str()) == "1  2");
     }
 
     SECTION("SlidingBufferExposed") {
@@ -1104,7 +1104,7 @@ TEST_CASE("SlidingBuffer: resizing and begin()/end() guarantee", "[SlidingBuffer
         buf.push_front(1);
         buf.push_front(2);
         REQUIRE(std::distance(buf.begin(), buf.end()) == 2);
-        buf.resize(6, gul14::ShrinkBehavior::keep_front_elements);
+        buf.resize(6, gul17::ShrinkBehavior::keep_front_elements);
         buf.push_front(10);
         buf.push_front(11);
         REQUIRE(std::distance(buf.begin(), buf.end()) == 4);
@@ -1117,7 +1117,7 @@ TEST_CASE("SlidingBuffer: resizing and begin()/end() guarantee", "[SlidingBuffer
         buf.push_front(1);
         buf.push_front(2);
         REQUIRE(std::distance(buf.begin(), buf.end()) == 2);
-        buf.resize(10, gul14::ShrinkBehavior::keep_front_elements);
+        buf.resize(10, gul17::ShrinkBehavior::keep_front_elements);
         buf.push_front(10);
         buf.push_front(11);
         REQUIRE(std::distance(buf.begin(), buf.end()) == 4);
@@ -1130,7 +1130,7 @@ TEST_CASE("SlidingBuffer: resizing and begin()/end() guarantee", "[SlidingBuffer
         buf.push_back(1);
         buf.push_back(2);
         REQUIRE(std::distance(buf.begin(), buf.end()) == 2);
-        buf.resize(6, gul14::ShrinkBehavior::keep_back_elements);
+        buf.resize(6, gul17::ShrinkBehavior::keep_back_elements);
         buf.push_back(10);
         buf.push_back(11);
         REQUIRE(std::distance(buf.begin(), buf.end()) == 4);
@@ -1143,7 +1143,7 @@ TEST_CASE("SlidingBuffer: resizing and begin()/end() guarantee", "[SlidingBuffer
         buf.push_back(1);
         buf.push_back(2);
         REQUIRE(std::distance(buf.begin(), buf.end()) == 2);
-        buf.resize(10, gul14::ShrinkBehavior::keep_back_elements);
+        buf.resize(10, gul17::ShrinkBehavior::keep_back_elements);
         buf.push_back(10);
         buf.push_back(11);
         REQUIRE(std::distance(buf.begin(), buf.end()) == 4);
@@ -1154,10 +1154,10 @@ TEST_CASE("SlidingBuffer: resizing and begin()/end() guarantee", "[SlidingBuffer
 
 template <typename Buffer>
 auto do_a_dump(Buffer buf, int start, int end, bool backwards,
-        std::size_t resize_to, gul14::ShrinkBehavior sb, std::string head, bool print) {
+        std::size_t resize_to, gul17::ShrinkBehavior sb, std::string head, bool print) {
     auto const omit_until = end - start >= 10 ? end - 4 : 0;
     head += " - push_"s + (backwards ? "back"s : "front"s);
-    head += " - shrink_keep_"s + (sb == gul14::ShrinkBehavior::keep_back_elements ? "back"s : "front"s);
+    head += " - shrink_keep_"s + (sb == gul17::ShrinkBehavior::keep_back_elements ? "back"s : "front"s);
     if (print) {
         if (omit_until > 0)
             std::cout << head << "\n[...]\n";
@@ -1179,7 +1179,7 @@ auto do_a_dump(Buffer buf, int start, int end, bool backwards,
     std::stringstream s{ };
     for (auto it = buf.begin(); it != buf.end(); ++it)
         s << *it << ' ';
-    return gul14::join(gul14::tokenize(s.str()), " ");
+    return gul17::join(gul17::tokenize(s.str()), " ");
 }
 
 TEST_CASE("SlidingBuffer: Shrinking behavior", "[SlidingBuffer]")
@@ -1189,8 +1189,8 @@ TEST_CASE("SlidingBuffer: Shrinking behavior", "[SlidingBuffer]")
 
     auto const pf = false; // push_front
     auto const pb = true; // push_back
-    auto const sf = gul14::ShrinkBehavior::keep_front_elements;
-    auto const sb = gul14::ShrinkBehavior::keep_back_elements;
+    auto const sf = gul17::ShrinkBehavior::keep_front_elements;
+    auto const sb = gul17::ShrinkBehavior::keep_back_elements;
     auto const normal = "Normal";
 
     SECTION("Buffer not yet filled, shrink with element loss") {
@@ -1266,8 +1266,8 @@ TEST_CASE("SlidingBufferExposed: Shrinking behavior", "[SlidingBuffer]")
 
     auto const pf = false; // push_front
     auto const pb = true; // push_back
-    auto const sf = gul14::ShrinkBehavior::keep_front_elements;
-    auto const sb = gul14::ShrinkBehavior::keep_back_elements;
+    auto const sf = gul17::ShrinkBehavior::keep_front_elements;
+    auto const sb = gul17::ShrinkBehavior::keep_back_elements;
     auto const normal = "Exposed";
 
     SECTION("Buffer not yet filled, shrink with element loss") {

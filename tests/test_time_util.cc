@@ -22,16 +22,16 @@
 
 #include <future>
 
-#include "gul14/catch.h"
-#include "gul14/time_util.h"
-#include "gul14/Trigger.h"
+#include "gul17/catch.h"
+#include "gul17/time_util.h"
+#include "gul17/Trigger.h"
 
 using namespace std::literals;
 
-using gul14::tic;
-using gul14::toc;
-using gul14::sleep;
-using gul14::Trigger;
+using gul17::tic;
+using gul17::toc;
+using gul17::sleep;
+using gul17::Trigger;
 
 SCENARIO("After tic() and sleep(), toc() yields the correct time span", "[time_util]")
 {

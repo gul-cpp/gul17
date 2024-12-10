@@ -20,9 +20,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul14/Trigger.h"
+#include "gul17/Trigger.h"
 
-namespace gul14 {
+namespace gul17 {
 
 
 Trigger::~Trigger() noexcept
@@ -76,4 +76,4 @@ void Trigger::wait() const
 }
 
 
-} // namespace gul14
+} // namespace gul17

@@ -20,13 +20,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul14/replace.h"
+#include "gul17/replace.h"
 
 using namespace std::literals::string_literals;
 
-namespace gul14 {
+namespace gul17 {
 
-std::string replace(string_view haystack, string_view needle, string_view hammer)
+std::string replace(std::string_view haystack, std::string_view needle, std::string_view hammer)
 {
     if (needle.empty())
         return std::string(haystack);
@@ -50,7 +50,7 @@ std::string replace(string_view haystack, string_view needle, string_view hammer
     return result;
 }
 
-std::string& replace_inplace(std::string& haystack, string_view needle, string_view hammer)
+std::string& replace_inplace(std::string& haystack, std::string_view needle, std::string_view hammer)
 {
     if (needle.empty())
         return haystack;
@@ -64,6 +64,6 @@ std::string& replace_inplace(std::string& haystack, string_view needle, string_v
     return haystack;
 }
 
-} // namespace gul14
+} // namespace gul17
 
 /* vim:set expandtab softtabstop=4 tabstop=4 shiftwidth=4 textwidth=90 cindent: */

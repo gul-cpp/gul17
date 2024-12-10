@@ -21,21 +21,21 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul14/trim.h"
+#include "gul17/trim.h"
 
-namespace gul14 {
+namespace gul17 {
 
 
-std::string trim(string_view str, string_view ws_chars)
+std::string trim(std::string_view str, std::string_view ws_chars)
 {
     return std::string(trim_sv(str, ws_chars));
 }
 
-string_view trim_sv(string_view str, string_view ws_chars)
+std::string_view trim_sv(std::string_view str, std::string_view ws_chars)
 {
     const auto lpos = str.find_first_not_of(ws_chars);
 
-    if (lpos == string_view::npos)
+    if (lpos == std::string_view::npos)
         return "";
 
     const auto rpos = str.find_last_not_of(ws_chars);
@@ -43,35 +43,35 @@ string_view trim_sv(string_view str, string_view ws_chars)
     return str.substr(lpos, rpos - lpos + 1);
 }
 
-std::string trim_left(string_view str, string_view ws_chars)
+std::string trim_left(std::string_view str, std::string_view ws_chars)
 {
     return std::string(trim_left_sv(str, ws_chars));
 }
 
-string_view trim_left_sv(string_view str, string_view ws_chars)
+std::string_view trim_left_sv(std::string_view str, std::string_view ws_chars)
 {
     const auto pos = str.find_first_not_of(ws_chars);
 
-    if (pos == string_view::npos)
+    if (pos == std::string_view::npos)
         return "";
 
     return str.substr(pos);
 }
 
-std::string trim_right(string_view str, string_view ws_chars)
+std::string trim_right(std::string_view str, std::string_view ws_chars)
 {
     return std::string(trim_right_sv(str, ws_chars));
 }
 
-string_view trim_right_sv(string_view str, string_view ws_chars)
+std::string_view trim_right_sv(std::string_view str, std::string_view ws_chars)
 {
     const auto pos = str.find_last_not_of(ws_chars);
 
-    if (pos == string_view::npos)
+    if (pos == std::string_view::npos)
         return "";
 
     return str.substr(0, pos + 1);
 }
 
 
-} // namespace gul14
+} // namespace gul17

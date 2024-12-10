@@ -29,20 +29,20 @@
 #include <sstream>
 #include <type_traits>
 
-#include "gul14/catch.h"
-#include "gul14/statistics.h"
-#include "gul14/substring_checks.h"
-#include "gul14/type_name.h"
+#include "gul17/catch.h"
+#include "gul17/statistics.h"
+#include "gul17/substring_checks.h"
+#include "gul17/type_name.h"
 
-using gul14::accumulate;
-using gul14::maximum;
-using gul14::mean;
-using gul14::median;
-using gul14::minimum;
-using gul14::min_max;
-using gul14::remove_outliers;
-using gul14::rms;
-using gul14::standard_deviation;
+using gul17::accumulate;
+using gul17::maximum;
+using gul17::mean;
+using gul17::median;
+using gul17::minimum;
+using gul17::min_max;
+using gul17::remove_outliers;
+using gul17::rms;
+using gul17::standard_deviation;
 
 using Catch::Matchers::WithinAbs;
 
@@ -121,7 +121,7 @@ TEMPLATE_TEST_CASE("standard_deviation()", "[statistics]",
     SECTION("Empty container")
     {
         std::vector<TestType> empty;
-        REQUIRE(std::isnan(static_cast<gul14::statistics_result_type>(standard_deviation(empty))));
+        REQUIRE(std::isnan(static_cast<gul17::statistics_result_type>(standard_deviation(empty))));
 
         auto std_mean = standard_deviation(empty);
         REQUIRE(std::isnan(std_mean.sigma()));
@@ -131,7 +131,7 @@ TEMPLATE_TEST_CASE("standard_deviation()", "[statistics]",
     SECTION("Container with single element")
     {
         std::array<TestType, 1> arr1{ { 42 } };
-        REQUIRE(std::isnan(static_cast<gul14::statistics_result_type>(standard_deviation(arr1))));
+        REQUIRE(std::isnan(static_cast<gul17::statistics_result_type>(standard_deviation(arr1))));
 
         auto std_mean = standard_deviation(arr1);
         REQUIRE(std::isnan(std_mean.sigma()));
@@ -141,7 +141,7 @@ TEMPLATE_TEST_CASE("standard_deviation()", "[statistics]",
     SECTION("Container with 4 elements")
     {
         std::array<TestType, 4> arr4{ { 1, 2, 3, 4 } };
-        REQUIRE_THAT(static_cast<gul14::statistics_result_type>(standard_deviation(arr4)),
+        REQUIRE_THAT(static_cast<gul17::statistics_result_type>(standard_deviation(arr4)),
                      WithinAbs(1.29099445, 1e-8));
 
         auto std_mean = standard_deviation(arr4);
@@ -236,7 +236,7 @@ TEST_CASE("Container Statistics Tests", "[statistics]")
         REQUIRE(accumulate<unsigned int>(fifo, op_max, acc_state) == state2);
         // For some reason stuff from standard header <numeric> seem to be in our namespace,
         // so we need to specify that we want to use GUL's accumulate rather than std::accumulate
-        REQUIRE(gul14::accumulate<unsigned int>(fifo.begin(), fifo.end(), op_max, acc_state) == state2);
+        REQUIRE(gul17::accumulate<unsigned int>(fifo.begin(), fifo.end(), op_max, acc_state) == state2);
         REQUIRE(accumulate<unsigned int>(fifo, op_or, acc_state) == (state1 | state2 | state3 | state4 | state5));
         REQUIRE(minimum(fifo, accessor) == value2);
         REQUIRE(maximum(fifo, accessor) == value1);
@@ -417,32 +417,32 @@ TEMPLATE_TEST_CASE("ElementAccessor", "[statistics]",
     auto i = TestType{ };
     SECTION("fundamental type access") {
         auto x = i;
-        auto ea = gul14::ElementAccessor<decltype(x)>();
+        auto ea = gul17::ElementAccessor<decltype(x)>();
         using T = decltype(ea(x));
         INFO("Shall use const reference:");
-        INFO(gul14::type_name<decltype(ea)>());
-        INFO(gul14::type_name<T>());
+        INFO(gul17::type_name<decltype(ea)>());
+        INFO(gul17::type_name<T>());
         REQUIRE(std::is_const<typename std::remove_reference<T>::type>::value);
         REQUIRE(std::is_reference<T>::value);
     }
     SECTION("pointer type access") {
         auto x = &i;
-        auto ea = gul14::ElementAccessor<decltype(x)>();
+        auto ea = gul17::ElementAccessor<decltype(x)>();
         using T = decltype(ea(x));
         INFO("Shall use const reference:");
-        INFO(gul14::type_name<decltype(ea)>());
-        INFO(gul14::type_name<T>());
+        INFO(gul17::type_name<decltype(ea)>());
+        INFO(gul17::type_name<T>());
         REQUIRE(std::is_const<typename std::remove_reference<T>::type>::value);
         REQUIRE(std::is_reference<T>::value);
     }
     SECTION("user type access") {
         struct UserType { TestType e; };
         auto x = UserType{ 0 };
-        auto ea = gul14::ElementAccessor<decltype(x)>();
+        auto ea = gul17::ElementAccessor<decltype(x)>();
         using T = decltype(ea(x));
         INFO("Shall use const reference:");
-        INFO(gul14::type_name<decltype(ea)>());
-        INFO(gul14::type_name<T>());
+        INFO(gul17::type_name<decltype(ea)>());
+        INFO(gul17::type_name<T>());
         REQUIRE(std::is_const<typename std::remove_reference<T>::type>::value);
         REQUIRE(std::is_reference<T>::value);
     }
@@ -459,7 +459,7 @@ TEMPLATE_TEST_CASE("general accumulate()", "[statistics]",
         v.push_back(9);
         REQUIRE(std::accumulate(v.cbegin(), v.cend(), TestType{ },
                 [](TestType a, TestType el) { return a + el; }) == 18);
-        REQUIRE(gul14::accumulate<TestType>(v,
+        REQUIRE(gul17::accumulate<TestType>(v,
                 [](TestType a, TestType el) { return a + el; }) == 18);
     }
     SECTION("pointer accumulate") {
@@ -474,7 +474,7 @@ TEMPLATE_TEST_CASE("general accumulate()", "[statistics]",
         v.push_back(&d);
         REQUIRE(std::accumulate(v.cbegin(), v.cend(), TestType{ },
                 [](TestType accu, TestType* el) { return accu + *el; }) == 14);
-        REQUIRE(gul14::accumulate<TestType>(v,
+        REQUIRE(gul17::accumulate<TestType>(v,
                 [](TestType accu, TestType* el) { return accu + *el; }) == 14);
     }
     SECTION("user type accumulate") {
@@ -491,7 +491,7 @@ TEMPLATE_TEST_CASE("general accumulate()", "[statistics]",
         v.emplace_back(TestType{ 7 }, true);
         REQUIRE(std::accumulate(v.cbegin(), v.cend(), TestType{ },
                 [](TestType accu, UserType const& el) { return accu + el.e; }) == 19);
-        REQUIRE(gul14::accumulate<TestType>(v,
+        REQUIRE(gul17::accumulate<TestType>(v,
                 [](TestType accu, UserType const& el) { return accu + el.e; }) == 19);
     }
 }

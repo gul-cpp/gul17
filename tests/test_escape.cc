@@ -22,38 +22,38 @@
 
 #include <random>
 
-#include "gul14/cat.h"
-#include "gul14/catch.h"
-#include "gul14/escape.h"
+#include "gul17/cat.h"
+#include "gul17/catch.h"
+#include "gul17/escape.h"
 
 using namespace std::literals;
 
 TEST_CASE("Compare escaped strings", "[escape]")
 {
-    REQUIRE(gul14::escape("foo bar baz"s) == "foo bar baz"s);
+    REQUIRE(gul17::escape("foo bar baz"s) == "foo bar baz"s);
 
     // This shows the design idea quite nice:
-    REQUIRE(gul14::escape("foo\rbar\nfoobar\tbaz\\qux\""s) ==
+    REQUIRE(gul17::escape("foo\rbar\nfoobar\tbaz\\qux\""s) ==
               R"(foo\rbar\nfoobar\tbaz\\qux\")"s);
 
-    REQUIRE(gul14::escape("foo\abar\000baz"s) == R"(foo\x07bar\x00baz)"s);
+    REQUIRE(gul17::escape("foo\abar\000baz"s) == R"(foo\x07bar\x00baz)"s);
 
-    REQUIRE(gul14::escape("\xff") == "\\xff");
+    REQUIRE(gul17::escape("\xff") == "\\xff");
 }
 
 TEST_CASE("Compare unescaped strings", "[escape]")
 {
-    REQUIRE(gul14::unescape("foo bar baz"s) == "foo bar baz"s);
+    REQUIRE(gul17::unescape("foo bar baz"s) == "foo bar baz"s);
 
-    REQUIRE(gul14::unescape(R"(foo\rbar\nfoobar\tbaz\\qux\")"s) ==
+    REQUIRE(gul17::unescape(R"(foo\rbar\nfoobar\tbaz\\qux\")"s) ==
                 "foo\rbar\nfoobar\tbaz\\qux\""s);
 
-    REQUIRE(gul14::unescape(R"(foo\x07bar\x00baz)"s) == "foo\abar\000baz"s);
+    REQUIRE(gul17::unescape(R"(foo\x07bar\x00baz)"s) == "foo\abar\000baz"s);
 
-    REQUIRE(gul14::unescape("\\xff") == "\xff");
+    REQUIRE(gul17::unescape("\\xff") == "\xff");
 
     auto const s = "foo\abar\000baz"s;
-    REQUIRE(gul14::unescape(gul14::escape(s)) == s);
+    REQUIRE(gul17::unescape(gul17::escape(s)) == s);
 }
 
 TEST_CASE("Check escaping and unescaping with random strings", "[escape]")
@@ -69,26 +69,26 @@ TEST_CASE("Check escaping and unescaping with random strings", "[escape]")
         for (char &c : original)
             c = static_cast<char>(uniform_dist(re));
 
-        auto escaped = gul14::escape(original);
+        auto escaped = gul17::escape(original);
 
         REQUIRE(original.length() <= escaped.length());
 
-        auto unescaped = gul14::unescape(escaped);
+        auto unescaped = gul17::unescape(escaped);
 
         if (original != unescaped)
         {
-            INFO(gul14::cat("Original \"", original, "\" != \"", unescaped,
+            INFO(gul17::cat("Original \"", original, "\" != \"", unescaped,
                           "\" after escape/unescape"));
 
             std::string str = "Original bytes:              ";
 
             for (const char &c : original)
-                str += gul14::cat("[", static_cast<int>(c), "] ");
+                str += gul17::cat("[", static_cast<int>(c), "] ");
 
             str += "\nBytes after escape/unescape: ";
 
             for (const char &c : unescaped)
-                str += gul14::cat("[", static_cast<int>(c), "] ");
+                str += gul17::cat("[", static_cast<int>(c), "] ");
 
             FAIL(str);
         }

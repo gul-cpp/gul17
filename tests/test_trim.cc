@@ -21,15 +21,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul14/catch.h"
-#include "gul14/trim.h"
+#include "gul17/catch.h"
+#include "gul17/trim.h"
 
-using gul14::trim;
-using gul14::trim_sv;
-using gul14::trim_left;
-using gul14::trim_left_sv;
-using gul14::trim_right;
-using gul14::trim_right_sv;
+using gul17::trim;
+using gul17::trim_sv;
+using gul17::trim_left;
+using gul17::trim_left_sv;
+using gul17::trim_right;
+using gul17::trim_right_sv;
 
 using namespace std::literals;
 

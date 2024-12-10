@@ -21,18 +21,18 @@
  */
 
 /**
- * Namespace gul14 contains all functions and classes of the General Utility Library.
+ * Namespace gul17 contains all functions and classes of the General Utility Library.
  */
-namespace gul14 {
+namespace gul17 {
 
 /**
  * \mainpage
  *
- * \image html gul14_big.png
+ * \image html gul17_big.png
  *
  * \section introduction Introduction
  *
- * The General Utility Library for C++14 (GUL14) contains often-used utility functions and
+ * The General Utility Library for C++17 (GUL17) contains often-used utility functions and
  * types that form the foundation for other libraries and programs. The main fields
  * covered by the library are:
  *
@@ -58,9 +58,9 @@ namespace gul14 {
  * We strive for a very high quality level. To ensure this, we follow a list of
  * \ref quality_standards.
  *
- * \section who_is_using_the_library Who Is Using GUL14?
+ * \section who_is_using_the_library Who Is Using GUL17?
  *
- * GUL14 was developed at the German national particle accelerator laboratory
+ * GUL17 was developed at the German national particle accelerator laboratory
  * <a href="https://www.desy.de">DESY</a>. It was originally meant to provide a modern and
  * well-tested foundation for the <a href="https://doocs.desy.de/">DOOCS</a> control
  * system which drives most of the lab's accelerators. It is still used mainly in this
@@ -71,27 +71,27 @@ namespace gul14 {
  *
  * To use the library:
  *
- *  - Include the main header file \ref gul14/gul.h (or read more under
+ *  - Include the main header file \ref gul17/gul.h (or read more under
  *    \ref how_to_include_gul_headers).
- *  - Link your code against the library (-lgul14).
+ *  - Link your code against the library (-lgul17).
  *  - If you are on Windows, see \ref using_gul_on_windows.
  *
- * All functions and classes are enclosed in the namespace \ref gul14.
+ * All functions and classes are enclosed in the namespace \ref gul17.
  *
- * GUL14 requires at least C++14. It works fine with newer versions of the standard, but
- * uses its own backport types (e.g. gul14::string_view) in function interfaces.
+ * GUL17 requires at least C++17. It works fine with newer versions of the standard, but
+ * uses its own backport types (e.g. gul17::string_view) in function interfaces.
  *
  * \section installation Installation
  *
  * If you are using the [vcpkg](https://vcpkg.io/) package manager, you can install the
  * library simply by running:
- * \verbatim vcpkg install gul14\endverbatim
+ * \verbatim vcpkg install gul17\endverbatim
  * Otherwise, you may have to build and install it manually. Have a look at the
- * [readme file on GitHub](https://github.com/gul-cpp/gul14/blob/main/README.md).
+ * [readme file on GitHub](https://github.com/gul-cpp/gul17/blob/main/README.md).
  *
  * \section source_code Obtaining the Source Code
  *
- * You can browse or clone the source code at https://github.com/gul-cpp/gul14.git.
+ * You can browse or clone the source code at https://github.com/gul-cpp/gul17.git.
  *
  * \section contributing Contributing
  *
@@ -112,31 +112,31 @@ namespace gul14 {
  */
 
 /**
- * \page how_to_include_gul_headers How to Include GUL14 Headers
+ * \page how_to_include_gul_headers How to Include GUL17 Headers
  *
- * All header files of the library reside under `gul14/` with no further subdirectories.
- * To get access to almost all of GUL14's functionality, it is sufficient to include the
+ * All header files of the library reside under `gul17/` with no further subdirectories.
+ * To get access to almost all of GUL17's functionality, it is sufficient to include the
  * all-in-one header:
  * \code
- * #include <gul14/gul.h>
+ * #include <gul17/gul.h>
  * \endcode
  *
  * Two specific header files are not included by this all-in-one header:
  * <ul>
- * <li>`gul14/catch.h`: The header file for the Catch2 unit test framework</li>
- * <li>`gul14/date.h`: Howard Hinnant's header for calendar date functionality</li>
+ * <li>`gul17/catch.h`: The header file for the Catch2 unit test framework</li>
+ * <li>`gul17/date.h`: Howard Hinnant's header for calendar date functionality</li>
  * </ul>
  * While the unit test framework is simply not useful for inclusion into regular code,
  * `date.h` is excluded chiefly because of its negative impact on compile times. Just
  * include it directly where needed.
  *
  * If you prefer to shave the last seconds off your build times, you are of course free to
- * include also the other GUL14 headers individually without going through `gul.h`. Just
+ * include also the other GUL17 headers individually without going through `gul.h`. Just
  * follow the documentation of the classes and functions you use to find the associated
  * header files.
  *
  * We do not guarantee that individual header file names will never change (except for
- * `gul14/gul.h`), but we can assure you that this will happen rarely, if ever.
+ * `gul17/gul.h`), but we can assure you that this will happen rarely, if ever.
  */
 
 /**
@@ -151,7 +151,7 @@ namespace gul14 {
  * \subsection V2_12_0 Version 2.12.0
  *
  * - *Released with DOOCS 24.10.0 – 24.12.1*
- * - Add gul14::to_number<bool>
+ * - Add gul17::to_number<bool>
  *
  * \subsection v2_11_2 Version 2.11.2
  *
@@ -173,28 +173,28 @@ namespace gul14 {
  * \subsection v2_10_0 Version 2.10.0
  *
  * - *Released with DOOCS 24.1.0*
- * - Add gul14::endian, a backport of std::endian from C++20
- * - Add gul14::is_little_endian() and gul14::is_big_endian()
+ * - Add gul17::endian, a backport of std::endian from C++20
+ * - Add gul17::is_little_endian() and gul17::is_big_endian()
  *
  * \subsection v2_9_2 Version 2.9.2
  *
  * - Add OverloadSet and make_overload_set()
- * - Fix compilation errors in gul14::visit()
+ * - Fix compilation errors in gul17::visit()
  *
  * \subsection v2_9_1 Version 2.9.1
  *
- * - Fix compilation errors in gul14::variant when compiled with C++17 or MSVC
+ * - Fix compilation errors in gul17::variant when compiled with C++17 or MSVC
  *
  * \subsection v2_9_0 Version 2.9.0
  *
  * - *Released with DOOCS 23.6.0*
- * - Add gul14::variant, a backport of std::variant from C++17
- * - Add gul14::remove_cvref and gul14::void_t, backports of metaprogramming functions
+ * - Add gul17::variant, a backport of std::variant from C++17
+ * - Add gul17::remove_cvref and gul17::void_t, backports of metaprogramming functions
  *   from C++20 and C++17, respectively.
  *
  * \subsection v2_8_0 Version 2.8.0
  *
- * - Add gul14::expected, a backport of std::expected from C++23
+ * - Add gul17::expected, a backport of std::expected from C++23
  *
  * \subsection v2_7_1 Version 2.7.1
  *
@@ -218,7 +218,7 @@ namespace gul14 {
  *
  * - *Released with DOOCS 21.3.0 – 21.7.1*
  * - Add support for more container types as return type of split() and tokenize()
- * - Add \ref gul14::SmallVector "SmallVector"
+ * - Add \ref gul17::SmallVector "SmallVector"
  *
  * \subsection v2_4 Version 2.4
  *
@@ -242,7 +242,7 @@ namespace gul14 {
  * \subsection v2_0 Version 2.0
  *
  * - *Released with DOOCS 20.1.0*
- * - Rename GUL to GUL14 (applies to namespace, include directory, library name)
+ * - Rename GUL to GUL17 (applies to namespace, include directory, library name)
  * - Make \ref SlidingBuffer::SlidingBufferIterator "SlidingBufferIterator" random
  *   access instead of bidirectional
  *
@@ -250,7 +250,7 @@ namespace gul14 {
  *
  * \subsection v1_9 Version 1.9
  *
- * - Add gul14::span, a backport of std::span from C++20
+ * - Add gul17::span, a backport of std::span from C++20
  *
  * \subsection v1_8 Version 1.8
  *
@@ -275,29 +275,29 @@ namespace gul14 {
  * \subsection v1_5 Version 1.5
  *
  * - *Released with DOOCS 19.8.0*
- * - Add gul14::optional, a backport of std::optional from C++17
+ * - Add gul17::optional, a backport of std::optional from C++17
  *
  * \subsection v1_4 Version 1.4
  *
  * - escape() & unescape(): Change argument type from const std::string & to
- *   gul14::string_view
+ *   gul17::string_view
  * - within_orders() can now be used with integer arguments
  *
  * \subsection v1_3 Version 1.3
  *
- * - \ref gul14::SlidingBuffer "SlidingBuffer": Add
- *   \ref gul14::SlidingBuffer::push_back "push_back()",
- *   \ref gul14::ShrinkBehavior "ShrinkBehavior"
- * - Minor bugfixes for \ref gul14::SlidingBuffer "SlidingBuffer"
+ * - \ref gul17::SlidingBuffer "SlidingBuffer": Add
+ *   \ref gul17::SlidingBuffer::push_back "push_back()",
+ *   \ref gul17::ShrinkBehavior "ShrinkBehavior"
+ * - Minor bugfixes for \ref gul17::SlidingBuffer "SlidingBuffer"
  * - GUL can be built with Visual C++/Visual Studio 2019 using Meson/Ninja
  *
  * \subsection v1_2 Version 1.2
  *
  * - Add lowercase_ascii(), lowercase_ascii_inplace(), uppercase_ascii(),
  *   uppercase_ascii_inplace()
- * - Bugfixes for \ref gul14::SlidingBuffer "SlidingBuffer":
- *   \ref gul14::SlidingBuffer::clear "clear()" did not work with variable-sized buffers,
- *   \ref gul14::SlidingBuffer::empty "empty()" was not const
+ * - Bugfixes for \ref gul17::SlidingBuffer "SlidingBuffer":
+ *   \ref gul17::SlidingBuffer::clear "clear()" did not work with variable-sized buffers,
+ *   \ref gul17::SlidingBuffer::empty "empty()" was not const
  *
  * \subsection v1_1 Version 1.1
  *
@@ -483,7 +483,7 @@ namespace gul14 {
  *
  * <h3>Classes</h3>
  *
- * \ref gul14::string_view "string_view":
+ * \ref gul17::string_view "string_view":
  *     A view to a contiguous sequence of chars. The GUL version is a backport of
  *     [std::string_view](https://en.cppreference.com/w/cpp/string/basic_string_view)
  *     from libc++ for C++17.
@@ -497,11 +497,11 @@ namespace gul14 {
  *
  * <h3>Classes</h3>
  *
- * \ref gul14::ThreadPool "ThreadPool":
+ * \ref gul17::ThreadPool "ThreadPool":
  *     A thread pool and task queue that allows executing tasks on a fixed number of
  *     worker threads.
  *
- * \ref gul14::Trigger "Trigger":
+ * \ref gul17::Trigger "Trigger":
  *     A class that allows sending triggers and waiting for them across different threads,
  *     like an electric trigger line.
  *
@@ -523,11 +523,11 @@ namespace gul14 {
  * tic() & toc():
  *     Measure elapsed time.
  *
- * Furthermore, the library includes Howard Hinnant's date.h header, which extends C++14's
+ * Furthermore, the library includes Howard Hinnant's date.h header, which extends C++17's
  * `<chrono>` library with types and functionality for handling calendar dates. Most of
  * this functionality has been standardized in C++20. Documentation is available on
- * [GitHub](https://howardhinnant.github.io/date/date.html); just note that the GUL14
- * version lives in the namespace `gul14::date`.
+ * [GitHub](https://howardhinnant.github.io/date/date.html); just note that the GUL17
+ * version lives in the namespace `gul17::date`.
  */
 
 /**
@@ -571,10 +571,10 @@ namespace gul14 {
  *
  * <h3>Classes</h3>
  *
- * \ref gul14::MinMax "MinMax":
+ * \ref gul17::MinMax "MinMax":
  *     Holds a pair of two values, typically the minimum and maximum element of something.
  *
- * \ref gul14::StandardDeviationMean "StandardDeviationMean":
+ * \ref gul17::StandardDeviationMean "StandardDeviationMean":
  *     Holds a pair of two values, typically the standard deviation and the mean value of
  *     something.
  */
@@ -634,7 +634,7 @@ namespace gul14 {
  *
  * <h4>Endianness</h4>
  *
- * \ref gul14::endian "endian":
+ * \ref gul17::endian "endian":
  *     An enum to determine the endianness of multi-byte scalars on the current platform,
  *     behaving like [std::endian](https://en.cppreference.com/w/cpp/types/endian) from
  *     C++20.
@@ -651,38 +651,38 @@ namespace gul14 {
  *
  * The library provides some utilities for template metaprogramming:
  *
- * \ref gul14::invoke "invoke":
+ * \ref gul17::invoke "invoke":
  *     A function template that calls a callable object with a given set of arguments.
  *     This is a backport of
  *     [std::invoke](https://en.cppreference.com/w/cpp/utility/functional/invoke) from
  *     C++17.
  *
- * \ref gul14::invoke_result "invoke_result", \ref gul14::invoke_result_t "invoke_result_t":
+ * \ref gul17::invoke_result "invoke_result", \ref gul17::invoke_result_t "invoke_result_t":
  *     A metafunction that computes the result of invoking a callable object with the
  *     given arguments. This is a backport of
  *     [std::invoke_result](https://en.cppreference.com/w/cpp/types/result_of) from
  *     C++17.
  *
- * \ref gul14::is_invocable "is_invocable", \ref gul14::is_invocable_r "is_invocable_r":
+ * \ref gul17::is_invocable "is_invocable", \ref gul17::is_invocable_r "is_invocable_r":
  *     A type trait that checks whether a callable object can be invoked with a given set
  *     of arguments. This is a backport of
  *     [std::is_invocable](https://en.cppreference.com/w/cpp/types/is_invocable) from
  *     C++17.
  *
- * \ref gul14::IsContainerLike "IsContainerLike":
+ * \ref gul17::IsContainerLike "IsContainerLike":
  *     A type trait to determine if a type behaves like a standard container.
  *
- * \ref gul14::OverloadSet "OverloadSet" and \ref gul14::make_overload_set "make_overload_set()":
+ * \ref gul17::OverloadSet "OverloadSet" and \ref gul17::make_overload_set "make_overload_set()":
  *     A function object type that works like an overload set of functions, and a helper
  *     function to create such an object from a bunch of lambdas.
  *
- * \ref gul14::remove_cvref "remove_cvref":
+ * \ref gul17::remove_cvref "remove_cvref":
  *     A metafunction to remove const, volatile, and reference qualifiers from a type.
  *     This is a backport of
  *     [std::remove_cvref](https://en.cppreference.com/w/cpp/types/remove_cvref) from
  *     C++20.
  *
- * \ref gul14::void_t "void_t":
+ * \ref gul17::void_t "void_t":
  *     A template typedef that maps an arbitrary list of types to void. This is primarily
  *     useful to detect ill-formed types for SFINAE. This is a backport of
  *     [std::void_t](https://en.cppreference.com/w/cpp/types/void_t) from C++17.
@@ -694,54 +694,54 @@ namespace gul14 {
  * The General Utility Library provides a few classes from the C++ standard library that
  * are not yet available to users of older compilers.
  *
- * \ref gul14::endian "endian":
+ * \ref gul17::endian "endian":
  *     An enum to determine the endianness of multi-byte scalars on the current platform,
  *     behaving like [std::endian](https://en.cppreference.com/w/cpp/types/endian) from
  *     C++20.
  *
- * \ref gul14::expected "expected":
+ * \ref gul17::expected "expected":
  *     A class template that can either contain a value of a certain (expected) type or an
  *     error value. It should behave like
  *     [std::expected](https://en.cppreference.com/w/cpp/utility/expected)
  *     from C++23 for almost all use cases.
  *
- * \ref gul14::in_place_t "in_place_t" etc.:
+ * \ref gul17::in_place_t "in_place_t" etc.:
  *     A small family of types and tags that can be used in the constuctors of
- *     \ref gul14::expected "expected", \ref gul14::optional "optional", and
- *     \ref gul14::variant "variant" to request in-place construction. See
+ *     \ref gul17::expected "expected", \ref gul17::optional "optional", and
+ *     \ref gul17::variant "variant" to request in-place construction. See
  *     [std::in_place](https://en.cppreference.com/w/cpp/utility/in_place) for
  *     documentation on the corresponding C++17 entities.
  *
- * \ref gul14::optional "optional":
+ * \ref gul17::optional "optional":
  *     A class template that can either contain a value of a certain type or not.
  *     It should behave like
  *     [std::optional](https://en.cppreference.com/w/cpp/utility/optional)
  *     from C++17 for almost all use cases.
  *
- * \ref gul14::remove_cvref "remove_cvref":
+ * \ref gul17::remove_cvref "remove_cvref":
  *     A metafunction to remove const, volatile, and reference qualifiers from a type.
  *     This is a backport of
  *     [std::remove_cvref](https://en.cppreference.com/w/cpp/types/remove_cvref) from
  *     C++20.
  *
- * \ref gul14::span "span":
+ * \ref gul17::span "span":
  *     A view to a contiguous sequence of objects. It should behave like
  *     [std::span](https://en.cppreference.com/w/cpp/container/span) from C++20 for almost
  *     all use cases.
  *
- * \ref gul14::string_view "string_view":
+ * \ref gul17::string_view "string_view":
  *     A view to a contiguous sequence of chars. It should behave like
  *     [std::string_view](https://en.cppreference.com/w/cpp/string/basic_string_view)
  *     from C++17 for almost all use cases.
  *
- * \ref gul14::variant "variant":
+ * \ref gul17::variant "variant":
  *     Sometimes called a "type-safe union", a variant can hold a value of one of a
  *     specified set of types. Unlike a union, it can be queried for the type it is
  *     currently holding and ensures that only the stored type is accessed. The
  *     implementation should behave like
  *     [std::variant](https://en.cppreference.com/w/cpp/utility/variant) from C++17.
  *
- * \ref gul14::void_t "void_t":
+ * \ref gul17::void_t "void_t":
  *     A template typedef that maps an arbitrary list of types to void. This is primarily
  *     useful to detect ill-formed types for SFINAE. This is a backport of
  *     [std::void_t](https://en.cppreference.com/w/cpp/types/void_t) from C++17.
@@ -754,7 +754,7 @@ namespace gul14 {
  * tests. It bundles all of its functionality in a single header file. For convenience,
  * the GUL-internal version of this header can be accessed via:
  * \code
- * #include "gul14/catch.h"
+ * #include "gul17/catch.h"
  * // Your unit tests here
  * \endcode
  * Please refer to https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md
@@ -764,7 +764,7 @@ namespace gul14 {
  * Please note that unlike all other include files provided with GUL, `catch.h` is *not*
  * automatically included by the default include directive:
  * \code
- * #include "gul14/gul.h"
+ * #include "gul17/gul.h"
  * // Catch2 is not included!
  * \endcode
  */
@@ -781,7 +781,7 @@ namespace gul14 {
  * without actually including the proper GSL.
  * Note that the implementation can differ from the same-named entities in GSL.
  *
- * finally() & \ref gul14::FinalAction "FinalAction":
+ * finally() & \ref gul17::FinalAction "FinalAction":
  *     Execute something when we leave the scope.
  */
 
@@ -793,18 +793,18 @@ namespace gul14 {
  *
  * <h3>Functions</h3>
  *
- * hexdump() & \ref gul14::hexdump_stream "hexdump_stream()":
+ * hexdump() & \ref gul17::hexdump_stream "hexdump_stream()":
  *     Generate an ASCII hex dump of a container, a range, or a piece of memory.
  *
  * type_name():
  *     Generate a human readable string describing a type.
  *
- * finally() & \ref gul14::FinalAction "FinalAction":
+ * finally() & \ref gul17::FinalAction "FinalAction":
  *     Execute something when we leave the scope.
  *
  * <h3>Classes</h3>
  *
- * \ref gul14::FailToInstantiate "FailToInstantiate":
+ * \ref gul17::FailToInstantiate "FailToInstantiate":
  *     Class to help debug types.
  */
 
@@ -830,19 +830,19 @@ namespace gul14 {
  *
  * <h3>Single-Element and Special-Purpose Containers</h3>
  *
- * \ref gul14::expected "expected":
+ * \ref gul17::expected "expected":
  *     A class template that can either contain a value of a certain (expected) type or an
  *     error value. It should behave like
  *     [std::expected](https://en.cppreference.com/w/cpp/utility/expected)
  *     from C++23 for almost all use cases.
  *
- * \ref gul14::optional "optional":
+ * \ref gul17::optional "optional":
  *     A class template that can either contain a value of a certain type or not. It
  *     should behave like
  *     [std::optional](https://en.cppreference.com/w/cpp/utility/optional) from C++17 for
  *     almost all use cases.
  *
- * \ref gul14::variant "variant":
+ * \ref gul17::variant "variant":
  *     Sometimes called a "type-safe union", a variant can hold a value of one of a
  *     specified set of types. Unlike a union, it can be queried for the type it is
  *     currently holding and ensures that only the stored type is accessed. The
@@ -1045,15 +1045,15 @@ namespace gul14 {
  */
 
 /**
- * \defgroup catch_h gul14/catch.h
+ * \defgroup catch_h gul17/catch.h
  * \brief The [Catch2 unit testing framework](https://github.com/catchorg/Catch2).
  * \see \ref unit_tests
  */
 
 /**
- * \defgroup date_h gul14/date.h
+ * \defgroup date_h gul17/date.h
  * \brief Calendar date library by Howard Hinnant.
  * \see https://github.com/HowardHinnant/date
  */
 
-} // namespace gul14
+} // namespace gul17

@@ -21,12 +21,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul14/case_ascii.h"
+#include "gul17/case_ascii.h"
 
 
-namespace gul14 {
+namespace gul17 {
 
-std::string lowercase_ascii(gul14::string_view str)
+std::string lowercase_ascii(std::string_view str)
 {
     std::string result;
     result.reserve(str.size());
@@ -45,7 +45,7 @@ std::string &lowercase_ascii_inplace(std::string &str) noexcept
     return str;
 }
 
-std::string uppercase_ascii(gul14::string_view str)
+std::string uppercase_ascii(std::string_view str)
 {
     std::string result;
     result.reserve(str.size());
@@ -64,6 +64,6 @@ std::string &uppercase_ascii_inplace(std::string &str) noexcept
     return str;
 }
 
-} // namespace gul14
+} // namespace gul17
 
 /* vim:set expandtab softtabstop=4 tabstop=4 shiftwidth=4 textwidth=90 cindent: */

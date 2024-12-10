@@ -22,13 +22,13 @@
 
 #include <algorithm>
 
-#include <gul14/cat.h>
-#include <gul14/ThreadPool.h>
-#include <gul14/time_util.h>
+#include <gul17/cat.h>
+#include <gul17/ThreadPool.h>
+#include <gul17/time_util.h>
 
 #include <signal.h>
 
-namespace gul14 {
+namespace gul17 {
 
 namespace detail {
 
@@ -264,4 +264,4 @@ void ThreadPool::perform_work()
     }
 }
 
-} // namespace gul14
+} // namespace gul17

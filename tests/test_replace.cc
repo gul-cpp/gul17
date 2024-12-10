@@ -20,11 +20,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul14/catch.h"
-#include "gul14/replace.h"
+#include "gul17/catch.h"
+#include "gul17/replace.h"
 
 using namespace std::literals;
-using namespace gul14;
+using namespace gul17;
 
 TEST_CASE("Replace parts of a string in-place", "[replace]")
 {

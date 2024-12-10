@@ -21,7 +21,7 @@
  */
 
 #define CATCH_CONFIG_RUNNER
-#include "gul14/catch.h"
+#include "gul17/catch.h"
 
 #ifdef _MSC_VER
 #   include <windows.h>

@@ -1,5 +1,5 @@
 #
-# This file is used to build RPMS for libgul14
+# This file is used to build RPMS for libgul17
 #
 # To use it do the following:
 #
@@ -9,29 +9,29 @@
 # 2) Prepare the rpm build environment
 #   $ pkcon install rpmdevtools
 #   $ rpmdev-setuptree
-#   $ cp build/meson-dist/gul14-<version>.tar.xz ~/rpmbuild/SOURCES
-#   $ cp libgul14.spec ~/rpmbuild/SPECS
+#   $ cp build/meson-dist/gul17-<version>.tar.xz ~/rpmbuild/SOURCES
+#   $ cp libgul17.spec ~/rpmbuild/SPECS
 #
 #  On RHEL7 we need a newer compiler
 #   $ pkcon install centos-release-scl-rh && pkcon refresh && pkcon install devtoolset-7
 #
 # 3) Build the package
 #   $ cd ~/rpmbuild
-#   $ rpmbuild -ba SPECS/libgul14.spec
+#   $ rpmbuild -ba SPECS/libgul17.spec
 #  RHEL7 only
-#   $ scl enable devtoolset-7 'rpmbuild -ba SPECS/libgul14.spec'
+#   $ scl enable devtoolset-7 'rpmbuild -ba SPECS/libgul17.spec'
 #
 # https://rpm-packaging-guide.github.io/
 #
 
-Name:           libgul14
+Name:           libgul17
 Version:        v2.10
 Release:        1%{?dist}
 Summary:        General Utility Library
 
 License:        LGPL-2.1+
-URL:            https://github.com/gul-cpp/gul14
-Source0:        gul14-%{version}.tar.xz
+URL:            https://github.com/gul-cpp/gul17
+Source0:        gul17-%{version}.tar.xz
 
 %if 0%{?rhel} < 8
 BuildRequires:  devtoolset-7-gcc-c++
@@ -47,14 +47,14 @@ BuildRequires:  ninja-build
 BuildRequires:  git-core
 
 %description
-The general utility library for C++14 contains often-used
+The general utility library for C++17 contains often-used
 utility functions and types that form the foundation for
 other libraries and programs.
 
 %package devel
 Summary:        Development libraries and header files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-# We can use BuildRequire:  pkgconfig(gul14)
+# We can use BuildRequire:  pkgconfig(gul17)
 # in using projects to automatically use either one:
 ##Requires:       pkgconfig
 ##Requires:       pkgconf-pkg-config
@@ -75,7 +75,7 @@ Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
 %endif
 
 %prep
-%setup -q -n gul14-%{version}
+%setup -q -n gul17-%{version}
 
 %build
 %meson
@@ -93,7 +93,7 @@ Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
 %files devel
 %{_libdir}/%{name}.so
 %{_libdir}/pkgconfig/%{name}.pc
-%{_includedir}/gul14/*
+%{_includedir}/gul17/*
 
 %files static
 %{_libdir}/%{name}.a

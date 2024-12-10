@@ -22,15 +22,15 @@
 
 #include <algorithm>
 
-#include "gul14/string_util.h"
+#include "gul17/string_util.h"
 
-namespace gul14 {
+namespace gul17 {
 
-const string_view default_whitespace_characters{ " \t\r\n\a\b\f\v" };
+const std::string_view default_whitespace_characters{ " \t\r\n\a\b\f\v" };
 const std::array<char, 16> hex_digits{
     { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'} };
 
-std::string repeat(gul14::string_view str, std::size_t n)
+std::string repeat(std::string_view str, std::size_t n)
 {
     std::string result;
 
@@ -51,6 +51,6 @@ std::string safe_string(const char* char_ptr, std::size_t length)
     return std::string(char_ptr, end_ptr);
 }
 
-} // namespace gul14
+} // namespace gul17
 
 /* vim:set expandtab softtabstop=4 tabstop=4 shiftwidth=4 textwidth=90 cindent: */
