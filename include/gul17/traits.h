@@ -88,18 +88,6 @@ using remove_cvref = typename std::remove_cv<std::remove_reference_t<T>>;
  */
 template <typename T>
 using remove_cvref_t = typename remove_cvref<T>::type;
-using std::void_t;
-
-
-//
-// invoke & friends
-//
-
-using std::invoke;
-using std::invoke_result;
-using std::invoke_result_t;
-using std::is_invocable;
-using std::is_invocable_r;
 
 /// @}
 
