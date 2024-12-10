@@ -79,7 +79,7 @@ namespace gul17 {
  * All functions and classes are enclosed in the namespace \ref gul17.
  *
  * GUL17 requires at least C++17. It works fine with newer versions of the standard, but
- * uses its own backport types (e.g. gul17::string_view) in function interfaces.
+ * might use its own backport types (e.g. gul17::expected) in function interfaces.
  *
  * \section installation Installation
  *
@@ -361,20 +361,10 @@ namespace gul17 {
  *     public domain worldwide. This software is distributed without any warranty.
  *     \ref license_cc0_public_domain and \ref expected.h for details).</dd>
  *
- * <dt>\ref optional.h</dt>
- * <dd>Copyright 2011-2012 Andrzej Krzemienski.
- *     Distributed under the Boost Software License, Version 1.0 (see
- *     \ref license_boost_1_0 and \ref optional.h for details).</dd>
- *
  * <dt>\ref span.h</dt>
  * <dd>Copyright 2018 Tristan Brindle.
  *     Distributed under the Boost Software License, Version 1.0 (see
  *     \ref license_boost_1_0 and \ref span.h for details).</dd>
- *
- * <dt>\ref string_view.h</dt>
- * <dd>Copyright 2012-2015 Marshall Clow, copyright 2015 Beman Dawes.
- *     Distributed under the Boost Software License, Version 1.0 (see
- *     \ref license_boost_1_0 and \ref string_view.h for details).</dd>
  *
  * <dt>\ref traits.h</dt>
  * <dd>Copyright 2015-2017 Michael Park (implementations of invoke, invoke_result,
@@ -382,13 +372,6 @@ namespace gul17 {
  *     Elektronen-Synchrotron (DESY), Hamburg (other implementations and modifications).
  *     Distributed under the Boost Software License, Version 1.0 (see
  *     \ref license_boost_1_0 and \ref traits.h for details).</dd>
- *
- * <dt>\ref variant.h</dt>
- * <dd>Copyright 2015-2017 Michael Park, copyright 2023-2024 Deutsches
- *     Elektronen-Synchrotron (DESY), Hamburg.
- *     Distributed under the Boost Software License, Version 1.0 (see
- *     \ref license_boost_1_0 and \ref variant.h for details).</dd>
- * </dl>
  */
 
 /**
@@ -480,13 +463,6 @@ namespace gul17 {
  * <h4>C Strings</h4>
  *
  * safe_string(): Safely create a std::string from a char pointer and a length.
- *
- * <h3>Classes</h3>
- *
- * \ref gul17::string_view "string_view":
- *     A view to a contiguous sequence of chars. The GUL version is a backport of
- *     [std::string_view](https://en.cppreference.com/w/cpp/string/basic_string_view)
- *     from libc++ for C++17.
  */
 
 /**
@@ -712,12 +688,6 @@ namespace gul17 {
  *     [std::in_place](https://en.cppreference.com/w/cpp/utility/in_place) for
  *     documentation on the corresponding C++17 entities.
  *
- * \ref gul17::optional "optional":
- *     A class template that can either contain a value of a certain type or not.
- *     It should behave like
- *     [std::optional](https://en.cppreference.com/w/cpp/utility/optional)
- *     from C++17 for almost all use cases.
- *
  * \ref gul17::remove_cvref "remove_cvref":
  *     A metafunction to remove const, volatile, and reference qualifiers from a type.
  *     This is a backport of
@@ -728,23 +698,6 @@ namespace gul17 {
  *     A view to a contiguous sequence of objects. It should behave like
  *     [std::span](https://en.cppreference.com/w/cpp/container/span) from C++20 for almost
  *     all use cases.
- *
- * \ref gul17::string_view "string_view":
- *     A view to a contiguous sequence of chars. It should behave like
- *     [std::string_view](https://en.cppreference.com/w/cpp/string/basic_string_view)
- *     from C++17 for almost all use cases.
- *
- * \ref gul17::variant "variant":
- *     Sometimes called a "type-safe union", a variant can hold a value of one of a
- *     specified set of types. Unlike a union, it can be queried for the type it is
- *     currently holding and ensures that only the stored type is accessed. The
- *     implementation should behave like
- *     [std::variant](https://en.cppreference.com/w/cpp/utility/variant) from C++17.
- *
- * \ref gul17::void_t "void_t":
- *     A template typedef that maps an arbitrary list of types to void. This is primarily
- *     useful to detect ill-formed types for SFINAE. This is a backport of
- *     [std::void_t](https://en.cppreference.com/w/cpp/types/void_t) from C++17.
  */
 
 /**
@@ -835,19 +788,6 @@ namespace gul17 {
  *     error value. It should behave like
  *     [std::expected](https://en.cppreference.com/w/cpp/utility/expected)
  *     from C++23 for almost all use cases.
- *
- * \ref gul17::optional "optional":
- *     A class template that can either contain a value of a certain type or not. It
- *     should behave like
- *     [std::optional](https://en.cppreference.com/w/cpp/utility/optional) from C++17 for
- *     almost all use cases.
- *
- * \ref gul17::variant "variant":
- *     Sometimes called a "type-safe union", a variant can hold a value of one of a
- *     specified set of types. Unlike a union, it can be queried for the type it is
- *     currently holding and ensures that only the stored type is accessed. The
- *     implementation should behave like
- *     [std::variant](https://en.cppreference.com/w/cpp/utility/variant) from C++17.
  */
 
 /**
