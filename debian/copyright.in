@@ -29,11 +29,6 @@ Copyright: 2018 Tristan Brindle
            2019 libgul contributors (L. Fröhlich)
 License: BSL-1.0
 
-Files: include/gul17/traits.h
-Copyright: 2015-2017 Michael Park
-           2021-2024 libgul contributors (L. Fröhlich, U.F. Jastrow)
-License: BSL-1.0
-
 License: LGPL-2.1+
  This package is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
