@@ -58,8 +58,8 @@ $(function() {
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A pool of worker threads with a task queue. </p>
-<p>A thread pool is created with <a class="el" href="group__ThreadPool__h.html#gaeb910daff6ce7c95de6d4d468f04fc29" title="Create a thread pool with the desired number of threads and the specified capacity for queuing tasks.">make_thread_pool()</a>. It immediately starts the desired number of worker threads and keeps them running until the object gets destroyed. Work is given to the pool with the <a class="el" href="classgul17_1_1ThreadPool.html#a9ab799d844fe310740c39d7465ec192d" title="Enqueue a task.">add_task()</a> function in the form of a function object or function pointer. Tasks are stored in a queue and executed in the order they were added. This makes a <a class="el" href="classgul17_1_1ThreadPool.html" title="A pool of worker threads with a task queue.">ThreadPool</a> with a single thread effectively a serial task queue.</p>
-<p>Each task is associated with a <a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html" title="A handle for a task that has (or had) been enqueued on a ThreadPool.">TaskHandle</a>. This handle is returned by <a class="el" href="classgul17_1_1ThreadPool.html#a9ab799d844fe310740c39d7465ec192d" title="Enqueue a task.">add_task()</a> and can be used to query the status of the task or to remove it from the queue via <a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html#a956a2c3648f908d73236e107f2e0f76e">cancel()</a>. Tasks that are already running cannot be canceled.</p>
+<p>A thread pool is created with <a class="el" href="group__ThreadPool__h.html#gaeb910daff6ce7c95de6d4d468f04fc29" title="Create a thread pool with the desired number of threads and the specified capacity for queuing tasks.">make_thread_pool()</a>. It immediately starts the desired number of worker threads and keeps them running until the object gets destroyed. Work is given to the pool with the <a class="el" href="classgul17_1_1ThreadPool.html#ad2e936758797f5f22fb772f9c86eb8de" title="Enqueue a task.">add_task()</a> function in the form of a function object or function pointer. Tasks are stored in a queue and executed in the order they were added. This makes a <a class="el" href="classgul17_1_1ThreadPool.html" title="A pool of worker threads with a task queue.">ThreadPool</a> with a single thread effectively a serial task queue.</p>
+<p>Each task is associated with a <a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html" title="A handle for a task that has (or had) been enqueued on a ThreadPool.">TaskHandle</a>. This handle is returned by <a class="el" href="classgul17_1_1ThreadPool.html#ad2e936758797f5f22fb772f9c86eb8de" title="Enqueue a task.">add_task()</a> and can be used to query the status of the task or to remove it from the queue via <a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html#a956a2c3648f908d73236e107f2e0f76e">cancel()</a>. Tasks that are already running cannot be canceled.</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> pool = <a class="code" href="group__ThreadPool__h.html#gaeb910daff6ce7c95de6d4d468f04fc29">make_thread_pool</a>(1);</div>
 <div class="line"><span class="keyword">auto</span> task = pool-&gt;add_task([]() { <span class="keywordflow">return</span> 42; });</div>
 <div class="line"><span class="keywordflow">while</span> (not task.is_complete())</div>
@@ -103,30 +103,30 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0fad3bafdc1110161c98117f68f76a5f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgul17_1_1ThreadPool.html#a0fad3bafdc1110161c98117f68f76a5f">~ThreadPool</a> ()</td></tr>
 <tr class="memdesc:a0fad3bafdc1110161c98117f68f76a5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruct the <a class="el" href="classgul17_1_1ThreadPool.html" title="A pool of worker threads with a task queue.">ThreadPool</a> and join all threads.  <a href="classgul17_1_1ThreadPool.html#a0fad3bafdc1110161c98117f68f76a5f">More...</a><br /></td></tr>
 <tr class="separator:a0fad3bafdc1110161c98117f68f76a5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ab799d844fe310740c39d7465ec192d"><td class="memTemplParams" colspan="2">template&lt;typename Function &gt; </td></tr>
-<tr class="memitem:a9ab799d844fe310740c39d7465ec192d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt; <a class="el" href="group__traits__h.html#gafe64b28f921c9dabcc174187f6c52947">invoke_result_t</a>&lt; Function, <a class="el" href="classgul17_1_1ThreadPool.html">ThreadPool</a> &amp; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classgul17_1_1ThreadPool.html#a9ab799d844fe310740c39d7465ec192d">add_task</a> (Function fct, TimePoint start_time={}, std::string name={})</td></tr>
-<tr class="memdesc:a9ab799d844fe310740c39d7465ec192d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueue a task.  <a href="classgul17_1_1ThreadPool.html#a9ab799d844fe310740c39d7465ec192d">More...</a><br /></td></tr>
-<tr class="separator:a9ab799d844fe310740c39d7465ec192d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7939550d9cc809cc74306e6f743f287e"><td class="memTemplParams" colspan="2"><a id="a7939550d9cc809cc74306e6f743f287e"></a>
-template&lt;typename Function , std::enable_if_t&lt; is_invocable&lt; Function &gt;::value, bool &gt;  = true&gt; </td></tr>
-<tr class="memitem:a7939550d9cc809cc74306e6f743f287e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt; <a class="el" href="group__traits__h.html#gafe64b28f921c9dabcc174187f6c52947">invoke_result_t</a>&lt; Function &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>add_task</b> (Function fct, TimePoint start_time={}, std::string name={})</td></tr>
-<tr class="separator:a7939550d9cc809cc74306e6f743f287e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94af237ef31119b1850533a7ecee28ab"><td class="memTemplParams" colspan="2"><a id="a94af237ef31119b1850533a7ecee28ab"></a>
-template&lt;typename Function , std::enable_if_t&lt; is_invocable&lt; Function, ThreadPool &amp; &gt;::value, bool &gt;  = true&gt; </td></tr>
-<tr class="memitem:a94af237ef31119b1850533a7ecee28ab"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt; <a class="el" href="group__traits__h.html#gafe64b28f921c9dabcc174187f6c52947">invoke_result_t</a>&lt; Function, <a class="el" href="classgul17_1_1ThreadPool.html">ThreadPool</a> &amp; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>add_task</b> (Function fct, Duration delay_before_start, std::string name={})</td></tr>
-<tr class="separator:a94af237ef31119b1850533a7ecee28ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaaa14558e558e975a7a99c536893ed7e"><td class="memTemplParams" colspan="2"><a id="aaaa14558e558e975a7a99c536893ed7e"></a>
-template&lt;typename Function , std::enable_if_t&lt; is_invocable&lt; Function &gt;::value, bool &gt;  = true&gt; </td></tr>
-<tr class="memitem:aaaa14558e558e975a7a99c536893ed7e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt; <a class="el" href="group__traits__h.html#gafe64b28f921c9dabcc174187f6c52947">invoke_result_t</a>&lt; Function &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>add_task</b> (Function fct, Duration delay_before_start, std::string name={})</td></tr>
-<tr class="separator:aaaa14558e558e975a7a99c536893ed7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c2d2e616b9f554c5011596dd5001a46"><td class="memTemplParams" colspan="2"><a id="a6c2d2e616b9f554c5011596dd5001a46"></a>
-template&lt;typename Function , std::enable_if_t&lt; is_invocable&lt; Function, ThreadPool &amp; &gt;::value, bool &gt;  = true&gt; </td></tr>
-<tr class="memitem:a6c2d2e616b9f554c5011596dd5001a46"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt; <a class="el" href="group__traits__h.html#gafe64b28f921c9dabcc174187f6c52947">invoke_result_t</a>&lt; Function, <a class="el" href="classgul17_1_1ThreadPool.html">ThreadPool</a> &amp; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>add_task</b> (Function fct, std::string name)</td></tr>
-<tr class="separator:a6c2d2e616b9f554c5011596dd5001a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d4beebebb72b29ebd75e61593264595"><td class="memTemplParams" colspan="2"><a id="a7d4beebebb72b29ebd75e61593264595"></a>
-template&lt;typename Function , std::enable_if_t&lt; is_invocable&lt; Function &gt;::value, bool &gt;  = true&gt; </td></tr>
-<tr class="memitem:a7d4beebebb72b29ebd75e61593264595"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt; <a class="el" href="group__traits__h.html#gafe64b28f921c9dabcc174187f6c52947">invoke_result_t</a>&lt; Function &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>add_task</b> (Function fct, std::string name)</td></tr>
-<tr class="separator:a7d4beebebb72b29ebd75e61593264595"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2e936758797f5f22fb772f9c86eb8de"><td class="memTemplParams" colspan="2">template&lt;typename Function &gt; </td></tr>
+<tr class="memitem:ad2e936758797f5f22fb772f9c86eb8de"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt; std::invoke_result_t&lt; Function, <a class="el" href="classgul17_1_1ThreadPool.html">ThreadPool</a> &amp; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classgul17_1_1ThreadPool.html#ad2e936758797f5f22fb772f9c86eb8de">add_task</a> (Function fct, TimePoint start_time={}, std::string name={})</td></tr>
+<tr class="memdesc:ad2e936758797f5f22fb772f9c86eb8de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueue a task.  <a href="classgul17_1_1ThreadPool.html#ad2e936758797f5f22fb772f9c86eb8de">More...</a><br /></td></tr>
+<tr class="separator:ad2e936758797f5f22fb772f9c86eb8de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3b23a8b0db8a094b6e16d6909dedc08"><td class="memTemplParams" colspan="2"><a id="aa3b23a8b0db8a094b6e16d6909dedc08"></a>
+template&lt;typename Function , std::enable_if_t&lt; std::is_invocable&lt; Function &gt;::value, bool &gt;  = true&gt; </td></tr>
+<tr class="memitem:aa3b23a8b0db8a094b6e16d6909dedc08"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt; std::invoke_result_t&lt; Function &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>add_task</b> (Function fct, TimePoint start_time={}, std::string name={})</td></tr>
+<tr class="separator:aa3b23a8b0db8a094b6e16d6909dedc08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afacb97d8fb5b186072329273afec4bd2"><td class="memTemplParams" colspan="2"><a id="afacb97d8fb5b186072329273afec4bd2"></a>
+template&lt;typename Function , std::enable_if_t&lt; std::is_invocable&lt; Function, ThreadPool &amp; &gt;::value, bool &gt;  = true&gt; </td></tr>
+<tr class="memitem:afacb97d8fb5b186072329273afec4bd2"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt; std::invoke_result_t&lt; Function, <a class="el" href="classgul17_1_1ThreadPool.html">ThreadPool</a> &amp; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>add_task</b> (Function fct, Duration delay_before_start, std::string name={})</td></tr>
+<tr class="separator:afacb97d8fb5b186072329273afec4bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b496b2db496caaeff189702cbdecd31"><td class="memTemplParams" colspan="2"><a id="a0b496b2db496caaeff189702cbdecd31"></a>
+template&lt;typename Function , std::enable_if_t&lt; std::is_invocable&lt; Function &gt;::value, bool &gt;  = true&gt; </td></tr>
+<tr class="memitem:a0b496b2db496caaeff189702cbdecd31"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt; std::invoke_result_t&lt; Function &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>add_task</b> (Function fct, Duration delay_before_start, std::string name={})</td></tr>
+<tr class="separator:a0b496b2db496caaeff189702cbdecd31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c72c6edf58f132e25b8184e5489d4ba"><td class="memTemplParams" colspan="2"><a id="a5c72c6edf58f132e25b8184e5489d4ba"></a>
+template&lt;typename Function , std::enable_if_t&lt; std::is_invocable&lt; Function, ThreadPool &amp; &gt;::value, bool &gt;  = true&gt; </td></tr>
+<tr class="memitem:a5c72c6edf58f132e25b8184e5489d4ba"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt; std::invoke_result_t&lt; Function, <a class="el" href="classgul17_1_1ThreadPool.html">ThreadPool</a> &amp; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>add_task</b> (Function fct, std::string name)</td></tr>
+<tr class="separator:a5c72c6edf58f132e25b8184e5489d4ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedaaf08ddc53d98a1d1434497dfd4dc4"><td class="memTemplParams" colspan="2"><a id="aedaaf08ddc53d98a1d1434497dfd4dc4"></a>
+template&lt;typename Function , std::enable_if_t&lt; std::is_invocable&lt; Function &gt;::value, bool &gt;  = true&gt; </td></tr>
+<tr class="memitem:aedaaf08ddc53d98a1d1434497dfd4dc4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt; std::invoke_result_t&lt; Function &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>add_task</b> (Function fct, std::string name)</td></tr>
+<tr class="separator:aedaaf08ddc53d98a1d1434497dfd4dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad383fc50afd172fc9dfaf9909796ae4a"><td class="memItemLeft" align="right" valign="top">GUL_EXPORT std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgul17_1_1ThreadPool.html#ad383fc50afd172fc9dfaf9909796ae4a">cancel_pending_tasks</a> ()</td></tr>
 <tr class="memdesc:ad383fc50afd172fc9dfaf9909796ae4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all pending tasks from the queue.  <a href="classgul17_1_1ThreadPool.html#ad383fc50afd172fc9dfaf9909796ae4a">More...</a><br /></td></tr>
 <tr class="separator:ad383fc50afd172fc9dfaf9909796ae4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -206,8 +206,8 @@ constexpr static std::size_t&#160;</td><td class="memItemRight" valign="bottom">
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a9ab799d844fe310740c39d7465ec192d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ab799d844fe310740c39d7465ec192d">&#9670;&nbsp;</a></span>add_task()</h2>
+<a id="ad2e936758797f5f22fb772f9c86eb8de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2e936758797f5f22fb772f9c86eb8de">&#9670;&nbsp;</a></span>add_task()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -218,7 +218,7 @@ template&lt;typename Function &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt;<a class="el" href="group__traits__h.html#gafe64b28f921c9dabcc174187f6c52947">invoke_result_t</a>&lt;Function, <a class="el" href="classgul17_1_1ThreadPool.html">ThreadPool</a>&amp;&gt; &gt; gul17::ThreadPool::add_task </td>
+          <td class="memname"><a class="el" href="classgul17_1_1ThreadPool_1_1TaskHandle.html">TaskHandle</a>&lt;std::invoke_result_t&lt;Function, <a class="el" href="classgul17_1_1ThreadPool.html">ThreadPool</a>&amp;&gt; &gt; gul17::ThreadPool::add_task </td>
           <td>(</td>
           <td class="paramtype">Function&#160;</td>
           <td class="paramname"><em>fct</em>, </td>
@@ -280,7 +280,7 @@ template&lt;typename Function &gt; </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// A task with a name</span></div>
 <div class="line">pool-&gt;add_task([]() { std::cout &lt;&lt; <span class="stringliteral">&quot;Task 4\n&quot;</span>; }, <span class="stringliteral">&quot;Task 4&quot;</span>);</div>
-</div><!-- fragment --><dl class="section since"><dt>Since</dt><dd>GUL version 2.12.1, <a class="el" href="classgul17_1_1ThreadPool.html#a9ab799d844fe310740c39d7465ec192d" title="Enqueue a task.">add_task()</a> unconditionally accepts mutable function objects </dd></dl>
+</div><!-- fragment --><dl class="section since"><dt>Since</dt><dd>GUL version 2.12.1, <a class="el" href="classgul17_1_1ThreadPool.html#ad2e936758797f5f22fb772f9c86eb8de" title="Enqueue a task.">add_task()</a> unconditionally accepts mutable function objects </dd></dl>
 
 </div>
 </div>

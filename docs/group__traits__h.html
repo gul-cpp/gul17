@@ -43,8 +43,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">gul17/traits.h</div>  </div>
 </div><!--header-->
@@ -68,114 +67,8 @@ Typedefs</h2></td></tr>
 <tr class="memitem:gae97da3df3a03f38d8db131b543ba769e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__traits__h.html#gae97da3df3a03f38d8db131b543ba769e">gul17::remove_cvref_t</a> = typename <a class="el" href="group__traits__h.html#ga69f5f249acf2a036ee38a762b8ffd946">remove_cvref</a>&lt; T &gt;::type</td></tr>
 <tr class="memdesc:gae97da3df3a03f38d8db131b543ba769e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metafunction that removes const, volatile, and reference qualifiers from a type.  <a href="group__traits__h.html#gae97da3df3a03f38d8db131b543ba769e">More...</a><br /></td></tr>
 <tr class="separator:gae97da3df3a03f38d8db131b543ba769e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga499a48310e73889fb782a01998dbc0a0"><td class="memTemplParams" colspan="2">template&lt;typename F , typename... Args&gt; </td></tr>
-<tr class="memitem:ga499a48310e73889fb782a01998dbc0a0"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__traits__h.html#ga499a48310e73889fb782a01998dbc0a0">gul17::invoke_result</a> = detail_invoke_result::invoke_result&lt; void, F, Args... &gt;</td></tr>
-<tr class="memdesc:ga499a48310e73889fb782a01998dbc0a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A metafunction that computes the result of invoking a callable object of type F with the given arguments.  <a href="group__traits__h.html#ga499a48310e73889fb782a01998dbc0a0">More...</a><br /></td></tr>
-<tr class="separator:ga499a48310e73889fb782a01998dbc0a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafe64b28f921c9dabcc174187f6c52947"><td class="memTemplParams" colspan="2">template&lt;typename F , typename... Args&gt; </td></tr>
-<tr class="memitem:gafe64b28f921c9dabcc174187f6c52947"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__traits__h.html#gafe64b28f921c9dabcc174187f6c52947">gul17::invoke_result_t</a> = typename <a class="el" href="group__traits__h.html#ga499a48310e73889fb782a01998dbc0a0">invoke_result</a>&lt; F, Args... &gt;::type</td></tr>
-<tr class="memdesc:gafe64b28f921c9dabcc174187f6c52947"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shortcut for invoke_result&lt;...&gt;::type.  <a href="group__traits__h.html#gafe64b28f921c9dabcc174187f6c52947">More...</a><br /></td></tr>
-<tr class="separator:gafe64b28f921c9dabcc174187f6c52947"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3f4410e00b4d53dabbeaf72864fd0a23"><td class="memTemplParams" colspan="2">template&lt;typename F , typename... Args&gt; </td></tr>
-<tr class="memitem:ga3f4410e00b4d53dabbeaf72864fd0a23"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__traits__h.html#ga3f4410e00b4d53dabbeaf72864fd0a23">gul17::is_invocable</a> = detail_invocable::is_invocable&lt; void, F, Args... &gt;</td></tr>
-<tr class="memdesc:ga3f4410e00b4d53dabbeaf72864fd0a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">A type trait that checks whether a callable object of type F can be invoked with the given arguments.  <a href="group__traits__h.html#ga3f4410e00b4d53dabbeaf72864fd0a23">More...</a><br /></td></tr>
-<tr class="separator:ga3f4410e00b4d53dabbeaf72864fd0a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4a08a707800a991b205938d74d950de6"><td class="memTemplParams" colspan="2">template&lt;typename R , typename F , typename... Args&gt; </td></tr>
-<tr class="memitem:ga4a08a707800a991b205938d74d950de6"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__traits__h.html#ga4a08a707800a991b205938d74d950de6">gul17::is_invocable_r</a> = detail_invocable::is_invocable_r&lt; void, R, F, Args... &gt;</td></tr>
-<tr class="memdesc:ga4a08a707800a991b205938d74d950de6"><td class="mdescLeft">&#160;</td><td class="mdescRight">A type trait that checks whether a callable object of type F can be invoked with the given arguments and returns a result convertible to R.  <a href="group__traits__h.html#ga4a08a707800a991b205938d74d950de6">More...</a><br /></td></tr>
-<tr class="separator:ga4a08a707800a991b205938d74d950de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:gad330641ce81cddac017c0baa596810f0"><td class="memTemplParams" colspan="2">template&lt;typename F , typename... Args&gt; </td></tr>
-<tr class="memitem:gad330641ce81cddac017c0baa596810f0"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__traits__h.html#gad330641ce81cddac017c0baa596810f0">gul17::invoke</a> (F &amp;&amp;f, Args &amp;&amp;... args) noexcept(noexcept(detail_invoke::invoke(std::forward&lt; F &gt;(f), std::forward&lt; Args &gt;(args)...))) -&gt; decltype(detail_invoke::invoke(std::forward&lt; F &gt;(f), std::forward&lt; Args &gt;(args)...))</td></tr>
-<tr class="memdesc:gad330641ce81cddac017c0baa596810f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke a callable object f with the given arguments.  <a href="group__traits__h.html#gad330641ce81cddac017c0baa596810f0">More...</a><br /></td></tr>
-<tr class="separator:gad330641ce81cddac017c0baa596810f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="ga499a48310e73889fb782a01998dbc0a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga499a48310e73889fb782a01998dbc0a0">&#9670;&nbsp;</a></span>invoke_result</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename F , typename... Args&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="group__traits__h.html#ga499a48310e73889fb782a01998dbc0a0">gul17::invoke_result</a> = typedef detail_invoke_result::invoke_result&lt;void, F, Args...&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>A metafunction that computes the result of invoking a callable object of type F with the given arguments. </p>
-<p>The result is available in the member typedef <code>type</code>.</p>
-<p>This is a backport of C++17's <a href="https://en.cppreference.com/w/cpp/types/result_of">std::invoke_result</a>.</p>
-<dl class="section since"><dt>Since</dt><dd>GUL version 2.11 </dd></dl>
-
-</div>
-</div>
-<a id="gafe64b28f921c9dabcc174187f6c52947"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gafe64b28f921c9dabcc174187f6c52947">&#9670;&nbsp;</a></span>invoke_result_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename F , typename... Args&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="group__traits__h.html#gafe64b28f921c9dabcc174187f6c52947">gul17::invoke_result_t</a> = typedef typename <a class="el" href="group__traits__h.html#ga499a48310e73889fb782a01998dbc0a0">invoke_result</a>&lt;F, Args...&gt;::type</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>A shortcut for invoke_result&lt;...&gt;::type. </p>
-<p>This is a backport of C++17's <a href="https://en.cppreference.com/w/cpp/types/result_of">std::invoke_result_t</a>.</p>
-<dl class="section since"><dt>Since</dt><dd>GUL version 2.11 </dd></dl>
-
-</div>
-</div>
-<a id="ga3f4410e00b4d53dabbeaf72864fd0a23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3f4410e00b4d53dabbeaf72864fd0a23">&#9670;&nbsp;</a></span>is_invocable</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename F , typename... Args&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="group__traits__h.html#ga3f4410e00b4d53dabbeaf72864fd0a23">gul17::is_invocable</a> = typedef detail_invocable::is_invocable&lt;void, F, Args...&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>A type trait that checks whether a callable object of type F can be invoked with the given arguments. </p>
-<p>The boolean result is available in the member <code>value</code>.</p>
-<p>This is a backport of C++17's <a href="https://en.cppreference.com/w/cpp/types/is_invocable">std::is_invocable</a>.</p>
-<dl class="section since"><dt>Since</dt><dd>GUL version 2.11 </dd></dl>
-
-</div>
-</div>
-<a id="ga4a08a707800a991b205938d74d950de6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4a08a707800a991b205938d74d950de6">&#9670;&nbsp;</a></span>is_invocable_r</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename R , typename F , typename... Args&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="group__traits__h.html#ga4a08a707800a991b205938d74d950de6">gul17::is_invocable_r</a> = typedef detail_invocable::is_invocable_r&lt;void, R, F, Args...&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>A type trait that checks whether a callable object of type F can be invoked with the given arguments and returns a result convertible to R. </p>
-<p>The boolean result is available in the member <code>value</code>.</p>
-<p>This is a backport of C++17's <a href="https://en.cppreference.com/w/cpp/types/is_invocable">std::is_invocable_r</a>.</p>
-<dl class="section since"><dt>Since</dt><dd>GUL version 2.11 </dd></dl>
-
-</div>
-</div>
 <a id="ga69f5f249acf2a036ee38a762b8ffd946"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga69f5f249acf2a036ee38a762b8ffd946">&#9670;&nbsp;</a></span>remove_cvref</h2>
 
@@ -214,50 +107,6 @@ template&lt;typename T &gt; </div>
 <p>A template metafunction that removes const, volatile, and reference qualifiers from a type. </p>
 <p>This is a substitute for C++20's <a href="https://en.cppreference.com/w/cpp/types/remove_cvref_t">std::remove_cvref_t</a>.</p>
 <dl class="section since"><dt>Since</dt><dd>GUL version 2.9 </dd></dl>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="gad330641ce81cddac017c0baa596810f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad330641ce81cddac017c0baa596810f0">&#9670;&nbsp;</a></span>invoke()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename F , typename... Args&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto gul17::invoke </td>
-          <td>(</td>
-          <td class="paramtype">F &amp;&amp;&#160;</td>
-          <td class="paramname"><em>f</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Args &amp;&amp;...&#160;</td>
-          <td class="paramname"><em>args</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; decltype(detail_invoke::invoke(std::forward&lt;F&gt;(f), std::forward&lt;Args&gt;(args)...))
-</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Invoke a callable object f with the given arguments. </p>
-<p>This is a backport of C++17's <a href="https://en.cppreference.com/w/cpp/utility/functional/invoke">std::invoke</a>.</p>
-<dl class="section since"><dt>Since</dt><dd>GUL version 2.11 </dd></dl>
 
 </div>
 </div>
