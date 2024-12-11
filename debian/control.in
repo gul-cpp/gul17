@@ -10,8 +10,8 @@ Package: @NAME@
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Conflicts: @CONFLICTS@
-Description: general utility library
- The general utility library for C++17 contains often-used utility
+Description: General Utility Library for C++17
+ The General Utility Library for C++17 contains often-used utility
  functions and types that form the foundation for other
  libraries and programs.
 
@@ -20,7 +20,7 @@ Section: libdevel
 Architecture: any
 Depends: @NAME@ (= ${binary:Version}), ${misc:Depends}
 Conflicts: @CONFLICTS-DEV@
-Description: general utility library
- The general utility library for C++17 contains often-used utility
+Description: General Utility Library for C++17 development files
+ The General Utility Library for C++17 contains often-used utility
  functions and types that form the foundation for other
  libraries and programs.
