@@ -19,19 +19,19 @@ on:
 jobs:
   doxyrun:
     name: Create Docu
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - name: Fetch Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Fetch Ninja
         run: |
           sudo apt install ninja-build doxygen graphviz
 
       - name: Fetch modern Meson
-        uses: robinraju/release-downloader@v1.5
+        uses: robinraju/release-downloader@v1.11
         with:
           repository: "mesonbuild/meson"
           tag: "0.62.0"
