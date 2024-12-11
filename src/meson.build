@@ -134,8 +134,8 @@ pkg = import('pkgconfig')
 pkg.generate(
     libgul,
     libraries : [ '-Wl,-rpath,${libdir}' ],
-    name : 'lib' + meson.project_name(), # This is in fact wrong (but usually correct)
-    description : 'General Utility Library',
+    name : meson.project_name(),
+    description : 'General Utility Library for C++17',
     version : '@0@'.format(libgul_api_version)
 )
 
