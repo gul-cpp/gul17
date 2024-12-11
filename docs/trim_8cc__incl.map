@@ -1,14 +1,14 @@
 <map id="trim.cc" name="trim.cc">
-<area shape="rect" id="node1" title="Implementation of trim(), trim_left(), trim_right(), trim_sv(), trim_left_sv(), and trim_right_sv()." alt="" coords="231,5,298,32"/>
-<area shape="rect" id="node2" href="$trim_8h.html" title="Declarations of trim(), trim_left(), trim_right(), trim_sv(), trim_left_sv(), and trim_right_sv()." alt="" coords="214,80,315,107"/>
-<area shape="rect" id="node3" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="5,304,129,331"/>
-<area shape="rect" id="node4" href="$string__util_8h.html" title="Declaration of string utility functions." alt="" coords="195,155,334,181"/>
-<area shape="rect" id="node8" title=" " alt="" coords="496,229,593,256"/>
-<area shape="rect" id="node5" title=" " alt="" coords="105,229,161,256"/>
-<area shape="rect" id="node6" title=" " alt="" coords="185,229,256,256"/>
-<area shape="rect" id="node7" title=" " alt="" coords="281,229,339,256"/>
-<area shape="rect" id="node9" href="$traits_8h.html" title="Some metaprogramming traits for the General Utility Library." alt="" coords="364,229,472,256"/>
-<area shape="rect" id="node10" title=" " alt="" coords="261,304,348,331"/>
-<area shape="rect" id="node11" title=" " alt="" coords="372,304,464,331"/>
-<area shape="rect" id="node12" title=" " alt="" coords="488,304,548,331"/>
+<area shape="rect" id="node1" title="Implementation of trim(), trim_left(), trim_right(), trim_sv(), trim_left_sv(), and trim_right_sv()." alt="" coords="45,5,112,32"/>
+<area shape="rect" id="node2" href="$trim_8h.html" title="Declarations of trim(), trim_left(), trim_right(), trim_sv(), trim_left_sv(), and trim_right_sv()." alt="" coords="28,80,129,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="30,229,127,256"/>
+<area shape="rect" id="node4" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="186,304,310,331"/>
+<area shape="rect" id="node5" href="$string__util_8h.html" title="Declaration of string utility functions." alt="" coords="207,155,345,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="513,229,569,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="151,229,222,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="247,229,305,256"/>
+<area shape="rect" id="node9" href="$traits_8h.html" title="Some metaprogramming traits for the General Utility Library." alt="" coords="381,229,489,256"/>
+<area shape="rect" id="node10" title=" " alt="" coords="334,304,421,331"/>
+<area shape="rect" id="node11" title=" " alt="" coords="445,304,537,331"/>
+<area shape="rect" id="node12" title=" " alt="" coords="561,304,621,331"/>
 </map>

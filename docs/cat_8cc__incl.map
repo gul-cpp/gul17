@@ -1,8 +1,8 @@
 <map id="cat.cc" name="cat.cc">
-<area shape="rect" id="node1" title="Implementation of cat() for two or more parameters." alt="" coords="170,5,230,32"/>
-<area shape="rect" id="node2" href="$cat_8h.html" title="Declaration of the overload set for cat() and of the associated class ConvertingStringView." alt="" coords="153,80,247,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,155,64,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="89,155,181,181"/>
-<area shape="rect" id="node5" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="205,155,329,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="353,155,450,181"/>
+<area shape="rect" id="node1" title="Implementation of cat() for two or more parameters." alt="" coords="176,5,236,32"/>
+<area shape="rect" id="node2" href="$cat_8h.html" title="Declaration of the overload set for cat() and of the associated class ConvertingStringView." alt="" coords="159,80,253,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,155,103,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="127,155,186,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="211,155,303,181"/>
+<area shape="rect" id="node6" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="327,155,451,181"/>
 </map>
