@@ -20,13 +20,3 @@ else ifdef GIT_DIRTY
 else
 	dh $@
 endif
-
-override_dh_auto_clean:
-	@ninja @NINJA-ARGS@ clean
-
-override_dh_auto_build:
-	@ninja @NINJA-ARGS@
-
-override_dh_auto_install:
-	@DESTDIR=$(shell pwd)/debian/tmp ninja @NINJA-ARGS@ install
-
