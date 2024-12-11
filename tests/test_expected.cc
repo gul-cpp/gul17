@@ -4,7 +4,7 @@
  * \date   Created on March 20, 2023
  * \brief  Unit tests for the expected class template.
  *
- * \copyright Copyright 2023 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2023-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -21,11 +21,11 @@
  */
 
 #include <memory>
+#include <optional>
 #include <string>
 
 #include "gul17/catch.h"
 #include "gul17/expected.h"
-#include <optional>
 
 using namespace std::literals;
 

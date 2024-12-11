@@ -5,7 +5,7 @@
  * \brief  Declarations of trim(), trim_left(), trim_right(), trim_sv(), trim_left_sv(),
  *         and trim_right_sv().
  *
- * \copyright Copyright 2018-2023 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -24,9 +24,10 @@
 #ifndef GUL17_TRIM_H_
 #define GUL17_TRIM_H_
 
+#include <string_view>
+
 #include "gul17/internal.h"
 #include "gul17/string_util.h"
-#include <string_view>
 
 namespace gul17 {
 

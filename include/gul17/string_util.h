@@ -4,7 +4,7 @@
  * \authors \ref contributors
  * \date    Created on 31 August 2018
  *
- * \copyright Copyright 2018-2023 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -25,10 +25,10 @@
 
 #include <array>
 #include <iterator>
+#include <string_view>
 #include <string>
 
 #include "gul17/internal.h"
-#include <string_view>
 #include "gul17/traits.h"
 
 namespace gul17 {

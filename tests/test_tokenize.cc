@@ -4,7 +4,7 @@
  * \date   Created on September 3, 2018
  * \brief  Test suite for tokenize() and tokenize_sv().
  *
- * \copyright Copyright 2018-2021 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -26,13 +26,14 @@
 #include <queue>
 #include <set>
 #include <stack>
+#include <string_view>
 #include <type_traits>
 #include <unordered_set>
+
+#include "gul17/case_ascii.h"
 #include "gul17/catch.h"
 #include "gul17/SmallVector.h"
-#include <string_view>
 #include "gul17/tokenize.h"
-#include "gul17/case_ascii.h"
 
 using namespace std::literals;
 
