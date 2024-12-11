@@ -115,10 +115,10 @@ In addition to meson's standard switches there are:
 
 The ``deb-*name`` switch can be used to configure the debian package building
 process with non-standard packet names. The substring '@0@' will be replaced by
-the canonical packet name (i.e. 'libgul17'). Although non-standard packages
+the canonical packet name (i.e. 'gul17'). Although non-standard packages
 automatically conflict with standard packages care must be taken to keep the
 install target system consistent (i.e. install always only one variant of
-libgul17).
+gul17).
 
 The ``deb-vers-ext`` switch forces the package names and versions to be based on
 the latest 'git external tag'. This is a tag in the git repository that does not
@@ -239,7 +239,7 @@ generate the HTML pages.
 
 ## Versioning <a name="Versioning"></a>
 
-The versioning of libgul can be divided into two entities:
+The versioning of gul17 can be divided into two entities:
 * the API version
 * the packet version
 
@@ -303,7 +303,7 @@ That tags are used to tag specific points in time when a packet has been created
 from the project. Its form is ``name_1.2.3``, and again 1, 2, and 3 donate
 version number parts, that might or might not be semantic (see recommended
 format in the description of the deb-vers-tags option). These tags can be used
-to create packet names in the form libgul17-1-2-3 (with ``-D
+to create packet names in the form gul17-1-2-3 (with ``-D
 deb-vers-pack=true`` set in meson). Note that the ``name_`` part is ignored and
 can be arbitrary, as long as it does not start with lower case 'v'. The amount
 of numbers is arbitrary and just all ``_`` or ``.`` get substituted by ``-`` to
@@ -320,7 +320,7 @@ version tag is ``v0.1`` and it is 3 commits behind; and the external tag version
 is ``D_18_11_7`` and it is 5 commits behind.
 
     deb-vers-tag   dev-vers-pack
-        'v'            false            libgul17_0.1.3.deb                       ->   libgul17.so.0.1
-        'v'            true             libgul17-0-1_0.1.3.deb                   ->   libgul17.so.0.1
-        'D_'           false            libgul17_18.11.7.p5.deb                  ->   libgul17.so.18.11.7
-        'D_'           true             libgul17-18-11-7_18.11.7.p5.deb          ->   libgul17.so.18.11.7
+        'v'            false            gul17_0.1.3.deb                       ->   libgul17.so.0.1
+        'v'            true             gul17-0-1_0.1.3.deb                   ->   libgul17.so.0.1
+        'D_'           false            gul17_18.11.7.p5.deb                  ->   libgul17.so.18.11.7
+        'D_'           true             gul17-18-11-7_18.11.7.p5.deb          ->   libgul17.so.18.11.7
