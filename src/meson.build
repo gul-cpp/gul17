@@ -42,8 +42,18 @@ if git_exe.found()
     if git_vers.returncode() != 0
         git_version = 'unknown'
     else
+        # If multiple tags point to that one commit, get the highest one
+        git_version = git_vers.stdout().strip()
+        git_vers = run_command(
+            git_exe, '-C', meson.current_source_dir(),
+                'tag', '--list', get_option('deb-vers-tag') + '*',
+                '--points-at', git_version, '--sort=-v:refname',
+            check: true
+        )
+        # Take the topmost tag only, sorted by -v
         git_version = git_vers.stdout().strip()
         if git_version.startswith(get_option('deb-vers-tag'))
+            git_version = git_version.split()[0].strip()
             git_version_pure = git_version.split(get_option('deb-vers-tag'))[1]
             git_version_parts = git_version_pure.split('_')
             git_version_parts = '-'.join(git_version_parts).split('-')
