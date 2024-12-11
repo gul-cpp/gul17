@@ -1,4 +1,3 @@
-#include <variant>
 /**
  * \file   expected.h
  * \author Sy Brand, \ref contributors
@@ -31,9 +30,9 @@
 #include <functional>
 #include <type_traits>
 #include <utility>
+#include <variant>
 
 #include "gul17/traits.h"
-#include <utility>
 
 namespace gul17 {
 

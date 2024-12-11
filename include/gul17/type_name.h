@@ -4,7 +4,7 @@
  * \date   Created on April 11, 2019
  * \brief  Definition of type_name()
  *
- * \copyright Copyright 2019-2023 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2019-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -26,8 +26,9 @@
 #ifndef GUL17_TYPE_NAME_H_
 #define GUL17_TYPE_NAME_H_
 
-#include "gul17/internal.h"
 #include <string_view>
+
+#include "gul17/internal.h"
 
 namespace gul17 {
 

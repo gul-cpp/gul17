@@ -50,14 +50,12 @@
 #include "gul17/hexdump.h"
 #include "gul17/join_split.h"
 #include "gul17/num_util.h"
-#include <optional>
 #include "gul17/replace.h"
 #include "gul17/SlidingBuffer.h"
 #include "gul17/SmallVector.h"
 #include "gul17/span.h"
 #include "gul17/statistics.h"
 #include "gul17/string_util.h"
-#include <string_view>
 #include "gul17/substring_checks.h"
 #include "gul17/ThreadPool.h"
 #include "gul17/time_util.h"
@@ -67,7 +65,6 @@
 #include "gul17/Trigger.h"
 #include "gul17/trim.h"
 #include "gul17/type_name.h"
-#include <variant>
 #include "gul17/version.h"
 
 #endif

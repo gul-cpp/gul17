@@ -29,11 +29,11 @@
 #include <cstdlib>
 #include <exception>
 #include <limits>
+#include <optional>
+#include <string_view>
 #include <type_traits>
 
 #include "gul17/internal.h"
-#include <optional>
-#include <string_view>
 #include "gul17/substring_checks.h"
 
 namespace gul17 {

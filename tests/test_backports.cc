@@ -4,7 +4,7 @@
  * \date   Created on August 30, 2018
  * \brief  Test suite for standard library backports in the General Utility Library.
  *
- * \copyright Copyright 2018-2022 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -23,16 +23,8 @@
 #include "gul17/catch.h"
 #include "gul17/date.h"
 #include "gul17/span.h"
-#include <string_view>
 
 using namespace std::literals;
-
-TEST_CASE("std::string_view accepts a string as both char * and std::string, and both "
-          "compare equal", "[std::string_view]")
-{
-    REQUIRE( std::string_view{"Test"} == std::string_view{"Test"s} );
-    REQUIRE( std::string_view{""} == std::string_view{""s} );
-}
 
 TEMPLATE_TEST_CASE("span", "[span]", signed char, unsigned char, short, unsigned short,
                    int, unsigned int, long, unsigned long, long long, unsigned long long)

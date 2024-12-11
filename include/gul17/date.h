@@ -12,7 +12,7 @@
  * Copyright (c) 2017 Paul Thompson
  * Copyright (c) 2018, 2019 Tomasz Kamiński
  * Copyright (c) 2019 Jiangang Zhuang
- * Copyright (c) 2022 Deutsches Elektronen-Synchrotron DESY
+ * Copyright (c) 2022-2024 Deutsches Elektronen-Synchrotron DESY
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,8 +40,8 @@
 #ifndef GUL17_DATE_H_
 #define GUL17_DATE_H_
 
-#include <cassert>
 #include <algorithm>
+#include <cassert>
 #include <cctype>
 #include <chrono>
 #include <climits>
@@ -60,11 +60,10 @@
 #include <ratio>
 #include <sstream>
 #include <stdexcept>
-#include <string>
-#include <utility>
-#include <type_traits>
-
 #include <string_view>
+#include <string>
+#include <type_traits>
+#include <utility>
 
 /// \cond HIDE_SYMBOLS
 

@@ -5,7 +5,7 @@
  * \brief  Declaration of the overload set for cat() and of the associated class
  *         ConvertingStringView.
  *
- * \copyright Copyright 2018-2023 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -24,11 +24,11 @@
 #ifndef GUL17_CAT_H_
 #define GUL17_CAT_H_
 
+#include <string_view>
 #include <string>
 #include <type_traits>
 
 #include "gul17/internal.h"
-#include <string_view>
 
 namespace gul17 {
 
