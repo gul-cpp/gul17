@@ -1,7 +1,11 @@
 <map id="traits.h" name="traits.h">
-<area shape="rect" id="node1" title="Some metaprogramming traits for the General Utility Library." alt="" coords="177,5,245,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,92,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="116,80,208,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="232,80,292,107"/>
-<area shape="rect" id="node5" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="316,80,440,107"/>
+<area shape="rect" id="Node000001" title="Some metaprogramming traits for the General Utility Library." alt="" coords="177,5,245,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,92,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,33,89,75,87,71,184,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="116,79,208,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="205,33,180,69,176,66,201,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="232,79,292,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="222,29,248,66,244,69,218,33"/>
+<area shape="rect" id="Node000005" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="316,79,440,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="239,28,339,71,337,76,237,33"/>
 </map>

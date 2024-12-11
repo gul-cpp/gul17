@@ -1,8 +1,15 @@
 <map id="case_ascii.h" name="case_ascii.h">
-<area shape="rect" id="node1" title="Declarations of lowercase_ascii(), lowercase_ascii_inplace(), uppercase_ascii(), and uppercase_ascii_..." alt="" coords="52,5,154,32"/>
-<area shape="rect" id="node2" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="6,229,61,256"/>
-<area shape="rect" id="node3" href="$substring__checks_8h.html" title="Definition of contains(), ends_with(), and starts_with()." alt="" coords="30,80,176,107"/>
-<area shape="rect" id="node6" href="$case__ascii_8cc.html" title="Implementation of lowercase_ascii(), lowercase_ascii_inplace(), uppercase_ascii(),..." alt="" coords="200,80,307,107"/>
-<area shape="rect" id="node4" href="$to__number_8h.html" title="Declaration of to_number()." alt="" coords="81,155,184,181"/>
-<area shape="rect" id="node5" href="$to__number_8cc.html" title="Implementation of pow10()." alt="" coords="86,229,195,256"/>
+<area shape="rect" id="Node000001" title="Declarations of lowercase_ascii(), lowercase_ascii_inplace(), uppercase_ascii(), and uppercase_ascii_..." alt="" coords="99,5,200,31"/>
+<area shape="rect" id="Node000002" href="$case__ascii_8cc.html" title="Implementation of lowercase_ascii(), lowercase_ascii_inplace(), uppercase_ascii(),..." alt="" coords="5,79,112,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,41,75,81,72,76,122,37"/>
+<area shape="rect" id="Node000003" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="163,225,218,251"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="157,44,191,224,186,225,151,45"/>
+<area shape="rect" id="Node000004" href="$substring__checks_8h.html" title="Definition of contains(), ends_with(), and starts_with()." alt="" coords="187,79,333,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="180,36,243,76,240,81,177,40"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="248,117,229,153,198,226,193,224,224,151,244,115"/>
+<area shape="rect" id="Node000005" href="$to__number_8h.html" title="Declaration of to_number()." alt="" coords="238,152,341,177"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="273,116,287,151,282,153,268,118"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="264,187,208,227,205,223,261,183"/>
+<area shape="rect" id="Node000006" href="$to__number_8cc.html" title="Implementation of pow10()." alt="" coords="243,225,352,251"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="295,191,299,225,293,226,290,191"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="replace.h" name="replace.h">
-<area shape="rect" id="node1" title="Declarations of replace(), replace_inplace()." alt="" coords="39,5,122,32"/>
-<area shape="rect" id="node2" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="5,80,60,107"/>
-<area shape="rect" id="node3" href="$replace_8cc.html" title="Implementation of replace(), replace_inplace()." alt="" coords="85,80,173,107"/>
+<area shape="rect" id="Node000001" title="Declarations of replace(), replace_inplace()." alt="" coords="39,5,122,31"/>
+<area shape="rect" id="Node000002" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="5,79,60,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,44,43,80,38,77,63,41"/>
+<area shape="rect" id="Node000003" href="$replace_8cc.html" title="Implementation of replace(), replace_inplace()." alt="" coords="85,79,173,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="98,41,123,77,119,80,94,44"/>
 </map>

@@ -1,9 +1,17 @@
 <map id="gcd_lcm.h" name="gcd_lcm.h">
-<area shape="rect" id="node1" title="Declarations of gcd() and lcm()." alt="" coords="139,5,227,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,155,97,181"/>
-<area shape="rect" id="node3" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="121,155,245,181"/>
-<area shape="rect" id="node4" href="$num__util_8h.html" title="Declaration of numerical utility functions." alt="" coords="234,80,365,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="270,155,355,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="380,155,443,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="467,155,526,181"/>
+<area shape="rect" id="Node000001" title="Declarations of gcd() and lcm()." alt="" coords="139,5,227,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,152,97,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,33,73,143,69,140,171,29"/>
+<area shape="rect" id="Node000003" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="121,152,245,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="186,31,186,138,181,138,181,31"/>
+<area shape="rect" id="Node000004" href="$num__util_8h.html" title="Declaration of numerical utility functions." alt="" coords="234,79,365,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="203,28,270,69,267,74,201,33"/>
+<area shape="poly" id="edge7_Node000004_Node000002" title=" " alt="" coords="260,107,105,151,104,146,259,101"/>
+<area shape="poly" id="edge8_Node000004_Node000003" title=" " alt="" coords="282,106,215,147,213,142,279,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="270,152,355,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="304,104,311,138,305,139,299,105"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="380,152,443,177"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="319,102,383,142,380,147,316,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="467,152,526,177"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="332,102,455,146,453,151,330,107"/>
 </map>

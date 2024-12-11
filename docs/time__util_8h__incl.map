@@ -1,9 +1,17 @@
 <map id="time_util.h" name="time_util.h">
-<area shape="rect" id="node1" title="Declaration of time related functions for the General Utility Library." alt="" coords="143,5,235,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,155,72,181"/>
-<area shape="rect" id="node3" title=" " alt="" coords="320,80,384,107"/>
-<area shape="rect" id="node4" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="97,155,221,181"/>
-<area shape="rect" id="node5" href="$Trigger_8h.html" title="Declaration of the Trigger class for the General Utility Library." alt="" coords="179,80,296,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="245,155,387,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="412,155,476,181"/>
+<area shape="rect" id="Node000001" title="Declaration of time related functions for the General Utility Library." alt="" coords="143,5,235,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,152,72,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,33,62,144,59,141,175,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="320,79,384,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,28,314,71,312,75,214,33"/>
+<area shape="rect" id="Node000004" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="97,152,221,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="186,32,169,79,162,138,157,138,164,78,181,30"/>
+<area shape="rect" id="Node000005" href="$Trigger_8h.html" title="Declaration of the Trigger class for the General Utility Library." alt="" coords="179,79,296,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="199,30,224,66,220,69,195,33"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="206,107,85,150,83,145,205,102"/>
+<area shape="poly" id="edge8_Node000005_Node000004" title=" " alt="" coords="226,106,183,145,180,141,223,102"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="245,152,387,177"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="252,102,295,141,291,145,248,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="412,152,476,177"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="271,101,400,145,398,150,270,107"/>
 </map>

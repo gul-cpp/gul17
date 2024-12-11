@@ -1,4 +1,5 @@
 <map id="version.h" name="version.h">
-<area shape="rect" id="node1" title="Provide information about the library version." alt="" coords="26,5,109,32"/>
-<area shape="rect" id="node2" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="5,80,129,107"/>
+<area shape="rect" id="Node000001" title="Provide information about the library version." alt="" coords="26,5,109,31"/>
+<area shape="rect" id="Node000002" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="5,79,129,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,31,70,65,65,65,65,31"/>
 </map>

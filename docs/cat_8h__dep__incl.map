@@ -1,9 +1,19 @@
 <map id="cat.h" name="cat.h">
-<area shape="rect" id="node1" title="Declaration of the overload set for cat() and of the associated class ConvertingStringView." alt="" coords="260,5,315,32"/>
-<area shape="rect" id="node2" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="126,155,180,181"/>
-<area shape="rect" id="node3" href="$SlidingBuffer_8h.html" title="Declaration of the SlidingBuffer class for the General Utility Library." alt="" coords="26,80,142,107"/>
-<area shape="rect" id="node4" href="$SmallVector_8h.html" title="Definition of the SmallVector class template." alt="" coords="166,80,276,107"/>
-<area shape="rect" id="node5" href="$ThreadPool_8h.html" title="Declaration of the ThreadPool class." alt="" coords="301,80,408,107"/>
-<area shape="rect" id="node6" href="$ThreadPool_8cc.html" title="Implementation of the ThreadPool class." alt="" coords="343,155,456,181"/>
-<area shape="rect" id="node7" href="$cat_8cc.html" title="Implementation of cat() for two or more parameters." alt="" coords="483,80,543,107"/>
+<area shape="rect" id="Node000001" title="Declaration of the overload set for cat() and of the associated class ConvertingStringView." alt="" coords="292,5,347,31"/>
+<area shape="rect" id="Node000002" href="$SlidingBuffer_8h.html" title="Declaration of the SlidingBuffer class for the General Utility Library." alt="" coords="5,79,121,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="279,33,105,81,104,76,278,28"/>
+<area shape="rect" id="Node000003" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="179,152,233,177"/>
+<area shape="poly" id="edge10_Node000001_Node000003" title=" " alt="" coords="280,28,229,45,205,60,187,80,181,98,184,117,200,151,195,153,179,118,176,97,182,77,202,56,226,40,278,23"/>
+<area shape="rect" id="Node000004" href="$SmallVector_8h.html" title="Definition of the SmallVector class template." alt="" coords="197,79,308,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="301,43,265,80,262,77,297,39"/>
+<area shape="rect" id="Node000005" href="$ThreadPool_8cc.html" title="Implementation of the ThreadPool class." alt="" coords="375,152,488,177"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="361,23,411,41,435,56,454,77,460,97,457,118,442,153,437,151,452,117,455,98,449,80,431,60,409,46,359,28"/>
+<area shape="rect" id="Node000006" href="$ThreadPool_8h.html" title="Declaration of the ThreadPool class." alt="" coords="333,79,439,104"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="342,39,377,77,373,80,338,43"/>
+<area shape="rect" id="Node000007" href="$cat_8cc.html" title="Implementation of cat() for two or more parameters." alt="" coords="515,79,575,104"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="361,30,515,78,514,83,359,35"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="100,108,184,149,181,154,97,112"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="240,117,216,153,211,150,235,114"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="345,112,235,155,233,150,343,107"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="403,114,426,150,422,153,399,117"/>
 </map>

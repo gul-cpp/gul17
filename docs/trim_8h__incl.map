@@ -1,13 +1,26 @@
 <map id="trim.h" name="trim.h">
-<area shape="rect" id="node1" title="Declarations of trim(), trim_left(), trim_right(), trim_sv(), trim_left_sv(), and trim_right_sv()." alt="" coords="48,5,109,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="30,155,127,181"/>
-<area shape="rect" id="node3" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="186,229,310,256"/>
-<area shape="rect" id="node4" href="$string__util_8h.html" title="Declaration of string utility functions." alt="" coords="207,80,345,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="513,155,569,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="151,155,222,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="247,155,305,181"/>
-<area shape="rect" id="node8" href="$traits_8h.html" title="Some metaprogramming traits for the General Utility Library." alt="" coords="381,155,489,181"/>
-<area shape="rect" id="node9" title=" " alt="" coords="334,229,421,256"/>
-<area shape="rect" id="node10" title=" " alt="" coords="445,229,537,256"/>
-<area shape="rect" id="node11" title=" " alt="" coords="561,229,621,256"/>
+<area shape="rect" id="Node000001" title="Declarations of trim(), trim_left(), trim_right(), trim_sv(), trim_left_sv(), and trim_right_sv()." alt="" coords="48,5,109,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="30,152,127,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,31,81,138,76,138,76,31"/>
+<area shape="rect" id="Node000003" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="186,225,310,251"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="69,33,45,60,21,98,12,118,8,139,10,158,19,176,42,192,80,206,173,225,172,230,79,211,40,197,15,179,5,159,3,138,7,117,16,95,41,57,65,29"/>
+<area shape="rect" id="Node000004" href="$string__util_8h.html" title="Declaration of string utility functions." alt="" coords="206,79,345,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="110,28,232,71,230,76,108,33"/>
+<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="245,107,125,150,123,145,243,102"/>
+<area shape="poly" id="edge8_Node000004_Node000003" title=" " alt="" coords="290,102,316,136,323,157,320,178,303,202,282,220,279,216,299,198,315,176,317,157,311,138,286,106"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="513,152,569,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="321,101,500,149,499,154,319,107"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="151,152,222,177"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="263,106,214,145,210,141,260,102"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="246,152,305,177"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="278,104,278,138,273,138,273,104"/>
+<area shape="rect" id="Node000008" href="$traits_8h.html" title="Some metaprogramming traits for the General Utility Library." alt="" coords="380,152,488,177"/>
+<area shape="poly" id="edge9_Node000004_Node000008" title=" " alt="" coords="302,102,397,144,395,149,300,106"/>
+<area shape="poly" id="edge13_Node000008_Node000003" title=" " alt="" coords="405,180,292,223,290,218,404,175"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="334,225,420,251"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="427,179,397,216,393,213,423,176"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="444,225,536,251"/>
+<area shape="poly" id="edge11_Node000008_Node000010" title=" " alt="" coords="446,176,475,213,471,216,442,179"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="560,225,620,251"/>
+<area shape="poly" id="edge12_Node000008_Node000011" title=" " alt="" coords="461,175,554,217,551,222,458,180"/>
 </map>

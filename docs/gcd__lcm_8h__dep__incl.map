@@ -1,4 +1,5 @@
 <map id="gcd_lcm.h" name="gcd_lcm.h">
-<area shape="rect" id="node1" title="Declarations of gcd() and lcm()." alt="" coords="5,5,93,32"/>
-<area shape="rect" id="node2" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="22,80,77,107"/>
+<area shape="rect" id="Node000001" title="Declarations of gcd() and lcm()." alt="" coords="5,5,93,31"/>
+<area shape="rect" id="Node000002" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="22,79,77,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="52,44,52,79,47,79,47,44"/>
 </map>

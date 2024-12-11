@@ -1,11 +1,22 @@
 <map id="expected.h" name="expected.h">
-<area shape="rect" id="node1" title="Provides a gul17::expected that implements the main functionality of C++23&#39;s std::expected." alt="" coords="227,5,322,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,75,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="99,80,186,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="118,155,205,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="229,155,321,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="493,155,553,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="497,80,565,107"/>
-<area shape="rect" id="node8" href="$traits_8h.html" title="Some metaprogramming traits for the General Utility Library." alt="" coords="313,80,421,107"/>
-<area shape="rect" id="node9" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="345,155,469,181"/>
+<area shape="rect" id="Node000001" title="Provides a gul17::expected that implements the main functionality of C++23&#39;s std::expected." alt="" coords="227,5,322,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,75,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="238,33,89,78,87,73,236,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="99,79,186,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="255,33,177,74,175,70,252,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="118,152,205,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="267,33,181,143,177,140,263,29"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="229,152,321,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="277,31,277,138,272,138,272,31"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="493,152,553,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="320,28,376,47,435,76,475,107,506,140,502,143,471,111,432,81,374,52,318,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="497,79,565,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="317,28,484,74,482,79,315,33"/>
+<area shape="rect" id="Node000008" href="$traits_8h.html" title="Some metaprogramming traits for the General Utility Library." alt="" coords="313,79,421,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="291,29,343,68,339,72,288,33"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="335,107,208,150,207,145,333,101"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="354,106,302,146,299,141,350,102"/>
+<area shape="poly" id="edge10_Node000008_Node000006" title=" " alt="" coords="393,102,486,144,484,149,391,106"/>
+<area shape="rect" id="Node000009" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="345,152,469,177"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="376,103,396,139,391,141,371,106"/>
 </map>

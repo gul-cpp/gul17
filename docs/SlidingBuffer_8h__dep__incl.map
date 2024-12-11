@@ -1,4 +1,5 @@
 <map id="SlidingBuffer.h" name="SlidingBuffer.h">
-<area shape="rect" id="node1" title="Declaration of the SlidingBuffer class for the General Utility Library." alt="" coords="5,5,121,32"/>
-<area shape="rect" id="node2" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="36,80,91,107"/>
+<area shape="rect" id="Node000001" title="Declaration of the SlidingBuffer class for the General Utility Library." alt="" coords="5,5,121,31"/>
+<area shape="rect" id="Node000002" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="36,79,91,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,44,66,79,61,79,61,44"/>
 </map>

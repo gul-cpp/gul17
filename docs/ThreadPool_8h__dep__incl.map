@@ -1,5 +1,7 @@
 <map id="ThreadPool.h" name="ThreadPool.h">
-<area shape="rect" id="node1" title="Declaration of the ThreadPool class." alt="" coords="33,5,139,32"/>
-<area shape="rect" id="node2" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="5,80,60,107"/>
-<area shape="rect" id="node3" href="$ThreadPool_8cc.html" title="Implementation of the ThreadPool class." alt="" coords="84,80,197,107"/>
+<area shape="rect" id="Node000001" title="Declaration of the ThreadPool class." alt="" coords="62,5,169,31"/>
+<area shape="rect" id="Node000002" href="$ThreadPool_8cc.html" title="Implementation of the ThreadPool class." alt="" coords="5,79,119,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,43,73,80,69,77,96,40"/>
+<area shape="rect" id="Node000003" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="143,79,197,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="135,40,163,77,159,80,131,43"/>
 </map>

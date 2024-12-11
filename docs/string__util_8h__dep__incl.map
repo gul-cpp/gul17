@@ -1,10 +1,20 @@
 <map id="string_util.h" name="string_util.h">
-<area shape="rect" id="node1" title="Declaration of string utility functions." alt="" coords="187,5,285,32"/>
-<area shape="rect" id="node2" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="102,155,157,181"/>
-<area shape="rect" id="node3" href="$join__split_8h.html" title="Implementation of join(), split(), and split_sv()." alt="" coords="24,80,117,107"/>
-<area shape="rect" id="node4" href="$tokenize_8h.html" title="Implementation of tokenize(), tokenize_sv()." alt="" coords="142,80,231,107"/>
-<area shape="rect" id="node5" href="$trim_8h.html" title="Declarations of trim(), trim_left(), trim_right(), trim_sv(), trim_left_sv(), and trim_right_sv()." alt="" coords="256,80,317,107"/>
-<area shape="rect" id="node7" href="$escape_8cc.html" title="Implementation of escape(), unescape()." alt="" coords="342,80,429,107"/>
-<area shape="rect" id="node8" href="$string__util_8cc.html" title="Implementation of string utilities for the General Utility Library." alt="" coords="453,80,558,107"/>
-<area shape="rect" id="node6" href="$trim_8cc.html" title="Implementation of trim(), trim_left(), trim_right(), trim_sv(), trim_left_sv(), and trim_right_sv()." alt="" coords="253,155,320,181"/>
+<area shape="rect" id="Node000001" title="Declaration of string utility functions." alt="" coords="226,5,325,31"/>
+<area shape="rect" id="Node000002" href="$escape_8cc.html" title="Implementation of escape(), unescape()." alt="" coords="5,79,92,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,37,86,81,85,76,225,32"/>
+<area shape="rect" id="Node000003" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="309,152,364,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="220,38,189,50,165,65,153,83,153,92,158,103,172,119,190,131,231,149,273,158,309,161,309,166,272,163,229,154,187,136,169,123,153,105,147,93,147,81,161,61,187,45,218,33"/>
+<area shape="rect" id="Node000004" href="$join__split_8h.html" title="Implementation of join(), split(), and split_sv()." alt="" coords="167,79,261,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="258,43,226,80,222,77,254,40"/>
+<area shape="rect" id="Node000005" href="$string__util_8cc.html" title="Implementation of string utilities for the General Utility Library." alt="" coords="285,79,391,104"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="297,39,330,77,326,80,293,43"/>
+<area shape="rect" id="Node000006" href="$tokenize_8h.html" title="Implementation of tokenize(), tokenize_sv()." alt="" coords="415,79,504,104"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="319,33,430,76,428,81,317,38"/>
+<area shape="rect" id="Node000007" href="$trim_8h.html" title="Declarations of trim(), trim_left(), trim_right(), trim_sv(), trim_left_sv(), and trim_right_sv()." alt="" coords="529,79,590,104"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="336,31,517,76,529,79,528,84,516,81,335,36"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="247,108,318,149,315,154,244,113"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="429,113,358,154,355,149,427,108"/>
+<area shape="poly" id="edge9_Node000007_Node000003" title=" " alt="" coords="516,109,365,157,363,152,514,104"/>
+<area shape="rect" id="Node000008" href="$trim_8cc.html" title="Implementation of trim(), trim_left(), trim_right(), trim_sv(), trim_left_sv(), and trim_right_sv()." alt="" coords="526,152,593,177"/>
+<area shape="poly" id="edge10_Node000007_Node000008" title=" " alt="" coords="562,118,562,152,557,152,557,118"/>
 </map>

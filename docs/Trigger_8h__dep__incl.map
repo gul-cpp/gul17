@@ -1,7 +1,12 @@
 <map id="Trigger.h" name="Trigger.h">
-<area shape="rect" id="node1" title="Declaration of the Trigger class for the General Utility Library." alt="" coords="78,5,155,32"/>
-<area shape="rect" id="node2" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="5,155,60,181"/>
-<area shape="rect" id="node3" href="$time__util_8h.html" title="Declaration of time related functions for the General Utility Library." alt="" coords="71,80,163,107"/>
-<area shape="rect" id="node5" href="$Trigger_8cc.html" title="Implementation of the Trigger class for the General Utility Library." alt="" coords="187,80,270,107"/>
-<area shape="rect" id="node4" href="$ThreadPool_8cc.html" title="Implementation of the ThreadPool class." alt="" coords="84,155,197,181"/>
+<area shape="rect" id="Node000001" title="Declaration of the Trigger class for the General Utility Library." alt="" coords="87,5,164,31"/>
+<area shape="rect" id="Node000002" href="$Trigger_8cc.html" title="Implementation of the Trigger class for the General Utility Library." alt="" coords="5,79,88,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,42,61,80,58,76,101,38"/>
+<area shape="rect" id="Node000003" href="$gul_8h.html" title="Main include file for the General Utility Library." alt="" coords="98,152,153,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="128,45,128,152,123,152,123,45"/>
+<area shape="rect" id="Node000004" href="$time__util_8h.html" title="Declaration of time related functions for the General Utility Library." alt="" coords="163,79,255,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="151,38,197,76,194,80,148,42"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="187,115,141,154,137,150,184,111"/>
+<area shape="rect" id="Node000005" href="$ThreadPool_8cc.html" title="Implementation of the ThreadPool class." alt="" coords="177,152,290,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="220,116,232,151,227,153,215,118"/>
 </map>

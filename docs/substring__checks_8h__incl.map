@@ -1,7 +1,13 @@
 <map id="substring_checks.h" name="substring_checks.h">
-<area shape="rect" id="node1" title="Definition of contains(), ends_with(), and starts_with()." alt="" coords="89,5,235,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,155,103,181"/>
-<area shape="rect" id="node3" href="$case__ascii_8h.html" title="Declarations of lowercase_ascii(), lowercase_ascii_inplace(), uppercase_ascii(), and uppercase_ascii_..." alt="" coords="91,80,233,107"/>
-<area shape="rect" id="node5" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="211,155,335,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="127,155,186,181"/>
+<area shape="rect" id="Node000001" title="Definition of contains(), ends_with(), and starts_with()." alt="" coords="89,5,235,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,152,103,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,33,109,53,82,80,67,109,60,139,54,138,62,108,77,77,106,48,137,28"/>
+<area shape="rect" id="Node000003" href="$case__ascii_8h.html" title="Declarations of lowercase_ascii(), lowercase_ascii_inplace(), uppercase_ascii(), and uppercase_ascii_..." alt="" coords="91,79,233,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="165,31,165,65,159,65,159,31"/>
+<area shape="rect" id="Node000005" href="$internal_8h.html" title="Definition of macros used internally by GUL." alt="" coords="211,152,335,177"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="187,29,218,49,247,77,263,108,271,138,266,139,258,109,243,80,215,53,184,33"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="146,106,85,147,82,142,143,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="127,152,186,177"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="164,105,161,139,156,138,158,104"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="181,102,244,142,241,147,178,106"/>
 </map>
