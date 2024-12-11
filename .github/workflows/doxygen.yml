@@ -11,15 +11,15 @@ on:
       - data/doxygen_footer.html
       - data/doxygen.h
       - data/doxygen_layout.xml
-      - data/gul14.png
-      - data/gul14_big.png
+      - data/gul17.png
+      - data/gul17_big.png
       - data/style.css
   workflow_dispatch:
 
 jobs:
   doxyrun:
     name: Create Docu
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
     steps:
