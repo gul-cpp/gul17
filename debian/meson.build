@@ -82,7 +82,6 @@ endif
 
 debian_files = [
     'control',
-    'compat',
     'copyright',
     'rules',
 ]
