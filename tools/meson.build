@@ -17,17 +17,4 @@ if get_option('docs')
     endif
 endif
 
-# Script to check the configuration validity
-check_conf = configuration_data()
-check_conf.set('GIT_FULL_API_VERSION', git_full_api_version)
-check_conf.set('GIT_VERSION', git_version)
-check_conf.set('SOURCE_ROOT', meson.current_build_dir())
-check_conf.set('VERSION_TAG', get_option('deb-vers-tag'))
-config_checker = configure_file(
-    input : 'config_checker.in',
-    output : 'config_checker',
-    configuration : check_conf,
-)
-config_checker_path = meson.current_build_dir() / '/config_checker'
-
 # vi:ts=4:sw=4:sts=4:et:syn=conf

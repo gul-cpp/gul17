@@ -12,9 +12,6 @@ elif get_option('prefix') == '/usr/local'
     message('Debian packaging disabled (Packets installing files to /usr/local forbidden)')
     message('                          Enable by specifying correct prefix e.g. --prefix=/usr')
     subdir_done()
-elif git_full_api_version == 'unknown'
-    message('Debian packaging disabled (can not access git tags and most probably git log)')
-    subdir_done()
 endif
 deb_install = true
 
@@ -45,7 +42,7 @@ if changelg_run.returncode() != 0
     error(changelg_run.stdout())
 endif
 
-debian_package_version = get_variable('git_version_num', libgul_api_version) + get_variable('git_patch', '')
+debian_package_version = lib_version_num
 
 # Find out if we run on ARM, and limit ninja if we do
 if build_machine.cpu_family() == 'arm' or build_machine.cpu_family() == 'aarch64'
@@ -63,15 +60,13 @@ deb_conf.set('NAME-DEV', deb_dev_name)
 deb_conf.set('CONFLICTS', '')
 deb_conf.set('CONFLICTS-DEV', '')
 deb_conf.set('VERSION', debian_package_version)
-deb_conf.set('CONFIG_CHECKER', config_checker_path)
-deb_conf.set('NINJA-ARGS', get_variable('deb_ninja_args', ''))
 
 # Mark a conflict, if we generate a non standard debian package
 # This is not a perfect, but at least some protection against
 # having both installed.
 if deb_name != deb_name_default or get_option('deb-vers-pack')
-    git_version_suf = '-' + '-'.join(git_version_parts)
-    deb_name = deb_name + git_version_suf
+    lib_version_suf = '-' + '-'.join(lib_version_parts)
+    deb_name = deb_name + lib_version_suf
     deb_conf.set('NAME', deb_name)
     deb_conf.set('CONFLICTS', deb_name_default)
 endif
