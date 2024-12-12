@@ -14,83 +14,34 @@ libgul_src = files([
 
 inc += include_directories('.')
 
-git_exe = find_program('git', required : false, native : true)
-if git_exe.found()
-
-    # Get full description based on git tag API version ('v0.2-22-g3d8867c-dirty')
-    git_f_api = run_command(
-        git_exe, '-C', meson.current_source_dir(),
-            'describe', '--tags', '--always', '--dirty', '--match', 'v*',
-        check: false
-    )
-    if git_f_api.returncode() != 0
-        git_full_api_version = 'unknown'
+use_libno = false
+if get_option('deb-vers-tag') != 'v'
+    # Non-standard i.e. Doocs package => use LIBNO file
+    cat = find_program(meson.source_root() / 'tools' / 'cat.py')
+    if cat.found()
+        use_libno = true
+    endif
+endif
+if use_libno
+    libno_cat_run = run_command(cat, meson.source_root() / 'LIBNO', check : false)
+    if libno_cat_run.returncode() == 0
+        message('Using LIBNO file')
+        lib_version_full = libno_cat_run.stdout().split('=')[1].strip()
     else
-        git_full_api_version = git_f_api.stdout().strip()
-        if not git_full_api_version.startswith('v') or not git_full_api_version.contains('.')
-            git_full_api_version = 'unknown'
-        endif
+        lib_version_full = meson.project_version()
     endif
-
-    # Get description based on git version tag ('v0.2' or 'DOOCSVERSION_18_11_6')
-    git_vers = run_command(
-        git_exe, '-C', meson.current_source_dir(),
-            'describe', '--tags', '--always', '--abbrev=0', '--match',
-            get_option('deb-vers-tag') + '*',
-        check: false
-    )
-    if git_vers.returncode() != 0
-        git_version = 'unknown'
-    else
-        # If multiple tags point to that one commit, get the highest one
-        git_version = git_vers.stdout().strip()
-        git_vers = run_command(
-            git_exe, '-C', meson.current_source_dir(),
-                'tag', '--list', get_option('deb-vers-tag') + '*',
-                '--points-at', git_version, '--sort=-v:refname',
-            check: true
-        )
-        # Take the topmost tag only, sorted by -v
-        git_version = git_vers.stdout().strip()
-        if git_version.startswith(get_option('deb-vers-tag'))
-            git_version = git_version.split()[0].strip()
-            git_version_pure = git_version.split(get_option('deb-vers-tag'))[1]
-            git_version_parts = git_version_pure.split('_')
-            git_version_parts = '-'.join(git_version_parts).split('-')
-            git_version_num = '.'.join(git_version_parts)
-            git_version_parts = git_version_num.split('.')
-        else
-            git_version = 'unknown'
-        endif
-    endif
-
-    # Get the number of commits since the relevant version tag
-    git_pat = run_command(
-        git_exe, '-C', meson.current_source_dir(),
-            'rev-list', '--count', git_version + '..',
-        check: false
-    )
-    if git_pat.returncode() == 0
-        # Ignore patchlevel if it is zero
-        git_patch_lvl = git_pat.stdout().strip()
-        if git_patch_lvl != '0'
-            if git_version_num.split('.').length() >= 3
-                # If we already have 3 numbers add patchlevel with letter p
-                git_patch = '.p' + git_patch_lvl
-            else
-                git_patch = '.' + git_patch_lvl
-            endif
-        endif
-    endif
-
+    lib_version_parts = lib_version_full.split('_')
+    lib_version_parts = '-'.join(lib_version_parts).split('-')
+    lib_version_num = '.'.join(lib_version_parts)
+    lib_version_parts = lib_version_num.split('.')
 else
-    # Have no information whatsoever
-    git_full_api_version = 'unknown'
-    git_version = 'unknown'
+    lib_version_full = meson.project_version()
+    lib_version_num = libgul_api_version
+    lib_version_parts = libgul_api_version_parts
 endif
 
 git_conf = configuration_data()
-git_conf.set('GIT_FULL_API_VERSION', git_full_api_version)
+git_conf.set('FULL_API_VERSION', lib_version_full)
 git_conf.set('LIBGUL_API_VERSION', libgul_api_version)
 version_cc = configure_file(
     input : 'version.cc.in',
@@ -98,7 +49,7 @@ version_cc = configure_file(
     configuration : git_conf,
 )
 
-so_version = (git_version != 'unknown') ? git_version_num : libgul_api_version
+so_version = lib_version_num
 
 add_cpp_args = [
     '-DLIBGUL_API_VERSION=@0@'.format(libgul_api_version),
