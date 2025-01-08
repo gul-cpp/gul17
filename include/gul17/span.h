@@ -5,7 +5,7 @@
  *
  * \copyright
  * Copyright Tristan Brindle 2018.
- * Copyright Deutsches Elektronen-Synchrotron (DESY), Hamburg 2019-2023 (modifications for
+ * Copyright Deutsches Elektronen-Synchrotron (DESY), Hamburg 2019-2025 (modifications for
  * GUL, \ref contributors).
  *
  * Distributed under the Boost Software License, Version 1.0. (See \ref license_boost_1_0
@@ -38,13 +38,6 @@ namespace gul17 {
  */
 
 /// \cond HIDE_SYMBOLS
-
-// Feature test macro for defaulted constexpr assignment operator
-#if (!defined(_MSC_VER) || _MSC_VER > 1900)
-#define GUL_SPAN_CONSTEXPR_ASSIGN constexpr
-#else
-#define GUL_SPAN_CONSTEXPR_ASSIGN
-#endif
 
 constexpr std::size_t dynamic_extent = SIZE_MAX;
 
@@ -292,7 +285,7 @@ public:
     ~span() noexcept = default;
 
     /// See [std::span](https://en.cppreference.com/w/cpp/container/span).
-    GUL_SPAN_CONSTEXPR_ASSIGN span&
+    constexpr span&
     operator=(const span& other) noexcept = default;
 
     // [span.sub], span subviews
