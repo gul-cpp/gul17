@@ -106,10 +106,6 @@ class unexpected;
 #define GUL17_EXPECTED_EXCEPTIONS_ENABLED
 #endif
 
-#if (defined(__GNUC__) && __GNUC__ == 5 && __GNUC_MINOR__ <= 5 && !defined(__clang__))
-#define GUL17_EXPECTED_GCC55
-#endif
-
 #if (defined(__GNUC__) && __GNUC__ < 8 && !defined(__clang__))
 #ifndef GUL17_GCC_LESS_8_TRIVIALLY_COPY_CONSTRUCTIBLE_MUTEX
 #define GUL17_GCC_LESS_8_TRIVIALLY_COPY_CONSTRUCTIBLE_MUTEX
@@ -1194,8 +1190,6 @@ public:
   typedef E error_type;
   typedef unexpected<E> unexpected_type;
 
-#if !defined(GUL17_EXPECTED_GCC55)
-
   template <class F> constexpr auto and_then(F &&f) & {
     return and_then_impl(*this, std::forward<F>(f));
   }
@@ -1209,34 +1203,6 @@ public:
     return and_then_impl(std::move(*this), std::forward<F>(f));
   }
 
-#else
-
-  template <class F>
-  constexpr auto
-  and_then(F &&f) & -> decltype(and_then_impl(std::declval<expected &>(),
-                                              std::forward<F>(f))) {
-    return and_then_impl(*this, std::forward<F>(f));
-  }
-  template <class F>
-  constexpr auto
-  and_then(F &&f) && -> decltype(and_then_impl(std::declval<expected &&>(),
-                                               std::forward<F>(f))) {
-    return and_then_impl(std::move(*this), std::forward<F>(f));
-  }
-  template <class F>
-  constexpr auto and_then(F &&f) const & -> decltype(and_then_impl(
-      std::declval<expected const &>(), std::forward<F>(f))) {
-    return and_then_impl(*this, std::forward<F>(f));
-  }
-  template <class F>
-  constexpr auto and_then(F &&f) const && -> decltype(and_then_impl(
-      std::declval<expected const &&>(), std::forward<F>(f))) {
-    return and_then_impl(std::move(*this), std::forward<F>(f));
-  }
-
-#endif
-
-#if !defined(GUL17_EXPECTED_GCC55)
   template <class F> constexpr auto map(F &&f) & {
     return expected_map_impl(*this, std::forward<F>(f));
   }
@@ -1249,34 +1215,7 @@ public:
   template <class F> constexpr auto map(F &&f) const && {
     return expected_map_impl(std::move(*this), std::forward<F>(f));
   }
-#else
-  template <class F>
-  constexpr decltype(expected_map_impl(
-      std::declval<expected &>(), std::declval<F &&>()))
-  map(F &&f) & {
-    return expected_map_impl(*this, std::forward<F>(f));
-  }
-  template <class F>
-  constexpr decltype(expected_map_impl(std::declval<expected>(),
-                                                      std::declval<F &&>()))
-  map(F &&f) && {
-    return expected_map_impl(std::move(*this), std::forward<F>(f));
-  }
-  template <class F>
-  constexpr decltype(expected_map_impl(std::declval<const expected &>(),
-                                       std::declval<F &&>()))
-  map(F &&f) const & {
-    return expected_map_impl(*this, std::forward<F>(f));
-  }
-  template <class F>
-  constexpr decltype(expected_map_impl(std::declval<const expected &&>(),
-                                       std::declval<F &&>()))
-  map(F &&f) const && {
-    return expected_map_impl(std::move(*this), std::forward<F>(f));
-  }
-#endif
 
-#if !defined(GUL17_EXPECTED_GCC55)
   template <class F> constexpr auto transform(F &&f) & {
     return expected_map_impl(*this, std::forward<F>(f));
   }
@@ -1289,34 +1228,7 @@ public:
   template <class F> constexpr auto transform(F &&f) const && {
     return expected_map_impl(std::move(*this), std::forward<F>(f));
   }
-#else
-  template <class F>
-  constexpr decltype(expected_map_impl(
-      std::declval<expected &>(), std::declval<F &&>()))
-  transform(F &&f) & {
-    return expected_map_impl(*this, std::forward<F>(f));
-  }
-  template <class F>
-  constexpr decltype(expected_map_impl(std::declval<expected>(),
-                                                      std::declval<F &&>()))
-  transform(F &&f) && {
-    return expected_map_impl(std::move(*this), std::forward<F>(f));
-  }
-  template <class F>
-  constexpr decltype(expected_map_impl(std::declval<const expected &>(),
-                                       std::declval<F &&>()))
-  transform(F &&f) const & {
-    return expected_map_impl(*this, std::forward<F>(f));
-  }
-  template <class F>
-  constexpr decltype(expected_map_impl(std::declval<const expected &&>(),
-                                       std::declval<F &&>()))
-  transform(F &&f) const && {
-    return expected_map_impl(std::move(*this), std::forward<F>(f));
-  }
-#endif
 
-#if !defined(GUL17_EXPECTED_GCC55)
   template <class F> constexpr auto map_error(F &&f) & {
     return map_error_impl(*this, std::forward<F>(f));
   }
@@ -1329,33 +1241,7 @@ public:
   template <class F> constexpr auto map_error(F &&f) const && {
     return map_error_impl(std::move(*this), std::forward<F>(f));
   }
-#else
-  template <class F>
-  constexpr decltype(map_error_impl(std::declval<expected &>(),
-                                                   std::declval<F &&>()))
-  map_error(F &&f) & {
-    return map_error_impl(*this, std::forward<F>(f));
-  }
-  template <class F>
-  constexpr decltype(map_error_impl(std::declval<expected &&>(),
-                                                   std::declval<F &&>()))
-  map_error(F &&f) && {
-    return map_error_impl(std::move(*this), std::forward<F>(f));
-  }
-  template <class F>
-  constexpr decltype(map_error_impl(std::declval<const expected &>(),
-                                    std::declval<F &&>()))
-  map_error(F &&f) const & {
-    return map_error_impl(*this, std::forward<F>(f));
-  }
-  template <class F>
-  constexpr decltype(map_error_impl(std::declval<const expected &&>(),
-                                    std::declval<F &&>()))
-  map_error(F &&f) const && {
-    return map_error_impl(std::move(*this), std::forward<F>(f));
-  }
-#endif
-#if !defined(GUL17_EXPECTED_GCC55)
+
   template <class F> constexpr auto transform_error(F &&f) & {
     return map_error_impl(*this, std::forward<F>(f));
   }
@@ -1368,32 +1254,7 @@ public:
   template <class F> constexpr auto transform_error(F &&f) const && {
     return map_error_impl(std::move(*this), std::forward<F>(f));
   }
-#else
-  template <class F>
-  constexpr decltype(map_error_impl(std::declval<expected &>(),
-                                                   std::declval<F &&>()))
-  transform_error(F &&f) & {
-    return map_error_impl(*this, std::forward<F>(f));
-  }
-  template <class F>
-  constexpr decltype(map_error_impl(std::declval<expected &&>(),
-                                                   std::declval<F &&>()))
-  transform_error(F &&f) && {
-    return map_error_impl(std::move(*this), std::forward<F>(f));
-  }
-  template <class F>
-  constexpr decltype(map_error_impl(std::declval<const expected &>(),
-                                    std::declval<F &&>()))
-  transform_error(F &&f) const & {
-    return map_error_impl(*this, std::forward<F>(f));
-  }
-  template <class F>
-  constexpr decltype(map_error_impl(std::declval<const expected &&>(),
-                                    std::declval<F &&>()))
-  transform_error(F &&f) const && {
-    return map_error_impl(std::move(*this), std::forward<F>(f));
-  }
-#endif
+
   template <class F> expected constexpr or_else(F &&f) & {
     return or_else_impl(*this, std::forward<F>(f));
   }
@@ -2005,7 +1866,6 @@ auto expected_map_impl(Exp &&exp, F &&f) {
   return result(unexpect, std::forward<Exp>(exp).error());
 }
 
-#if !defined(GUL17_EXPECTED_GCC55)
 template <class Exp, class F,
           detail::enable_if_t<!std::is_void<exp_t<Exp>>::value> * = nullptr,
           class Ret = decltype(invoke(std::declval<F>(),
@@ -2058,66 +1918,6 @@ auto map_error_impl(Exp &&exp, F &&f) {
   invoke(std::forward<F>(f), std::forward<Exp>(exp).error());
   return result(unexpect, std::monostate{});
 }
-#else
-template <class Exp, class F,
-          detail::enable_if_t<!std::is_void<exp_t<Exp>>::value> * = nullptr,
-          class Ret = decltype(invoke(std::declval<F>(),
-                                              std::declval<Exp>().error())),
-          detail::enable_if_t<!std::is_void<Ret>::value> * = nullptr>
-constexpr auto map_error_impl(Exp &&exp, F &&f)
-    -> expected<exp_t<Exp>, detail::decay_t<Ret>> {
-  using result = expected<exp_t<Exp>, detail::decay_t<Ret>>;
-
-  return exp.has_value()
-             ? result(*std::forward<Exp>(exp))
-             : result(unexpect, invoke(std::forward<F>(f),
-                                               std::forward<Exp>(exp).error()));
-}
-
-template <class Exp, class F,
-          detail::enable_if_t<!std::is_void<exp_t<Exp>>::value> * = nullptr,
-          class Ret = decltype(invoke(std::declval<F>(),
-                                              std::declval<Exp>().error())),
-          detail::enable_if_t<std::is_void<Ret>::value> * = nullptr>
-auto map_error_impl(Exp &&exp, F &&f) -> expected<exp_t<Exp>, std::monostate> {
-  using result = expected<exp_t<Exp>, std::monostate>;
-  if (exp.has_value()) {
-    return result(*std::forward<Exp>(exp));
-  }
-
-  invoke(std::forward<F>(f), std::forward<Exp>(exp).error());
-  return result(unexpect, std::monostate{});
-}
-
-template <class Exp, class F,
-          detail::enable_if_t<std::is_void<exp_t<Exp>>::value> * = nullptr,
-          class Ret = decltype(invoke(std::declval<F>(),
-                                              std::declval<Exp>().error())),
-          detail::enable_if_t<!std::is_void<Ret>::value> * = nullptr>
-constexpr auto map_error_impl(Exp &&exp, F &&f)
-    -> expected<exp_t<Exp>, detail::decay_t<Ret>> {
-  using result = expected<exp_t<Exp>, detail::decay_t<Ret>>;
-
-  return exp.has_value()
-             ? result()
-             : result(unexpect, invoke(std::forward<F>(f), std::forward<Exp>(exp).error()));
-}
-
-template <class Exp, class F,
-          detail::enable_if_t<std::is_void<exp_t<Exp>>::value> * = nullptr,
-          class Ret = decltype(invoke(std::declval<F>(),
-                                              std::declval<Exp>().error())),
-          detail::enable_if_t<std::is_void<Ret>::value> * = nullptr>
-auto map_error_impl(Exp &&exp, F &&f) -> expected<exp_t<Exp>, std::monostate> {
-  using result = expected<exp_t<Exp>, std::monostate>;
-  if (exp.has_value()) {
-    return result();
-  }
-
-  invoke(std::forward<F>(f), std::forward<Exp>(exp).error());
-  return result(unexpect, std::monostate{});
-}
-#endif
 
 template <class Exp, class F,
           class Ret = decltype(invoke(std::declval<F>(),
