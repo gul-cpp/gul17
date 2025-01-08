@@ -6,7 +6,7 @@
  *
  * \copyright
  * Written in 2017 by Sy Brand (tartanllama@gmail.com, @TartanLlama)
- * Modifications for GUL17 in 2023-2024 by Lars Fröhlich
+ * Modifications for GUL17 in 2023-2025 by Lars Fröhlich
  *
  * This file is based on version 1.1.0 of Sy Brand's expected.h header from
  * https://github.com/TartanLlama/expected
@@ -104,10 +104,6 @@ class unexpected;
 
 #if defined(__EXCEPTIONS) || defined(_CPPUNWIND)
 #define GUL17_EXPECTED_EXCEPTIONS_ENABLED
-#endif
-
-#if (defined(__GNUC__) && __GNUC__ == 5 && __GNUC_MINOR__ <= 4 && !defined(__clang__))
-#define GUL17_EXPECTED_GCC54
 #endif
 
 #if (defined(__GNUC__) && __GNUC__ == 5 && __GNUC_MINOR__ <= 5 && !defined(__clang__))
@@ -1198,7 +1194,7 @@ public:
   typedef E error_type;
   typedef unexpected<E> unexpected_type;
 
-#if !defined(GUL17_EXPECTED_GCC54) && !defined(GUL17_EXPECTED_GCC55)
+#if !defined(GUL17_EXPECTED_GCC55)
 
   template <class F> constexpr auto and_then(F &&f) & {
     return and_then_impl(*this, std::forward<F>(f));
@@ -1240,7 +1236,7 @@ public:
 
 #endif
 
-#if !defined(GUL17_EXPECTED_GCC54) && !defined(GUL17_EXPECTED_GCC55)
+#if !defined(GUL17_EXPECTED_GCC55)
   template <class F> constexpr auto map(F &&f) & {
     return expected_map_impl(*this, std::forward<F>(f));
   }
@@ -1280,7 +1276,7 @@ public:
   }
 #endif
 
-#if !defined(GUL17_EXPECTED_GCC54) && !defined(GUL17_EXPECTED_GCC55)
+#if !defined(GUL17_EXPECTED_GCC55)
   template <class F> constexpr auto transform(F &&f) & {
     return expected_map_impl(*this, std::forward<F>(f));
   }
@@ -1320,7 +1316,7 @@ public:
   }
 #endif
 
-#if !defined(GUL17_EXPECTED_GCC54) && !defined(GUL17_EXPECTED_GCC55)
+#if !defined(GUL17_EXPECTED_GCC55)
   template <class F> constexpr auto map_error(F &&f) & {
     return map_error_impl(*this, std::forward<F>(f));
   }
@@ -1359,7 +1355,7 @@ public:
     return map_error_impl(std::move(*this), std::forward<F>(f));
   }
 #endif
-#if !defined(GUL17_EXPECTED_GCC54) && !defined(GUL17_EXPECTED_GCC55)
+#if !defined(GUL17_EXPECTED_GCC55)
   template <class F> constexpr auto transform_error(F &&f) & {
     return map_error_impl(*this, std::forward<F>(f));
   }
@@ -2009,7 +2005,7 @@ auto expected_map_impl(Exp &&exp, F &&f) {
   return result(unexpect, std::forward<Exp>(exp).error());
 }
 
-#if !defined(GUL17_EXPECTED_GCC54) && !defined(GUL17_EXPECTED_GCC55)
+#if !defined(GUL17_EXPECTED_GCC55)
 template <class Exp, class F,
           detail::enable_if_t<!std::is_void<exp_t<Exp>>::value> * = nullptr,
           class Ret = decltype(invoke(std::declval<F>(),
