@@ -14,8 +14,8 @@ by the library are:
   * Core guideline support library (GSL) excerpts
   * Backports from new standard library extensions
 
-To get started, have a look at ~the [documentation website](https://gul17.info/)~
-the [gul14 documentation website](https://gul14.info/)
+To get started, have a look at the
+[documentation website](https://gul-cpp.github.io/gul17/).
 
 Here you find more detailed information on:
 
@@ -38,7 +38,8 @@ vcpkg installed, just run:~
 
 ## Building <a name="Building"></a>
 
-Clone this repository:
+Needless to say, GUL17 needs a C++17 compliant compiler. To get started, clone this
+repository:
 
         git clone https://github.com/gul-cpp/gul17.git
         cd gul17
