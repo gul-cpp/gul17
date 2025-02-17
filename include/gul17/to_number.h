@@ -370,7 +370,7 @@ constexpr inline std::optional<NumberType> to_unsigned_float(std::string_view st
     if (not norm_val.has_value())
         return std::nullopt;
 
-    return detail::pow10(exponent) * *norm_val;
+    return static_cast<NumberType>(detail::pow10(exponent) * *norm_val);
 }
 
 /**
