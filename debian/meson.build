@@ -44,11 +44,6 @@ endif
 
 debian_package_version = lib_version_num
 
-# Find out if we run on ARM, and limit ninja if we do
-if build_machine.cpu_family() == 'arm' or build_machine.cpu_family() == 'aarch64'
-    deb_ninja_args = '-j 1'
-endif
-
 # Configure all the debian files
 deb_conf = configuration_data()
 deb_conf.set('PREFIX', get_option('prefix'))
