@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# This script will be automatically called by makeDdeb before the actual
+# build process starts and so update some information based on the LIBNO
+# file.
+# If other (more direct) build tools are to be used you need to call this
+# manually before initializing the build.
+#
+# In both cases you probably want to commit the changes this script did.
+
+# Version 19.02.2025 (fix sed command)
+# Version 18.02.2025 (preserve other dependencies)
+# Version 22.01.2025 (make calling pwd in dependent)
+# Version 17.01.2025 (obsoletes check_changelog)
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+# LIBNO-file contains "LIBNO = 24.1.1"
+# VERSION contains dots 24.1.2
+# LIBNO contains dashes 24-1-2
+VERSION=$(grep LIBNO LIBNO | sed -e "s/LIBNO = //g")
+LIBNO=$(echo "${VERSION}" | sed -e "s/\./-/g")
+
+# check version number in control file
+LIBNAME=$(grep "^Source:" debian/control | sed 's/Source: *//;s/-[0-9].*$//')
+LIKELY=$(grep "Source: ${LIBNAME}-${LIBNO}" debian/control || true)
+
+# if LIBNO and version in debian/control differs update
+# debian/control and debian/changelog
+if [ -z "$LIKELY" ]; then
+    sed -i -e "s/${LIBNAME}-[^ ]*/${LIBNAME}-${LIBNO}/g" debian/control
+    debchange \
+        --controlmaint \
+        --newversion="${VERSION}" \
+        --package="${LIBNAME}-${LIBNO}" \
+        --distribution=unstable \
+        --urgency=low \
+        "automatically added entry (by check_control)" \
+        "$(test -f debian/changelog || echo --create)"
+fi
+
+# Create package content specification
+rm -f "debian/${LIBNAME}-"[0-9]*.install
+cp "debian/${LIBNAME}.install.in" "debian/${LIBNAME}-${LIBNO}.install"

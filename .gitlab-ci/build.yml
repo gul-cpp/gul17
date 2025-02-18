@@ -156,10 +156,6 @@ Windows test:
                   --prefix=/export/doocs
                   --libdir=lib
                   --includedir=lib/include
-                  -D deb-vers-tag='DOOCSVERSION_'
-                  -D deb-vers-pack=true
-                  -D deb-name=doocs-@0@
-                  -D deb-dev-name=dev-doocs-@0@
                   build.release
                 - ninja -C build.release
         artifacts:

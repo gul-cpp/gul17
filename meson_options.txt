@@ -4,13 +4,5 @@ option('tests', type : 'boolean', value : true,
        description : 'Generate tests')
 option('docs', type : 'boolean', value : true,
        description : 'Generate documentation via Doxygen')
-option('deb-name', type : 'string', value : '@0@',
-       description : 'Debian package name')
-option('deb-dev-name', type : 'string', value : '@0@-dev',
-       description : 'Debian package name for development package')
-option('deb-vers-tag', type : 'string', value : 'v',
-       description : 'Debian package uses git version tags starting with this')
-option('deb-vers-pack', type : 'boolean', value : false,
-       description : 'Debian package name will contain patchlevel')
 
 # vi:ts=4:sw=4:sts=4:et:syn=conf

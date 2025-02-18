@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+
+GIT_DIRTY := $(shell command -v git >/dev/null 2>&1 && (git diff --quiet || echo dirty))
+
+%:
+ifdef GIT_DIRTY
+	@echo '====> Git repository dirty, refusing to packetize'
+	@echo
+	@false
+else
+	dh $@ --builddir=debian/build/
+endif
+
+override_dh_auto_configure:
+	debian/check_control
+	dh_auto_configure -- \
+		--buildtype=debugoptimized \
+		--prefix=/export/doocs \
+		--libdir=lib \
+		--includedir=lib/include \
+		--wrap-mode=nofallback \
+		--pkg-config-path=/export/doocs/lib/pkgconfig
+
+override_dh_strip:
+	@echo "Not running dh_strip to retain debug symbols in library"

@@ -1,22 +1,24 @@
 # Build specification for the General Utilities Library
 
-# Increase the major project version in project() on API breaking changes.
-# Increase the minor project version in project() on API extensions
+# The version in project() is the Doocs version / package version
 
 project('gul17', 'cpp',
     default_options : [
         'cpp_std=c++17',
+        'buildtype=debugoptimized',
+        'prefix=/export/doocs',
+        'libdir=lib',
+        'includedir=lib/include',
         'warning_level=3',
     ],
-    version : '2.12.1', # The API version
-    meson_version : '>=0.49')
-
-# We have different version numbers
-# API VERSION (from APIVERSION file) - the real API
-# LIB VERSION (from LIBNO file or APIVERSION file) - the package version
-
-libgul_api_version_parts = meson.project_version().split('.')
-libgul_api_version = libgul_api_version_parts[0] + '.' + libgul_api_version_parts[1]
+    version : run_command(
+        [
+            find_program('tools/cat.py'),
+            meson.current_source_dir() / 'LIBNO'
+        ],
+        check : true
+    ).stdout().split('=')[1].strip(),
+    meson_version : '>=0.53.2')
 
 subdir('include')
 subdir('src')
@@ -27,14 +29,7 @@ subdir('data')
 subdir('tests')
 
 message('Install prefix: ' + get_option('prefix'))
-subdir('debian')
 subdir('examples')
 
-message('API VERSION             @0@'.format(libgul_api_version))
-message('FULL API VERSION        @0@'.format(meson.project_version()))
-message('LIB VERSION             @0@'.format(lib_version_full))
-if deb_install
-    message('Debian package names    ' + deb_name + ', ' + deb_dev_name)
-    message('Debian package version  ' + debian_package_version)
-endif
+message('FULL VERSION            @0@'.format(meson.project_version()))
 message('Shared library version  ' + so_version)

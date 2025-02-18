@@ -1,4 +1,0 @@
-@PREFIX@/@INCLUDEDIR@/*
-@PREFIX@/@LIBDIR@/*.a
-@PREFIX@/@LIBDIR@/*.so
-@PREFIX@/@LIBDIR@/**/*.pc
