@@ -1,25 +1,23 @@
-Source: @NAME@
+Source: doocs-gul17-1-2-3
 Priority: optional
 Maintainer: Fini Jastrow <ulf.fini.jastrow@desy.de>
-Build-Depends: debhelper-compat (=12), meson (>=0.49), ninja-build (>=1.5.1)
+Build-Depends: debhelper-compat (=12), meson (>=0.53.2), ninja-build (>=1.5.1)
 Standards-Version: 4.5.0
 Section: libs
-Homepage: https://stash.desy.de/projects/GUL/repos/libgul
+Homepage: https://github.com/gul-cpp/gul17
 
-Package: @NAME@
+Package: doocs-gul17-1-2-3
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Conflicts: @CONFLICTS@
 Description: General Utility Library for C++17
  The General Utility Library for C++17 contains often-used utility
  functions and types that form the foundation for other
  libraries and programs.
 
-Package: @NAME-DEV@
+Package: dev-doocs-gul17
 Section: libdevel
 Architecture: any
-Depends: @NAME@ (= ${binary:Version}), ${misc:Depends}
-Conflicts: @CONFLICTS-DEV@
+Depends: doocs-gul17-1-2-3 (= ${binary:Version}), ${misc:Depends}
 Description: General Utility Library for C++17 development files
  The General Utility Library for C++17 contains often-used utility
  functions and types that form the foundation for other

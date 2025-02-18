@@ -4,7 +4,7 @@
  * \authors \ref contributors
  * \date    Created on 14 Sep 2018
  *
- * \copyright Copyright 2018-2019 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -25,5 +25,4 @@
 // The "@ string @" sequences are replaced with the actual strings by the meson build
 // system and written into the build directory as version.cc. That file is compiled and
 // linked if specified.
-char const* gul17::version_git{ "@FULL_API_VERSION@" };
-char const* gul17::version_api{ "@LIBGUL_API_VERSION@" };
+char const* gul17::version{ "@FULL_VERSION@" };

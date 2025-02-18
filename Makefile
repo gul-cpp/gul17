@@ -23,7 +23,6 @@ LOCALINSTPRE = $(abspath ../../../${DOOCSARCH})
 LOCALSECTION := $(notdir $(abspath ../..))/$(notdir $(abspath ..))
 
 PREFIX ?= /export/doocs
-DOOCS_PATHS = --libdir 'lib' --includedir 'lib/include'
 
 JUNIT_XML_FILE ?= $(BUILDDIR)/test.xml
 
@@ -38,7 +37,6 @@ help:
 	@echo
 	@echo \'make release\' builds the release version of the library under build/$(ARCH)/release
 	@echo \'make debug\' builds the debug version of the library under build/$(ARCH)/debug
-	@echo \'make doocs-release\' builds a DOOCS release version that can be packaged with makeDdeb under build/$(ARCH)/doocs-release
 	@echo
 	@echo \'make test\' runs unit tests on the release version
 	@echo \'make BUILDTYPE=debug test\' runs unit tests on the debug version
@@ -70,9 +68,7 @@ doc: $(BUILDDIR)/build.ninja
 	@printf "$(INTRO) $@ $(OUTRO)\n"
 	ninja $(NINJA_ARGS) -C $(BUILDDIR) data/docs
 
-doocs-release: build/$(ARCH)/doocs-release/build.ninja
-	@printf "$(INTRO) $@ $(OUTRO)\n"
-	ninja $(NINJA_ARGS) -C build/$(ARCH)/doocs-release
+doocs-release: release
 
 localinstall: $(LOCALINSTDIR)/build.ninja
 	@printf "$(INTRO) $@ $(OUTRO)\n"
@@ -82,9 +78,9 @@ mrproper:
 	@printf "$(INTRO) $@ $(OUTRO)\n"
 	rm -rf build
 
-release: build/$(ARCH)/release/build.ninja
+release: $(BUILDDIR)/build.ninja
 	@printf "$(INTRO) $@ $(OUTRO)\n"
-	ninja $(NINJA_ARGS) -C build/$(ARCH)/release
+	ninja $(NINJA_ARGS) -C $(BUILDDIR)
 
 test: $(BUILDDIR)/build.ninja
 	@printf "$(INTRO) $@ $(OUTRO)\n"
@@ -98,22 +94,15 @@ test-junit: $(BUILDDIR)/build.ninja
 
 build/$(ARCH)/debug/build.ninja:
 	@printf "$(INTRO) $@ $(OUTRO)\n"
-	meson build/$(ARCH)/debug --buildtype=debug $(MESON_EXTRA_ARGS)
+	meson setup build/$(ARCH)/debug --buildtype=debug $(MESON_EXTRA_ARGS)
 
-build/$(ARCH)/doocs-release/build.ninja:
+$(BUILDDIR)/build.ninja:
 	@printf "$(INTRO) $@ $(OUTRO)\n"
-	meson build/$(ARCH)/doocs-release --buildtype=debugoptimized --prefix=$(PREFIX) \
-	      --libdir=lib --includedir=lib/include -D deb-vers-tag='DOOCSVERSION_' \
-	      -D deb-vers-pack=true -D deb-name=doocs-@0@ -D deb-dev-name=dev-doocs-@0@ \
-	      $(MESON_EXTRA_ARGS)
-
-build/$(ARCH)/release/build.ninja:
-	@printf "$(INTRO) $@ $(OUTRO)\n"
-	meson build/$(ARCH)/release --buildtype=debugoptimized $(MESON_EXTRA_ARGS)
+	meson setup $(BUILDDIR) $(MESON_EXTRA_ARGS)
 
 $(LOCALINSTDIR)/build.ninja:
 	@printf "$(INTRO) $@ $(OUTRO)\n"
-	meson --prefix ${LOCALINSTPRE} --bindir 'obj/${LOCALSECTION}' ${DOOCS_PATHS} \
-              --buildtype=debugoptimized ${LOCALINSTDIR} $(MESON_EXTRA_ARGS)
+	meson setup --prefix ${LOCALINSTPRE} --bindir 'obj/${LOCALSECTION}' \
+              ${LOCALINSTDIR} $(MESON_EXTRA_ARGS)
 
 .PHONY: build-tests debug clean doc doocs-release help install-doc libs localinstall mrproper release test

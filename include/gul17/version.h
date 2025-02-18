@@ -28,18 +28,10 @@
 namespace gul17 {
 
 /**
- * Holds the git version tag of the sources that the library has
- * been build with.
- * It has the format returned by git describe --tags --always --dirty
+ * Holds the version of the library.
  */
 GUL_EXPORT
-extern char const* version_git;
-
-/**
- * Holds the API version of the library.
- */
-GUL_EXPORT
-extern char const* version_api;
+extern char const* version;
 
 } // namespace gul17
 

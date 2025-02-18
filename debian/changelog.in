@@ -1,7 +1,0 @@
-@NAME@ (@VERSION@) unstable; urgency=medium
-
-  * Initial release
-  * Following line needed for lintian:
-  * Closes: #100000
-
- -- Fini Jastrow <ulf.fini.jastrow@desy.de>  Wed, 12 Sep 2018 12:42:10 +0200
