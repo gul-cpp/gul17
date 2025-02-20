@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-GIT_DIRTY := $(shell command -v git >/dev/null 2>&1 && (git diff --quiet || echo dirty))
+GIT_DIRTY := $(shell command -v git >/dev/null 2>&1 && git show >/dev/null 2>&1 && (git diff --quiet || echo dirty))
 
 %:
 ifdef GIT_DIRTY
