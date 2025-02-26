@@ -28,11 +28,12 @@ namespace gul17 {
 
 std::string replace(std::string_view haystack, std::string_view needle, std::string_view hammer)
 {
-    if (needle.empty())
-        return std::string(haystack);
-
     auto result = ""s;
     result.reserve(haystack.length());
+    if (needle.empty()) {
+        result.assign(haystack.data(), haystack.length());
+        return result;
+    }
 
     std::size_t pos = 0;
     std::size_t last_pos = 0;
