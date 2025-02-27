@@ -4,7 +4,7 @@
  * \date    Created on August 24, 2018
  * \brief   Doxygen input file for the General Utility Library.
  *
- * \copyright Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -146,7 +146,7 @@ namespace gul17 {
  *
  * \subsection V2_13_0 Version 2.13.0
  *
- * - Add ThreadPool::get_thread_index()
+ * - Add ThreadPool::get_thread_id()
  *
  * \subsection V2_12_1 Version 2.12.1
  *
