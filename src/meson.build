@@ -14,9 +14,22 @@ libgul_src = files([
 
 inc += include_directories('.')
 
+# Normally the version is x.y.z, see README.md
+# But sometimes something is added to the version
+# by a package maintainer and we have x.y.z-more
+#
+# The additional suffix is only used for packaging and
+# does not reflect in the so-version or pkgconfig version.
 lib_version_full = meson.project_version()
 lib_version_parts = meson.project_version().split('.')
-lib_version_num = lib_version_full # TODO
+if lib_version_parts.length() < 3
+    error('Version does not have expected two dots (x.y.z)')
+endif
+lib_version_num = '@0@.@1@.@2@'.format(
+    lib_version_parts[0],
+    lib_version_parts[1],
+    lib_version_parts[2].underscorify().strip(
+        'abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ'))
 
 git_conf = configuration_data()
 git_conf.set('FULL_VERSION', lib_version_full)
