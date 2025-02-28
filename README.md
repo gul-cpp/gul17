@@ -180,5 +180,13 @@ generate the HTML pages.
 
 ## Versioning <a name="Versioning"></a>
 
-The versioning of is by an external (non-semantic) version number. The version
-resides in the LIBNO file.
+The version number for GUL17 resides in the LIBNO file.
+
+GUL17 follows a calendar-oriented versioning scheme with a version number of the
+form YY.M.minor where YY stands for the last two digits of the year, M is the
+number of the month, and minor is a minor version number that starts from zero
+for each release in that month.
+
+For instance, the first release in March 2025 is called `25.3.0`, the second one `25.3.1`.
+
+This is not semantic versioning.
