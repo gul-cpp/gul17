@@ -105,23 +105,6 @@ Overview of maybe useful standard project options:
     includedir     lib/include           Header file directory
     datadir        share                 Data file (Doxygen website) directory
 
-### Default configurations for Unix-like systems <a name="Default-configurations"></a>
-
-Some typical build configurations can be set up in build directories under ``build/`` with
-the following commands:
-
-* ``make release`` builds the release version of the library under ``build/x86\_64-linux-gnu/release``
-* ``make debug`` builds the debug version of the library under ``build/x86\_64-linux-gnu/debug``
-* ``make test`` runs unit tests on the release version
-* ``make BUILDTYPE=debug test`` runs unit tests on the debug version
-* ``make test-junit`` runs unit tests and generates output in JUnit XML format under ``build/x86\_64-linux-gnu/release/test.xml``
-* ``make JUNIT_XML_FILE=a.xml test-junit`` runs unit tests and generates output in JUnit XML format in the specified file
-* ``make clean`` cleans up the build files of the release version
-* ``make BUILDTYPE=debug clean`` cleans up the build files of the debug version
-* ``make mrproper`` removes all build directories completely
-* ``make doc`` builds documentation under ``build/x86\_64-linux-gnu/release/resources/doxygenerated`` (needs Doxygen and Graphviz)
-* ``make localinstall`` makes a local installation of the library under ``$HOME/Ubuntu-16.04-x86\_64/lib``
-
 ### Building on Windows with Visual C++ <a name="Building-on-Windows-with-Visual-C"></a>
 
 GUL can be built with Visual C++, although the integration with the Visual Studio IDE is
