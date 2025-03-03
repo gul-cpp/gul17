@@ -8,6 +8,7 @@
 #
 # In both cases you probably want to commit the changes this script did.
 
+# Version 02.03.2025 (changelog check more robust)
 # Version 19.02.2025 (fix sed command)
 # Version 18.02.2025 (preserve other dependencies)
 # Version 22.01.2025 (make calling pwd in dependent)
@@ -17,20 +18,21 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-# LIBNO-file contains "LIBNO = 24.1.1"
-# VERSION contains dots 24.1.2
-# LIBNO contains dashes 24-1-2
-VERSION=$(grep LIBNO LIBNO | sed -e "s/LIBNO = //g")
+# LIBNO-file can contain "LIBNO = 24.1.1-oracular1" (The part after x.y.z is optional)
+# VERSION contains dots: 24.1.2-oracular1
+VERSION=$(grep LIBNO LIBNO | sed -e "s/LIBNO *= *//g")
+
+# LIBNO contains dashes: 24-1-2-oracular1
 LIBNO=$(echo "${VERSION}" | sed -e "s/\./-/g")
 
-# check version number in control file
+# LIBNAME contains the pure name without version parts
 LIBNAME=$(grep "^Source:" debian/control | sed 's/Source: *//;s/-[0-9].*$//')
-LIKELY=$(grep "Source: ${LIBNAME}-${LIBNO}" debian/control || true)
 
-# if LIBNO and version in debian/control differs update
-# debian/control and debian/changelog
-if [ -z "$LIKELY" ]; then
-    sed -i -e "s/${LIBNAME}-[^ ]*/${LIBNAME}-${LIBNO}/g" debian/control
+# Check version number in control file
+sed -i -e "s/${LIBNAME}-[^ ]*/${LIBNAME}-${LIBNO}/g" debian/control
+
+# If LIBNO and version in debian/changelog differs: update
+if ! head -n 1 debian/changelog | grep "${LIBNAME}-${LIBNO}" | grep "\(${VERSION}\)" ; then
     debchange \
         --controlmaint \
         --newversion="${VERSION}" \
