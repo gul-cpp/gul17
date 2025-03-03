@@ -49,12 +49,13 @@ jobs:
 
       - name: Call Doxygen
         run: |
-          make doc
+          meson setup build
+          ninja -C build data/docs
 
       - name: Publish Docu
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: "build/x86_64-linux/release/data/doxygenerated/html"
+          folder: "build/data/doxygenerated/html"
           target-folder: "docs"
           clean: true
           commit-message: "[ci] Regenerate Doxygen docs"
