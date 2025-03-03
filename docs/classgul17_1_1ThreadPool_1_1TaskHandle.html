@@ -20,7 +20,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="gul17.png"/></td>
   <td id="projectalign">
-   <div id="projectname">General Utility Library for C++17<span id="projectnumber">&#160;2.12</span>
+   <div id="projectname">General Utility Library for C++17<span id="projectnumber">&#160;1.2.3</span>
    </div>
   </td>
  </tr>
@@ -63,7 +63,7 @@ class gul17::ThreadPool::TaskHandle&lt; T &gt;</div><p>A handle for a task that 
 <div class="line">    <a class="code hl_function" href="group__time__util__h.html#gaba1f5593c8dd9d3b9e56f20ca103ec29">sleep</a>(0.1);</div>
 <div class="line">}</div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Task result: &quot;</span> &lt;&lt; <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">task</a>.get_result() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="ttc" id="agroup__ThreadPool__h_html_ga21a74a855b5c2df1daa3584eadd276fc"><div class="ttname"><a href="group__ThreadPool__h.html#ga21a74a855b5c2df1daa3584eadd276fc">gul17::make_thread_pool</a></div><div class="ttdeci">std::shared_ptr&lt; ThreadPool &gt; make_thread_pool(std::size_t num_threads, std::size_t capacity=ThreadPool::default_capacity)</div><div class="ttdoc">Create a thread pool with the desired number of threads and the specified capacity for queuing tasks.</div><div class="ttdef"><b>Definition</b> ThreadPool.h:599</div></div>
+<div class="ttc" id="agroup__ThreadPool__h_html_ga21a74a855b5c2df1daa3584eadd276fc"><div class="ttname"><a href="group__ThreadPool__h.html#ga21a74a855b5c2df1daa3584eadd276fc">gul17::make_thread_pool</a></div><div class="ttdeci">std::shared_ptr&lt; ThreadPool &gt; make_thread_pool(std::size_t num_threads, std::size_t capacity=ThreadPool::default_capacity)</div><div class="ttdoc">Create a thread pool with the desired number of threads and the specified capacity for queuing tasks.</div><div class="ttdef"><b>Definition</b> ThreadPool.h:625</div></div>
 <div class="ttc" id="agroup__bit__manip__h_html_ga360badd8e0d73d0b45a028a10ec2d412"><div class="ttname"><a href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set</a></div><div class="ttdeci">auto constexpr bit_set(unsigned bit) noexcept -&gt; ReturnT</div><div class="ttdoc">Set a bit in an integral type.</div><div class="ttdef"><b>Definition</b> bit_manip.h:121</div></div>
 <div class="ttc" id="agroup__time__util__h_html_gaba1f5593c8dd9d3b9e56f20ca103ec29"><div class="ttname"><a href="group__time__util__h.html#gaba1f5593c8dd9d3b9e56f20ca103ec29">gul17::sleep</a></div><div class="ttdeci">bool sleep(const std::chrono::duration&lt; Rep, Period &gt; &amp;duration, const Trigger &amp;trg)</div><div class="ttdoc">Sleep for at least the given time span, with the option of being woken up from another thread.</div><div class="ttdef"><b>Definition</b> time_util.h:114</div></div>
 </div><!-- fragment --> </div>
