@@ -21,7 +21,7 @@ cd "$(dirname "$0")/.."
 
 # LIBNO-file can contain "LIBNO = 24.1.1-oracular1" (The part after x.y.z is optional)
 # VERSION contains dots: 24.1.2-oracular1
-VERSION=$(grep LIBNO LIBNO | sed -e "s/LIBNO *= *//g")
+VERSION=$(sed -e "s/LIBNO\s*=\s*//g;s/\s\+$//" LIBNO )
 
 # # LIBNO contains dashes: 24-1-2-oracular1
 # LIBNO=$(echo "${VERSION}" | sed -e "s/\./-/g")
@@ -29,7 +29,7 @@ VERSION=$(grep LIBNO LIBNO | sed -e "s/LIBNO *= *//g")
 # LIBNO contains dashes and no suffix: 24-1-2
 LIBNO=$(echo "${VERSION}" | sed -E "s/([0-9]+\.[0-9]+\.[0-9]+).*/\1/;s/\./-/g")
 
-# LIBNAME contains the pure name without version parts
+# LIBNAME contains the pure (package) name without version parts
 LIBNAME=$(grep "^Source:" debian/control | sed 's/Source: *//;s/-[0-9].*$//')
 
 # Check version number in control file
