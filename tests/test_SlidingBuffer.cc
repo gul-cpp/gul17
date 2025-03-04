@@ -4,7 +4,7 @@
  * \date   Created on Feb 7, 2019
  * \brief  Test suite for the SlidingBuffer{}
  *
- * \copyright Copyright 2019-2021 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2019-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -24,14 +24,18 @@
 #include <random>
 #include <sstream>
 
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/matchers/catch_matchers_string.hpp>
+
 #include "gul17/cat.h"
-#include "gul17/catch.h"
 #include "gul17/join_split.h"
 #include "gul17/SlidingBuffer.h"
 #include "gul17/trim.h"
 #include "gul17/tokenize.h"
 
 using namespace std::literals::string_literals;
+using Catch::Matchers::Matches;
+using Catch::Matchers::StartsWith;
 using gul17::SlidingBuffer;
 using gul17::SlidingBufferExposed;
 
@@ -179,7 +183,7 @@ void do_dumping_tests(T& buff)
     std::stringstream s1{ };
 
     buff.debugdump(s1);
-    REQUIRE_THAT(s1.str(), Catch::Matchers::StartsWith(
+    REQUIRE_THAT(s1.str(), StartsWith(
                 "nan* nan  nan  nan  nan  nan  nan  nan  nan  nan",
                 Catch::CaseSensitive::No));
 
@@ -188,7 +192,7 @@ void do_dumping_tests(T& buff)
 
     std::stringstream s2{ };
     s2 << buff;
-    REQUIRE_THAT(gul17::trim(s2.str()), Catch::Matchers::Matches(
+    REQUIRE_THAT(gul17::trim(s2.str()), Matches(
                 "141.4  131.3  121.2  111.1  101  90.9  80.8  70.7  60.6  50.5"));
 }
 

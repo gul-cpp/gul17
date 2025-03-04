@@ -4,7 +4,7 @@
  * \date   Created on August 5, 2022
  * \brief  Test suite for gcd() and lcm().
  *
- * \copyright Copyright 2022 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2022-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -22,7 +22,8 @@
 
 #include <type_traits>
 
-#include "gul17/catch.h"
+#include <catch2/catch_test_macros.hpp>
+
 #include "gul17/gcd_lcm.h"
 
 using gul17::gcd;

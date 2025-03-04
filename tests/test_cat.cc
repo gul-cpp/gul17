@@ -4,7 +4,7 @@
  * \date   Created on August 30, 2018
  * \brief  Test suite for cat() from the General Utility Library.
  *
- * \copyright Copyright 2018 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -20,8 +20,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul17/cat.h"
-#include "gul17/catch.h"
+ #include <catch2/catch_test_macros.hpp>
+
+ #include "gul17/cat.h"
 
 using namespace std::literals;
 using gul17::cat;

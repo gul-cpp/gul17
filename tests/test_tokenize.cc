@@ -4,7 +4,7 @@
  * \date   Created on September 3, 2018
  * \brief  Test suite for tokenize() and tokenize_sv().
  *
- * \copyright Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -30,8 +30,10 @@
 #include <type_traits>
 #include <unordered_set>
 
+#include <catch2/catch_template_test_macros.hpp>
+#include <catch2/catch_test_macros.hpp>
+
 #include "gul17/case_ascii.h"
-#include "gul17/catch.h"
 #include "gul17/SmallVector.h"
 #include "gul17/tokenize.h"
 
