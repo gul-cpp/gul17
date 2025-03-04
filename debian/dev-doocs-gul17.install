@@ -1,4 +1,4 @@
-export/doocs/lib/*.a
-export/doocs/lib/*.so
-export/doocs/lib/include/*
-export/doocs/lib/pkgconfig/*
+usr/lib/*.a
+usr/lib/*.so
+usr/include/*
+usr/lib/pkgconfig/*
