@@ -4,7 +4,7 @@
  * \date   Created on August 11, 2021
  * \brief  Unit tests for string utility functions.
  *
- * \copyright Copyright 2021-2022 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2021-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -25,7 +25,8 @@
 #include <sstream>
 #include <vector>
 
-#include "gul17/catch.h"
+#include <catch2/catch_test_macros.hpp>
+
 #include "gul17/SmallVector.h"
 #include "gul17/string_util.h"
 

@@ -4,7 +4,7 @@
  * \date   Created on Feb 7, 2019
  * \brief  Test suite for statistics functions.
  *
- * \copyright Copyright 2019-2021 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2019-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -29,7 +29,10 @@
 #include <sstream>
 #include <type_traits>
 
-#include "gul17/catch.h"
+#include <catch2/catch_template_test_macros.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/matchers/catch_matchers_floating_point.hpp>
+
 #include "gul17/statistics.h"
 #include "gul17/substring_checks.h"
 #include "gul17/type_name.h"
@@ -185,9 +188,9 @@ TEST_CASE("Container Statistics Tests", "[statistics]")
         auto const value2 = 7.7;
         auto const state2 = bit(8);
         fifo.push_back({value2, state2});
-        REQUIRE(mean(fifo, accessor) == Approx((value1 + value2) / 2.0));
+        REQUIRE_THAT(mean(fifo, accessor), WithinAbs((value1 + value2) / 2.0, 1e-6));
         auto rmsval = std::sqrt((value1 * value1 + value2 * value2) / 2.0);
-        REQUIRE(rms(fifo, accessor) == Approx(rmsval));
+        REQUIRE_THAT(rms(fifo, accessor), WithinAbs(rmsval, 1e-6));
         REQUIRE(median(fifo, accessor) == (value1 + value2) / 2.0);
         REQUIRE(accumulate<unsigned int>(fifo, op_max, acc_state) == state2);
         REQUIRE(minimum(fifo, accessor) == value2);
@@ -201,12 +204,12 @@ TEST_CASE("Container Statistics Tests", "[statistics]")
         elem.val = value3;
         elem.sta = state3;
         fifo.push_back(elem);
-        REQUIRE(mean(fifo, accessor) == Approx((value1 + value2 + value3) / 3.0));
-        REQUIRE(mean(fifo.begin(), fifo.end(), accessor) ==
-                Approx((value1 + value2 + value3) / 3.0));
+        REQUIRE_THAT(mean(fifo, accessor), WithinAbs((value1 + value2 + value3) / 3.0, 1e-6));
+        REQUIRE_THAT(mean(fifo.begin(), fifo.end(), accessor),
+            WithinAbs((value1 + value2 + value3) / 3.0, 1e-6));
         rmsval = std::sqrt((value1 * value1 + value2 * value2 + value3 * value3) / 3.0);
-        REQUIRE(rms(fifo, accessor) == Approx(rmsval));
-        REQUIRE(rms(fifo.begin(), fifo.end(), accessor) == Approx(rmsval));
+        REQUIRE_THAT(rms(fifo, accessor), WithinAbs(rmsval, 1e-6));
+        REQUIRE_THAT(rms(fifo.begin(), fifo.end(), accessor), WithinAbs(rmsval, 1e-6));
         REQUIRE(median(fifo, accessor) == value3);
         REQUIRE(median(fifo.cbegin(), fifo.cend(), accessor) == value3);
         REQUIRE(accumulate<unsigned int>(fifo, op_max, acc_state) == state2);
@@ -228,10 +231,10 @@ TEST_CASE("Container Statistics Tests", "[statistics]")
         auto const value5 = 9.3;
         auto const state5 = bit(3);
         fifo.push_back({value5, state5});
-        REQUIRE(mean(fifo, accessor) ==
-                Approx((value1 + value2 + value3 + value4 + value5) / 5.0));
+        REQUIRE_THAT(mean(fifo, accessor),
+                WithinAbs((value1 + value2 + value3 + value4 + value5) / 5.0, 1e-6));
         rmsval = std::sqrt((value1 * value1 + value2 * value2 + value3 * value3 + value4 * value4 + value5 * value5) / 5.0);
-        REQUIRE(rms(fifo, accessor) == Approx(rmsval));
+        REQUIRE_THAT(rms(fifo, accessor), WithinAbs(rmsval, 1e-6));
         REQUIRE(median(fifo, accessor) == value3);
         REQUIRE(accumulate<unsigned int>(fifo, op_max, acc_state) == state2);
         // For some reason stuff from standard header <numeric> seem to be in our namespace,

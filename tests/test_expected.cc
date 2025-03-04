@@ -4,7 +4,7 @@
  * \date   Created on March 20, 2023
  * \brief  Unit tests for the expected class template.
  *
- * \copyright Copyright 2023-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2023-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -24,7 +24,9 @@
 #include <optional>
 #include <string>
 
-#include "gul17/catch.h"
+#include <catch2/catch_template_test_macros.hpp>
+#include <catch2/catch_test_macros.hpp>
+
 #include "gul17/expected.h"
 
 using namespace std::literals;

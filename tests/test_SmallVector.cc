@@ -4,7 +4,7 @@
  * \date   Created on August 17, 2020
  * \brief  Test suite for the SmallVector class.
  *
- * \copyright Copyright 2020-2021 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2020-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -28,7 +28,10 @@
 #include <random>
 #include <string>
 #include <type_traits>
-#include "gul17/catch.h"
+
+#include <catch2/catch_template_test_macros.hpp>
+#include <catch2/catch_test_macros.hpp>
+
 #include "gul17/SmallVector.h"
 
 using namespace std::literals::string_literals;

@@ -4,7 +4,7 @@
  * \date   Created on July 19, 2019
  * \brief  Test suite for to_number().
  *
- * \copyright Copyright 2019, 2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2019-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -28,12 +28,13 @@
 #include <random>
 #include <sstream>
 
-#include "gul17/catch.h"
+#include <catch2/catch_template_test_macros.hpp>
+#include <catch2/catch_test_macros.hpp>
+
 #include "gul17/to_number.h"
 #include "gul17/num_util.h"
 
 using namespace std::literals::string_literals;
-using namespace Catch::Matchers;
 using gul17::to_number;
 
 // Allowed deviation from ideal result in ULP
