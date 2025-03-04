@@ -4,7 +4,7 @@
  * \date   Created on August 31, 2018
  * \brief  Test suite for join(), split(), and split_sv().
  *
- * \copyright Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -30,7 +30,9 @@
 #include <type_traits>
 #include <vector>
 
-#include "gul17/catch.h"
+#include <catch2/catch_template_test_macros.hpp>
+#include <catch2/catch_test_macros.hpp>
+
 #include "gul17/join_split.h"
 #include "gul17/SmallVector.h"
 

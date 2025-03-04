@@ -4,7 +4,7 @@
  * \date   Created on 7 Feb 2019
  * \brief  Unit tests for within_orders(), within_abs(), and within_ulp().
  *
- * \copyright Copyright 2019 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2019-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -22,8 +22,12 @@
 
 #include <limits>
 
-#include "gul17/catch.h"
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/matchers/catch_matchers_floating_point.hpp>
+
 #include "gul17/num_util.h"
+
+using Catch::Matchers::WithinAbs;
 
 TEST_CASE("test within_orders()", "[num_util]")
 {
@@ -386,12 +390,15 @@ TEST_CASE("test clamp()", "[num_util]")
     auto v2 = A{ 1.2, 0.6 };
     auto v3 = A{ 52.1, 22.8 };
 
-    auto x1 = gul17::clamp(v1, llimit_a, ulimit_a, [](auto const& a, auto const& b) { return a.product() < b.product(); });
-    auto x2 = gul17::clamp(v2, llimit_a, ulimit_a, [](auto const& a, auto const& b) { return a.product() < b.product(); });
-    auto x3 = gul17::clamp(v3, llimit_a, ulimit_a, [](auto const& a, auto const& b) { return a.product() < b.product(); });
-    REQUIRE(x1.product() == Approx(v1.product()));
-    REQUIRE(x2.product() == Approx(llimit_a.product()));
-    REQUIRE(x3.product() == Approx(ulimit_a.product()));
+    auto x1 = gul17::clamp(v1, llimit_a, ulimit_a,
+        [](auto const& a, auto const& b) { return a.product() < b.product(); });
+    auto x2 = gul17::clamp(v2, llimit_a, ulimit_a,
+        [](auto const& a, auto const& b) { return a.product() < b.product(); });
+    auto x3 = gul17::clamp(v3, llimit_a, ulimit_a,
+        [](auto const& a, auto const& b) { return a.product() < b.product(); });
+    REQUIRE_THAT(x1.product(), WithinAbs(v1.product(), 1e-6));
+    REQUIRE_THAT(x2.product(), WithinAbs(llimit_a.product(), 1e-6));
+    REQUIRE_THAT(x3.product(), WithinAbs(ulimit_a.product(), 1e-6));
 
     // Test with user class, compare by products with operator<()
     // (std::min and std::max will be used)
@@ -404,17 +411,20 @@ TEST_CASE("test clamp()", "[num_util]")
     auto x4 = gul17::clamp(v4, llimit_b, ulimit_b);
     auto x5 = gul17::clamp(v5, llimit_b, ulimit_b);
     auto x6 = gul17::clamp(v6, llimit_b, ulimit_b);
-    REQUIRE(x4.product() == Approx(v4.product()));
-    REQUIRE(x5.product() == Approx(llimit_b.product()));
-    REQUIRE(x6.product() == Approx(ulimit_b.product()));
+    REQUIRE_THAT(x4.product(), WithinAbs(v4.product(), 1e-6));
+    REQUIRE_THAT(x5.product(), WithinAbs(llimit_b.product(), 1e-6));
+    REQUIRE_THAT(x6.product(), WithinAbs(ulimit_b.product(), 1e-6));
 
     // Test with user class, compare by member value with lambda
-    auto x7 = gul17::clamp(v4, llimit_b, ulimit_b, [](auto const& a, auto const& b) { return a.val() < b.val(); });
-    auto x8 = gul17::clamp(v5, llimit_b, ulimit_b, [](auto const& a, auto const& b) { return a.val() < b.val(); });
-    auto x9 = gul17::clamp(v6, llimit_b, ulimit_b, [](auto const& a, auto const& b) { return a.val() < b.val(); });
-    REQUIRE(x7.product() == Approx(llimit_b.product()));
-    REQUIRE(x8.product() == Approx(llimit_b.product()));
-    REQUIRE(x9.product() == Approx(ulimit_b.product()));
+    auto x7 = gul17::clamp(v4, llimit_b, ulimit_b,
+        [](auto const& a, auto const& b) { return a.val() < b.val(); });
+    auto x8 = gul17::clamp(v5, llimit_b, ulimit_b,
+        [](auto const& a, auto const& b) { return a.val() < b.val(); });
+    auto x9 = gul17::clamp(v6, llimit_b, ulimit_b,
+        [](auto const& a, auto const& b) { return a.val() < b.val(); });
+    REQUIRE_THAT(x7.product(), WithinAbs(llimit_b.product(), 1e-6));
+    REQUIRE_THAT(x8.product(), WithinAbs(llimit_b.product(), 1e-6));
+    REQUIRE_THAT(x9.product(), WithinAbs(ulimit_b.product(), 1e-6));
 }
 
 // vi:ts=4:sw=4:sts=4:et

@@ -4,7 +4,7 @@
  * \date   Created on August 28, 2018
  * \brief  Test suite for the General Utility Library.
  *
- * \copyright Copyright 2018-2019 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -21,7 +21,8 @@
  */
 
 #define CATCH_CONFIG_RUNNER
-#include "gul17/catch.h"
+
+#include <catch2/catch_session.hpp>
 
 #ifdef _MSC_VER
 #   include <windows.h>

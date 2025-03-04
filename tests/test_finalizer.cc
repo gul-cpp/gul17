@@ -3,7 +3,7 @@
  * \author \ref contributors
  * \brief  Test suite for hexdump() and hexdump_stream().
  *
- * \copyright Copyright 2018 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -23,7 +23,8 @@
 #include <new>
 #include <string>
 
-#include "gul17/catch.h"
+#include <catch2/catch_test_macros.hpp>
+
 #include "gul17/finalizer.h"
 
 TEST_CASE("Finalizer Tests", "[finalizer]")

@@ -4,7 +4,7 @@
  * \date   Created on 17 Oct 2019
  * \brief  Unit tests for bit_set(), bit_reset(), bit_flip(), bit_test().
  *
- * \copyright Copyright 2019-2023 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2019-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -22,7 +22,9 @@
 
 #include <type_traits>
 
-#include "gul17/catch.h"
+#include <catch2/catch_template_test_macros.hpp>
+#include <catch2/catch_test_macros.hpp>
+
 #include "gul17/bit_manip.h"
 
 TEMPLATE_TEST_CASE("All bit_*() functions", "[bit_manip]",
