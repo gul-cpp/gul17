@@ -101,9 +101,9 @@ Overview of maybe useful standard project options:
 
     Option         Default Value         Description
     ------         -------------         -----------
-    prefix         /export/doocs         Installation prefix
-    libdir         lib/...               Library directory
-    includedir     lib/include           Header file directory
+    prefix         /usr                  Installation prefix
+    libdir         lib                   Library directory
+    includedir     include               Header file directory
     datadir        share                 Data file (Doxygen website) directory
 
 ### Building on Windows with Visual C++ <a name="Building-on-Windows-with-Visual-C"></a>

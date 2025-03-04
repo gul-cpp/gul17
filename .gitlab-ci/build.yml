@@ -153,9 +153,9 @@ Windows test:
         script:
                 - meson
                   --buildtype=debugoptimized
-                  --prefix=/export/doocs
+                  --prefix=/usr
                   --libdir=lib
-                  --includedir=lib/include
+                  --includedir=include
                   build.release
                 - ninja -C build.release
         artifacts:

@@ -15,11 +15,11 @@ override_dh_auto_configure:
 	debian/check_control
 	dh_auto_configure -- \
 		--buildtype=debugoptimized \
-		--prefix=/export/doocs \
+		--prefix=/usr \
 		--libdir=lib \
-		--includedir=lib/include \
+		--includedir=include \
 		--wrap-mode=nofallback \
-		--pkg-config-path=/export/doocs/lib/pkgconfig
+		--pkg-config-path=/usr/lib/pkgconfig
 
 override_dh_strip:
 	@echo "Not running dh_strip to retain debug symbols in library"
