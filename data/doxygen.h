@@ -121,13 +121,8 @@ namespace gul17 {
  * #include <gul17/gul.h>
  * \endcode
  *
- * Two specific header files are not included by this all-in-one header:
- * <ul>
- * <li>`gul17/catch.h`: The header file for the Catch2 unit test framework</li>
- * <li>`gul17/date.h`: Howard Hinnant's header for calendar date functionality</li>
- * </ul>
- * While the unit test framework is simply not useful for inclusion into regular code,
- * `date.h` is excluded chiefly because of its negative impact on compile times. Just
+ * Howard Hinnant's `gul17/date.h` header for calendar date functionality is not included
+ * in this header file, chiefly because of its negative impact on compile times. Just
  * include it directly where needed.
  *
  * If you prefer to shave the last seconds off your build times, you are of course free to
@@ -327,7 +322,7 @@ namespace gul17 {
  *
  * \section copyright_notice Copyright Notice
  *
- * Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -348,11 +343,6 @@ namespace gul17 {
  * notice:
  *
  * <dl>
- * <dt>catch.h</dt>
- * <dd>Copyright 2019 Two Blue Cubes Ltd.
- *     Distributed under the Boost Software License, Version 1.0 (see
- *     \ref license_boost_1_0 and https://github.com/catchorg/Catch2 for details).</dd>
- *
  * <dt>date.h</dt>
  * <dd>Copyright 2015, 2016, 2017 Howard Hinnant, 2016 Adrian Colomitchi, 2017 Florian
  *     Dang, 2017 Paul Thompson, 2018, 2019 Tomasz Kamiński, 2019 Jiangang Zhuang.
@@ -701,23 +691,14 @@ namespace gul17 {
 /**
  * \page unit_tests Unit Tests
  *
- * GUL uses the [Catch2 test framework](https://github.com/catchorg/Catch2) for its unit
- * tests. It bundles all of its functionality in a single header file. For convenience,
- * the GUL-internal version of this header can be accessed via:
- * \code
- * #include "gul17/catch.h"
- * // Your unit tests here
- * \endcode
- * Please refer to https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md
- * for an introduction to Catch2.
+ * GUL uses the [Catch2 test framework](https://github.com/catchorg/Catch2) in at least
+ * version 3 for its unit tests. Please refer to
+ * https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md for an introduction to
+ * Catch2.
  *
  * \note
- * Please note that unlike all other include files provided with GUL, `catch.h` is *not*
- * automatically included by the default include directive:
- * \code
- * #include "gul17/gul.h"
- * // Catch2 is not included!
- * \endcode
+ * The predecessor library GUL14 included a header-only version of Catch2. This header is
+ * no longer available in GUL17. Catch2 must be installed separately.
  */
 
 /**
@@ -980,12 +961,6 @@ namespace gul17 {
  *   suppress the DLL import declarations.
  *
  * On other platforms and compilers, the macro is meaningless.
- */
-
-/**
- * \defgroup catch_h gul17/catch.h
- * \brief The [Catch2 unit testing framework](https://github.com/catchorg/Catch2).
- * \see \ref unit_tests
  */
 
 /**
