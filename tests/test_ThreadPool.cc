@@ -26,7 +26,8 @@
 #include <atomic>
 #include <stdexcept>
 
-#include "gul17/catch.h"
+#include <catch2/catch_test_macros.hpp>
+
 #include "gul17/ThreadPool.h"
 #include "gul17/time_util.h"
 #include "gul17/Trigger.h"

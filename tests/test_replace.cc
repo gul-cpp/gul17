@@ -4,7 +4,7 @@
  * \date   Created on August 31, 2018
  * \brief  Part of test suite for string utility functions in the General Utility Library.
  *
- * \copyright Copyright 2018 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -20,7 +20,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "gul17/catch.h"
+#include <catch2/catch_test_macros.hpp>
+
 #include "gul17/replace.h"
 
 using namespace std::literals;

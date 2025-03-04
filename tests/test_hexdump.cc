@@ -4,7 +4,7 @@
  * \date   Created on September 25, 2018
  * \brief  Test suite for hexdump() and hexdump_stream().
  *
- * \copyright Copyright 2018 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -24,7 +24,8 @@
 #include <iostream>
 #include <limits>
 
-#include "gul17/catch.h"
+#include <catch2/catch_test_macros.hpp>
+
 #include "gul17/hexdump.h"
 
 using namespace std::literals::string_literals;

@@ -4,7 +4,7 @@
  * \date   Created on September 21, 2018
  * \brief  Test suite for the Trigger class from the General Utility Library.
  *
- * \copyright Copyright 2018-2022 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -22,7 +22,8 @@
 
 #include <future>
 
-#include "gul17/catch.h"
+#include <catch2/catch_test_macros.hpp>
+
 #include "gul17/time_util.h"
 #include "gul17/Trigger.h"
 
