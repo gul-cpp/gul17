@@ -1,7 +1,7 @@
 Source: doocs-gul17-1-2-3
 Priority: optional
 Maintainer: Fini Jastrow <ulf.fini.jastrow@desy.de>
-Build-Depends: debhelper-compat (=12), meson (>=0.53.2), ninja-build (>=1.5.1), catch2 (>=3.0)
+Build-Depends: debhelper-compat (=12), meson (>=0.53.2), ninja-build (>=1.5.1), catch2 (>3.4.0)
 Standards-Version: 4.5.0
 Section: libs
 Homepage: https://github.com/gul-cpp/gul17
