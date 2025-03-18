@@ -1,5 +1,5 @@
-gul17-1-2-3 (1.2.3) unstable; urgency=low
+gul17-25-3-0 (25.3.0) unstable; urgency=low
 
-  * Dummy release.
+  * Initial release.
 
- -- Fini Jastrow <ulf.fini.jastrow@desy.de>  Tue, 18 Feb 2025 14:05:56 +0100
+ -- Lars Fröhlich <lars.froehlich@desy.de>  Tue, 18 Mar 2025 12:56:56 +0100

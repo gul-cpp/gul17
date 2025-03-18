@@ -1,12 +1,12 @@
-Source: gul17-1-2-3
+Source: gul17-25-3-0
 Priority: optional
 Maintainer: Fini Jastrow <ulf.fini.jastrow@desy.de>
-Build-Depends: debhelper-compat (=12), meson (>=0.53.2), ninja-build (>=1.5.1), catch2 (>3.4.0)
+Build-Depends: debhelper-compat (=12), meson (>=0.53.2), ninja-build (>=1.5.1), catch2 (>>3.4.0)
 Standards-Version: 4.5.0
 Section: libs
 Homepage: https://github.com/gul-cpp/gul17
 
-Package: gul17-1-2-3
+Package: gul17-25-3-0
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: General Utility Library for C++17
@@ -17,7 +17,7 @@ Description: General Utility Library for C++17
 Package: gul17-dev
 Section: libdevel
 Architecture: any
-Depends: gul17-1-2-3 (= ${binary:Version}), ${misc:Depends}
+Depends: gul17-25-3-0 (= ${binary:Version}), ${misc:Depends}
 Description: General Utility Library for C++17 development files
  The General Utility Library for C++17 contains often-used utility
  functions and types that form the foundation for other
