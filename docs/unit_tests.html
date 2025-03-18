@@ -44,14 +44,9 @@ $(function() {
   <div class="headertitle"><div class="title">Unit Tests</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>GUL uses the <a href="https://github.com/catchorg/Catch2">Catch2 test framework</a> for its unit tests.</p>
-<p>It bundles all of its functionality in a single header file. For convenience, the GUL-internal version of this header can be accessed via: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;gul17/catch.h&quot;</span></div>
-<div class="line"><span class="comment">// Your unit tests here</span></div>
-</div><!-- fragment --><p> Please refer to <a href="https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md">https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md</a> for an introduction to Catch2.</p>
-<dl class="section note"><dt>Note</dt><dd>Please note that unlike all other include files provided with GUL, <code>catch.h</code> is <em>not</em> automatically included by the default include directive: <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="gul_8h.html">gul17/gul.h</a>&quot;</span></div>
-<div class="line"><span class="comment">// Catch2 is not included!</span></div>
-<div class="ttc" id="agul_8h_html"><div class="ttname"><a href="gul_8h.html">gul.h</a></div><div class="ttdoc">Main include file for the General Utility Library.</div></div>
-</div><!-- fragment --> </dd></dl>
+<div class="textblock"><p>GUL uses the <a href="https://github.com/catchorg/Catch2">Catch2 test framework</a> in at least version 3 for its unit tests.</p>
+<p>Please refer to <a href="https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md">https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md</a> for an introduction to Catch2.</p>
+<dl class="section note"><dt>Note</dt><dd>The predecessor library GUL14 included a header-only version of Catch2. This header is no longer available in GUL17. Catch2 must be installed separately. </dd></dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- HTML footer for doxygen 1.8.17-->

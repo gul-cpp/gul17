@@ -47,13 +47,7 @@ $(function() {
 <div class="textblock"><p>All header files of the library reside under <code>gul17/</code> with no further subdirectories.</p>
 <p>To get access to almost all of GUL17's functionality, it is sufficient to include the all-in-one header: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="gul_8h.html">gul17/gul.h</a>&gt;</span></div>
 <div class="ttc" id="agul_8h_html"><div class="ttname"><a href="gul_8h.html">gul.h</a></div><div class="ttdoc">Main include file for the General Utility Library.</div></div>
-</div><!-- fragment --><p>Two specific header files are not included by this all-in-one header: </p><ul>
-<li>
-<code>gul17/catch.h</code>: The header file for the Catch2 unit test framework </li>
-<li>
-<code><a class="el" href="date_8h.html" title="Classes and functions for using calendar dates.">gul17/date.h</a></code>: Howard Hinnant's header for calendar date functionality </li>
-</ul>
-<p>While the unit test framework is simply not useful for inclusion into regular code, <code><a class="el" href="date_8h.html" title="Classes and functions for using calendar dates.">date.h</a></code> is excluded chiefly because of its negative impact on compile times. Just include it directly where needed.</p>
+</div><!-- fragment --><p>Howard Hinnant's <code><a class="el" href="date_8h.html" title="Classes and functions for using calendar dates.">gul17/date.h</a></code> header for calendar date functionality is not included in this header file, chiefly because of its negative impact on compile times. Just include it directly where needed.</p>
 <p>If you prefer to shave the last seconds off your build times, you are of course free to include also the other GUL17 headers individually without going through <code><a class="el" href="gul_8h.html" title="Main include file for the General Utility Library.">gul.h</a></code>. Just follow the documentation of the classes and functions you use to find the associated header files.</p>
 <p>We do not guarantee that individual header file names will never change (except for <code><a class="el" href="gul_8h.html" title="Main include file for the General Utility Library.">gul17/gul.h</a></code>), but we can assure you that this will happen rarely, if ever. </p>
 </div></div><!-- contents -->
