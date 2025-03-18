@@ -97,14 +97,14 @@ In addition to meson's standard switches there are:
     docs           true           [true, false]    Generate documentation via doxygen
     tests          true           [true, false]    Generate tests
 
-Overview of maybe useful standard project options:
+Overview of standard project options that might be useful:
 
-    Option         Default Value         Description
-    ------         -------------         -----------
-    prefix         /export/doocs         Installation prefix
-    libdir         lib/...               Library directory
-    includedir     lib/include           Header file directory
-    datadir        share                 Data file (Doxygen website) directory
+    Option        Typical Value    Description
+    ------        -------------    -----------
+    prefix        /usr             Installation prefix
+    libdir        lib              Library directory
+    includedir    include          Header file directory
+    datadir       share            Data file (Doxygen website) directory
 
 ### Building on Windows with Visual C++ <a name="Building-on-Windows-with-Visual-C"></a>
 
@@ -149,7 +149,7 @@ be included - and no library to link to. For example when doing experiments with
 compilers.
 
 This is not the recommended way to use GUL, but you can use the script `tools/single_gul`
-to create such a complete header file (without Catch2).
+to create such a complete header file.
 
 ## Testing <a name="Testing"></a>
 
