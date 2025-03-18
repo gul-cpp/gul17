@@ -8,6 +8,7 @@
 #
 # In both cases you probably want to commit the changes this script did.
 
+# Version 18.03.2025 (fix sed command to protect dev package name in control file (GUL only))
 # Version 03.03.2025 (exclude suffix from package name (GUL only))
 # Version 02.03.2025 (changelog check more robust)
 # Version 19.02.2025 (fix sed command)
@@ -33,7 +34,7 @@ LIBNO=$(echo "${VERSION}" | sed -E "s/([0-9]+\.[0-9]+\.[0-9]+).*/\1/;s/\./-/g")
 LIBNAME=$(grep "^Source:" debian/control | sed 's/Source: *//;s/-[0-9].*$//')
 
 # Check version number in control file
-sed -i -e "s/${LIBNAME}-[^ ]*/${LIBNAME}-${LIBNO}/g" debian/control
+sed -i -e "s/${LIBNAME}-[-0-9]\+/${LIBNAME}-${LIBNO}/g" debian/control
 
 # If LIBNO and version in debian/changelog differs: update
 if ! head -n 1 debian/changelog | grep "${LIBNAME}-${LIBNO}" | grep "\(${VERSION}\)" ; then
