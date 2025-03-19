@@ -22,6 +22,7 @@
 
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
+#include <algorithm>
 #include <array>
 #include <atomic>
 #include <stdexcept>
