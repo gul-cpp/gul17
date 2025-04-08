@@ -4,7 +4,7 @@
  * \authors \ref contributors
  * \date    Created on 31 August 2018
  *
- * \copyright Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -262,6 +262,30 @@ std::string repeat(std::string_view str, std::size_t n);
  */
 GUL_EXPORT
 std::string safe_string(const char* char_ptr, std::size_t length);
+
+/**
+ * Safely construct a string_view from a char pointer and a length.
+ *
+ * If the pointer is null, an empty string_view is constructed. If there are no zero bytes
+ * in the input range, a string_view of length \c length is constructed. Otherwise, the
+ * input string is treated as a C string and the first zero byte is treated as the end of
+ * the string.
+ *
+ * \code
+ * auto a = safe_string_view(nullptr, 5);  // a == ""sv
+ * auto b = safe_string_view("ABC", 2);    // b == "AB"sv
+ * auto c = safe_string_view("ABC", 4);    // c == "ABC"sv, trailing zero byte ends the string
+ * auto d = safe_string_view("AB\0CD", 5); // d == "AB"sv, intermediate zero byte ends the string
+ * \endcode
+ *
+ * \param char_ptr  Pointer to a C string, an unterminated string of at least the
+ *                  specified length, or null
+ * \param length    Maximum length of the generated string_view
+ *
+ * \since GUL version UNRELEASED
+ */
+GUL_EXPORT
+std::string_view safe_string_view(const char* char_ptr, std::size_t length);
 
 /// @}
 
