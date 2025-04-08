@@ -254,9 +254,9 @@ std::string repeat(std::string_view str, std::size_t n);
  * auto d = safe_string("AB\0CD", 5); // d == "AB"s, intermediate zero byte ends the string
  * \endcode
  *
- * \param char_ptr  Pointer to a C string, an unterminated string of at least the
- *                  specified length, or null.
- * \param length    Maximum length of the generated string.
+ * \param char_ptr  Pointer to a string that is either null-terminated or has at least
+ *                  \c length accessible bytes, or a null pointer
+ * \param length    Maximum length of the generated string
  *
  * \since GUL version 2.6
  */
@@ -278,8 +278,8 @@ std::string safe_string(const char* char_ptr, std::size_t length);
  * auto d = safe_string_view("AB\0CD", 5); // d == "AB"sv, intermediate zero byte ends the string
  * \endcode
  *
- * \param char_ptr  Pointer to a C string, an unterminated string of at least the
- *                  specified length, or null
+ * \param char_ptr  Pointer to a string that is either null-terminated or has at least
+ *                  \c length accessible bytes, or a null pointer
  * \param length    Maximum length of the generated string_view
  *
  * \since GUL version UNRELEASED
