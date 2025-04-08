@@ -20,7 +20,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="gul17.png"/></td>
   <td id="projectalign">
-   <div id="projectname">General Utility Library for C++17<span id="projectnumber">&#160;1.2.3</span>
+   <div id="projectname">General Utility Library for C++17<span id="projectnumber">&#160;25.3.0</span>
    </div>
   </td>
  </tr>
@@ -173,17 +173,21 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>GUL_EXPORT</div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>std::string <a class="code hl_function" href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b">safe_string</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">char_ptr</a>, std::size_t length);</div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>} <span class="comment">// namespace gul17</span></div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="comment">// vi:ts=4:sw=4:sts=4:et</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>GUL_EXPORT</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>std::string_view <a class="code hl_function" href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40">safe_string_view</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">char_ptr</a>, std::size_t length);</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>} <span class="comment">// namespace gul17</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="comment">// vi:ts=4:sw=4:sts=4:et</span></div>
 <div class="ttc" id="agroup__bit__manip__h_html_ga360badd8e0d73d0b45a028a10ec2d412"><div class="ttname"><a href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set</a></div><div class="ttdeci">auto constexpr bit_set(unsigned bit) noexcept -&gt; ReturnT</div><div class="ttdoc">Set a bit in an integral type.</div><div class="ttdef"><b>Definition</b> bit_manip.h:121</div></div>
 <div class="ttc" id="agroup__string__util__h_html_ga0dad680f43482a77efd26b40e9493fa8"><div class="ttname"><a href="group__string__util__h.html#ga0dad680f43482a77efd26b40e9493fa8">gul17::hex_digits</a></div><div class="ttdeci">GUL_EXPORT const std::array&lt; char, 16 &gt; hex_digits</div><div class="ttdoc">The 16 digits for hexadecimal numbers (&quot;0123456789abcdef&quot;).</div><div class="ttdef"><b>Definition</b> string_util.cc:30</div></div>
 <div class="ttc" id="agroup__string__util__h_html_ga12c9eb08ac92c6acf6bcc057ffe7d795"><div class="ttname"><a href="group__string__util__h.html#ga12c9eb08ac92c6acf6bcc057ffe7d795">gul17::default_whitespace_characters</a></div><div class="ttdeci">GUL_EXPORT const std::string_view default_whitespace_characters</div><div class="ttdoc">The default characters that are treated as whitespace by GUL.</div><div class="ttdef"><b>Definition</b> string_util.cc:29</div></div>
 <div class="ttc" id="agroup__string__util__h_html_ga4625b22d58d7f8b7355f715cbec63269"><div class="ttname"><a href="group__string__util__h.html#ga4625b22d58d7f8b7355f715cbec63269">gul17::hex_string</a></div><div class="ttdeci">std::string hex_string(Integer v)</div><div class="ttdoc">Return the hexadecimal ASCII representation of an integer value.</div><div class="ttdef"><b>Definition</b> string_util.h:113</div></div>
 <div class="ttc" id="agroup__string__util__h_html_ga4fe2c31868743b301cb4e8bb9dde1e5b"><div class="ttname"><a href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b">gul17::safe_string</a></div><div class="ttdeci">GUL_EXPORT std::string safe_string(const char *char_ptr, std::size_t length)</div><div class="ttdoc">Safely construct a std::string from a char pointer and a length.</div><div class="ttdef"><b>Definition</b> string_util.cc:44</div></div>
+<div class="ttc" id="agroup__string__util__h_html_gacfccf2147c15e31159430174b85bfd40"><div class="ttname"><a href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40">gul17::safe_string_view</a></div><div class="ttdeci">GUL_EXPORT std::string_view safe_string_view(const char *char_ptr, std::size_t length)</div><div class="ttdoc">Safely construct a string_view from a char pointer and a length.</div><div class="ttdef"><b>Definition</b> string_util.cc:54</div></div>
 <div class="ttc" id="agroup__string__util__h_html_gaf8f8f5fd96710507be176488b8237823"><div class="ttname"><a href="group__string__util__h.html#gaf8f8f5fd96710507be176488b8237823">gul17::repeat</a></div><div class="ttdeci">GUL_EXPORT std::string repeat(std::string_view str, std::size_t n)</div><div class="ttdoc">Repeat a string N times.</div><div class="ttdef"><b>Definition</b> string_util.cc:33</div></div>
 <div class="ttc" id="ainternal_8h_html"><div class="ttname"><a href="internal_8h.html">internal.h</a></div><div class="ttdoc">Definition of macros used internally by GUL.</div></div>
 <div class="ttc" id="anamespacegul17_html"><div class="ttname"><a href="namespacegul17.html">gul17</a></div><div class="ttdoc">Namespace gul17 contains all functions and classes of the General Utility Library.</div><div class="ttdef"><b>Definition</b> doxygen.h:26</div></div>
