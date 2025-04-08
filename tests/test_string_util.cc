@@ -32,7 +32,6 @@
 
 using gul17::hex_string;
 using gul17::repeat;
-using gul17::safe_string;
 
 using namespace std::literals;
 
@@ -126,10 +125,26 @@ TEST_CASE("repeat()", "[string_util]")
 
 TEST_CASE("safe_string()", "[string_util]")
 {
+    using gul17::safe_string;
+
     REQUIRE(safe_string(nullptr, 0) == "");
     REQUIRE(safe_string(nullptr, 10) == "");
     REQUIRE(safe_string("hello", 0) == "");
     REQUIRE(safe_string("hello", 10) == "hello");
     REQUIRE(safe_string("hello\0", 6) == "hello");
     REQUIRE(safe_string("hello\0world", 11) == "hello");
+}
+
+TEST_CASE("safe_string_view()", "[string_util]")
+{
+    using gul17::safe_string_view;
+
+    REQUIRE(safe_string_view(nullptr, 10) == std::string_view{});
+    REQUIRE(safe_string_view("", 0) == ""sv);
+    REQUIRE(safe_string_view("", 1) == ""sv);
+    REQUIRE(safe_string_view("ABC", 0) == ""sv);
+    REQUIRE(safe_string_view("ABC", 2) == "AB"sv);
+    REQUIRE(safe_string_view("ABC", 3) == "ABC"sv);
+    REQUIRE(safe_string_view("ABC", 4) == "ABC"sv);
+    REQUIRE(safe_string_view("AB\0CD", 5) == "AB"sv);
 }
