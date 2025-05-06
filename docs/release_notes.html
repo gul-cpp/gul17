@@ -44,8 +44,22 @@ $(function() {
   <div class="headertitle"><div class="title">Release Notes</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="changelog_2_x"></a>
-2.x Versions</h1>
+<div class="textblock"><p>GUL17 releases follow a calendar-oriented versioning scheme with a version number of the form <code>YY.M.minor</code> where <code>YY</code> stands for the last two digits of the year, <code>M</code> is the number of the month, and <code>minor</code> is a minor version number that starts from zero for each release in that month.</p>
+<p>For instance, the first release in March 2025 was called 25.3.0, the second could have been called 24.3.1. This is <em>not</em> semantic versioning.</p>
+<h1><a class="anchor" id="changelog_gul17"></a>
+GUL17 Versions</h1>
+<h2><a class="anchor" id="V25_4_0"></a>
+Version 25.4.0</h2>
+<ul>
+<li>Add <a class="el" href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40" title="Safely construct a string_view from a char pointer and a length.">gul17::safe_string_view()</a>. The function constructs a string_view from a char pointer and a length. It is safe against null pointers and non-null-terminated strings.</li>
+</ul>
+<h2><a class="anchor" id="V25_3_0"></a>
+Version 25.3.0</h2>
+<ul>
+<li>Initial release of GUL17. Compared to GUL14, backports of C++17 standard library features (e.g. string_view, optional) are removed, and the build system is simplified.</li>
+</ul>
+<h1><a class="anchor" id="changelog_2_x"></a>
+GUL14: 2.x Versions</h1>
 <h2><a class="anchor" id="V2_13_0"></a>
 Version 2.13.0</h2>
 <ul>
@@ -170,7 +184,7 @@ Version 2.0</h2>
 <li>Make <a class="el" href="classgul17_1_1SlidingBuffer_1_1SlidingBufferIterator.html">SlidingBufferIterator</a> random access instead of bidirectional</li>
 </ul>
 <h1><a class="anchor" id="changelog_1_x"></a>
-1.x Versions</h1>
+GUL14: 1.x Versions</h1>
 <h2><a class="anchor" id="v1_9"></a>
 Version 1.9</h2>
 <ul>
