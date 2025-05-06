@@ -137,7 +137,28 @@ namespace gul17 {
 /**
  * \page release_notes Release Notes
  *
- * \section changelog_2_x 2.x Versions
+ * GUL17 releases follow a calendar-oriented versioning scheme with a version number of
+ * the form `YY.M.minor` where `YY` stands for the last two digits of the year, `M` is the
+ * number of the month, and `minor` is a minor version number that starts from zero for
+ * each release in that month. For instance, the first release in March 2025 was called
+ * 25.3.0, the second could have been called 24.3.1. This is <em>not</em> semantic
+ * versioning.
+ *
+ * \section changelog_gul17 GUL17 Versions
+ *
+ * \subsection V25_4_0 Version 25.4.0
+ *
+ * - Add gul17::safe_string_view(). The function constructs a string_view from a char
+ *   pointer and a length. It is safe against null pointers and non-null-terminated
+ *   strings.
+ *
+ * \subsection V25_3_0 Version 25.3.0
+ *
+ * - Initial release of GUL17. Compared to GUL14, backports of C++17 standard library
+ *   features (e.g. string_view, optional) are removed, and the build system is
+ *   simplified.
+ *
+ * \section changelog_2_x GUL14: 2.x Versions
  *
  * \subsection V2_13_0 Version 2.13.0
  *
@@ -245,7 +266,7 @@ namespace gul17 {
  * - Make \ref SlidingBuffer::SlidingBufferIterator "SlidingBufferIterator" random
  *   access instead of bidirectional
  *
- * \section changelog_1_x 1.x Versions
+ * \section changelog_1_x GUL14: 1.x Versions
  *
  * \subsection v1_9 Version 1.9
  *
