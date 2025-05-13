@@ -282,7 +282,7 @@ std::string safe_string(const char* char_ptr, std::size_t length);
  *                  \c length accessible bytes, or a null pointer
  * \param length    Maximum length of the generated string_view
  *
- * \since GUL version UNRELEASED
+ * \since GUL version 25.4.0
  */
 GUL_EXPORT
 std::string_view safe_string_view(const char* char_ptr, std::size_t length);
