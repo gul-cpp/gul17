@@ -31,10 +31,10 @@ Here you find more detailed information on:
 
 ## Installing with vcpkg
 
-~GUL17 is available from the [vcpkg](https://vcpkg.io/) package manager. Once you have
-vcpkg installed, just run:~
+GUL17 is available from the [vcpkg](https://vcpkg.io/) package manager. Once you have
+vcpkg installed, just run:
 
-~vcpkg install gul17~
+vcpkg install gul17
 
 ## Building <a name="Building"></a>
 
