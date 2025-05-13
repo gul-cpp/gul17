@@ -71,6 +71,16 @@ std::string_view safe_string_view(const char* char_ptr, std::size_t length)
     return std::string_view(char_ptr, end_ptr - char_ptr);
 }
 
+std::string_view safe_string_view(const char* char_ptr)
+{
+    std::string_view result;
+
+    if (char_ptr)
+        result = char_ptr;
+
+    return result;
+}
+
 } // namespace gul17
 
 /* vim:set expandtab softtabstop=4 tabstop=4 shiftwidth=4 textwidth=90 cindent: */

@@ -306,6 +306,25 @@ std::string safe_string(const char* char_ptr);
 GUL_EXPORT
 std::string_view safe_string_view(const char* char_ptr, std::size_t length);
 
+/**
+ * Safely construct a string_view from a char pointer.
+ *
+ * If the pointer is null, an empty string_view is constructed.  Otherwise, the function
+ * assumes to find a zero-terminated C string and constructs a std::string_view from it.
+ *
+ * \code
+ * auto a = safe_string_view(nullptr);  // a == ""sv
+ * auto b = safe_string_view("ABC");    // b == "ABC"sv
+ * auto c = safe_string_view("AB\0CD"); // c == "AB"sv
+ * \endcode
+ *
+ * \param char_ptr  Pointer to a null-terminated string or a null pointer
+ *
+ * \since GUL version UNRELEASED
+ */
+GUL_EXPORT
+std::string_view safe_string_view(const char* char_ptr);
+
 /// @}
 
 } // namespace gul17

@@ -145,7 +145,7 @@ TEST_CASE("safe_string(const char*)", "[string_util]")
     REQUIRE(safe_string("hi\0there") == "hi");
 }
 
-TEST_CASE("safe_string_view()", "[string_util]")
+TEST_CASE("safe_string_view(const char*, size_t)", "[string_util]")
 {
     using gul17::safe_string_view;
 
@@ -157,4 +157,14 @@ TEST_CASE("safe_string_view()", "[string_util]")
     REQUIRE(safe_string_view("ABC", 3) == "ABC"sv);
     REQUIRE(safe_string_view("ABC", 4) == "ABC"sv);
     REQUIRE(safe_string_view("AB\0CD", 5) == "AB"sv);
+}
+
+TEST_CASE("safe_string_view(const char*)", "[string_util]")
+{
+    using gul17::safe_string_view;
+
+    REQUIRE(safe_string_view(nullptr) == std::string_view{});
+    REQUIRE(safe_string_view("") == ""sv);
+    REQUIRE(safe_string_view("hello") == "hello"sv);
+    REQUIRE(safe_string_view("hi\0there") == "hi"sv);
 }
