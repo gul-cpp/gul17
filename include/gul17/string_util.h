@@ -264,6 +264,25 @@ GUL_EXPORT
 std::string safe_string(const char* char_ptr, std::size_t length);
 
 /**
+ * Safely construct a std::string from a C string or a null pointer.
+ *
+ * If the pointer is null, an empty string is constructed. Otherwise, the function assumes
+ * to find a zero-terminated C string and constructs a std::string from it.
+ *
+ * \code
+ * auto a = safe_string(nullptr);  // a == ""s
+ * auto b = safe_string("ABC");    // b == "ABC"s
+ * auto c = safe_string("AB\0CD"); // c == "AB"s
+ * \endcode
+ *
+ * \param char_ptr  Pointer to a null-terminated string or a null pointer
+ *
+ * \since GUL version UNRELEASED
+ */
+GUL_EXPORT
+std::string safe_string(const char* char_ptr);
+
+/**
  * Safely construct a string_view from a char pointer and a length.
  *
  * If the pointer is null, an empty string_view is constructed. If there are no zero bytes

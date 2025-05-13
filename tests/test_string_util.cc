@@ -123,7 +123,7 @@ TEST_CASE("repeat()", "[string_util]")
     REQUIRE(repeat("\0\0"s, 2) == "\0\0\0\0"s);
 }
 
-TEST_CASE("safe_string()", "[string_util]")
+TEST_CASE("safe_string(const char*, size_t)", "[string_util]")
 {
     using gul17::safe_string;
 
@@ -133,6 +133,16 @@ TEST_CASE("safe_string()", "[string_util]")
     REQUIRE(safe_string("hello", 10) == "hello");
     REQUIRE(safe_string("hello\0", 6) == "hello");
     REQUIRE(safe_string("hello\0world", 11) == "hello");
+}
+
+TEST_CASE("safe_string(const char*)", "[string_util]")
+{
+    using gul17::safe_string;
+
+    REQUIRE(safe_string(nullptr) == "");
+    REQUIRE(safe_string("") == "");
+    REQUIRE(safe_string("hello") == "hello");
+    REQUIRE(safe_string("hi\0there") == "hi");
 }
 
 TEST_CASE("safe_string_view()", "[string_util]")

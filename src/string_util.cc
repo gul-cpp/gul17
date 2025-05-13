@@ -51,6 +51,16 @@ std::string safe_string(const char* char_ptr, std::size_t length)
     return std::string(char_ptr, end_ptr);
 }
 
+std::string safe_string(const char* char_ptr)
+{
+    std::string result;
+
+    if (char_ptr)
+        result = char_ptr;
+
+    return result;
+}
+
 std::string_view safe_string_view(const char* char_ptr, std::size_t length)
 {
     if (char_ptr == nullptr)
