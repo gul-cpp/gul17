@@ -146,6 +146,13 @@ namespace gul17 {
  *
  * \section changelog_gul17 GUL17 Versions
  *
+ * \subsection V25_X_X UNRELEASED
+ *
+ * - Add gul17::safe_string(const char*) and gul17::safe_string_view(const char*)
+ *   to complement the existing overloads with a length argument. The new functions
+ *   construct a string or string_view from a null-terminated C string and are safe
+ *   against null pointers.
+ *
  * \subsection V25_4_0 Version 25.4.0
  *
  * - Add gul17::safe_string_view(). The function constructs a string_view from a char
