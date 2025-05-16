@@ -478,8 +478,11 @@ namespace gul17 {
  * <h4>C Strings</h4>
  *
  * null_safe_string(): Create a std::string from a C string or a null pointer.
+ *
  * null_safe_string_view(): Create a std::string_view from a C string or a null pointer.
+ *
  * safe_string(): Safely create a std::string from a char pointer and a length.
+ *
  * safe_string_view(): Safely create a std::string_view from a char pointer and a length.
  */
 
