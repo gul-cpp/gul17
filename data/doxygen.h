@@ -642,24 +642,6 @@ namespace gul17 {
  *
  * The library provides some utilities for template metaprogramming:
  *
- * \ref gul17::invoke "invoke":
- *     A function template that calls a callable object with a given set of arguments.
- *     This is a backport of
- *     [std::invoke](https://en.cppreference.com/w/cpp/utility/functional/invoke) from
- *     C++17.
- *
- * \ref gul17::invoke_result "invoke_result", \ref gul17::invoke_result_t "invoke_result_t":
- *     A metafunction that computes the result of invoking a callable object with the
- *     given arguments. This is a backport of
- *     [std::invoke_result](https://en.cppreference.com/w/cpp/types/result_of) from
- *     C++17.
- *
- * \ref gul17::is_invocable "is_invocable", \ref gul17::is_invocable_r "is_invocable_r":
- *     A type trait that checks whether a callable object can be invoked with a given set
- *     of arguments. This is a backport of
- *     [std::is_invocable](https://en.cppreference.com/w/cpp/types/is_invocable) from
- *     C++17.
- *
  * \ref gul17::IsContainerLike "IsContainerLike":
  *     A type trait to determine if a type behaves like a standard container.
  *
@@ -672,11 +654,6 @@ namespace gul17 {
  *     This is a backport of
  *     [std::remove_cvref](https://en.cppreference.com/w/cpp/types/remove_cvref) from
  *     C++20.
- *
- * \ref gul17::void_t "void_t":
- *     A template typedef that maps an arbitrary list of types to void. This is primarily
- *     useful to detect ill-formed types for SFINAE. This is a backport of
- *     [std::void_t](https://en.cppreference.com/w/cpp/types/void_t) from C++17.
  */
 
 /**
@@ -695,13 +672,6 @@ namespace gul17 {
  *     error value. It should behave like
  *     [std::expected](https://en.cppreference.com/w/cpp/utility/expected)
  *     from C++23 for almost all use cases.
- *
- * \ref gul17::in_place_t "in_place_t" etc.:
- *     A small family of types and tags that can be used in the constuctors of
- *     \ref gul17::expected "expected", \ref gul17::optional "optional", and
- *     \ref gul17::variant "variant" to request in-place construction. See
- *     [std::in_place](https://en.cppreference.com/w/cpp/utility/in_place) for
- *     documentation on the corresponding C++17 entities.
  *
  * \ref gul17::remove_cvref "remove_cvref":
  *     A metafunction to remove const, volatile, and reference qualifiers from a type.
