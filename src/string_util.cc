@@ -30,6 +30,26 @@ const std::string_view default_whitespace_characters{ " \t\r\n\a\b\f\v" };
 const std::array<char, 16> hex_digits{
     { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'} };
 
+std::string null_safe_string(const char* char_ptr)
+{
+    std::string result;
+
+    if (char_ptr)
+        result = char_ptr;
+
+    return result;
+}
+
+std::string_view null_safe_string_view(const char* char_ptr)
+{
+    std::string_view result;
+
+    if (char_ptr)
+        result = char_ptr;
+
+    return result;
+}
+
 std::string repeat(std::string_view str, std::size_t n)
 {
     std::string result;
@@ -51,16 +71,6 @@ std::string safe_string(const char* char_ptr, std::size_t length)
     return std::string(char_ptr, end_ptr);
 }
 
-std::string safe_string(const char* char_ptr)
-{
-    std::string result;
-
-    if (char_ptr)
-        result = char_ptr;
-
-    return result;
-}
-
 std::string_view safe_string_view(const char* char_ptr, std::size_t length)
 {
     if (char_ptr == nullptr)
@@ -69,16 +79,6 @@ std::string_view safe_string_view(const char* char_ptr, std::size_t length)
     auto end_ptr = std::find(char_ptr, char_ptr + length, '\0');
 
     return std::string_view(char_ptr, end_ptr - char_ptr);
-}
-
-std::string_view safe_string_view(const char* char_ptr)
-{
-    std::string_view result;
-
-    if (char_ptr)
-        result = char_ptr;
-
-    return result;
 }
 
 } // namespace gul17

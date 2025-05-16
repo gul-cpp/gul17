@@ -114,6 +114,26 @@ TEST_CASE("hex_string(Container, std::string_view)", "[string_util]")
     REQUIRE(hex_string(sll, "/") == "0000000000000100/ffffffffffffffff/0000000000000000");
 }
 
+TEST_CASE("null_safe_string(const char*)", "[string_util]")
+{
+    using gul17::null_safe_string;
+
+    REQUIRE(null_safe_string(nullptr) == "");
+    REQUIRE(null_safe_string("") == "");
+    REQUIRE(null_safe_string("hello") == "hello");
+    REQUIRE(null_safe_string("hi\0there") == "hi");
+}
+
+TEST_CASE("null_safe_string_view(const char*)", "[string_util]")
+{
+    using gul17::null_safe_string_view;
+
+    REQUIRE(null_safe_string_view(nullptr) == std::string_view{});
+    REQUIRE(null_safe_string_view("") == ""sv);
+    REQUIRE(null_safe_string_view("hello") == "hello"sv);
+    REQUIRE(null_safe_string_view("hi\0there") == "hi"sv);
+}
+
 TEST_CASE("repeat()", "[string_util]")
 {
     REQUIRE(repeat("du", 3) == "dududu");
@@ -135,16 +155,6 @@ TEST_CASE("safe_string(const char*, size_t)", "[string_util]")
     REQUIRE(safe_string("hello\0world", 11) == "hello");
 }
 
-TEST_CASE("safe_string(const char*)", "[string_util]")
-{
-    using gul17::safe_string;
-
-    REQUIRE(safe_string(nullptr) == "");
-    REQUIRE(safe_string("") == "");
-    REQUIRE(safe_string("hello") == "hello");
-    REQUIRE(safe_string("hi\0there") == "hi");
-}
-
 TEST_CASE("safe_string_view(const char*, size_t)", "[string_util]")
 {
     using gul17::safe_string_view;
@@ -157,14 +167,4 @@ TEST_CASE("safe_string_view(const char*, size_t)", "[string_util]")
     REQUIRE(safe_string_view("ABC", 3) == "ABC"sv);
     REQUIRE(safe_string_view("ABC", 4) == "ABC"sv);
     REQUIRE(safe_string_view("AB\0CD", 5) == "AB"sv);
-}
-
-TEST_CASE("safe_string_view(const char*)", "[string_util]")
-{
-    using gul17::safe_string_view;
-
-    REQUIRE(safe_string_view(nullptr) == std::string_view{});
-    REQUIRE(safe_string_view("") == ""sv);
-    REQUIRE(safe_string_view("hello") == "hello"sv);
-    REQUIRE(safe_string_view("hi\0there") == "hi"sv);
 }
