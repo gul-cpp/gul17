@@ -68,6 +68,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga609cb8e436a84a2fe9bc4ba9ae28a668"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__string__util__h.html#ga609cb8e436a84a2fe9bc4ba9ae28a668">gul17::hex_string</a> (<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">const</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">Container</a> &amp;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">container</a>, std::string_view <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">separator</a>=&quot;&quot;)</td></tr>
 <tr class="memdesc:ga609cb8e436a84a2fe9bc4ba9ae28a668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the hexadecimal ASCII representation of a container with integer values.  <br /></td></tr>
 <tr class="separator:ga609cb8e436a84a2fe9bc4ba9ae28a668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafda947525327f2349ca3e269574ed39a" id="r_gafda947525327f2349ca3e269574ed39a"><td class="memItemLeft" align="right" valign="top">GUL_EXPORT std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__string__util__h.html#gafda947525327f2349ca3e269574ed39a">gul17::null_safe_string</a> (<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">const</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">char</a> *<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">char_ptr</a>)</td></tr>
+<tr class="memdesc:gafda947525327f2349ca3e269574ed39a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safely construct a std::string from a C string or a null pointer.  <br /></td></tr>
+<tr class="separator:gafda947525327f2349ca3e269574ed39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9cfc15d8a2d5689cc5410799842edeed" id="r_ga9cfc15d8a2d5689cc5410799842edeed"><td class="memItemLeft" align="right" valign="top">GUL_EXPORT std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__string__util__h.html#ga9cfc15d8a2d5689cc5410799842edeed">gul17::null_safe_string_view</a> (<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">const</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">char</a> *<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">char_ptr</a>)</td></tr>
+<tr class="memdesc:ga9cfc15d8a2d5689cc5410799842edeed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safely construct a string_view from a char pointer.  <br /></td></tr>
+<tr class="separator:ga9cfc15d8a2d5689cc5410799842edeed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf8f8f5fd96710507be176488b8237823" id="r_gaf8f8f5fd96710507be176488b8237823"><td class="memItemLeft" align="right" valign="top">GUL_EXPORT std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__string__util__h.html#gaf8f8f5fd96710507be176488b8237823">gul17::repeat</a> (std::string_view <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">str</a>, std::size_t <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">n</a>)</td></tr>
 <tr class="memdesc:gaf8f8f5fd96710507be176488b8237823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repeat a string N times.  <br /></td></tr>
 <tr class="separator:gaf8f8f5fd96710507be176488b8237823"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -326,6 +332,76 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
 
 </div>
 </div>
+<a id="gafda947525327f2349ca3e269574ed39a" name="gafda947525327f2349ca3e269574ed39a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafda947525327f2349ca3e269574ed39a">&#9670;&#160;</a></span>null_safe_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string gul17::null_safe_string </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">const</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">char</a> *&#160;</td>
+          <td class="paramname"><em>char_ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Safely construct a std::string from a C string or a null pointer. </p>
+<p>If the pointer is null, an empty string is constructed. Otherwise, the function assumes to find a zero-terminated C string and constructs a std::string from it.</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">a</a> = <a class="code hl_function" href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b">safe_string</a>(<span class="keyword">nullptr</span>);  <span class="comment">// a == &quot;&quot;s</span></div>
+<div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">b</a> = <a class="code hl_function" href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b">safe_string</a>(<span class="stringliteral">&quot;ABC&quot;</span>);    <span class="comment">// b == &quot;ABC&quot;s</span></div>
+<div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">c</a> = <a class="code hl_function" href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b">safe_string</a>(<span class="stringliteral">&quot;AB\0CD&quot;</span>); <span class="comment">// c == &quot;AB&quot;s</span></div>
+<div class="ttc" id="agroup__string__util__h_html_ga4fe2c31868743b301cb4e8bb9dde1e5b"><div class="ttname"><a href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b">gul17::safe_string</a></div><div class="ttdeci">GUL_EXPORT std::string safe_string(const char *char_ptr, std::size_t length)</div><div class="ttdoc">Safely construct a std::string from a char pointer and a length.</div><div class="ttdef"><b>Definition</b> string_util.cc:64</div></div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">char_ptr</td><td>Pointer to a null-terminated string or a null pointer</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b" title="Safely construct a std::string from a char pointer and a length.">safe_string()</a>, <a class="el" href="group__string__util__h.html#ga9cfc15d8a2d5689cc5410799842edeed" title="Safely construct a string_view from a char pointer.">null_safe_string_view()</a></dd></dl>
+<dl class="section since"><dt>Since</dt><dd>GUL version UNRELEASED </dd></dl>
+
+<p class="reference">References <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set()</a>.</p>
+
+</div>
+</div>
+<a id="ga9cfc15d8a2d5689cc5410799842edeed" name="ga9cfc15d8a2d5689cc5410799842edeed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9cfc15d8a2d5689cc5410799842edeed">&#9670;&#160;</a></span>null_safe_string_view()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string_view gul17::null_safe_string_view </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">const</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">char</a> *&#160;</td>
+          <td class="paramname"><em>char_ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Safely construct a string_view from a char pointer. </p>
+<p>If the pointer is null, an empty string_view is constructed. Otherwise, the function assumes to find a zero-terminated C string and constructs a std::string_view from it.</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">a</a> = <a class="code hl_function" href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40">safe_string_view</a>(<span class="keyword">nullptr</span>);  <span class="comment">// a == &quot;&quot;sv</span></div>
+<div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">b</a> = <a class="code hl_function" href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40">safe_string_view</a>(<span class="stringliteral">&quot;ABC&quot;</span>);    <span class="comment">// b == &quot;ABC&quot;sv</span></div>
+<div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">c</a> = <a class="code hl_function" href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40">safe_string_view</a>(<span class="stringliteral">&quot;AB\0CD&quot;</span>); <span class="comment">// c == &quot;AB&quot;sv</span></div>
+<div class="ttc" id="agroup__string__util__h_html_gacfccf2147c15e31159430174b85bfd40"><div class="ttname"><a href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40">gul17::safe_string_view</a></div><div class="ttdeci">GUL_EXPORT std::string_view safe_string_view(const char *char_ptr, std::size_t length)</div><div class="ttdoc">Safely construct a string_view from a char pointer and a length.</div><div class="ttdef"><b>Definition</b> string_util.cc:74</div></div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">char_ptr</td><td>Pointer to a null-terminated string or a null pointer</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40" title="Safely construct a string_view from a char pointer and a length.">safe_string_view()</a>, <a class="el" href="group__string__util__h.html#gafda947525327f2349ca3e269574ed39a" title="Safely construct a std::string from a C string or a null pointer.">null_safe_string()</a></dd></dl>
+<dl class="section since"><dt>Since</dt><dd>GUL version UNRELEASED </dd></dl>
+
+<p class="reference">References <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set()</a>.</p>
+
+</div>
+</div>
 <a id="gaf8f8f5fd96710507be176488b8237823" name="gaf8f8f5fd96710507be176488b8237823"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaf8f8f5fd96710507be176488b8237823">&#9670;&#160;</a></span>repeat()</h2>
 
@@ -354,7 +430,7 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
 
 <p>Repeat a string N times. </p>
 <div class="fragment"><div class="line">std::string <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">str</a> = <a class="code hl_function" href="group__string__util__h.html#gaf8f8f5fd96710507be176488b8237823">repeat</a>(<span class="stringliteral">&quot;du&quot;</span>, 3); <span class="comment">// str == &quot;dududu&quot;</span></div>
-<div class="ttc" id="agroup__string__util__h_html_gaf8f8f5fd96710507be176488b8237823"><div class="ttname"><a href="group__string__util__h.html#gaf8f8f5fd96710507be176488b8237823">gul17::repeat</a></div><div class="ttdeci">GUL_EXPORT std::string repeat(std::string_view str, std::size_t n)</div><div class="ttdoc">Repeat a string N times.</div><div class="ttdef"><b>Definition</b> string_util.cc:33</div></div>
+<div class="ttc" id="agroup__string__util__h_html_gaf8f8f5fd96710507be176488b8237823"><div class="ttname"><a href="group__string__util__h.html#gaf8f8f5fd96710507be176488b8237823">gul17::repeat</a></div><div class="ttdeci">GUL_EXPORT std::string repeat(std::string_view str, std::size_t n)</div><div class="ttdoc">Repeat a string N times.</div><div class="ttdef"><b>Definition</b> string_util.cc:53</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">str</td><td>String to be repeated </td></tr>
@@ -401,7 +477,6 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
 <div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">b</a> = <a class="code hl_function" href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b">safe_string</a>(<span class="stringliteral">&quot;ABC&quot;</span>, 2);    <span class="comment">// b == &quot;AB&quot;s</span></div>
 <div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">c</a> = <a class="code hl_function" href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b">safe_string</a>(<span class="stringliteral">&quot;ABC&quot;</span>, 4);    <span class="comment">// c == &quot;ABC&quot;s, trailing zero byte ends the string</span></div>
 <div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">d</a> = <a class="code hl_function" href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b">safe_string</a>(<span class="stringliteral">&quot;AB\0CD&quot;</span>, 5); <span class="comment">// d == &quot;AB&quot;s, intermediate zero byte ends the string</span></div>
-<div class="ttc" id="agroup__string__util__h_html_ga4fe2c31868743b301cb4e8bb9dde1e5b"><div class="ttname"><a href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b">gul17::safe_string</a></div><div class="ttdeci">GUL_EXPORT std::string safe_string(const char *char_ptr, std::size_t length)</div><div class="ttdoc">Safely construct a std::string from a char pointer and a length.</div><div class="ttdef"><b>Definition</b> string_util.cc:44</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">char_ptr</td><td>Pointer to a string that is either null-terminated or has at least <code>length</code> accessible bytes, or a null pointer </td></tr>
@@ -409,6 +484,7 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
   </table>
   </dd>
 </dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__string__util__h.html#gafda947525327f2349ca3e269574ed39a" title="Safely construct a std::string from a C string or a null pointer.">null_safe_string()</a>, <a class="el" href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40" title="Safely construct a string_view from a char pointer and a length.">safe_string_view()</a></dd></dl>
 <dl class="section since"><dt>Since</dt><dd>GUL version 2.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set()</a>.</p>
@@ -447,7 +523,6 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
 <div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">b</a> = <a class="code hl_function" href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40">safe_string_view</a>(<span class="stringliteral">&quot;ABC&quot;</span>, 2);    <span class="comment">// b == &quot;AB&quot;sv</span></div>
 <div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">c</a> = <a class="code hl_function" href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40">safe_string_view</a>(<span class="stringliteral">&quot;ABC&quot;</span>, 4);    <span class="comment">// c == &quot;ABC&quot;sv, trailing zero byte ends the string</span></div>
 <div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">d</a> = <a class="code hl_function" href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40">safe_string_view</a>(<span class="stringliteral">&quot;AB\0CD&quot;</span>, 5); <span class="comment">// d == &quot;AB&quot;sv, intermediate zero byte ends the string</span></div>
-<div class="ttc" id="agroup__string__util__h_html_gacfccf2147c15e31159430174b85bfd40"><div class="ttname"><a href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40">gul17::safe_string_view</a></div><div class="ttdeci">GUL_EXPORT std::string_view safe_string_view(const char *char_ptr, std::size_t length)</div><div class="ttdoc">Safely construct a string_view from a char pointer and a length.</div><div class="ttdef"><b>Definition</b> string_util.cc:54</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">char_ptr</td><td>Pointer to a string that is either null-terminated or has at least <code>length</code> accessible bytes, or a null pointer </td></tr>
@@ -455,6 +530,7 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
   </table>
   </dd>
 </dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__string__util__h.html#ga9cfc15d8a2d5689cc5410799842edeed" title="Safely construct a string_view from a char pointer.">null_safe_string_view()</a>, <a class="el" href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b" title="Safely construct a std::string from a char pointer and a length.">safe_string()</a></dd></dl>
 <dl class="section since"><dt>Since</dt><dd>GUL version 25.4.0 </dd></dl>
 
 <p class="reference">References <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set()</a>.</p>
