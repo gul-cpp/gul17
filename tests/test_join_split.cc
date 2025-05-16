@@ -36,7 +36,7 @@
 #include "gul17/join_split.h"
 #include "gul17/SmallVector.h"
 
-using namespace std::literals::string_literals;
+using namespace std::literals;
 using gul17::SmallVector;
 using gul17::split;
 using gul17::split_sv;
@@ -240,30 +240,87 @@ TEMPLATE_TEST_CASE("split_sv() with associative containers", "[join_split]",
     REQUIRE(std::find(x.begin(), x.end(), "World") != x.end());
 }
 
-TEST_CASE("join()", "[join_split]")
+TEST_CASE("join(begin, end, glue)", "[join_split]")
 {
-    REQUIRE(join(std::vector<std::string>{ }, "lalala") == "");
-    REQUIRE(join(std::vector<std::string>{ { "" } }, "lalala") == "");
-    REQUIRE(join(std::vector<std::string>{ { "xyzzy" } }, "lalala") == "xyzzy");
-    REQUIRE(join(std::vector<std::string>{ { "A" }, { "B" } }, "lalala") == "AlalalaB");
+    SECTION("vector<string>")
+    {
+        auto vec = std::vector<std::string>{};
+        REQUIRE(join(vec.cbegin(), vec.cend(), "lalala") == "");
 
-    REQUIRE(join(std::vector<std::string_view>{ }, "lalala") == "");
-    REQUIRE(join(std::vector<std::string_view>{ { "" } }, "lalala") == "");
-    REQUIRE(join(std::vector<std::string_view>{ { "xyzzy" } }, "lalala") == "xyzzy"s);
-    REQUIRE(join(std::vector<std::string_view>{ { "A" }, { "B" } }, "lalala") == "AlalalaB");
+        vec = { ""s };
+        REQUIRE(join(vec.cbegin(), vec.cend(), "lalala") == "");
 
-    std::forward_list<std::string_view> list;
-    REQUIRE(join(list, "-") == "");
-    REQUIRE(join(list.begin(), list.end(), "-") == "");
+        vec = { "xyzzy"s };
+        REQUIRE(join(vec.cbegin(), vec.cend() , "lalala") == "xyzzy");
 
-    list.emplace_front("two");
-    REQUIRE(join(list, "-") == "two");
-    REQUIRE(join(list.begin(), list.end(), "-") == "two");
+        vec = { "A"s, "B"s };
+        REQUIRE(join(vec.cbegin(), vec.cend(), "lalala") == "AlalalaB");
+    }
 
-    list.emplace_front("forty");
-    REQUIRE(join(list, "-") == "forty-two");
-    REQUIRE(join(list.begin(), list.end(), "-") == "forty-two");
+    SECTION("vector<string_view>")
+    {
+        auto vec = std::vector<std::string_view>{};
+        REQUIRE(join(vec.cbegin(), vec.cend(), "lalala") == "");
+
+        vec = { ""sv };
+        REQUIRE(join(vec.cbegin(), vec.cend(), "lalala") == "");
+
+        vec = { "xyzzy"sv };
+        REQUIRE(join(vec.cbegin(), vec.cend() , "lalala") == "xyzzy");
+
+        vec = { "A"sv, "B"sv };
+        REQUIRE(join(vec.cbegin(), vec.cend(), "lalala") == "AlalalaB");
+    }
+
+    SECTION("std::forward_list<string_view>")
+    {
+        auto list = std::forward_list<std::string_view>{};
+        REQUIRE(join(list.cbegin(), list.cend(), "-") == "");
+
+        list = { "two"sv };
+        REQUIRE(join(list.cbegin(), list.cend(), "-") == "two");
+
+        list = { "forty"sv, "two"sv };
+        REQUIRE(join(list.cbegin(), list.cend() , "-") == "forty-two");
+    }
 }
+
+TEST_CASE("join(container, glue)", "[join_split]")
+{
+    SECTION("vector<string>")
+    {
+        REQUIRE(join(std::vector<std::string>{ }, "lalala") == "");
+        REQUIRE(join(std::vector<std::string>{ { "" } }, "lalala") == "");
+        REQUIRE(join(std::vector<std::string>{ { "xyzzy" } }, "lalala") == "xyzzy");
+        REQUIRE(join(std::vector<std::string>{ { "A" }, { "B" } }, "lalala")
+                == "AlalalaB");
+    }
+
+    SECTION("vector<string_view>")
+    {
+        REQUIRE(join(std::vector<std::string_view>{ }, "lalala") == "");
+        REQUIRE(join(std::vector<std::string_view>{ { "" } }, "lalala") == "");
+        REQUIRE(join(std::vector<std::string_view>{ { "xyzzy" } }, "lalala") == "xyzzy"s);
+        REQUIRE(join(std::vector<std::string_view>{ { "A" }, { "B" } }, "lalala")
+                == "AlalalaB");
+    }
+
+    SECTION("forward_list<string_view>")
+    {
+        std::forward_list<std::string_view> list;
+        REQUIRE(join(list, "-") == "");
+        REQUIRE(join(list.begin(), list.end(), "-") == "");
+
+        list.emplace_front("two");
+        REQUIRE(join(list, "-") == "two");
+        REQUIRE(join(list.begin(), list.end(), "-") == "two");
+
+        list.emplace_front("forty");
+        REQUIRE(join(list, "-") == "forty-two");
+        REQUIRE(join(list.begin(), list.end(), "-") == "forty-two");
+    }
+}
+
 
 TEST_CASE("join(split())", "[join_split]")
 {
