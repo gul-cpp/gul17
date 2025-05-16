@@ -4,7 +4,7 @@
  * \authors \ref contributors
  * \date    Created on 31 August 2018
  *
- * \copyright Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -250,8 +250,10 @@ split_sv(std::string_view text, std::string_view delimiter,
  *
  * \see
  * join(StringContainer, std::string_view) is a convenience overload for joining entire
- * containers, split() and associated functions can be used to split a string into a
- * vector of substrings.
+ * containers. join(Container, std::string_view, ConversionFct) and join(Iterator,
+ * Iterator, std::string_view, ConversionFct) allow joining ranges of arbitrary type into
+ * a string using a conversion function. split() and associated functions can be used to
+ * split a string into a vector of substrings.
  *
  * \since GUL version 2.3
  */
@@ -310,9 +312,11 @@ join(Iterator begin, Iterator end, std::string_view glue)
  *                          operator+=.
  *
  * \see
- * join(Iterator, Iterator, std::string_view) has a two-iterator interface,
- * split() and associated functions can be used to split a string into a vector of
- * substrings.
+ * join(Iterator, Iterator, std::string_view) has a two-iterator interface.
+ * join(Container, std::string_view, ConversionFct) and join(Iterator, Iterator,
+ * std::string_view, ConversionFct) allow joining ranges of arbitrary type into
+ * a string using a conversion function. split() and associated functions can be used to
+ * split a string into a vector of substrings.
  *
  * \since GUL version 2.3, join() accepts arbitrary containers or iterators (it was
  *        limited to std::vector before).
@@ -322,6 +326,80 @@ inline std::string
 join(const StringContainer& parts, std::string_view glue)
 {
     return join(parts.begin(), parts.end(), glue);
+}
+
+/**
+ * Concatenate the strings resulting from calling the given function on each element in a
+ * range, placing a delimiter between them.
+ *
+ * This algorithm iterates exactly once over the range and does not pre-allocate memory.
+ *
+ * \param begin      Iterator to the first input element
+ * \param end        Iterator pointing past the last input element
+ * \param glue       String to be put between the string-converted elements
+ * \param to_string  Function object to convert the container elements to strings
+ *
+ * \returns the concatenated string.
+ *
+ * \tparam Iterator  A forward iterator type that dereferences to a type that can be
+ *                   passed to the ConversionFct.
+ * \tparam ConversionFct  A function object type that can be called with the dereferenced
+ *                   iterator type and returns a string type. This string type must
+ *                   support concatenation with std::string::operator+=().
+ *
+ * \since GUL version UNRELEASED
+ */
+template <typename Iterator, typename ConversionFct,
+    std::enable_if_t<std::is_invocable_v<ConversionFct, decltype(*Iterator{})>, bool>
+    = true>
+inline std::string
+join(Iterator begin, Iterator end, std::string_view glue, ConversionFct to_string)
+{
+    std::string result;
+
+    if (begin == end)
+        return result; // Return an empty string
+
+    result += to_string(*begin);
+
+    // Iterate over all but the last string
+    for (auto it = std::next(begin); it != end; ++it)
+    {
+        result += glue;
+        result += to_string(*it);
+    }
+
+    return result;
+}
+
+/**
+ * Concatenate the strings resulting from calling the given function on each element
+ * in a range, placing a delimiter between them.
+ *
+ * This algorithm iterates exactly once over the range and does not pre-allocate
+ * memory.
+ *
+ * \param container  Container of input elements
+ * \param glue       String to be put between the string-converted elements
+ * \param to_string  Function object to convert the container elements to strings
+ *
+ * \returns the concatenated string.
+ *
+ * \tparam Container   A container type that provides a cbegin() and cend() member
+ *                     function returning forward iterators.
+ * \tparam ConversionFct  A function object type that can be called with the dereferenced
+ *                     iterator type and returns a string type. This string type must
+ *                     support concatenation with std::string::operator+=().
+ *
+ * \since GUL version UNRELEASED
+ */
+template <typename Container, typename ConversionFct,
+    std::enable_if_t<std::is_invocable_v<ConversionFct,
+                     decltype(*(std::declval<Container>().cbegin()))>, bool> = true>
+inline std::string
+join(const Container& container, std::string_view glue, ConversionFct to_string)
+{
+    return join(container.cbegin(), container.cend(), glue, to_string);
 }
 
 /// @}

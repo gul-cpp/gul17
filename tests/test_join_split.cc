@@ -321,6 +321,57 @@ TEST_CASE("join(container, glue)", "[join_split]")
     }
 }
 
+TEST_CASE("join(begin, end, glue, fct)", "[join_split]")
+{
+    SECTION("vector<unsigned int>, to_string()")
+    {
+        std::vector<unsigned int> input{ 0u, 1u, 2u };
+        auto result = join(input.cbegin(), input.cend(), ", ",
+            [](auto i) { return std::to_string(i); });
+        REQUIRE(result == "0, 1, 2");
+    }
+
+    SECTION("vector<unsigned int>, to_string(), no elements")
+    {
+        std::vector<unsigned int> input{};
+        auto result = join(input.cbegin(), input.cend(), ", ",
+            [](auto i) { return std::to_string(i); });
+        REQUIRE(result == "");
+    }
+
+    SECTION("vector<const char*>, custom decorator fct")
+    {
+        std::vector<const char*> input{ "uno", "due", "tre" };
+        auto result = join(input.cbegin(), input.cend(), "*",
+            [](const char* c) { return "<" + std::string{ c } + ">"; });
+        REQUIRE(result == "<uno>*<due>*<tre>");
+    }
+}
+
+TEST_CASE("join(container, glue, fct)", "[join_split]")
+{
+    SECTION("vector<unsigned int>, to_string()")
+    {
+        std::vector<unsigned int> input{ 0u, 1u, 2u };
+        auto result = join(input, ", ", [](auto i) { return std::to_string(i); });
+        REQUIRE(result == "0, 1, 2");
+    }
+
+    SECTION("vector<unsigned int>, to_string(), no elements")
+    {
+        std::vector<unsigned int> input{};
+        auto result = join(input, ", ", [](auto i) { return std::to_string(i); });
+        REQUIRE(result == "");
+    }
+
+    SECTION("vector<const char*>, custom decorator fct")
+    {
+        std::vector<const char*> input{ "uno", "due", "tre" };
+        auto result = join(
+            input, "*", [](const char* c) { return "<" + std::string{ c } + ">"; });
+        REQUIRE(result == "<uno>*<due>*<tre>");
+    }
+}
 
 TEST_CASE("join(split())", "[join_split]")
 {
