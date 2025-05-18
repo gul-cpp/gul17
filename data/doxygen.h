@@ -151,6 +151,10 @@ namespace gul17 {
  * - Add gul17::null_safe_string(const char*) and
  *   gul17::null_safe_string_view(const char*). The new functions construct a string or
  *   string_view from a null-terminated C string and are safe against null pointers.
+ * - Allow gul17::join() on ranges of string-like types that do not have a size() member
+ *   function (e.g. const char*).
+ * - Add gul17::join() overloads for joining ranges of elements with a custom string
+ *   conversion function.
  *
  * \subsection V25_4_0 Version 25.4.0
  *
