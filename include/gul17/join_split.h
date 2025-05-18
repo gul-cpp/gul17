@@ -235,6 +235,12 @@ split_sv(std::string_view text, std::string_view delimiter,
 /**
  * Concatenate all strings in a range, placing a delimiter between them.
  *
+ * \code{.cpp}
+ * std::vector<std::string> parts = { "one", "two", "three" };
+ * std::string result = join(parts.begin(), parts.end(), "-");
+ * assert(result == "one-two-three");
+ * \endcode
+ *
  * This algorithm iterates twice over the range in order to pre-allocate a string of the
  * correct size.
  *
@@ -293,6 +299,12 @@ join(Iterator begin, Iterator end, std::string_view glue)
 /**
  * Concatenate all strings in a range, placing a delimiter between them.
  *
+ * \code{.cpp}
+ * std::vector<std::string> parts = { "one", "two", "three" };
+ * std::string result = join(parts, "-");
+ * assert(result == "one-two-three");
+ * \endcode
+ *
  * This algorithm iterates twice over the range in order to pre-allocate a string of the
  * correct size.
  *
@@ -331,6 +343,13 @@ join(const StringContainer& parts, std::string_view glue)
 /**
  * Concatenate the strings resulting from calling the given function on each element in a
  * range, placing a delimiter between them.
+ *
+ * \code{.cpp}
+ * std::vector<int> parts = { 1, 2, 3 };
+ * std::string result = join(parts.begin(), parts.end(), "-",
+ *                           [](int i) { return std::to_string(i); });
+ * assert(result == "1-2-3");
+ * \endcode
  *
  * This algorithm iterates exactly once over the range. To speed up complex joining
  * operations, string memory can be preallocated via the last parameter.
@@ -381,6 +400,12 @@ join(Iterator begin, Iterator end, std::string_view glue, ConversionFct to_strin
 /**
  * Concatenate the strings resulting from calling the given function on each element
  * in a range, placing a delimiter between them.
+ *
+ * \code{.cpp}
+ * std::vector<int> parts = { 1, 2, 3 };
+ * std::string result = join(parts, "-", [](int i) { return std::to_string(i); });
+ * assert(result == "1-2-3");
+ * \endcode
  *
  * This algorithm iterates exactly once over the range. To speed up complex joining
  * operations, string memory can be preallocated via the last parameter.
