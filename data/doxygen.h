@@ -436,7 +436,8 @@ namespace gul17 {
  * cat(): Efficiently concatenate an arbitrary number of std::strings, C strings,
  *         string_views, or numbers.
  *
- * join(): Concatenate all strings in a range, placing a delimiter between them.
+ * join(): Concatenate a range of elements into a string, placing a delimiter between
+ *      them.
  *
  * repeat(): Repeat a string N times.
  *
