@@ -332,12 +332,16 @@ join(const StringContainer& parts, std::string_view glue)
  * Concatenate the strings resulting from calling the given function on each element in a
  * range, placing a delimiter between them.
  *
- * This algorithm iterates exactly once over the range and does not pre-allocate memory.
+ * This algorithm iterates exactly once over the range. To speed up complex joining
+ * operations, string memory can be preallocated via the last parameter.
  *
  * \param begin      Iterator to the first input element
  * \param end        Iterator pointing past the last input element
  * \param glue       String to be put between the string-converted elements
  * \param to_string  Function object to convert the container elements to strings
+ * \param prealloc   Number of bytes to preallocate for the result string. Providing this
+ *                   parameter is not necessary, but it may provide a tiny performance
+ *                   boost. The default is zero (no preallocation).
  *
  * \returns the concatenated string.
  *
@@ -353,13 +357,15 @@ template <typename Iterator, typename ConversionFct,
     std::enable_if_t<std::is_invocable_v<ConversionFct, decltype(*Iterator{})>, bool>
     = true>
 inline std::string
-join(Iterator begin, Iterator end, std::string_view glue, ConversionFct to_string)
+join(Iterator begin, Iterator end, std::string_view glue, ConversionFct to_string,
+     std::size_t prealloc = 0)
 {
     std::string result;
 
     if (begin == end)
         return result; // Return an empty string
 
+    result.reserve(prealloc);
     result += to_string(*begin);
 
     // Iterate over all but the last string
@@ -376,12 +382,15 @@ join(Iterator begin, Iterator end, std::string_view glue, ConversionFct to_strin
  * Concatenate the strings resulting from calling the given function on each element
  * in a range, placing a delimiter between them.
  *
- * This algorithm iterates exactly once over the range and does not pre-allocate
- * memory.
+ * This algorithm iterates exactly once over the range. To speed up complex joining
+ * operations, string memory can be preallocated via the last parameter.
  *
  * \param container  Container of input elements
  * \param glue       String to be put between the string-converted elements
  * \param to_string  Function object to convert the container elements to strings
+ * \param prealloc   Number of bytes to preallocate for the result string. Providing this
+ *                   parameter is not necessary, but it may provide a tiny performance
+ *                   boost. The default is zero (no preallocation).
  *
  * \returns the concatenated string.
  *
@@ -397,9 +406,10 @@ template <typename Container, typename ConversionFct,
     std::enable_if_t<std::is_invocable_v<ConversionFct,
                      decltype(*(std::declval<Container>().cbegin()))>, bool> = true>
 inline std::string
-join(const Container& container, std::string_view glue, ConversionFct to_string)
+join(const Container& container, std::string_view glue, ConversionFct to_string,
+     std::size_t prealloc = 0)
 {
-    return join(container.cbegin(), container.cend(), glue, to_string);
+    return join(container.cbegin(), container.cend(), glue, to_string, prealloc);
 }
 
 /// @}
