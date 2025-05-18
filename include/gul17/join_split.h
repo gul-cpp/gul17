@@ -232,8 +232,22 @@ split_sv(std::string_view text, std::string_view delimiter,
     return split<StringContainer>(text, delimiter, insert_fct);
 }
 
+namespace detail {
+
+// Type trait to check if a type has a member function size()
+template <typename, typename = void>
+struct HasSize : std::false_type
+{};
+
+template <typename T>
+struct HasSize<T, std::void_t<decltype(std::declval<const T&>().size())>> : std::true_type
+{};
+
+} // namespace detail
+
 /**
- * Concatenate all strings in a range, placing a delimiter between them.
+ * Concatenate all strings (or string-like elements) in a range, placing a delimiter
+ * between them.
  *
  * \code{.cpp}
  * std::vector<std::string> parts = { "one", "two", "three" };
@@ -241,8 +255,9 @@ split_sv(std::string_view text, std::string_view delimiter,
  * assert(result == "one-two-three");
  * \endcode
  *
- * This algorithm iterates twice over the range in order to pre-allocate a string of the
- * correct size.
+ * If the element type in the range has a size() member function, the algorithm iterates
+ * twice over the range in order to pre-allocate a string of the correct size. Otherwise,
+ * it only iterates once.
  *
  * \param begin  Iterator pointing to the first string
  * \param end    Iterator pointing past the last string
@@ -250,9 +265,10 @@ split_sv(std::string_view text, std::string_view delimiter,
  *
  * \returns all strings glued together with the delimiter glue.
  *
- * \tparam Iterator  A forward iterator type that dereferences to a string type. The
- *                   string type must provide a size() member function and must support
- *                   concatenation with std::string using operator+=.
+ * \tparam Iterator  A forward iterator type that dereferences to a string-like type. This
+ *                   string type must must support concatenation using
+ *                   std::string::operator+=. An additional optimization is enabled if
+ *                   the string type has a size() member function.
  *
  * \see
  * join(StringContainer, std::string_view) is a convenience overload for joining entire
@@ -267,22 +283,26 @@ template <typename Iterator>
 inline std::string
 join(Iterator begin, Iterator end, std::string_view glue)
 {
+    using ElementType = decltype(*begin);
     std::string result;
 
     if (begin == end)
         return result; // Return an empty string
 
-    std::size_t num_strings = 0;
-    std::size_t len = 0;
-
-    for (auto it = begin; it != end; ++it)
+    if constexpr (detail::HasSize<ElementType>::value)
     {
-        ++num_strings;
-        len += it->size();
-    }
-    len += (num_strings - 1) * glue.size();
+        std::size_t num_strings = 0;
+        std::size_t len = 0;
 
-    result.reserve(len);
+        for (auto it = begin; it != end; ++it)
+        {
+            ++num_strings;
+            len += it->size();
+        }
+        len += (num_strings - 1) * glue.size();
+
+        result.reserve(len);
+    }
 
     result += *begin;
 
@@ -297,7 +317,8 @@ join(Iterator begin, Iterator end, std::string_view glue)
 }
 
 /**
- * Concatenate all strings in a range, placing a delimiter between them.
+ * Concatenate all strings (or string-like elements) in a range, placing a delimiter
+ * between them.
  *
  * \code{.cpp}
  * std::vector<std::string> parts = { "one", "two", "three" };
@@ -305,8 +326,9 @@ join(Iterator begin, Iterator end, std::string_view glue)
  * assert(result == "one-two-three");
  * \endcode
  *
- * This algorithm iterates twice over the range in order to pre-allocate a string of the
- * correct size.
+ * If the element type in the range has a size() member function, the algorithm iterates
+ * twice over the range in order to pre-allocate a string of the correct size. Otherwise,
+ * it only iterates once.
  *
  * This is the inverse function of split(). It is guaranteed that
  * `join(split(text, del), del) == text` (unless del is a std::regex object).
@@ -316,12 +338,12 @@ join(Iterator begin, Iterator end, std::string_view glue)
  *
  * \returns all strings glued together with the delimiter glue.
  *
- * \tparam StringContainer  A container type that holds strings, e.g.
+ * \tparam StringContainer  A container type that holds string-like elements, e.g.
  *                          std::vector<std::string> or std::list<std::string_view>.
  *                          The container must provide an STL-like forward iterator
- *                          interface. The string type must provide a size() member
- *                          function and must support concatenation with std::string using
- *                          operator+=.
+ *                          interface. The string type must must support concatenation
+ *                          using std::string::operator+=. An additional optimization is
+ *                          enabled if the string type has a size() member function.
  *
  * \see
  * join(Iterator, Iterator, std::string_view) has a two-iterator interface.

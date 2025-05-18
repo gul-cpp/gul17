@@ -20,6 +20,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <deque>
 #include <forward_list>
 #include <list>
 #include <queue>
@@ -283,6 +284,18 @@ TEST_CASE("join(begin, end, glue)", "[join_split]")
         list = { "forty"sv, "two"sv };
         REQUIRE(join(list.cbegin(), list.cend() , "-") == "forty-two");
     }
+
+    SECTION("std::deque<const char*>")
+    {
+        auto deque = std::deque<const char*>{};
+        REQUIRE(join(deque.cbegin(), deque.cend(), "::") == "");
+
+        deque = { "one", "two" };
+        REQUIRE(join(deque.cbegin(), deque.cend(), "::") == "one::two");
+
+        deque = { "alpha", "bravo", "charlie" };
+        REQUIRE(join(deque.cbegin(), deque.cend() , "::") == "alpha::bravo::charlie");
+    }
 }
 
 TEST_CASE("join(container, glue)", "[join_split]")
@@ -318,6 +331,25 @@ TEST_CASE("join(container, glue)", "[join_split]")
         list.emplace_front("forty");
         REQUIRE(join(list, "-") == "forty-two");
         REQUIRE(join(list.begin(), list.end(), "-") == "forty-two");
+    }
+
+    SECTION("deque<const char*>")
+    {
+        auto deque = std::deque<const char*>{};
+        REQUIRE(join(deque, "::") == "");
+        REQUIRE(join(deque.begin(), deque.end(), "::") == "");
+
+        deque.emplace_back("one");
+        REQUIRE(join(deque, "::") == "one");
+        REQUIRE(join(deque.begin(), deque.end(), "::") == "one");
+
+        deque.emplace_back("two");
+        REQUIRE(join(deque, "::") == "one::two");
+        REQUIRE(join(deque.begin(), deque.end(), "::") == "one::two");
+
+        deque.emplace_back("three");
+        REQUIRE(join(deque, "::") == "one::two::three");
+        REQUIRE(join(deque.begin(), deque.end(), "::") == "one::two::three");
     }
 }
 
