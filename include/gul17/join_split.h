@@ -306,7 +306,7 @@ join(Iterator begin, Iterator end, std::string_view glue)
 
     result += *begin;
 
-    // Iterate over all but the last string
+    // Iterate over all but the first string
     for (auto it = std::next(begin); it != end; ++it)
     {
         result.append(glue.data(), glue.size());
@@ -409,7 +409,7 @@ join(Iterator begin, Iterator end, std::string_view glue, ConversionFct to_strin
     result.reserve(prealloc);
     result += to_string(*begin);
 
-    // Iterate over all but the last string
+    // Iterate over all but the first element of the range
     for (auto it = std::next(begin); it != end; ++it)
     {
         result += glue;
