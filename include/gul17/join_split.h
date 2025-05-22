@@ -394,13 +394,14 @@ join(const StringContainer& parts, std::string_view glue)
  *
  * \since GUL version UNRELEASED
  */
-template <typename Iterator, typename ConversionFct,
-    std::enable_if_t<std::is_invocable_v<ConversionFct, decltype(*Iterator{})>, bool>
-    = true>
+template <typename Iterator, typename ConversionFct>
 inline std::string
 join(Iterator begin, Iterator end, std::string_view glue, ConversionFct to_string,
      std::size_t prealloc = 0)
 {
+    static_assert(std::is_invocable_v<ConversionFct, decltype(*begin)>,
+                  "ConversionFct does not accept the element type of the range");
+
     std::string result;
 
     if (begin == end)
@@ -449,9 +450,7 @@ join(Iterator begin, Iterator end, std::string_view glue, ConversionFct to_strin
  *
  * \since GUL version UNRELEASED
  */
-template <typename Container, typename ConversionFct,
-    std::enable_if_t<std::is_invocable_v<ConversionFct,
-                     decltype(*(std::declval<Container>().cbegin()))>, bool> = true>
+template <typename Container, typename ConversionFct>
 inline std::string
 join(const Container& container, std::string_view glue, ConversionFct to_string,
      std::size_t prealloc = 0)
