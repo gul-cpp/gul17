@@ -11,6 +11,7 @@ standalone_headers = [
     'hexdump.h',
     'join_split.h',
     'num_util.h',
+    'OverloadSet.h',
     'replace.h',
     'SlidingBuffer.h',
     'SmallVector.h',

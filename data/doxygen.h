@@ -155,6 +155,9 @@ namespace gul17 {
  *   function (e.g. const char*).
  * - Add gul17::join() overloads for joining ranges of elements with a custom string
  *   conversion function.
+ * - Reintroduce gul17::OverloadSet. This class template allows creating an overload set
+ *   from an arbitrary number of function objects. It was already part of GUL14 and is now
+ *   included in an updated version with a C++17 template argument deduction guide.
  *
  * \subsection V25_4_0 Version 25.4.0
  *
@@ -656,9 +659,9 @@ namespace gul17 {
  * \ref gul17::IsContainerLike "IsContainerLike":
  *     A type trait to determine if a type behaves like a standard container.
  *
- * \ref gul17::OverloadSet "OverloadSet" and \ref gul17::make_overload_set "make_overload_set()":
- *     A function object type that works like an overload set of functions, and a helper
- *     function to create such an object from a bunch of lambdas.
+ * \ref gul17::OverloadSet "OverloadSet":
+ *     A class template that works like an overload set of functions, mainly for use with
+ *     std::visit().
  *
  * \ref gul17::remove_cvref "remove_cvref":
  *     A metafunction to remove const, volatile, and reference qualifiers from a type.
