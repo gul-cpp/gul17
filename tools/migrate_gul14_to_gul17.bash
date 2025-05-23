@@ -85,7 +85,7 @@ This function does not exist in GUL17. Manual migration is required.
 Here's the recommended pattern:
 
 template<typename ... Fcts>
-struct Overload : Fcts ..."
+struct Overload : Fcts ...
 {
     using Fcts::operator() ...;
 };
