@@ -1,5 +1,5 @@
 /**
- * \file   test_variant.cc
+ * \file   test_OverloadSet.cc
  * \author \ref contributors
  * \date   Created on May 31, 2023
  * \brief  Unit tests for the OverloadSet class template.
