@@ -1,7 +1,6 @@
 /**
  * \file    OverloadSet.h
- * \brief   Implementation of the OverloadSet class template and the make_overload_set()
- *          function template.
+ * \brief   Implementation of the OverloadSet class template.
  * \authors \ref contributors
  * \date    Created on 15 June 2023
  *
