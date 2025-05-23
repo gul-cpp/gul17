@@ -1,5 +1,5 @@
 /**
- * \file    variant.h
+ * \file    OverloadSet.h
  * \brief   Implementation of the OverloadSet class template and the make_overload_set()
  *          function template.
  * \authors \ref contributors
@@ -21,8 +21,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef GUL17_VARIANT_H_
-#define GUL17_VARIANT_H_
+#ifndef GUL17_OVERLOADSET_H_
+#define GUL17_OVERLOADSET_H_
 
 namespace gul17 {
 
