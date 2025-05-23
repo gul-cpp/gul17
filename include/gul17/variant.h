@@ -28,8 +28,7 @@ namespace gul17 {
 
 /**
  * \addtogroup variant_h gul17/variant.h
- * \brief Implementation of the OverloadSet class template and the make_overload_set()
- *        function template.
+ * \brief Implementation of the OverloadSet class template.
  * @{
  */
 
@@ -60,24 +59,6 @@ struct OverloadSet : Fcts ...
 
 template<typename... Fcts>
 OverloadSet(Fcts...) -> OverloadSet<Fcts...>;
-
-/**
- * Create an OverloadSet from an arbitrary number of function objects.
- *
- * This function creates an OverloadSet from the function objects given to it. This used
- * to be helpful for visiting a variant prior to C++17, but offers no benefit over
- * constructing an OverloadSet directly.
- *
- * \since GUL14 version 2.9.2; dropped in GUL17 25.3.0; reintroduced in GUL17 version
- *        UNRELEASED
- * \deprecated since GUL17 version UNRELEASED
- */
-template <typename... Fct>
-[[deprecated("Construct an OverloadSet directly instead")]]
-auto make_overload_set(Fct... f)
-{
-    return OverloadSet{ f... };
-}
 
 } // namespace gul17
 

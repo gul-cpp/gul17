@@ -2,7 +2,7 @@
  * \file   test_variant.cc
  * \author \ref contributors
  * \date   Created on May 31, 2023
- * \brief  Unit tests for the variant class template.
+ * \brief  Unit tests for the OverloadSet class template.
  *
  * \copyright Copyright 2023-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
@@ -27,15 +27,16 @@
 
 #include "gul17/variant.h"
 
-TEST_CASE("make_overload_set()", "[variant]")
+TEST_CASE("OverloadSet: Constructor", "[variant]")
 {
     auto v = std::variant<float, double, long, std::string>{ };
 
-    auto get_type_name = gul17::make_overload_set(
+    auto get_type_name = gul17::OverloadSet{
         [](auto&&) -> std::string { return "SOMETHING ELSE"; },
         [](float) -> std::string { return "float"; },
         [](double) -> std::string { return "double"; },
-        [](long) -> std::string { return "long"; });
+        [](long) -> std::string { return "long"; }
+    };
 
     v = 1.5f;
     REQUIRE(std::visit(get_type_name, v) == "float");
