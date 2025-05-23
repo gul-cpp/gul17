@@ -4,7 +4,7 @@
  * \date    Created on August 24, 2018
  * \brief   Main include file for the General Utility Library.
  *
- * \copyright Copyright 2018-2024 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -27,13 +27,11 @@
  * \defgroup gul_h gul17/gul.h
  * \brief All-in-one include file for GUL17.
  * \details
- * This file includes almost all other headers provided by the library. Two specific files
- * are excluded, however:
+ * This file includes almost all other headers provided by the library. One specific file
+ * is excluded, however:
  * <ul>
- * <li>`gul17/catch.h`: The header file for the Catch2 unit test framework</li>
  * <li>`gul17/date.h`: Howard Hinnant's header for calendar date functionality</li>
  * </ul>
- * While the unit test framework is simply not useful for inclusion into regular code,
  * `date.h` is excluded chiefly because of its negative impact on compile times. Just
  * include it directly where needed.
  */
@@ -50,6 +48,7 @@
 #include "gul17/hexdump.h"
 #include "gul17/join_split.h"
 #include "gul17/num_util.h"
+#include "gul17/OverloadSet.h"
 #include "gul17/replace.h"
 #include "gul17/SlidingBuffer.h"
 #include "gul17/SmallVector.h"
