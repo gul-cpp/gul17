@@ -52,6 +52,8 @@ GUL17 Versions</h1>
 UNRELEASED</h2>
 <ul>
 <li>Add <a class="el" href="group__string__util__h.html#gafda947525327f2349ca3e269574ed39a" title="Safely construct a std::string from a C string or a null pointer.">gul17::null_safe_string(const char*)</a> and <a class="el" href="group__string__util__h.html#ga9cfc15d8a2d5689cc5410799842edeed" title="Safely construct a string_view from a char pointer.">gul17::null_safe_string_view(const char*)</a>. The new functions construct a string or string_view from a null-terminated C string and are safe against null pointers.</li>
+<li>Allow <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">gul17::join()</a> on ranges of string-like types that do not have a size() member function (e.g. const char*).</li>
+<li>Add <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">gul17::join()</a> overloads for joining ranges of elements with a custom string conversion function.</li>
 </ul>
 <h2><a class="anchor" id="V25_4_0"></a>
 Version 25.4.0</h2>
@@ -167,7 +169,7 @@ Version 2.4</h2>
 Version 2.3</h2>
 <ul>
 <li><em>Released with DOOCS 20.6.0 – 20.10.1</em></li>
-<li>Allow <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings in a range, placing a delimiter between them.">join()</a> to accept arbitrary containers and add a two-iterator interface</li>
+<li>Allow <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">join()</a> to accept arbitrary containers and add a two-iterator interface</li>
 </ul>
 <h2><a class="anchor" id="v2_2"></a>
 Version 2.2</h2>

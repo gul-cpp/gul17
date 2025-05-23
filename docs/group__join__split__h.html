@@ -48,6 +48,15 @@ $(function() {
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Joining and splitting strings. </p>
+<div class="dynheader">
+Collaboration diagram for gul17/join_split.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__join__split__h.png" border="0" usemap="#agroup____join____split____h" alt=""/></div>
+<map name="agroup____join____split____h" id="agroup____join____split____h">
+<area shape="rect" href="group__hexdump__h.html" title="Hexadecimal dump of data." alt="" coords="268,7,403,33"/>
+<area shape="rect" title="Joining and splitting strings." alt="" coords="5,7,139,33"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -65,16 +74,102 @@ Functions</h2></td></tr>
 <tr class="separator:ga047cd1163ecf874f13273237459d8bbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga49ad2e9443ebdf9d949a6a8177ef2ad2" id="r_ga49ad2e9443ebdf9d949a6a8177ef2ad2"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">typename</a> Iterator &gt; </td></tr>
 <tr class="memitem:ga49ad2e9443ebdf9d949a6a8177ef2ad2"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2">gul17::join</a> (Iterator begin, Iterator end, std::string_view <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">glue</a>)</td></tr>
-<tr class="memdesc:ga49ad2e9443ebdf9d949a6a8177ef2ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate all strings in a range, placing a delimiter between them.  <br /></td></tr>
+<tr class="memdesc:ga49ad2e9443ebdf9d949a6a8177ef2ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.  <br /></td></tr>
 <tr class="separator:ga49ad2e9443ebdf9d949a6a8177ef2ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacd0ca27dafec6bf2b178060d47999ee6" id="r_gacd0ca27dafec6bf2b178060d47999ee6"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">typename</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">StringContainer</a> &gt; </td></tr>
 <tr class="memitem:gacd0ca27dafec6bf2b178060d47999ee6"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__join__split__h.html#gacd0ca27dafec6bf2b178060d47999ee6">gul17::join</a> (<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">const</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">StringContainer</a> &amp;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts</a>, std::string_view <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">glue</a>)</td></tr>
-<tr class="memdesc:gacd0ca27dafec6bf2b178060d47999ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate all strings in a range, placing a delimiter between them.  <br /></td></tr>
+<tr class="memdesc:gacd0ca27dafec6bf2b178060d47999ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.  <br /></td></tr>
 <tr class="separator:gacd0ca27dafec6bf2b178060d47999ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga48e7af18aa36a71cf2641fcd242f8417" id="r_ga48e7af18aa36a71cf2641fcd242f8417"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">typename</a> Iterator , <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">typename</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">ConversionFct</a> &gt; </td></tr>
+<tr class="memitem:ga48e7af18aa36a71cf2641fcd242f8417"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__join__split__h.html#ga48e7af18aa36a71cf2641fcd242f8417">gul17::join</a> (Iterator begin, Iterator end, std::string_view <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">glue</a>, <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">ConversionFct</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">to_string</a>, std::size_t <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">prealloc</a>=0)</td></tr>
+<tr class="memdesc:ga48e7af18aa36a71cf2641fcd242f8417"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate the strings resulting from calling the given function on each element in a range, placing a delimiter between them.  <br /></td></tr>
+<tr class="separator:ga48e7af18aa36a71cf2641fcd242f8417"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab59f4b36701e2900917a8a412f77174a" id="r_gab59f4b36701e2900917a8a412f77174a"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">typename</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">Container</a> , <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">typename</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">ConversionFct</a> &gt; </td></tr>
+<tr class="memitem:gab59f4b36701e2900917a8a412f77174a"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__join__split__h.html#gab59f4b36701e2900917a8a412f77174a">gul17::join</a> (<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">const</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">Container</a> &amp;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">container</a>, std::string_view <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">glue</a>, <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">ConversionFct</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">to_string</a>, std::size_t <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">prealloc</a>=0)</td></tr>
+<tr class="memdesc:gab59f4b36701e2900917a8a412f77174a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate the strings resulting from calling the given function on each element in a range, placing a delimiter between them.  <br /></td></tr>
+<tr class="separator:gab59f4b36701e2900917a8a412f77174a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="gab59f4b36701e2900917a8a412f77174a" name="gab59f4b36701e2900917a8a412f77174a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab59f4b36701e2900917a8a412f77174a">&#9670;&#160;</a></span>join() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">typename</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">Container</a> , <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">typename</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">ConversionFct</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string gul17::join </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">const</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">Container</a> &amp;&#160;</td>
+          <td class="paramname"><em>container</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>glue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">ConversionFct</a>&#160;</td>
+          <td class="paramname"><em>to_string</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>prealloc</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Concatenate the strings resulting from calling the given function on each element in a range, placing a delimiter between them. </p>
+<div class="fragment"><div class="line">std::vector&lt;int&gt; <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts</a> = { 1, 2, 3 };</div>
+<div class="line">std::string <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">result</a> = <a class="code hl_function" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2">join</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts</a>, <span class="stringliteral">&quot;-&quot;</span>, [](<span class="keywordtype">int</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">i</a>) { <span class="keywordflow">return</span> std::to_string(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">i</a>); });</div>
+<div class="line"><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">assert</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">result</a> == <span class="stringliteral">&quot;1-2-3&quot;</span>);</div>
+<div class="ttc" id="agroup__bit__manip__h_html_ga360badd8e0d73d0b45a028a10ec2d412"><div class="ttname"><a href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set</a></div><div class="ttdeci">auto constexpr bit_set(unsigned bit) noexcept -&gt; ReturnT</div><div class="ttdoc">Set a bit in an integral type.</div><div class="ttdef"><b>Definition</b> bit_manip.h:121</div></div>
+<div class="ttc" id="agroup__join__split__h_html_ga49ad2e9443ebdf9d949a6a8177ef2ad2"><div class="ttname"><a href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2">gul17::join</a></div><div class="ttdeci">std::string join(Iterator begin, Iterator end, std::string_view glue)</div><div class="ttdoc">Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.</div><div class="ttdef"><b>Definition</b> join_split.h:284</div></div>
+</div><!-- fragment --><p>This algorithm iterates exactly once over the range. To speed up complex joining operations, string memory can be preallocated via the last parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">container</td><td>Container of input elements </td></tr>
+    <tr><td class="paramname">glue</td><td>String to be put between the string-converted elements </td></tr>
+    <tr><td class="paramname">to_string</td><td>Function object to convert the container elements to strings </td></tr>
+    <tr><td class="paramname">prealloc</td><td>Number of bytes to preallocate for the result string. Providing this parameter is not necessary, but it may provide a tiny performance boost. The default is zero (no preallocation).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the concatenated string.</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Container</td><td>A container type that provides a cbegin() and cend() member function returning forward iterators. </td></tr>
+    <tr><td class="paramname">ConversionFct</td><td>A function object type that can be called with the dereferenced iterator type and returns a string type. This string type must support concatenation with std::string::operator+=().</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>GUL version UNRELEASED </dd></dl>
+
+<p class="reference">References <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set()</a>, and <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2">gul17::join()</a>.</p>
+
+</div>
+</div>
 <a id="gacd0ca27dafec6bf2b178060d47999ee6" name="gacd0ca27dafec6bf2b178060d47999ee6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacd0ca27dafec6bf2b178060d47999ee6">&#9670;&#160;</a></span>join() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#gacd0ca27dafec6bf2b178060d47999ee6">&#9670;&#160;</a></span>join() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -109,8 +204,11 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
 </table>
 </div><div class="memdoc">
 
-<p>Concatenate all strings in a range, placing a delimiter between them. </p>
-<p>This algorithm iterates twice over the range in order to pre-allocate a string of the correct size.</p>
+<p>Concatenate all strings (or string-like elements) in a range, placing a delimiter between them. </p>
+<div class="fragment"><div class="line">std::vector&lt;std::string&gt; <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts</a> = { <span class="stringliteral">&quot;one&quot;</span>, <span class="stringliteral">&quot;two&quot;</span>, <span class="stringliteral">&quot;three&quot;</span> };</div>
+<div class="line">std::string <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">result</a> = <a class="code hl_function" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2">join</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts</a>, <span class="stringliteral">&quot;-&quot;</span>);</div>
+<div class="line"><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">assert</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">result</a> == <span class="stringliteral">&quot;one-two-three&quot;</span>);</div>
+</div><!-- fragment --><p>If the element type in the range has a size() member function, the algorithm iterates twice over the range in order to pre-allocate a string of the correct size. Otherwise, it only iterates once.</p>
 <p>This is the inverse function of <a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split()</a>. It is guaranteed that <code>join(split(text, del), del) == text</code> (unless del is a std::regex object).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -122,19 +220,20 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
 <dl class="section return"><dt>Returns</dt><dd>all strings glued together with the delimiter glue.</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">StringContainer</td><td>A container type that holds strings, e.g. std::vector&lt;std::string&gt; or std::list&lt;std::string_view&gt;. The container must provide an STL-like forward iterator interface. The string type must provide a size() member function and must support concatenation with std::string using operator+=.</td></tr>
+    <tr><td class="paramname">StringContainer</td><td>A container type that holds string-like elements, e.g. std::vector&lt;std::string&gt; or std::list&lt;std::string_view&gt;. The container must provide an STL-like forward iterator interface. The string type must must support concatenation using std::string::operator+=. An additional optimization is enabled if the string type has a size() member function.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings in a range, placing a delimiter between them.">join(Iterator, Iterator, std::string_view)</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">has</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> two-iterator <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">interface</a>, <a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split()</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">and</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">associated</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">functions</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">can</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">be</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">used</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">to</a> <a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> string <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">into</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">vector</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">of</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">substrings</a>.</dd></dl>
-<dl class="section since"><dt>Since</dt><dd>GUL version 2.3, <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings in a range, placing a delimiter between them.">join()</a> accepts arbitrary containers or iterators (it was limited to std::vector before). </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">join(Iterator, Iterator, std::string_view)</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">has</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> two-iterator <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">interface</a>. join(Container, std::string_view, ConversionFct) <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">and</a> join(Iterator, Iterator,
+std::string_view, ConversionFct) <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">allow</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">joining</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">ranges</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">of</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">arbitrary</a> type <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">into</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> string <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">using</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">conversion</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">function</a>. <a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split()</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">and</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">associated</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">functions</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">can</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">be</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">used</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">to</a> <a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> string <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">into</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">vector</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">of</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">substrings</a>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>GUL version 2.3, <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">join()</a> accepts arbitrary containers or iterators (it was limited to std::vector before). </dd></dl>
 
 <p class="reference">References <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set()</a>, and <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2">gul17::join()</a>.</p>
 
 </div>
 </div>
 <a id="ga49ad2e9443ebdf9d949a6a8177ef2ad2" name="ga49ad2e9443ebdf9d949a6a8177ef2ad2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga49ad2e9443ebdf9d949a6a8177ef2ad2">&#9670;&#160;</a></span>join() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ga49ad2e9443ebdf9d949a6a8177ef2ad2">&#9670;&#160;</a></span>join() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -175,8 +274,11 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
 </table>
 </div><div class="memdoc">
 
-<p>Concatenate all strings in a range, placing a delimiter between them. </p>
-<p>This algorithm iterates twice over the range in order to pre-allocate a string of the correct size.</p>
+<p>Concatenate all strings (or string-like elements) in a range, placing a delimiter between them. </p>
+<div class="fragment"><div class="line">std::vector&lt;std::string&gt; <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts</a> = { <span class="stringliteral">&quot;one&quot;</span>, <span class="stringliteral">&quot;two&quot;</span>, <span class="stringliteral">&quot;three&quot;</span> };</div>
+<div class="line">std::string <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">result</a> = <a class="code hl_function" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2">join</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts</a>.begin(), <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts</a>.end(), <span class="stringliteral">&quot;-&quot;</span>);</div>
+<div class="line"><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">assert</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">result</a> == <span class="stringliteral">&quot;one-two-three&quot;</span>);</div>
+</div><!-- fragment --><p>If the element type in the range has a size() member function, the algorithm iterates twice over the range in order to pre-allocate a string of the correct size. Otherwise, it only iterates once.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">begin</td><td>Iterator pointing to the first string </td></tr>
@@ -188,16 +290,101 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
 <dl class="section return"><dt>Returns</dt><dd>all strings glued together with the delimiter glue.</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">Iterator</td><td>A forward iterator type that dereferences to a string type. The string type must provide a size() member function and must support concatenation with std::string using operator+=.</td></tr>
+    <tr><td class="paramname">Iterator</td><td>A forward iterator type that dereferences to a string-like type. This string type must must support concatenation using std::string::operator+=. An additional optimization is enabled if the string type has a size() member function.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd>join(StringContainer, std::string_view) <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">is</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">convenience</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">overload</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">for</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">joining</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">entire</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">containers</a>, <a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split()</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">and</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">associated</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">functions</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">can</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">be</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">used</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">to</a> <a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> string <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">into</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">vector</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">of</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">substrings</a>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>join(StringContainer, std::string_view) <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">is</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">convenience</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">overload</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">for</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">joining</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">entire</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">containers</a>. join(Container, std::string_view, ConversionFct) <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">and</a> join(Iterator,
+Iterator, std::string_view, ConversionFct) <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">allow</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">joining</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">ranges</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">of</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">arbitrary</a> type <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">into</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> string <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">using</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">conversion</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">function</a>. <a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split()</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">and</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">associated</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">functions</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">can</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">be</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">used</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">to</a> <a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> string <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">into</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">vector</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">of</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">substrings</a>.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>GUL version 2.3 </dd></dl>
 
 <p class="reference">References <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__join__split__h.html#gacd0ca27dafec6bf2b178060d47999ee6">gul17::join()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__join__split__h.html#gab59f4b36701e2900917a8a412f77174a">gul17::join()</a>, and <a class="el" href="group__join__split__h.html#gacd0ca27dafec6bf2b178060d47999ee6">gul17::join()</a>.</p>
+
+</div>
+</div>
+<a id="ga48e7af18aa36a71cf2641fcd242f8417" name="ga48e7af18aa36a71cf2641fcd242f8417"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga48e7af18aa36a71cf2641fcd242f8417">&#9670;&#160;</a></span>join() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">typename</a> Iterator , <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">typename</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">ConversionFct</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string gul17::join </td>
+          <td>(</td>
+          <td class="paramtype">Iterator&#160;</td>
+          <td class="paramname"><em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iterator&#160;</td>
+          <td class="paramname"><em>end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>glue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">ConversionFct</a>&#160;</td>
+          <td class="paramname"><em>to_string</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>prealloc</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Concatenate the strings resulting from calling the given function on each element in a range, placing a delimiter between them. </p>
+<div class="fragment"><div class="line">std::vector&lt;int&gt; <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts</a> = { 1, 2, 3 };</div>
+<div class="line">std::string <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">result</a> = <a class="code hl_function" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2">join</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts</a>.begin(), <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts</a>.end(), <span class="stringliteral">&quot;-&quot;</span>,</div>
+<div class="line">                          [](<span class="keywordtype">int</span> <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">i</a>) { return std::to_string(i); });</div>
+<div class="line"><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">assert</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">result</a> == <span class="stringliteral">&quot;1-2-3&quot;</span>);</div>
+</div><!-- fragment --><p>This algorithm iterates exactly once over the range. To speed up complex joining operations, string memory can be preallocated via the last parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">begin</td><td>Iterator to the first input element </td></tr>
+    <tr><td class="paramname">end</td><td>Iterator pointing past the last input element </td></tr>
+    <tr><td class="paramname">glue</td><td>String to be put between the string-converted elements </td></tr>
+    <tr><td class="paramname">to_string</td><td>Function object to convert the container elements to strings </td></tr>
+    <tr><td class="paramname">prealloc</td><td>Number of bytes to preallocate for the result string. Providing this parameter is not necessary, but it may provide a tiny performance boost. The default is zero (no preallocation).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the concatenated string.</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Iterator</td><td>A forward iterator type that dereferences to a type that can be passed to the ConversionFct. </td></tr>
+    <tr><td class="paramname">ConversionFct</td><td>A function object type that can be called with the dereferenced iterator type and returns a string type. This string type must support concatenation with std::string::operator+=().</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>GUL version UNRELEASED </dd></dl>
+
+<p class="reference">References <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set()</a>.</p>
 
 </div>
 </div>
@@ -250,7 +437,6 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
 <div class="line"><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">assert</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">y</a>[0] == <span class="stringliteral">&quot;one&quot;</span><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">s</a>);</div>
 <div class="line"><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">assert</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">y</a>[1] == <span class="stringliteral">&quot;two&quot;</span><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">s</a>);</div>
 <div class="line"><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">assert</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">y</a>[2] == <span class="stringliteral">&quot;three&quot;</span><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">s</a>);</div>
-<div class="ttc" id="agroup__bit__manip__h_html_ga360badd8e0d73d0b45a028a10ec2d412"><div class="ttname"><a href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set</a></div><div class="ttdeci">auto constexpr bit_set(unsigned bit) noexcept -&gt; ReturnT</div><div class="ttdoc">Set a bit in an integral type.</div><div class="ttdef"><b>Definition</b> bit_manip.h:121</div></div>
 <div class="ttc" id="agroup__join__split__h_html_ga962c1c726b488e385489c9da17b958da"><div class="ttname"><a href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da">gul17::split</a></div><div class="ttdeci">StringContainer split(std::string_view text, std::string_view delimiter, ContainerInsertFct insert_fct=detail::emplace_back&lt; StringContainer &gt;)</div><div class="ttdoc">Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...</div><div class="ttdef"><b>Definition</b> join_split.h:124</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -262,7 +448,7 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split(std::string_view, std::string_view, ContainerInsertFct)</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">splits</a> at <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">fixed</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">substring</a>,<br  />
  <a class="el" href="group__join__split__h.html#ga047cd1163ecf874f13273237459d8bbd" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split_sv()</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">does</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">the</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">same</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">returning</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">vector</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">of</a> std::string_views, <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">and</a><br  />
- <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings in a range, placing a delimiter between them.">join()</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">can</a> <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings in a range, placing a delimiter between them.">join</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">the</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">vector</a> back <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">into</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> string. </dd></dl>
+ <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">join()</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">can</a> <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">join</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">the</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">vector</a> back <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">into</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> string. </dd></dl>
 
 <p class="reference">References <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set()</a>.</p>
 
@@ -312,7 +498,7 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
 
 <p>Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in a container. </p>
 <p>The result has at least one element. If the delimiter is not present in the text, the whole text is returned. If there are consecutive delimiters, the collected string between them is the empty string. If the delimiter is directly at the end of the input, the collected string between the end of the input and the delimiter is again the empty string.</p>
-<p><a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split()</a> is the inverse function of <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings in a range, placing a delimiter between them.">join()</a>. It is guaranteed that <code>join(split(text, del), del) == text</code>.</p>
+<p><a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split()</a> is the inverse function of <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">join()</a>. It is guaranteed that <code>join(split(text, del), del) == text</code>.</p>
 <div class="fragment"><div class="line">std::vector&lt;std::string&gt; <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts1</a> = <a class="code hl_function" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da">split</a>(<span class="stringliteral">&quot; hello world&quot;</span>, <span class="stringliteral">&quot; &quot;</span>);</div>
 <div class="line"><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">assert</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts1</a>.size() == 3);</div>
 <div class="line"><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">assert</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts1</a>[0] == <span class="stringliteral">&quot;&quot;</span><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">s</a>);</div>
@@ -362,7 +548,7 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
 <div class="line"><a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">assert</a>(<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">parts3</a>.back() == <span class="stringliteral">&quot;b&quot;</span>);</div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__join__split__h.html#ga047cd1163ecf874f13273237459d8bbd" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split_sv()</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">returns</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">vector</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">of</a> std::string_views,<br  />
  split(const std::string&amp;, const std::regex&amp;) <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">splits</a> at <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">delimiter</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">described</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">by</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">regular</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">expression</a>, <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">and</a><br  />
- <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings in a range, placing a delimiter between them.">join()</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">can</a> <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings in a range, placing a delimiter between them.">join</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">the</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">vector</a> back <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">into</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> string.</dd></dl>
+ <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">join()</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">can</a> <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">join</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">the</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">vector</a> back <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">into</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> string.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>GUL version 2.5, the return type of <a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split()</a> can be specified as a template parameter and a custom inserter can be specified (it always returned std::vector&lt;std::string&gt; before). </dd></dl>
 
 <p class="reference">References <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set()</a>.</p>
@@ -419,7 +605,7 @@ template&lt;<a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a0
 <div class="ttc" id="agroup__join__split__h_html_ga047cd1163ecf874f13273237459d8bbd"><div class="ttname"><a href="group__join__split__h.html#ga047cd1163ecf874f13273237459d8bbd">gul17::split_sv</a></div><div class="ttdeci">StringContainer split_sv(std::string_view text, std::string_view delimiter, ContainerInsertFct insert_fct=detail::emplace_back&lt; StringContainer &gt;)</div><div class="ttdoc">Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...</div><div class="ttdef"><b>Definition</b> join_split.h:229</div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__join__split__h.html#ga962c1c726b488e385489c9da17b958da" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split(std::string_view, std::string_view, ContainerInsertFct)</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">returns</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">vector</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">of</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">strings</a>,<br  />
  split(const std::string&amp;, const std::regex&amp;) <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">splits</a> at <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">delimiter</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">described</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">by</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">regular</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">expression</a>, <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">and</a><br  />
- <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings in a range, placing a delimiter between them.">join()</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">can</a> <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings in a range, placing a delimiter between them.">join</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">the</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">vector</a> back <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">into</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> string.</dd></dl>
+ <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">join()</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">can</a> <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">join</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">the</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">vector</a> back <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">into</a> <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412" title="Set a bit in an integral type.">a</a> string.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>GUL version 2.5, the return type of <a class="el" href="group__join__split__h.html#ga047cd1163ecf874f13273237459d8bbd" title="Separate a string at all occurrences of a delimiter, returning the strings between the delimiters in ...">split_sv()</a> can be specified as a template parameter and a custom inserter can be specified (it always returned std::vector&lt;std::string&gt; before). </dd></dl>
 
 <p class="reference">References <a class="el" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set()</a>.</p>
