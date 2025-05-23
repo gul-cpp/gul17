@@ -656,9 +656,9 @@ namespace gul17 {
  * \ref gul17::IsContainerLike "IsContainerLike":
  *     A type trait to determine if a type behaves like a standard container.
  *
- * \ref gul17::OverloadSet "OverloadSet" and \ref gul17::make_overload_set "make_overload_set()":
- *     A function object type that works like an overload set of functions, and a helper
- *     function to create such an object from a bunch of lambdas.
+ * \ref gul17::OverloadSet "OverloadSet":
+ *     A class template that works like an overload set of functions, mainly for use with
+ *     std::visit().
  *
  * \ref gul17::remove_cvref "remove_cvref":
  *     A metafunction to remove const, volatile, and reference qualifiers from a type.
