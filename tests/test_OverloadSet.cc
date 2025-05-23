@@ -25,7 +25,7 @@
 
 #include <catch2/catch_test_macros.hpp>
 
-#include "gul17/variant.h"
+#include "gul17/OverloadSet.h"
 
 TEST_CASE("OverloadSet: Constructor", "[variant]")
 {

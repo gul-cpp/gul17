@@ -30,6 +30,7 @@ tests = [
     'test_join_split.cc',
     'test_main.cc',
     'test_num_util.cc',
+    'test_OverloadSet.cc',
     'test_replace.cc',
     'test_SlidingBuffer.cc',
     'test_SmallVector.cc',
@@ -43,7 +44,6 @@ tests = [
     'test_Trigger.cc',
     'test_trim.cc',
     'test_type_name.cc',
-    'test_variant.cc',
 ]
 
 test('all',
