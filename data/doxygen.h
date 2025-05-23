@@ -155,6 +155,9 @@ namespace gul17 {
  *   function (e.g. const char*).
  * - Add gul17::join() overloads for joining ranges of elements with a custom string
  *   conversion function.
+ * - Reintroduce gul17::OverloadSet. This class template allows creating an overload set
+ *   from an arbitrary number of function objects. It was already part of GUL14 and is now
+ *   included in an updated version with a C++17 template argument deduction guide.
  *
  * \subsection V25_4_0 Version 25.4.0
  *
