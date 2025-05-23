@@ -26,6 +26,7 @@ standalone_headers = [
     'Trigger.h',
     'trim.h',
     'type_name.h',
+    'variant.h',
 ]
 
 libgul_sub_headers = files(standalone_headers)
