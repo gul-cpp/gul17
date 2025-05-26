@@ -47,6 +47,9 @@ namespace gul17 {
  * (typically lambdas) and imports their definitions of `operator()` into an overload set
  * for its own `operator()`. This is primarily helpful for use with std::visit().
  *
+ * A similar class was proposed in B. Stroustrup's "A Tour of C++", 3rd ed.,
+ * Addison-Wesley, 2023.
+ *
  * \since GUL14 version 2.9.2; dropped in GUL17 25.3.0; reintroduced in GUL17 version
  *        UNRELEASED
  */
