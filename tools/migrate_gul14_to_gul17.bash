@@ -84,15 +84,9 @@ ${mos_subdirs}
 This function does not exist in GUL17. Manual migration is required.
 Here's the recommended pattern:
 
-template<typename ... Fcts>
-struct Overload : Fcts ...
-{
-    using Fcts::operator() ...;
-};
-template<typename... Fcts>
-Overload(Fcts...) -> Overload<Fcts...>;
+#include <gul17/OverloadSet.h>
 
-auto TypeOfIntegral = Overload
+auto TypeOfIntegral = gul17::OverloadSet
 {
     [](char) { return "char"; },
     [](int) { return "int"; },
