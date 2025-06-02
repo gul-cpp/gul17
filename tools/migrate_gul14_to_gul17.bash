@@ -20,6 +20,21 @@ EOT
 exit 1
 fi
 
+create_gul17_wrap_file() {
+    cat > "$1" << EOT
+[wrap-git]
+directory = gul17
+url = https://github.com/gul-cpp/gul17.git
+revision = main
+
+[provide]
+dependency_names = gul17
+gul17 = libgul_dep
+gul17_static = libgul_static_dep
+gul17_shared = libgul_shared_dep
+EOT
+}
+
 handle_meson_file() {
     sed -i -E \
         -e 's/(dependency\s*\(\s*)'"'libgul14'/\1'gul17'"'/g' \
@@ -69,6 +84,14 @@ for dir in "$@"; do
         done < <( find "${dir}" \
             \( -path "./${dir}/build*" -o -path "./${dir}/debian" -o -path "./${dir}/subprojects" \) -prune \
             -o \( \( -name "*.h" -o -name "*.hpp" -o -name "*.cc" -o -name "*.cpp" \) -print0 \) )
+
+        # wrap file
+        if [ -d "${dir}/subprojects" ]; then
+            if [ ! -e "${dir}/subprojects/gul17.wrap" ]; then
+                echo "Creating gul17.wrap file in ${dir}/subprojects"
+                create_gul17_wrap_file "${dir}/subprojects/gul17.wrap"
+            fi
+        fi
 
     fi
     if [ "${mos_found}" = true ]; then
