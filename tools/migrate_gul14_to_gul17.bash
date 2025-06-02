@@ -30,8 +30,6 @@ revision = main
 [provide]
 dependency_names = gul17
 gul17 = libgul_dep
-gul17_static = libgul_static_dep
-gul17_shared = libgul_shared_dep
 EOT
 }
 
