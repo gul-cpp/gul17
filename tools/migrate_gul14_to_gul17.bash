@@ -23,7 +23,7 @@ fi
 handle_meson_file() {
     sed -i -E \
         -e 's/(dependency\s*\(\s*)'"'libgul14'/\1'gul17'"'/g' \
-        -e 's/\[\s*'"'libgul14'"'\s*,\s*'"'libgul_dep'"'\s*\]/['"'gul17', 'gul17_dep']"'/g' \
+        -e "s/'libgul14'/'gul17'/g" \
         "$1"
 }
 
