@@ -35,6 +35,10 @@ gul17_shared = libgul_shared_dep
 EOT
 }
 
+handle_control_file() {
+    sed -i -E -e 's/dev-doocs-libgul14/gul17-dev/g' "$1"
+}
+
 handle_meson_file() {
     sed -i -E \
         -e 's/(dependency\s*\(\s*)'"'libgul14'/\1'gul17'"'/g' \
@@ -84,6 +88,11 @@ for dir in "$@"; do
         done < <( find "${dir}" \
             \( -path "./${dir}/build*" -o -path "./${dir}/debian" -o -path "./${dir}/subprojects" \) -prune \
             -o \( \( -name "*.h" -o -name "*.hpp" -o -name "*.cc" -o -name "*.cpp" \) -print0 \) )
+
+        # Debian control file
+        if [ -f "${dir}/debian/control" ]; then
+            handle_control_file "${dir}/debian/control"
+        fi
 
         # wrap file
         if [ -d "${dir}/subprojects" ]; then
