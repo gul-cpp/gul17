@@ -64,6 +64,7 @@ handle_source_file() {
         -e 's/(using\s+namespace\s+)gul14/\1gul17/g' \
         "$1"
     if grep -q "make_overload_set" "$1"; then
+        echo "Found 'make_overload_set' in $1"
         mos_found=true
     fi
 }
@@ -77,14 +78,14 @@ for dir in "$@"; do
         while IFS= read -d $'\0' -r file; do
             handle_meson_file "$file"
         done < <( find "${dir}" \
-            \( -path "./${dir}/build*" -o -path "./${dir}/debian" -o -path "./${dir}/subprojects" \) -prune \
+            \( -path "${dir}/build*" -o -path "${dir}/debian" -o -path "${dir}/subprojects" \) -prune \
             -o \( -name 'meson.build' -print0 \) )
 
         # source files
         while IFS= read -d $'\0' -r file; do
             handle_source_file "$file"
         done < <( find "${dir}" \
-            \( -path "./${dir}/build*" -o -path "./${dir}/debian" -o -path "./${dir}/subprojects" \) -prune \
+            \( -path "${dir}/build*" -o -path "${dir}/debian" -o -path "${dir}/subprojects" \) -prune \
             -o \( \( -name "*.h" -o -name "*.hpp" -o -name "*.cc" -o -name "*.cpp" \) -print0 \) )
 
         # Debian control file
