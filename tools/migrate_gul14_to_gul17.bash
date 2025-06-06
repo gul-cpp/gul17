@@ -50,6 +50,7 @@ handle_source_file() {
         -e 's/(#include\s*)["<]gul17\/string_view.h[">]/\1<string_view>/g' \
         -e 's/(#include\s*)["<]gul17\/optional.h[">]/\1<optional>/g' \
         -e 's/(#include\s*)["<]gul17\/variant.h[">]/\1<variant>/g' \
+        -e 's/(#include\s*["<])gul17\/catch.h([">])/\1gul14\/catch.h\2/g' \
         -e 's/gul14::/gul17::/g' \
         -e 's/gul17::string_view/std::string_view/g' \
         -e 's/gul17::optional/std::optional/g' \
