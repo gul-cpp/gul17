@@ -924,8 +924,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span><span class="keyword">inline</span> <span class="keyword">namespace </span>literals</div>
 <div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span>{</div>
 <div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span> </div>
-<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span><span class="keyword">constexpr</span> gul17::date::day  <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span> _d(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> d) <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span><span class="keyword">constexpr</span> gul17::date::year <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span> _y(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> y) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span><span class="keyword">constexpr</span> gul17::date::day  <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span>_d(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> d) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span><span class="keyword">constexpr</span> gul17::date::year <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span>_y(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> y) <span class="keyword">noexcept</span>;</div>
 <div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span> </div>
 <div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span>}  <span class="comment">// inline namespace literals</span></div>
 <div class="line"><a id="l00915" name="l00915"></a><span class="lineno">  915</span><span class="preprocessor">#endif </span><span class="comment">// !defined(_MSC_VER) || (_MSC_VER &gt;= 1900)</span></div>
@@ -1825,14 +1825,14 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l01809" name="l01809"></a><span class="lineno"> 1809</span> </div>
 <div class="line"><a id="l01810" name="l01810"></a><span class="lineno"> 1810</span><span class="keyword">constexpr</span> <span class="keyword">inline</span></div>
 <div class="line"><a id="l01811" name="l01811"></a><span class="lineno"> 1811</span>gul17::date::day</div>
-<div class="line"><a id="l01812" name="l01812"></a><span class="lineno"> 1812</span><span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span> _d(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> d) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l01812" name="l01812"></a><span class="lineno"> 1812</span><span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span>_d(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> d) <span class="keyword">noexcept</span></div>
 <div class="line"><a id="l01813" name="l01813"></a><span class="lineno"> 1813</span>{</div>
 <div class="line"><a id="l01814" name="l01814"></a><span class="lineno"> 1814</span>    <span class="keywordflow">return</span> gul17::date::day{<span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span><span class="keyword">&gt;</span>(d)};</div>
 <div class="line"><a id="l01815" name="l01815"></a><span class="lineno"> 1815</span>}</div>
 <div class="line"><a id="l01816" name="l01816"></a><span class="lineno"> 1816</span> </div>
 <div class="line"><a id="l01817" name="l01817"></a><span class="lineno"> 1817</span><span class="keyword">constexpr</span> <span class="keyword">inline</span></div>
 <div class="line"><a id="l01818" name="l01818"></a><span class="lineno"> 1818</span>gul17::date::year</div>
-<div class="line"><a id="l01819" name="l01819"></a><span class="lineno"> 1819</span><span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span> _y(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> y) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l01819" name="l01819"></a><span class="lineno"> 1819</span><span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span>_y(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> y) <span class="keyword">noexcept</span></div>
 <div class="line"><a id="l01820" name="l01820"></a><span class="lineno"> 1820</span>{</div>
 <div class="line"><a id="l01821" name="l01821"></a><span class="lineno"> 1821</span>    <span class="keywordflow">return</span> gul17::date::year(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(y));</div>
 <div class="line"><a id="l01822" name="l01822"></a><span class="lineno"> 1822</span>}</div>
