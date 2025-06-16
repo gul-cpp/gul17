@@ -38,6 +38,10 @@ handle_control_file() {
     sed -i -E -e 's/dev-doocs-libgul14/gul17-dev/g' "$1"
 }
 
+handle_gitlab_ci_file() {
+    sed -i -E -e 's/dev-doocs-libgul14/gul17-dev/g' "$1"
+}
+
 handle_meson_file() {
     sed -i -E \
         -e 's/(dependency\s*\(\s*)'"'libgul14'/\1'gul17'"'/g' \
@@ -93,6 +97,11 @@ for dir in "$@"; do
         # Debian control file
         if [ -f "${dir}/debian/control" ]; then
             handle_control_file "${dir}/debian/control"
+        fi
+
+        # Gitlab CI file
+        if [ -f "${dir}/.gitlab-ci.yml" ]; then
+            handle_gitlab_ci_file "${dir}/.gitlab-ci.yml"
         fi
 
         # wrap file
