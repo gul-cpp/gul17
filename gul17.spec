@@ -1,5 +1,5 @@
 #
-# This file is used to build RPMS for libgul17
+# This file is used to build RPMS for gul17
 #
 # To use it do the following:
 #
@@ -10,22 +10,17 @@
 #   $ pkcon install rpmdevtools
 #   $ rpmdev-setuptree
 #   $ cp build/meson-dist/gul17-<version>.tar.xz ~/rpmbuild/SOURCES
-#   $ cp libgul17.spec ~/rpmbuild/SPECS
-#
-#  On RHEL7 we need a newer compiler
-#   $ pkcon install centos-release-scl-rh && pkcon refresh && pkcon install devtoolset-7
+#   $ cp gul17.spec ~/rpmbuild/SPECS
 #
 # 3) Build the package
 #   $ cd ~/rpmbuild
-#   $ rpmbuild -ba SPECS/libgul17.spec
-#  RHEL7 only
-#   $ scl enable devtoolset-7 'rpmbuild -ba SPECS/libgul17.spec'
+#   $ rpmbuild -ba SPECS/gul17.spec
 #
 # https://rpm-packaging-guide.github.io/
 #
 
-Name:           libgul17
-Version:        v2.10
+Name:           gul17
+Version:        25.4.1
 Release:        1%{?dist}
 Summary:        General Utility Library
 
@@ -88,17 +83,20 @@ Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
 %meson_test
 
 %files
-%{_libdir}/%{name}.so.*
+%{_libdir}/lib%{name}.so.*
 
 %files devel
-%{_libdir}/%{name}.so
+%{_libdir}/lib%{name}.so
 %{_libdir}/pkgconfig/%{name}.pc
 %{_includedir}/gul17/*
 
 %files static
-%{_libdir}/%{name}.a
+%{_libdir}/lib%{name}.a
 
 %changelog
+* Mon Jun 16 2025 Fini Jastrow <ulf.fini.jastrow@desy.de> - 25.4.1-1
+- New upstream release
+
 * Fri Feb 16 2024 Soeren Grunewald <soeren.grunewald@desy.de> - 2.10-1
 - New upstream release
 
