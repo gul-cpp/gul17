@@ -7,7 +7,8 @@ Usage: $0 <directories>
 
 This script will update C++ source files and meson.build files in the
 given directories to migrate from GUL14 to GUL17. The given directories
-are searched recursively.
+should be the root directories of the projects, i.e. those that contain
+the main meson.build file, the debian/ directory, and the src/ folder.
 
 The migration happens in place, so make sure to have a backup (or a
 recent git commit) of your files.
