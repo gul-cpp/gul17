@@ -25,6 +25,7 @@
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <initializer_list>
 #include <iterator>
 #include <limits>
@@ -274,7 +275,7 @@ public:
     /// \copydoc ValueType
     using value_type = ValueType;
     /// Unsigned integer type for indexing, number of elements, capacity
-    using SizeType = uint32_t;
+    using SizeType = std::uint32_t;
     /// \copydoc SizeType
     using size_type = SizeType;
     /// Signed integer type for the difference of two iterators
