@@ -146,7 +146,7 @@ namespace gul17 {
  *
  * \section changelog_gul17 GUL17 Versions
  *
- * \subsection V25_X_X UNRELEASED
+ * \subsection V25_7_0 Version 25.7.0
  *
  * - Add gul17::null_safe_string(const char*) and
  *   gul17::null_safe_string_view(const char*). The new functions construct a string or

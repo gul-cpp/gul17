@@ -239,7 +239,7 @@ hex_string(const Container& container, std::string_view separator = "")
  *
  * \see safe_string(), null_safe_string_view()
  *
- * \since GUL version UNRELEASED
+ * \since version 25.7.0
  */
 GUL_EXPORT
 std::string null_safe_string(const char* char_ptr);
@@ -260,7 +260,7 @@ std::string null_safe_string(const char* char_ptr);
  *
  * \see safe_string_view(), null_safe_string()
  *
- * \since GUL version UNRELEASED
+ * \since version 25.7.0
  */
 GUL_EXPORT
 std::string_view null_safe_string_view(const char* char_ptr);

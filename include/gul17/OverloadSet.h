@@ -51,7 +51,7 @@ namespace gul17 {
  * Addison-Wesley, 2023.
  *
  * \since GUL14 version 2.9.2; dropped in GUL17 25.3.0; reintroduced in GUL17 version
- *        UNRELEASED
+ *        25.7.0
  */
 template<typename... Fcts>
 struct OverloadSet : Fcts ...

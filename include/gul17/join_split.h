@@ -392,7 +392,7 @@ join(const StringContainer& parts, std::string_view glue)
  *                   iterator type and returns a string type. This string type must
  *                   support concatenation with std::string::operator+=().
  *
- * \since GUL version UNRELEASED
+ * \since version 25.7.0
  */
 template <typename Iterator, typename ConversionFct>
 inline std::string
@@ -448,7 +448,7 @@ join(Iterator begin, Iterator end, std::string_view glue, ConversionFct to_strin
  *                     iterator type and returns a string type. This string type must
  *                     support concatenation with std::string::operator+=().
  *
- * \since GUL version UNRELEASED
+ * \since version 25.7.0
  */
 template <typename Container, typename ConversionFct>
 inline std::string
