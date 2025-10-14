@@ -42,6 +42,9 @@ version_cc = configure_file(
 so_version = lib_version_num
 
 add_cpp_args = [ ]
+if build_machine.system() == 'darwin'
+    add_cpp_args += [ '-U_LIBCPP_ENABLE_ASSERTIONS' ]
+endif
 if meson.get_compiler('cpp').has_argument('-Wshadow') # msvc doesnt have
     add_cpp_args += [ '-Wshadow' ]
 endif
