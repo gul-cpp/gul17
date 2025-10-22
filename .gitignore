@@ -6,3 +6,5 @@ build*/
 .vs
 !.vs/launch.vs.json
 !.vs/tasks.vs.json
+subprojects/Catch2-*/
+subprojects/packagecache/
