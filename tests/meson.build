@@ -44,6 +44,9 @@ tests = [
     'test_Trigger.cc',
     'test_trim.cc',
     'test_type_name.cc',
+    'data_processors/test_json_processor.cc',
+    'data_processors/test_xml_processor.cc',
+    'data_processors/test_yaml_processor.cc',
 ]
 
 test('all',

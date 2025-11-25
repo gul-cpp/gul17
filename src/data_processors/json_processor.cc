@@ -1,0 +1,473 @@
+#include "gul17/data_processors.h"
+
+#include <algorithm>
+#include <sstream>
+
+using gul17::DataTree;
+
+struct JsonDataProcessorParser
+{
+    JsonDataProcessorParser(const std::string_view& json_str) : data_(json_str)
+    {}
+
+    DataTree parse() { return parse_value(); }
+
+private:
+    DataTree parse_value()
+    {
+        skip_comment();
+        skip_whitespace();
+        char c = current_char();
+
+        switch (c) {
+            case '{': return parse_object();
+            case '[': return parse_array();
+            case '"': return parse_string();
+            case 't': case 'f': return parse_boolean();
+            case 'n': return parse_null();
+            case '-': case '0': case '1': case '2': case '3': case '4':
+            case '5': case '6': case '7': case '8': case '9':
+                return parse_number();
+            default:
+                throw std::runtime_error("Unexpected character");
+        }
+    }
+
+    DataTree parse_object()
+    {
+        expect('{');
+        DataTree::Object obj;
+
+        skip_comment();
+        skip_whitespace();
+        if (current_char() == '}')
+        {
+            advance();
+            return DataTree(obj);
+        }
+
+        while (true)
+        {
+            skip_whitespace();
+            std::string key = parse_string().as<std::string>();
+
+            skip_whitespace();
+            expect(':');
+
+            DataTree value = parse_value();
+            obj.emplace(std::move(key), std::move(value));
+
+            skip_whitespace();
+            if (current_char() == '}')
+            {
+                advance();
+                break;
+            }
+            expect(',');
+        }
+
+        return DataTree(obj);
+    }
+
+    DataTree parse_array()
+    {
+        expect('[');
+        DataTree::Array arr;
+
+        skip_comment();
+        skip_whitespace();
+        if (current_char() == ']')
+        {
+            advance();
+            return DataTree(arr);
+        }
+
+        while (true)
+        {
+            arr.push_back(parse_value());
+
+            skip_whitespace();
+            if (current_char() == ']')
+            {
+                advance();
+                break;
+            }
+            expect(',');
+        }
+
+        return DataTree(arr);
+    }
+
+    DataTree parse_string()
+    {
+        expect('"');
+        std::string result;
+
+        while (true)
+        {
+            char c = current_char();
+            if (c == '"')
+            {
+                advance();
+                break;
+            }
+            else if (c == '\\')
+            {
+                // TODO - Implement full JSON string unescaping
+
+                advance();
+                char esc = current_char();
+                switch (esc)
+                {
+                    case '"': result += '"'; break;
+                    case '\\': result += '\\'; break;
+                    case '/': result += '/'; break;
+                    case 'a': result += '\a'; break;
+                    case 'b': result += '\b'; break;
+                    case 'f': result += '\f'; break;
+                    case 'n': result += '\n'; break;
+                    case 'r': result += '\r'; break;
+                    case 't': result += '\t'; break;
+                    case 'v': result += '\v'; break;
+
+                    case 'u':
+                        // Unicode escape sequence (e.g., \uXXXX)
+                        if (pos_ + 5 < data_.length())
+                        {
+                            auto num = data_.substr(pos_ + 1, 4);
+                            try {
+                                unsigned ch = std::stoi(std::string(num), nullptr);
+                                if (ch < 0x80)
+                                {
+                                    result += static_cast<char>(ch);
+                                }
+                                else if (ch < 0x800)
+                                {
+                                    result += static_cast<char>(0xC0 | (ch >> 6));
+                                    result += static_cast<char>(0x80 | (ch & 0x3F));
+                                }
+                                else if (ch < 0x10000)
+                                {
+                                    result += static_cast<char>(0xE0 | (ch >> 12));
+                                    result += static_cast<char>(0x80 | ((ch >> 6) & 0x3F));
+                                    result += static_cast<char>(0x80 | (ch & 0x3F));
+                                }
+                                else
+                                {
+                                    result += static_cast<char>(0xF0 | (ch >> 18));
+                                    result += static_cast<char>(0x80 | ((ch >> 12) & 0x3F));
+                                    result += static_cast<char>(0x80 | ((ch >> 6) & 0x3F));
+                                    result += static_cast<char>(0x80 | (ch & 0x3F));
+                                }
+                                pos_ += 4;
+                            }
+                            catch (...) {
+                                result += data_[pos_ + 1]; // Invalid number, treat as literal
+                                pos_ += 1;
+                            }
+                        }
+                        break;
+
+                    case 'U':
+                        // Unicode escape sequence (e.g., \UXXXXXXXX)
+                        // FIXME - Unicode escape sequences not implemented yet
+                        throw std::runtime_error("Unicode escape sequences not supported");
+
+                    default:
+                        throw std::runtime_error("Invalid escape sequence");
+                }
+                advance();
+            }
+            else
+            {
+                result += c;
+                advance();
+            }
+        }
+
+        return DataTree(result);
+    }
+
+    DataTree parse_boolean()
+    {
+        if (data_.compare(pos_, 4, "true") == 0)
+        {
+            pos_ += 4;
+            return DataTree(true);
+        }
+        else if (data_.compare(pos_, 5, "false") == 0)
+        {
+            pos_ += 5;
+            return DataTree(false);
+        }
+        else
+        {
+            throw std::runtime_error("Invalid boolean value");
+        }
+    }
+
+    DataTree parse_null()
+    {
+        if (data_.compare(pos_, 4, "null") == 0)
+        {
+            pos_ += 4;
+            return DataTree(nullptr);
+        }
+        else
+        {
+            throw std::runtime_error("Invalid null value");
+        }
+    }
+
+    DataTree parse_number()
+    {
+        auto start_pos = pos_;
+        if (current_char() == '-')
+        {
+            advance();
+        }
+
+        while (std::isdigit(current_char()))
+        {
+            advance();
+        }
+
+        if (current_char() == '.')
+        {
+            advance();
+            while (std::isdigit(current_char()))
+            {
+                advance();
+            }
+            double value = std::stod(std::string(data_.substr(start_pos, pos_ - start_pos)));
+            return DataTree(value);
+        }
+        else
+        {
+            int value = std::stoi(std::string(data_.substr(start_pos, pos_ - start_pos)));
+            return DataTree(value);
+        }
+    }
+
+    void skip_whitespace()
+    {
+        while (pos_ < data_.size() && std::isspace(data_[pos_]))
+        {
+            advance();
+        }
+    }
+
+    void skip_comment()
+    {
+        skip_whitespace();
+
+        if (current_char() == '/')
+        {
+            // Skip comments
+            if (next_char() == '/')
+            {
+                // Single-line comment
+                while (has_remaining_chars() && current_char() != '\n')
+                {
+                    advance();
+                }
+            }
+            else if (next_char() == '*')
+            {
+                // Multi-line comment
+                advance(2);
+                while (has_remaining_chars())
+                {
+                    if (current_char() == '*' && next_char() == '/')
+                    {
+                        advance(2);
+                        break;
+                    }
+                    advance();
+                }
+            }
+            else
+            {
+                throw std::runtime_error("Invalid comment syntax");
+            }
+        }
+    }
+
+    char current_char() const
+    {
+        return pos_ < data_.size() ? data_[pos_] : '\0';
+    }
+
+    char next_char() const
+    {
+        return pos_ + 1 < data_.size() ? data_[pos_+1] : '\0';
+    }
+
+    bool has_remaining_chars() const
+    {
+        return pos_ < data_.size();
+    }
+
+    void advance(size_t n = 1)
+    {
+        pos_ += n;
+    }
+
+    void expect(char expected)
+    {
+        if (current_char() != expected)
+        {
+            //fprintf(stderr, "Expected '%c' but found '%c' at position %d\n", expected, current_char(), pos_);
+            throw std::runtime_error("Expected character not found");
+        }
+        advance();
+    }
+
+private:
+    std::string_view data_;
+    size_t pos_{0};
+};
+
+struct JsonDataProcessorSerializer
+{
+    static std::string serialize(
+        const DataTree& value, size_t indent)
+    {
+        std::ostringstream oss;
+        serialize_value(oss, value, indent);
+        return oss.str();
+    }
+
+private:
+    static void serialize_value(
+        std::ostringstream& oss, const DataTree& value, size_t indent, size_t current_indent = 0)
+    {
+        if (value.is_null())
+        {
+            oss << "null";
+        }
+        else if (value.is_boolean())
+        {
+            oss << (value.as<bool>() ? "true" : "false");
+        }
+        else if (value.is_int())
+        {
+            oss << std::to_string(value.as<int>());
+        }
+        else if (value.is_double())
+        {
+            oss << std::to_string(value.as<double>());
+        }
+        else if (value.is_string())
+        {
+            oss << "\"" << escape_string(value.as<std::string>()) << "\"";
+        }
+        else if (value.is_array())
+        {
+            serialize_array(oss, value.as<DataTree::Array>(), indent, current_indent);
+        }
+        else if (value.is_object())
+        {
+            serialize_object(oss, value.as<DataTree::Object>(), indent, current_indent);
+        }
+    }
+
+    static void serialize_array(
+        std::ostringstream& oss, const DataTree::Array& arr, size_t indent, size_t current_indent)
+    {
+        oss << "[";
+        if (!arr.empty())
+        {
+            oss << "\n";
+            for (size_t i = 0; i < arr.size(); ++i)
+            {
+                oss << std::string(current_indent + indent, ' ');
+                serialize_value(oss, arr[i], indent, current_indent + indent);
+
+                if (i < arr.size() - 1)
+                    oss << ",";
+                oss << "\n";
+            }
+            oss << std::string(current_indent, ' ');
+        }
+        oss << "]";
+    }
+
+    static void serialize_object(
+        std::ostringstream& oss, const DataTree::Object& obj, size_t indent, size_t current_indent)
+    {
+        oss << "{";
+        if (!obj.empty())
+        {
+            // Sort keys for consistent output
+            std::vector<DataTree::Object::key_type> keys;
+            std::transform(obj.begin(), obj.end(), std::back_inserter(keys),
+                           [](const auto& pair) { return pair.first; });
+            std::sort(keys.begin(), keys.end());
+
+            oss << "\n";
+            for (size_t i = 0; i < keys.size(); ++i)
+            {
+                const auto& key = keys[i];
+                const auto& val = obj.at(key);
+
+                oss << std::string(current_indent + indent, ' ');
+                oss << "\"" << escape_string(key) << "\": ";
+                serialize_value(oss, val, indent, current_indent + indent);
+
+                if (i < keys.size() - 1)
+                    oss << ",";
+                oss << "\n";
+            }
+            oss << std::string(current_indent, ' ');
+        }
+        oss << "}";
+    }
+
+    static std::string escape_string(const std::string& str)
+    {
+        std::string result;
+        result.reserve(str.size() + 2); // Reserve space for efficiency
+        for (char c : str)
+        {
+            switch (c)
+            {
+                case '"': result += "\\\""; break;
+                case '\\': result += "\\\\"; break;
+                case '\a': result += "\\a"; break;
+                case '\b': result += "\\b"; break;
+                case '\f': result += "\\f"; break;
+                case '\n': result += "\\n"; break;
+                case '\r': result += "\\r"; break;
+                case '\t': result += "\\t"; break;
+                case '\v': result += "\\v"; break;
+
+                default:
+                    // escape control characters
+                    if (static_cast<unsigned char>(c) < 0x20)
+                    {
+                        char buf[7];
+                        snprintf(buf, sizeof(buf), "\\u%04x", static_cast<unsigned char>(c));
+                        result += buf;
+                    }
+                    else
+                    {
+                        result += c;
+                    }
+            }
+        }
+
+        return result;
+    }
+};
+
+DataTree from_json_string(const std::string& data)
+{
+    JsonDataProcessorParser parser(data);
+    return parser.parse();
+}
+
+std::string to_json_string(const DataTree& value, size_t indent)
+{
+    return JsonDataProcessorSerializer::serialize(value, indent);
+}

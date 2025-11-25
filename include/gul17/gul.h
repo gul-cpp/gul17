@@ -41,6 +41,7 @@
 #include "gul17/cat.h"
 // #include "gul17/catch.h" not included because it is only useful for unit tests
 // #include "gul17/date.h" not included by default to reduce compile times
+#include "gul17/data_processors.h"
 #include "gul17/escape.h"
 #include "gul17/expected.h"
 #include "gul17/finalizer.h"

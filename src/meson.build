@@ -10,6 +10,9 @@ libgul_src = files([
     'to_number.cc',
     'Trigger.cc',
     'trim.cc',
+    'data_processors/json_processor.cc',
+    'data_processors/xml_processor.cc',
+    'data_processors/yaml_processor.cc',
 ])
 
 inc += include_directories('.')

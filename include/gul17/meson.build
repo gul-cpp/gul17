@@ -4,6 +4,8 @@ standalone_headers = [
     'case_ascii.h',
     'cat.h',
     'date.h',
+    'data_processors.h',
+    'DataTree.h',
     'escape.h',
     'expected.h',
     'finalizer.h',
