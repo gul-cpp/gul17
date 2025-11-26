@@ -1,3 +1,25 @@
+/**
+ * \file   yaml_processor.cc
+ * \author Jan Behrens
+ * \date   Created on 20 November 2025
+ * \brief  Implementation of the YAML data processor functions.
+ *
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the license, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include "gul17/data_processors.h"
 #include "gul17/join_split.h"
 
@@ -8,10 +30,14 @@ using gul17::DataTree;
 
 struct YamlDataProcessorParser
 {
-    YamlDataProcessorParser(const std::string_view& yaml_str) : data_(yaml_str)
+    YamlDataProcessorParser(const std::string_view& yaml_str)
+        : data_(yaml_str)
     {}
 
-    DataTree parse() { return parse_document(); }
+    DataTree parse()
+    {
+        return parse_document();
+    }
 
 private:
     DataTree parse_document()
@@ -20,7 +46,6 @@ private:
         lines_.clear();
         current_line_ = 0;
 
-#if 1
         for (const auto & line : gul17::split_sv(data_, "\n"))
         {
             // Remove comments and skip empty lines
@@ -30,25 +55,9 @@ private:
                 lines_.emplace_back(stripped);
             }
         }
-#else
-        std::istringstream stream(data_);
-        std::string line;
 
-        // TODO: use string_view for efficiency
-        while (std::getline(stream, line))
-        {
-            // Remove comments and skip empty lines
-            line = strip_comment(line);
-            if (!trim(line).empty())
-            {
-                lines_.push_back(line);
-            }
-        }
-#endif
         if (lines_.empty())
-        {
             return DataTree(nullptr);
-        }
 
         return parse_node();
     }
@@ -56,9 +65,7 @@ private:
     DataTree parse_node(size_t current_indent = 0)
     {
         if (current_line_ >= lines_.size())
-        {
             return DataTree(nullptr);
-        }
 
         auto line = lines_[current_line_];
         auto line_indent = get_indentation(line);
@@ -66,9 +73,7 @@ private:
 
         // Check if we're at the wrong indentation level
         if (line_indent < current_indent)
-        {
             return DataTree(nullptr); // Signal to go back
-        }
 
         // Determine node type
         if (is_sequence_item(content))
@@ -204,9 +209,7 @@ private:
 
         // Check for null
         if (trimmed == "null" || trimmed == "~" || trimmed.empty())
-        {
             return DataTree(nullptr);
-        }
 
         // Check for boolean
         if (trimmed == "true") return DataTree(true);
@@ -267,6 +270,7 @@ private:
         {
             i++;
         }
+
         return i;
     }
 
@@ -274,9 +278,8 @@ private:
     {
         auto comment_pos = line.find('#');
         if (comment_pos != std::string::npos)
-        {
             return line.substr(0, comment_pos);
-        }
+
         return line;
     }
 
@@ -399,6 +402,7 @@ private:
                 result += str[i];
             }
         }
+
         return result;
     }
 
@@ -412,6 +416,8 @@ struct YamlDataProcessorSerializer
 {
     static std::string serialize(const DataTree& value, size_t indent)
     {
+        if (indent == 0)
+            throw std::runtime_error("Indentation must be greater than zero for YAML serialization");
         std::ostringstream oss;
         serialize_yaml(oss, value, indent);
         return oss.str();
@@ -429,7 +435,8 @@ private:
         {
             serialize_sequence(oss, value.as<DataTree::Array>(), indent, current_indent);
         }
-        else {
+        else
+        {
             serialize_scalar(oss, value);
         }
     }
@@ -518,7 +525,7 @@ private:
     }
 };
 
-DataTree from_yaml_string(const std::string& data)
+DataTree from_yaml_string(const std::string_view& data)
 {
     YamlDataProcessorParser parser(data);
     return parser.parse();
@@ -528,3 +535,5 @@ std::string to_yaml_string(const DataTree& value, size_t indent)
 {
     return YamlDataProcessorSerializer::serialize(value, indent);
 }
+
+// vi:ts=4:sw=4:sts=4:et

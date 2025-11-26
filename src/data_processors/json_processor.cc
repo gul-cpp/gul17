@@ -1,4 +1,26 @@
-#include "gul17/data_processors.h"
+/**
+ * \file   json_processor.cc
+ * \author Jan Behrens
+ * \date   Created on 20 November 2025
+ * \brief  Implementation of the JSON data processor functions.
+ *
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the license, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+ #include "gul17/data_processors.h"
 
 #include <algorithm>
 #include <sstream>
@@ -7,10 +29,14 @@ using gul17::DataTree;
 
 struct JsonDataProcessorParser
 {
-    JsonDataProcessorParser(const std::string_view& json_str) : data_(json_str)
+    JsonDataProcessorParser(const std::string_view& json_str)
+        : data_(json_str)
     {}
 
-    DataTree parse() { return parse_value(); }
+    DataTree parse()
+    {
+        return parse_value();
+    }
 
 private:
     DataTree parse_value()
@@ -19,15 +45,18 @@ private:
         skip_whitespace();
         char c = current_char();
 
-        switch (c) {
+        switch (c)
+        {
             case '{': return parse_object();
             case '[': return parse_array();
             case '"': return parse_string();
             case 't': case 'f': return parse_boolean();
             case 'n': return parse_null();
-            case '-': case '0': case '1': case '2': case '3': case '4':
+            case '-':
+            case '0': case '1': case '2': case '3': case '4':
             case '5': case '6': case '7': case '8': case '9':
                 return parse_number();
+
             default:
                 throw std::runtime_error("Unexpected character");
         }
@@ -461,7 +490,7 @@ private:
     }
 };
 
-DataTree from_json_string(const std::string& data)
+DataTree from_json_string(const std::string_view& data)
 {
     JsonDataProcessorParser parser(data);
     return parser.parse();
@@ -471,3 +500,5 @@ std::string to_json_string(const DataTree& value, size_t indent)
 {
     return JsonDataProcessorSerializer::serialize(value, indent);
 }
+
+// vi:ts=4:sw=4:sts=4:et

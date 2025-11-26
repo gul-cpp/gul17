@@ -1,4 +1,26 @@
-#include "gul17/data_processors.h"
+/**
+ * \file   xml_processor.cc
+ * \author Jan Behrens
+ * \date   Created on 20 November 2025
+ * \brief  Implementation of the XML data processor functions.
+ *
+ * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the license, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+ #include "gul17/data_processors.h"
 #include "gul17/cat.h"
 
 #include <algorithm>
@@ -8,10 +30,14 @@ using gul17::DataTree;
 
 struct XmlDataProcessorParser
 {
-    XmlDataProcessorParser(const std::string_view& xml_str) : data_(xml_str)
+    XmlDataProcessorParser(const std::string_view& xml_str)
+        : data_(xml_str)
     {}
 
-    DataTree parse() { return parse_xml_element().second; }
+    DataTree parse()
+    {
+        return parse_xml_element().second;
+    }
 
 private:
     using KeyValuePair = std::pair<std::string, DataTree>;
@@ -41,9 +67,7 @@ private:
         // Parse tag name
         auto tag_name = std::string(parse_tag_name());
         if (root_name_.empty())
-        {
             root_name_ = tag_name;
-        }
 
         // Parse attributes
         AttributesList attributes;
@@ -127,6 +151,7 @@ private:
                 child_groups[child_tag].push_back(child_value);
             }
 
+            // Add grouped children to object
             for (auto& [child_tag, values] : child_groups)
             {
                 if (values.size() == 1)
@@ -139,6 +164,7 @@ private:
                 }
             }
 
+            // Add attributes
             for (const auto& [attr_name, attr_value] : attributes)
             {
                 auto key = "@" + attr_name;
@@ -186,9 +212,8 @@ private:
     {
         char quote_char = current_char();
         if (quote_char != '"' && quote_char != '\'')
-        {
             throw std::runtime_error("Expected quote for attribute value");
-        }
+
         advance(); // skip opening quote
 
         auto start_pos = pos_;
@@ -228,9 +253,7 @@ private:
         auto last = text.find_last_not_of(" \t\n\r");
 
         if (first == std::string::npos)
-        {
             return "";
-        }
 
         return text.substr(first, last - first + 1);
     }
@@ -243,9 +266,7 @@ private:
             size_t idx;
             int int_val = std::stoi(std::string(str), &idx);
             if (idx == str.size())
-            {
                 return DataTree(int_val);
-            }
         }
         catch (...) {}
 
@@ -255,9 +276,7 @@ private:
             size_t idx;
             double double_val = std::stod(std::string(str), &idx);
             if (idx == str.size())
-            {
                 return DataTree(double_val);
-            }
         }
         catch (...) {}
 
@@ -499,7 +518,7 @@ private:
     }
 };
 
-DataTree from_xml_string(const std::string& data)
+DataTree from_xml_string(const std::string_view& data)
 {
     XmlDataProcessorParser parser(data);
     return parser.parse();
@@ -509,3 +528,5 @@ std::string to_xml_string(const DataTree& value, size_t indent, const std::strin
 {
     return XmlDataProcessorSerializer::serialize(value, indent, root_tag_name);
 }
+
+// vi:ts=4:sw=4:sts=4:et

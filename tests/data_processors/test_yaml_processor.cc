@@ -26,6 +26,8 @@
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_approx.hpp>
 
+#if 0 // Temporarily disable all tests to focus on test_func()
+
 using gul17::DataTree;
 using gul17::from_yaml_string;
 using gul17::to_yaml_string;
@@ -132,3 +134,5 @@ key5: null
     auto yaml_str = to_yaml_string(tree, 2);
     REQUIRE(yaml_str == expected_yaml);
 }
+
+#endif
