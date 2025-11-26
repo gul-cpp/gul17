@@ -71,10 +71,12 @@ TEST_CASE("XmlDataProcessor: XML parsing with attributes and comments", "[XmlDat
 {
     auto tree = from_xml_string(
 R"(<root>
+    TEXT CONTENT 1
     <!-- ignored comment -->
+    TEXT CONTENT 2
     <key1 attr1="k1a1">value1</key1>
     <key2 attr1="k2a1" attr2="k2a2" attr3=""></key2>
-    TEXT CONTENT
+    TEXT CONTENT 3
 </root>)");
 
     REQUIRE(tree["key1"].is_object());
@@ -91,8 +93,11 @@ R"(<root>
     REQUIRE(tree["key2"]["@attr2"].as<std::string>() == "k2a2");
     REQUIRE(tree["key2"]["@attr3"].is_null());
 
-    REQUIRE(tree["#text"].is_string());
-    REQUIRE(tree["#text"].as<std::string>() == "TEXT CONTENT");
+    REQUIRE(tree["#text"].is_array());
+    REQUIRE(tree["#text"].size() == 3);
+    REQUIRE(tree["#text"][0].as<std::string>() == "TEXT CONTENT 1");
+    REQUIRE(tree["#text"][1].as<std::string>() == "TEXT CONTENT 2");
+    REQUIRE(tree["#text"][2].as<std::string>() == "TEXT CONTENT 3");
 }
 
 TEST_CASE("XmlDataProcessor: XML parsing with escape sequences", "[XmlDataProcessor]")

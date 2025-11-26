@@ -21,6 +21,7 @@
  */
 
 #include "gul17/data_processors.h"
+#include "gul17/cat.h"
 
 #include <algorithm>
 #include <sstream>
@@ -58,7 +59,7 @@ private:
                 return parse_number();
 
             default:
-                throw std::runtime_error("Unexpected character");
+                throw std::runtime_error(gul17::cat("Unexpected character: ", c, " at position ", pos_));
         }
     }
 
@@ -203,7 +204,7 @@ private:
                         throw std::runtime_error("Unicode escape sequences not supported");
 
                     default:
-                        throw std::runtime_error("Invalid escape sequence");
+                        throw std::runtime_error(gul17::cat("Invalid escape sequence: ", esc, " at position ", pos_));
                 }
                 advance();
             }
@@ -231,7 +232,7 @@ private:
         }
         else
         {
-            throw std::runtime_error("Invalid boolean value");
+            throw std::runtime_error(gul17::cat("Invalid boolean value at position ", pos_));
         }
     }
 
@@ -244,7 +245,7 @@ private:
         }
         else
         {
-            throw std::runtime_error("Invalid null value");
+            throw std::runtime_error(gul17::cat("Invalid null value at position ", pos_));
         }
     }
 
@@ -317,7 +318,7 @@ private:
             }
             else
             {
-                throw std::runtime_error("Invalid comment syntax");
+                throw std::runtime_error(gul17::cat("Invalid comment syntax at position ", pos_));
             }
         }
     }
@@ -346,8 +347,7 @@ private:
     {
         if (current_char() != expected)
         {
-            //fprintf(stderr, "Expected '%c' but found '%c' at position %d\n", expected, current_char(), pos_);
-            throw std::runtime_error("Expected character not found");
+            throw std::runtime_error(gul17::cat("Expected character not found: ", expected, " at position ", pos_));
         }
         advance();
     }

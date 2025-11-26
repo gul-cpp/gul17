@@ -25,6 +25,8 @@
 
 #include <algorithm>
 #include <sstream>
+#include <unordered_map>
+#include <vector>
 
 using gul17::DataTree;
 
@@ -48,21 +50,12 @@ private:
     {
         // Parse content
         DataTree result;
-        skip_whitespace();
+        std::vector<std::string_view> text_content;
 
+        skip_whitespace();
         expect('<');
 
-        if (current_char() == '!')
-        {
-            // Skip comments or DOCTYPE
-            while (has_remaining_chars() && !(current_char() == '>' ))
-            {
-                advance();
-            }
-            expect('>');
-            skip_whitespace();
-            return parse_xml_element();
-        }
+        strip_comment();
 
         // Parse tag name
         auto tag_name = std::string(parse_tag_name());
@@ -98,7 +91,6 @@ private:
 
         // Parse children or text content
         ChildrenList children;
-        std::string text_content;
 
         if (current_char() == '/')
         {
@@ -113,6 +105,7 @@ private:
             // Check for nested elements vs text content
             while (has_remaining_chars() && !(current_char() == '<' && next_char() == '/'))
             {
+                strip_comment();
                 if (current_char() == '<')
                 {
                     // Nested element
@@ -121,7 +114,7 @@ private:
                 else
                 {
                     // Text content
-                    text_content += parse_text_content();
+                    text_content.push_back(parse_text_content());
                 }
                 skip_whitespace();
             }
@@ -170,7 +163,7 @@ private:
                 auto key = "@" + attr_name;
                 if (obj.find(key) != obj.end())
                 {
-                    throw std::runtime_error("Duplicate attribute name: " + attr_name);
+                    throw std::runtime_error(gul17::cat("Duplicate attribute name: ", attr_name));
                 }
                 obj[key] = attr_value;
             }
@@ -178,7 +171,21 @@ private:
             // Add text content if any
             if (!text_content.empty())
             {
-                obj["#text"] = DataTree(text_content);
+                if (text_content.size() == 1)
+                {
+                    obj["#text"] = DataTree(std::string(text_content[0])); // Single text content
+                }
+                else
+                {
+                    /// FIXME: Better to pass string_views directly to DataTree?
+                    DataTree::Array text_array;
+                    std::transform(
+                        text_content.begin(), text_content.end(),
+                        std::back_inserter(text_array),
+                        [](const std::string_view& txt) { return DataTree(std::string(txt)); });
+
+                    obj["#text"] = DataTree(text_array); // Multiple text contents as array
+                }
             }
 
             return std::make_pair(tag_name, DataTree(obj));
@@ -187,12 +194,40 @@ private:
         {
             // Simple element with text content
             // Try to convert to appropriate type
-            return std::make_pair(tag_name, convert_string_to_value(text_content));
+            if (text_content.size() == 1)
+            {
+                return std::make_pair(tag_name, convert_string_to_value(text_content[0]));
+            }
+            else
+            {
+                throw std::runtime_error(gul17::cat("Multiple text contents in simple element: ", tag_name));
+            }
         }
         else
         {
             // Empty element
             return std::make_pair(tag_name, DataTree(nullptr));
+        }
+    }
+
+    void strip_comment()
+    {
+        skip_whitespace();
+
+        if (current_char() == '<' && next_char() == '!' &&
+            data_.compare(pos_, 4, "<!--") == 0)
+        {
+            pos_ += 4; // skip '<!--'
+            while (has_remaining_chars() &&
+                   data_.compare(pos_, 3, "-->") != 0)
+            {
+                ++pos_;
+            }
+            if (data_.compare(pos_, 3, "-->") == 0)
+            {
+                pos_ += 3; // skip '-->'
+            }
+            skip_whitespace();
         }
     }
 
@@ -316,8 +351,7 @@ private:
     {
         if (current_char() != expected)
         {
-            //fprintf(stderr, "Expected '%c' but found '%c' at position %d\n", expected, current_char(), pos_);
-            throw std::runtime_error("Expected character not found");
+            throw std::runtime_error(gul17::cat("Expected character not found: ", expected, " at position ", pos_));
         }
         advance();
     }
