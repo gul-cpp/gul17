@@ -20,16 +20,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
- #include "gul17/data_processors.h"
+#include "gul17/data_processors.h"
 
 #include <algorithm>
 #include <sstream>
 
 using gul17::DataTree;
 
-struct JsonDataProcessorParser
+struct JsonDataParser
 {
-    JsonDataProcessorParser(const std::string_view& json_str)
+    JsonDataParser(const std::string_view& json_str)
         : data_(json_str)
     {}
 
@@ -357,75 +357,74 @@ private:
     size_t pos_{0};
 };
 
-struct JsonDataProcessorSerializer
+struct JsonDataSerializer
 {
-    static std::string serialize(
-        const DataTree& value, size_t indent)
+    JsonDataSerializer(const DataTree& tree_root)
+        : tree_root_(tree_root)
+    {}
+
+    std::string serialize(size_t indent)
     {
-        std::ostringstream oss;
-        serialize_value(oss, value, indent);
-        return oss.str();
+        serialize_value(tree_root_, indent);
+        return output_.str();
     }
 
 private:
-    static void serialize_value(
-        std::ostringstream& oss, const DataTree& value, size_t indent, size_t current_indent = 0)
+    void serialize_value(const DataTree& value, size_t indent, size_t current_indent = 0)
     {
         if (value.is_null())
         {
-            oss << "null";
+            output_ << "null";
         }
         else if (value.is_boolean())
         {
-            oss << (value.as<bool>() ? "true" : "false");
+            output_ << (value.as<bool>() ? "true" : "false");
         }
         else if (value.is_int())
         {
-            oss << std::to_string(value.as<int>());
+            output_ << std::to_string(value.as<int>());
         }
         else if (value.is_double())
         {
-            oss << std::to_string(value.as<double>());
+            output_ << std::to_string(value.as<double>());
         }
         else if (value.is_string())
         {
-            oss << "\"" << escape_string(value.as<std::string>()) << "\"";
+            output_ << "\"" << escape_string(value.as<std::string>()) << "\"";
         }
         else if (value.is_array())
         {
-            serialize_array(oss, value.as<DataTree::Array>(), indent, current_indent);
+            serialize_array(value.as<DataTree::Array>(), indent, current_indent);
         }
         else if (value.is_object())
         {
-            serialize_object(oss, value.as<DataTree::Object>(), indent, current_indent);
+            serialize_object(value.as<DataTree::Object>(), indent, current_indent);
         }
     }
 
-    static void serialize_array(
-        std::ostringstream& oss, const DataTree::Array& arr, size_t indent, size_t current_indent)
+    void serialize_array(const DataTree::Array& arr, size_t indent, size_t current_indent)
     {
-        oss << "[";
+        output_ << "[";
         if (!arr.empty())
         {
-            oss << "\n";
+            output_ << "\n";
             for (size_t i = 0; i < arr.size(); ++i)
             {
-                oss << std::string(current_indent + indent, ' ');
-                serialize_value(oss, arr[i], indent, current_indent + indent);
+                output_ << std::string(current_indent + indent, ' ');
+                serialize_value(arr[i], indent, current_indent + indent);
 
                 if (i < arr.size() - 1)
-                    oss << ",";
-                oss << "\n";
+                    output_ << ",";
+                output_ << "\n";
             }
-            oss << std::string(current_indent, ' ');
+            output_ << std::string(current_indent, ' ');
         }
-        oss << "]";
+        output_ << "]";
     }
 
-    static void serialize_object(
-        std::ostringstream& oss, const DataTree::Object& obj, size_t indent, size_t current_indent)
+    void serialize_object(const DataTree::Object& obj, size_t indent, size_t current_indent)
     {
-        oss << "{";
+        output_ << "{";
         if (!obj.empty())
         {
             // Sort keys for consistent output
@@ -434,23 +433,23 @@ private:
                            [](const auto& pair) { return pair.first; });
             std::sort(keys.begin(), keys.end());
 
-            oss << "\n";
+            output_ << "\n";
             for (size_t i = 0; i < keys.size(); ++i)
             {
                 const auto& key = keys[i];
                 const auto& val = obj.at(key);
 
-                oss << std::string(current_indent + indent, ' ');
-                oss << "\"" << escape_string(key) << "\": ";
-                serialize_value(oss, val, indent, current_indent + indent);
+                output_ << std::string(current_indent + indent, ' ');
+                output_ << "\"" << escape_string(key) << "\": ";
+                serialize_value(val, indent, current_indent + indent);
 
                 if (i < keys.size() - 1)
-                    oss << ",";
-                oss << "\n";
+                    output_ << ",";
+                output_ << "\n";
             }
-            oss << std::string(current_indent, ' ');
+            output_ << std::string(current_indent, ' ');
         }
-        oss << "}";
+        output_ << "}";
     }
 
     static std::string escape_string(const std::string& str)
@@ -488,17 +487,26 @@ private:
 
         return result;
     }
+
+private:
+    const DataTree& tree_root_;
+    std::ostringstream output_;
 };
+
+namespace gul17 {
 
 DataTree from_json_string(const std::string_view& data)
 {
-    JsonDataProcessorParser parser(data);
+    JsonDataParser parser(data);
     return parser.parse();
 }
 
 std::string to_json_string(const DataTree& value, size_t indent)
 {
-    return JsonDataProcessorSerializer::serialize(value, indent);
+    JsonDataSerializer serializer(value);
+    return serializer.serialize(indent);
 }
+
+} // namespace gul17
 
 // vi:ts=4:sw=4:sts=4:et

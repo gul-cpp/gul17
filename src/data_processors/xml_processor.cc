@@ -20,7 +20,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
- #include "gul17/data_processors.h"
+#include "gul17/data_processors.h"
 #include "gul17/cat.h"
 
 #include <algorithm>
@@ -28,9 +28,9 @@
 
 using gul17::DataTree;
 
-struct XmlDataProcessorParser
+struct XmlDataParser
 {
-    XmlDataProcessorParser(const std::string_view& xml_str)
+    XmlDataParser(const std::string_view& xml_str)
         : data_(xml_str)
     {}
 
@@ -378,22 +378,22 @@ private:
     std::string root_name_;
 };
 
-struct XmlDataProcessorSerializer
+struct XmlDataSerializer
 {
-    static std::string serialize(
-        const DataTree& value, size_t indent, const std::string& root_tag_name)
+    XmlDataSerializer(const DataTree& tree_root)
+        : tree_root_(tree_root)
+    {}
+
+    std::string serialize(size_t indent, const std::string& root_tag_name)
     {
-        std::ostringstream oss;
-        if (value.is_object())
-            serialize_value(oss, value, root_tag_name, indent, 0);
-        else
+        if (!tree_root_.is_object())
             throw std::runtime_error("Root value must be an object for XML serialization");
-        return oss.str();
+        serialize_value(tree_root_, root_tag_name, indent, 0);
+        return output_.str();
     }
 
 private:
-    static void serialize_value(
-        std::ostringstream& oss, const DataTree& value, const std::string& tag_name, size_t indent, size_t current_indent = 0)
+    void serialize_value(const DataTree& value, const std::string& tag_name, size_t indent, size_t current_indent = 0)
     {
         std::string newline = indent > 0 ? "\n" : "";  // Add newlines if indenting
         std::string indent_str = std::string(current_indent, ' ');
@@ -403,29 +403,29 @@ private:
 
         if (value.is_null())
         {
-            oss << indent_str << opening_tag << "/>" << newline;
+            output_ << indent_str << opening_tag << "/>" << newline;
         }
         else if (value.is_boolean())
         {
-            oss << indent_str << opening_tag << ">"
+            output_ << indent_str << opening_tag << ">"
                 << (value.as<bool>() ? "true" : "false")
                 << closing_tag;
         }
         else if (value.is_int())
         {
-            oss << indent_str << opening_tag << ">"
+            output_ << indent_str << opening_tag << ">"
                 << std::to_string(value.as<int>())
                 << closing_tag;
         }
         else if (value.is_double())
         {
-            oss << indent_str << opening_tag << ">"
+            output_ << indent_str << opening_tag << ">"
                 << std::to_string(value.as<double>())
                 << closing_tag;
         }
         else if (value.is_string())
         {
-            oss << indent_str << opening_tag << ">"
+            output_ << indent_str << opening_tag << ">"
                 << escape_xml(value.as<std::string>())
                 << closing_tag;
         }
@@ -435,7 +435,7 @@ private:
 
             for (const auto& item : array)
             {
-                serialize_value(oss, item, tag_name, indent, current_indent);
+                serialize_value(item, tag_name, indent, current_indent);
             }
         }
         else if (value.is_object())
@@ -449,7 +449,7 @@ private:
             std::sort(keys.begin(), keys.end());
 
             // Opening tag with attributes
-            oss << indent_str << opening_tag;
+            output_ << indent_str << opening_tag;
             for (size_t i = 0; i < keys.size(); ++i)
             {
                 const auto& key = keys[i];
@@ -459,19 +459,19 @@ private:
                 {
                     // Attribute
                     std::string attr_name = key.substr(1); // Strip '@'
-                    oss << " " << attr_name << "=\"";
+                    output_ << " " << attr_name << "=\"";
                     if (val.is_null())
                     {
-                        oss << "\"";
+                        output_ << "\"";
                     }
                     else
                     {
-                        oss << escape_xml(val.as<std::string>()) << "\"";
+                        output_ << escape_xml(val.as<std::string>()) << "\"";
                     }
                 }
             }
-            oss << ">";
-            oss << newline;
+            output_ << ">";
+            output_ << newline;
 
             // Child elements and text content
             for (size_t i = 0; i < keys.size(); ++i)
@@ -483,7 +483,7 @@ private:
                 if (key.rfind("@", 0) == 0 || key == "#text")
                     continue;
 
-                serialize_value(oss, val, key, indent, current_indent + indent);
+                serialize_value(val, key, indent, current_indent + indent);
             }
 
             auto it = obj.find("#text");;
@@ -491,11 +491,11 @@ private:
             {
                 // Text content
                 std::string next_indent_str = std::string(current_indent + indent, ' ');
-                oss << next_indent_str << escape_xml(it->second.as<std::string>()) << newline;
+                output_ << next_indent_str << escape_xml(it->second.as<std::string>()) << newline;
             }
 
-            oss << indent_str;
-            oss << closing_tag;
+            output_ << indent_str;
+            output_ << closing_tag;
         }
     }
 
@@ -516,17 +516,26 @@ private:
         }
         return result;
     }
+
+private:
+    const DataTree& tree_root_;
+    std::ostringstream output_;
 };
+
+namespace gul17 {
 
 DataTree from_xml_string(const std::string_view& data)
 {
-    XmlDataProcessorParser parser(data);
+    XmlDataParser parser(data);
     return parser.parse();
 }
 
 std::string to_xml_string(const DataTree& value, size_t indent, const std::string& root_tag_name)
 {
-    return XmlDataProcessorSerializer::serialize(value, indent, root_tag_name);
+    XmlDataSerializer serializer(value);
+    return serializer.serialize(indent, root_tag_name);
 }
+
+} // namespace gul17
 
 // vi:ts=4:sw=4:sts=4:et

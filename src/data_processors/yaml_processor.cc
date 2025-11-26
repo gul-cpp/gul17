@@ -28,9 +28,9 @@
 
 using gul17::DataTree;
 
-struct YamlDataProcessorParser
+struct YamlDataParser
 {
-    YamlDataProcessorParser(const std::string_view& yaml_str)
+    YamlDataParser(const std::string_view& yaml_str)
         : data_(yaml_str)
     {}
 
@@ -304,7 +304,7 @@ private:
         return line.find(':') != std::string::npos;
     }
 
-    std::string unescape_yaml_string(const std::string_view& str)
+    static std::string unescape_yaml_string(const std::string_view& str)
     {
         // TODO - Implement full YAML string unescaping
 
@@ -412,53 +412,54 @@ private:
     size_t current_line_{0};
 };
 
-struct YamlDataProcessorSerializer
+struct YamlDataSerializer
 {
-    static std::string serialize(const DataTree& value, size_t indent)
+    YamlDataSerializer(const DataTree& tree_root)
+        : tree_root_(tree_root)
+    {}
+
+    std::string serialize(size_t indent)
     {
         if (indent == 0)
             throw std::runtime_error("Indentation must be greater than zero for YAML serialization");
-        std::ostringstream oss;
-        serialize_yaml(oss, value, indent);
-        return oss.str();
+        serialize_yaml(tree_root_, indent);
+        return output_.str();
     }
 
 private:
-    static void serialize_yaml(
-        std::ostringstream& oss, const DataTree& value, size_t indent, size_t current_indent = 0)
+    void serialize_yaml(const DataTree& value, size_t indent, size_t current_indent = 0)
     {
         if (value.is_object())
         {
-            serialize_mapping(oss, value.as<DataTree::Object>(), indent, current_indent);
+            serialize_mapping(value.as<DataTree::Object>(), indent, current_indent);
         }
         else if (value.is_array())
         {
-            serialize_sequence(oss, value.as<DataTree::Array>(), indent, current_indent);
+            serialize_sequence(value.as<DataTree::Array>(), indent, current_indent);
         }
         else
         {
-            serialize_scalar(oss, value);
+            serialize_scalar(value);
         }
     }
 
-    static void serialize_scalar(
-        std::ostringstream& oss, const DataTree& value)
+    void serialize_scalar(const DataTree& value)
     {
         if (value.is_null())
         {
-            oss << "null";
+            output_ << "null";
         }
         else if (value.is_boolean())
         {
-            oss << (value.as<bool>() ? "true" : "false");
+            output_ << (value.as<bool>() ? "true" : "false");
         }
         else if (value.is_int())
         {
-            oss << value.as<int>();
+            output_ << value.as<int>();
         }
         else if (value.is_double())
         {
-            oss << value.as<double>();
+            output_ << value.as<double>();
         }
         else if (value.is_string())
         {
@@ -466,36 +467,34 @@ private:
             // Quote strings if they contain special characters
             if (str.empty() || str.find_first_of(":#{}[]&*!|>\"'%") != std::string::npos)
             {
-                oss << "\"" << str << "\"";
+                output_ << "\"" << str << "\"";
             }
             else
             {
-                oss << str;
+                output_ << str;
             }
         }
     }
 
-    static void serialize_sequence(
-        std::ostringstream& oss, const DataTree::Array& arr, size_t indent, size_t current_indent)
+    void serialize_sequence(const DataTree::Array& arr, size_t indent, size_t current_indent)
     {
         for (const auto& item : arr)
         {
-            oss << std::string(current_indent, ' ') << "- ";
+            output_ << std::string(current_indent, ' ') << "- ";
             if (item.is_object() || item.is_array())
             {
-                oss << "\n";
-                serialize_yaml(oss, item, indent, current_indent + indent);
+                output_ << "\n";
+                serialize_yaml(item, indent, current_indent + indent);
             }
             else
             {
-                serialize_scalar(oss, item);
-                oss << "\n";
+                serialize_scalar(item);
+                output_ << "\n";
             }
         }
     }
 
-    static void serialize_mapping(
-        std::ostringstream& oss, const DataTree::Object& obj, size_t indent, size_t current_indent)
+    void serialize_mapping(const DataTree::Object& obj, size_t indent, size_t current_indent)
     {
         // Sort keys for consistent output
         std::vector<DataTree::Object::key_type> keys;
@@ -508,32 +507,41 @@ private:
             const auto& key = keys[i];
             const auto& val = obj.at(key);
 
-            oss << std::string(current_indent, ' ') << key << ":";
+            output_ << std::string(current_indent, ' ') << key << ":";
 
             if (val.is_object() || val.is_array())
             {
-                oss << "\n";
-                serialize_yaml(oss, val, indent, current_indent + indent);
+                output_ << "\n";
+                serialize_yaml(val, indent, current_indent + indent);
             }
             else
             {
-                oss << " ";
-                serialize_scalar(oss, val);
-                oss << "\n";
+                output_ << " ";
+                serialize_scalar(val);
+                output_ << "\n";
             }
         }
     }
+
+private:
+    const DataTree& tree_root_;
+    std::ostringstream output_;
 };
+
+namespace gul17 {
 
 DataTree from_yaml_string(const std::string_view& data)
 {
-    YamlDataProcessorParser parser(data);
+    YamlDataParser parser(data);
     return parser.parse();
 }
 
 std::string to_yaml_string(const DataTree& value, size_t indent)
 {
-    return YamlDataProcessorSerializer::serialize(value, indent);
+    YamlDataSerializer serializer(value);
+    return serializer.serialize(indent);
 }
+
+} // namespace gul17
 
 // vi:ts=4:sw=4:sts=4:et
