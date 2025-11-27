@@ -328,7 +328,7 @@ private:
 
     char next_char() const
     {
-        return pos_ + 1 < data_.size() ? data_[pos_+1] : '\0';
+        return pos_ + 1 < data_.size() ? data_[pos_ + 1] : '\0';
     }
 
     bool has_remaining_chars() const
@@ -460,13 +460,11 @@ private:
             {
                 case '"': result += "\\\""; break;
                 case '\\': result += "\\\\"; break;
-                case '\a': result += "\\a"; break;
                 case '\b': result += "\\b"; break;
                 case '\f': result += "\\f"; break;
                 case '\n': result += "\\n"; break;
                 case '\r': result += "\\r"; break;
                 case '\t': result += "\\t"; break;
-                case '\v': result += "\\v"; break;
 
                 default:
                     // escape control characters

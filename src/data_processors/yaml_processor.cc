@@ -329,10 +329,10 @@ private:
                     case ' ': result += ' '; break;
 
                     // YAML-specific escapes
-                    case '_': result += "\xC2\xA0"; break;     // U+00A0
-                    case 'N': result += "\xC2\x85"; break;     // U+0085
-                    case 'L': result += "\xE2\x80\xA8"; break; // U+2028
-                    case 'P': result += "\xE2\x80\xA9"; break; // U+2029
+                    case '_': result += u8"\u00A0"; break;     // U+00A0 (non-breaking space)
+                    case 'N': result += u8"\u0085"; break;     // U+0085 (next line)
+                    case 'L': result += u8"\u2028"; break;     // U+2028 (line separator)
+                    case 'P': result += u8"\u2029"; break;     // U+2029 (paragraph separator)
 
                     // Hexcode and Unicode escapes
                     case 'x':

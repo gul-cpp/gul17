@@ -53,8 +53,8 @@ namespace gul17 {
  * tree["foo"] = "bar";          // String
  * tree["answer"] = 42;          // Number
  * tree["is_valid"] = true;     // Boolean
- * tree["items"] = DataTree::array{1, 2, 3}; // Array
- * tree["config"] = DataTree::object{ {"key1", "value1"}, {"key2", 42} }; // Object
+ * tree["items"] = DataTree::Array{1, 2, 3}; // Array
+ * tree["config"] = DataTree::Object{ {"key1", "value1"}, {"key2", 42} }; // Object
  *
  * tree["items"].push_back(4);  // Add an element to the array
  * tree["config"]["key3"] = 3.14; // Add a key-value pair to the object
