@@ -1,8 +1,8 @@
 /**
- * \file   test_JsonDataProcessor.cc
+ * \file   test_json_processor.cc
  * \author Jan Behrens
  * \date   Created on November 19, 2025
- * \brief  Test suite for the JsonDataProcessor class.
+ * \brief  Test suite for the JsonProcessor class.
  *
  * \copyright Copyright 2019-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
@@ -30,7 +30,7 @@ using gul17::DataTree;
 using gul17::from_json_string;
 using gul17::to_json_string;
 
-TEST_CASE("JsonDataProcessor: JSON parsing", "[JsonDataProcessor]")
+TEST_CASE("JsonProcessor: JSON parsing", "[JsonProcessor]")
 {
     auto tree = from_json_string(
         R"({"key1": "value1", "key2": 42, "key3": [1, 2, 3], "key4": {"nestedKey": 3.1415}, "key5": null})");
@@ -57,7 +57,7 @@ TEST_CASE("JsonDataProcessor: JSON parsing", "[JsonDataProcessor]")
     REQUIRE(tree["invalid"].is_empty());
 }
 
-TEST_CASE("JsonDataProcessor: JSON parsing with comments", "[JsonDataProcessor]")
+TEST_CASE("JsonProcessor: JSON parsing with comments", "[JsonProcessor]")
 {
     auto tree = from_json_string(
 R"({
@@ -73,7 +73,7 @@ R"({
     REQUIRE(tree["key2"].as<int>() == 42);
 }
 
-TEST_CASE("JsonDataProcessor: JSON parsing with escape sequences", "[JsonDataProcessor]")
+TEST_CASE("JsonProcessor: JSON parsing with escape sequences", "[JsonProcessor]")
 {
     auto tree = from_json_string(
 R"({
@@ -92,7 +92,7 @@ R"({
     REQUIRE(tree["key3"].as<std::string>() == "24");
 }
 
-TEST_CASE("JsonDataProcessor: JSON parsing with errors", "[JsonDataProcessor]")
+TEST_CASE("JsonProcessor: JSON parsing with errors", "[JsonProcessor]")
 {
     REQUIRE_THROWS(from_json_string(R"({"key1": "value1", "key2": 42, )")); // Trailing comma
     REQUIRE_THROWS(from_json_string(R"({"key1": "value1" "key2": 42})")); // Missing comma
@@ -100,7 +100,7 @@ TEST_CASE("JsonDataProcessor: JSON parsing with errors", "[JsonDataProcessor]")
     REQUIRE_THROWS(from_json_string(R"({"key1": "value1", "key2": 42)")); // Missing closing brace
 }
 
-TEST_CASE("JsonDataProcessor: JSON serialization", "[JsonDataProcessor]")
+TEST_CASE("JsonProcessor: JSON serialization", "[JsonProcessor]")
 {
     auto tree = DataTree::make_object();
 

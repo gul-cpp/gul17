@@ -353,8 +353,6 @@ private:
 
     std::string unescape_yaml_string(const std::string_view& str)
     {
-        // TODO - Implement full YAML string unescaping
-
         std::string result;
         for (size_t i = 0; i < str.length(); ++i)
         {
@@ -384,7 +382,7 @@ private:
 
                     // Hexcode and Unicode escapes
                     case 'x':
-                        if (i + 3 < str.length())
+                        if (i + 3 <= str.length())
                         {
                             auto hex = str.substr(i + 2, 2);
                             try
@@ -402,7 +400,7 @@ private:
 
                     case 'u':
                         // Unicode escape sequence (e.g., \uXXXX)
-                        if (i + 5 < str.length())
+                        if (i + 5 <= str.length())
                         {
                             auto num = str.substr(i + 2, 4);
                             unsigned int ch;
@@ -440,7 +438,7 @@ private:
                         break;
 
                     case 'U':
-                        // TODO - Unicode escape sequence (e.g., \UXXXXXXXX) not implemented yet
+                        throw std::runtime_error(gul17::cat("Unicode escape sequence (\\UXXXXXXXX) not supported at line ", current_line_));
                     default:
                         throw std::runtime_error(gul17::cat("Invalid escape sequence: ", esc, " at line ", current_line_));
                 }

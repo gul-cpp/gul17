@@ -1,8 +1,8 @@
 /**
- * \file   test_YamlDataProcessor.cc
+ * \file   test_yaml_processor.cc
  * \author Jan Behrens
  * \date   Created on November 20, 2025
- * \brief  Test suite for the YamlDataProcessor class.
+ * \brief  Test suite for the YamlProcessor class.
  *
  * \copyright Copyright 2019-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
@@ -30,7 +30,7 @@ using gul17::DataTree;
 using gul17::from_yaml_string;
 using gul17::to_yaml_string;
 
-TEST_CASE("YamlDataProcessor: YAML parsing", "[YamlDataProcessor]")
+TEST_CASE("YamlProcessor: YAML parsing", "[YamlProcessor]")
 {
     auto tree = from_yaml_string(
 R"(
@@ -67,7 +67,7 @@ key5: null
     REQUIRE(tree["invalid"].is_empty());
 }
 
-TEST_CASE("YamlDataProcessor: YAML parsing with comments", "[YamlDataProcessor]")
+TEST_CASE("YamlProcessor: YAML parsing with comments", "[YamlProcessor]")
 {
     auto tree = from_yaml_string(
 R"(
@@ -83,7 +83,7 @@ key2: 42 # another comment
     REQUIRE(tree["key2"].as<int>() == 42);
 }
 
-TEST_CASE("YamlDataProcessor: YAML parsing with escape sequences", "[YamlDataProcessor]")
+TEST_CASE("YamlProcessor: YAML parsing with escape sequences", "[YamlProcessor]")
 {
     auto tree = from_yaml_string(
 R"(
@@ -102,12 +102,12 @@ key3: "\u0032\u0034"
     REQUIRE(tree["key3"].as<std::string>() == "24");
 }
 
-TEST_CASE("YamlDataProcessor: YAML parsing with errors", "[YamlDataProcessor]")
+TEST_CASE("YamlProcessor: YAML parsing with errors", "[YamlProcessor]")
 {
     // Currently, the parser does not throw exceptions for malformed YAML.
 }
 
-TEST_CASE("YamlDataProcessor: YAML serialization", "[YamlDataProcessor]")
+TEST_CASE("YamlProcessor: YAML serialization", "[YamlProcessor]")
 {
     auto tree = DataTree::make_object();
 

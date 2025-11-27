@@ -1,8 +1,8 @@
 /**
- * \file   test_XmlDataProcessor.cc
+ * \file   test_xml_processor.cc
  * \author Jan Behrens
  * \date   Created on November 19, 2025
- * \brief  Test suite for the XmlDataProcessor class.
+ * \brief  Test suite for the XmlProcessor class.
  *
  * \copyright Copyright 2019-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
@@ -30,7 +30,7 @@ using gul17::DataTree;
 using gul17::from_xml_string;
 using gul17::to_xml_string;
 
-TEST_CASE("XmlDataProcessor: XML parsing", "[XmlDataProcessor]")
+TEST_CASE("XmlProcessor: XML parsing", "[XmlProcessor]")
 {
     auto tree = from_xml_string(
 R"(<root>
@@ -67,7 +67,7 @@ R"(<root>
     REQUIRE(tree["invalid"].is_empty());
 }
 
-TEST_CASE("XmlDataProcessor: XML parsing with attributes and comments", "[XmlDataProcessor]")
+TEST_CASE("XmlProcessor: XML parsing with attributes and comments", "[XmlProcessor]")
 {
     auto tree = from_xml_string(
 R"(<root>
@@ -100,7 +100,7 @@ R"(<root>
     REQUIRE(tree["#text"][2].as<std::string>() == "TEXT CONTENT 3");
 }
 
-TEST_CASE("XmlDataProcessor: XML parsing with escape sequences", "[XmlDataProcessor]")
+TEST_CASE("XmlProcessor: XML parsing with escape sequences", "[XmlProcessor]")
 {
     auto tree = from_xml_string(
 R"(
@@ -113,7 +113,7 @@ R"(
     REQUIRE(tree["key1"].as<std::string>() == "><&\"'");
 }
 
-TEST_CASE("XmlDataProcessor: XML parsing with errors", "[XmlDataProcessor]")
+TEST_CASE("XmlProcessor: XML parsing with errors", "[XmlProcessor]")
 {
     REQUIRE_THROWS(from_xml_string(R"(<root><key1></root>)")); // Missing closing tag
     REQUIRE_THROWS(from_xml_string(R"(<root><key1></key2></root>)")); // Mismatched closing tag
@@ -121,7 +121,7 @@ TEST_CASE("XmlDataProcessor: XML parsing with errors", "[XmlDataProcessor]")
     REQUIRE_THROWS(from_xml_string(R"(<root><key1 attr1="1" attr1="2"/></root>)")); // Duplicate attribute
 }
 
-TEST_CASE("XmlDataProcessor: XML serialization", "[XmlDataProcessor]")
+TEST_CASE("XmlProcessor: XML serialization", "[XmlProcessor]")
 {
     auto tree = DataTree::make_object();
 
@@ -149,7 +149,7 @@ R"(<root>
     REQUIRE(xml_str == expected_xml);
 }
 
-TEST_CASE("XmlDataProcessor: XML serialization with attributes", "[XmlDataProcessor]")
+TEST_CASE("XmlProcessor: XML serialization with attributes", "[XmlProcessor]")
 {
     auto tree = DataTree::make_object();
 
@@ -176,7 +176,7 @@ R"(<root>
     REQUIRE(xml_str == expected_xml);
 }
 
-TEST_CASE("XmlDataProcessor: XML parsing of SVR.AUTH string", "[XmlDataProcessor]")
+TEST_CASE("XmlProcessor: XML parsing of SVR.AUTH string", "[XmlProcessor]")
 {
     auto tree = from_xml_string(
 R"(

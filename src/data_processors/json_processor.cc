@@ -158,7 +158,7 @@ private:
 
                     case 'u':
                         // Unicode escape sequence (e.g., \uXXXX)
-                        if (pos_ + 5 < data_.length())
+                        if (pos_ + 5 <= data_.length())
                         {
                             auto num = data_.substr(pos_ + 1, 4);
                             unsigned int ch;
@@ -196,7 +196,7 @@ private:
                         break;
 
                     case 'U':
-                        // TODO - Unicode escape sequence (e.g., \UXXXXXXXX) not implemented yet
+                        throw std::runtime_error(gul17::cat("Unicode escape sequence (\\UXXXXXXXX) not supported at position ", pos_));
                     default:
                         throw std::runtime_error(gul17::cat("Invalid escape sequence: ", esc, " at position ", pos_));
                 }
@@ -476,7 +476,7 @@ private:
                     // escape control characters
                     if (static_cast<unsigned char>(c) < 0x20)
                     {
-                        char buf[7];
+                        char buf[12];
                         snprintf(buf, sizeof(buf), "\\u%04x", static_cast<unsigned char>(c));
                         result += buf;
                     }
