@@ -152,13 +152,11 @@ private:
                     case '"': result += '"'; break;
                     case '\\': result += '\\'; break;
                     case '/': result += '/'; break;
-                    case 'a': result += '\a'; break;
                     case 'b': result += '\b'; break;
                     case 'f': result += '\f'; break;
                     case 'n': result += '\n'; break;
                     case 'r': result += '\r'; break;
                     case 't': result += '\t'; break;
-                    case 'v': result += '\v'; break;
 
                     case 'u':
                         // Unicode escape sequence (e.g., \uXXXX)
@@ -166,7 +164,7 @@ private:
                         {
                             auto num = data_.substr(pos_ + 1, 4);
                             try {
-                                unsigned ch = std::stoi(std::string(num), nullptr);
+                                unsigned ch = std::stoi(std::string(num), nullptr, 16);
                                 if (ch < 0x80)
                                 {
                                     result += static_cast<char>(ch);

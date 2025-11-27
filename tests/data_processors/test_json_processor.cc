@@ -89,7 +89,7 @@ R"({
     REQUIRE(tree["key2"].as<std::string>() == "\"value\\2\"");
 
     REQUIRE(tree["key3"].is_string());
-    REQUIRE(tree["key3"].as<std::string>() == " \"");
+    REQUIRE(tree["key3"].as<std::string>() == "24");
 }
 
 TEST_CASE("JsonDataProcessor: JSON parsing with errors", "[JsonDataProcessor]")
