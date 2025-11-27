@@ -164,7 +164,7 @@ private:
                         {
                             auto num = data_.substr(pos_ + 1, 4);
                             try {
-                                unsigned ch = std::stoi(std::string(num), nullptr, 16);
+                                auto ch = std::stoi(std::string(num), nullptr, 16);
                                 if (ch < 0x80)
                                 {
                                     result += static_cast<char>(ch);

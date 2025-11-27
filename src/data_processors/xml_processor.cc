@@ -520,7 +520,7 @@ private:
                 serialize_value(val, key, indent, current_indent + indent);
             }
 
-            auto it = obj.find("#text");;
+            auto it = obj.find("#text");
             if (it != obj.end() && it->second.is_string())
             {
                 // Text content
