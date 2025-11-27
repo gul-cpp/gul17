@@ -439,23 +439,15 @@ private:
         output_ << "{";
         if (!obj.empty())
         {
-            // Sort keys for consistent output
-            std::vector<DataTree::Object::key_type> keys;
-            std::transform(obj.begin(), obj.end(), std::back_inserter(keys),
-                           [](const auto& pair) { return pair.first; });
-            std::sort(keys.begin(), keys.end());
-
             output_ << newline;
-            for (size_t i = 0; i < keys.size(); ++i)
+            size_t i = 0;
+            for (const auto & [key, val] : obj)
             {
-                const auto& key = keys[i];
-                const auto& val = obj.at(key);
-
                 output_ << std::string(current_indent + indent, ' ');
                 output_ << "\"" << escape_string(key) << "\": ";
                 serialize_value(val, indent, current_indent + indent);
 
-                if (i < keys.size() - 1)
+                if (i++ < obj.size() - 1)
                     output_ << ",";
                 output_ << newline;
             }

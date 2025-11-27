@@ -553,17 +553,8 @@ private:
 
     void serialize_mapping(const DataTree::Object& obj, size_t indent, size_t current_indent)
     {
-        // Sort keys for consistent output
-        std::vector<DataTree::Object::key_type> keys;
-        std::transform(obj.begin(), obj.end(), std::back_inserter(keys),
-                        [](const auto& pair) { return pair.first; });
-        std::sort(keys.begin(), keys.end());
-
-        for (size_t i = 0; i < keys.size(); ++i)
+        for (const auto & [key, val] : obj)
         {
-            const auto& key = keys[i];
-            const auto& val = obj.at(key);
-
             output_ << std::string(current_indent, ' ') << key << ":";
 
             if (val.is_object() || val.is_array())

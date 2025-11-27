@@ -139,7 +139,7 @@ private:
         if (!attributes.empty() || !children.empty())
         {
             // Handle arrays for multiple same-tag children / attributes
-            std::unordered_map<std::string, DataTree> obj;
+            std::map<std::string, DataTree> obj;
             std::unordered_map<std::string, std::vector<DataTree>> child_groups;
 
             for (const auto& [child_tag, child_value] : children)
@@ -480,19 +480,10 @@ private:
         {
             const auto& obj = value.as<DataTree::Object>();
 
-            // Sort keys for consistent output
-            std::vector<DataTree::Object::key_type> keys;
-            std::transform(obj.begin(), obj.end(), std::back_inserter(keys),
-                           [](const auto& pair) { return pair.first; });
-            std::sort(keys.begin(), keys.end());
-
             // Opening tag with attributes
             output_ << indent_str << opening_tag;
-            for (size_t i = 0; i < keys.size(); ++i)
+            for (const auto & [key, val] : obj)
             {
-                const auto& key = keys[i];
-                const auto& val = obj.at(key);
-
                 if (key.rfind("@", 0) == 0)
                 {
                     // Attribute
@@ -512,11 +503,8 @@ private:
             output_ << newline;
 
             // Child elements and text content
-            for (size_t i = 0; i < keys.size(); ++i)
+            for (const auto & [key, val] : obj)
             {
-                const auto& key = keys[i];
-                const auto& val = obj.at(key);
-
                 // Skip already handled attributes and text content handled later
                 if (key.rfind("@", 0) == 0 || key == "#text")
                     continue;

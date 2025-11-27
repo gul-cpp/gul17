@@ -23,9 +23,9 @@
 #ifndef GUL17_DATA_TREE_H_
 #define GUL17_DATA_TREE_H_
 
+#include <map>
 #include <stdexcept>
 #include <string>
-#include <unordered_map>
 #include <variant>
 #include <vector>
 
@@ -68,7 +68,7 @@ public:
     // Type definitions
 
     /// Type of an object (key-value pairs)
-    using Object = std::unordered_map<std::string, DataTree>;
+    using Object = std::map<std::string, DataTree>;
     /// Type of an array (list of values)
     using Array = std::vector<DataTree>;
     /// Underlying variant type to hold different data types
