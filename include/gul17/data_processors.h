@@ -100,7 +100,7 @@ DataTree from_xml_string(const std::string_view& data);
 /**
  * Serialize a DataTree object to an XML string.
  *
- * The function serializes the given DataTree object into a XML-formatted string.
+ * The function serializes the given DataTree object into an XML-formatted string.
  * The optional \c indent parameter specifies the number of spaces to use for
  * indentation in the output string (default is 0, meaning no pretty-printing).
  *
@@ -119,7 +119,7 @@ std::string to_xml_string(const DataTree& value, size_t indent = 0,
                           const std::string& root_tag_name = "root");
 
 /**
- * Parse an YAML string and return the corresponding DataTree representation.
+ * Parse a YAML string and return the corresponding DataTree representation.
  *
  * The function parses the input YAML string and constructs a DataTree object
  * representing the hierarchical structure and data contained in the YAML.

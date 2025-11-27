@@ -143,8 +143,6 @@ private:
             }
             else if (c == '\\')
             {
-                // TODO - Implement full JSON string unescaping
-
                 advance();
                 char esc = current_char();
                 switch (esc)
@@ -163,44 +161,42 @@ private:
                         if (pos_ + 5 < data_.length())
                         {
                             auto num = data_.substr(pos_ + 1, 4);
-                            try {
-                                auto ch = std::stoi(std::string(num), nullptr, 16);
-                                if (ch < 0x80)
-                                {
-                                    result += static_cast<char>(ch);
-                                }
-                                else if (ch < 0x800)
-                                {
-                                    result += static_cast<char>(0xC0 | (ch >> 6));
-                                    result += static_cast<char>(0x80 | (ch & 0x3F));
-                                }
-                                else if (ch < 0x10000)
-                                {
-                                    result += static_cast<char>(0xE0 | (ch >> 12));
-                                    result += static_cast<char>(0x80 | ((ch >> 6) & 0x3F));
-                                    result += static_cast<char>(0x80 | (ch & 0x3F));
-                                }
-                                else
-                                {
-                                    result += static_cast<char>(0xF0 | (ch >> 18));
-                                    result += static_cast<char>(0x80 | ((ch >> 12) & 0x3F));
-                                    result += static_cast<char>(0x80 | ((ch >> 6) & 0x3F));
-                                    result += static_cast<char>(0x80 | (ch & 0x3F));
-                                }
-                                pos_ += 4;
+                            unsigned int ch;
+                            try
+                            {
+                                ch = std::stoi(std::string(num), nullptr, 16);
                             }
-                            catch (...) {
-                                result += data_[pos_ + 1]; // Invalid number, treat as literal
-                                pos_ += 1;
+                            catch (...)
+                            {
+                                throw std::runtime_error(gul17::cat("Invalid number format in Unicode escape at position ", pos_));
                             }
+
+                            if (ch < 0x80)
+                            {
+                                result += static_cast<char>(ch);
+                            }
+                            else if (ch < 0x800)
+                            {
+                                result += static_cast<char>(0xC0 | (ch >> 6));
+                                result += static_cast<char>(0x80 | (ch & 0x3F));
+                            }
+                            else if (ch < 0x10000)
+                            {
+                                result += static_cast<char>(0xE0 | (ch >> 12));
+                                result += static_cast<char>(0x80 | ((ch >> 6) & 0x3F));
+                                result += static_cast<char>(0x80 | (ch & 0x3F));
+                            }
+                            else
+                            {
+                                // Note: JSON \uXXXX escapes only support BMP (<= 0xFFFF).
+                                throw std::runtime_error(gul17::cat("Invalid Unicode code point at position ", pos_));
+                            }
+                            pos_ += 4;
                         }
                         break;
 
                     case 'U':
-                        // Unicode escape sequence (e.g., \UXXXXXXXX)
-                        // FIXME - Unicode escape sequences not implemented yet
-                        throw std::runtime_error("Unicode escape sequences not supported");
-
+                        // TODO - Unicode escape sequence (e.g., \UXXXXXXXX) not implemented yet
                     default:
                         throw std::runtime_error(gul17::cat("Invalid escape sequence: ", esc, " at position ", pos_));
                 }
@@ -267,13 +263,27 @@ private:
             {
                 advance();
             }
-            double value = std::stod(std::string(data_.substr(start_pos, pos_ - start_pos)));
-            return DataTree(value);
+            try
+            {
+                double value = std::stod(std::string(data_.substr(start_pos, pos_ - start_pos)));
+                return DataTree(value);
+            }
+            catch (...)
+            {
+                throw std::runtime_error(gul17::cat("Invalid number format at position ", start_pos));
+            }
         }
         else
         {
-            int value = std::stoi(std::string(data_.substr(start_pos, pos_ - start_pos)));
-            return DataTree(value);
+            try
+            {
+                int value = std::stoi(std::string(data_.substr(start_pos, pos_ - start_pos)));
+                return DataTree(value);
+            }
+            catch (...)
+            {
+                throw std::runtime_error(gul17::cat("Invalid number format at position ", start_pos));
+            }
         }
     }
 
@@ -402,10 +412,12 @@ private:
 
     void serialize_array(const DataTree::Array& arr, size_t indent, size_t current_indent)
     {
+        std::string newline = indent > 0 ? "\n" : "";  // Add newlines if indenting
+
         output_ << "[";
         if (!arr.empty())
         {
-            output_ << "\n";
+            output_ << newline;
             for (size_t i = 0; i < arr.size(); ++i)
             {
                 output_ << std::string(current_indent + indent, ' ');
@@ -413,7 +425,7 @@ private:
 
                 if (i < arr.size() - 1)
                     output_ << ",";
-                output_ << "\n";
+                output_ << newline;
             }
             output_ << std::string(current_indent, ' ');
         }
@@ -422,6 +434,8 @@ private:
 
     void serialize_object(const DataTree::Object& obj, size_t indent, size_t current_indent)
     {
+        std::string newline = indent > 0 ? "\n" : "";  // Add newlines if indenting
+
         output_ << "{";
         if (!obj.empty())
         {
@@ -431,7 +445,7 @@ private:
                            [](const auto& pair) { return pair.first; });
             std::sort(keys.begin(), keys.end());
 
-            output_ << "\n";
+            output_ << newline;
             for (size_t i = 0; i < keys.size(); ++i)
             {
                 const auto& key = keys[i];
@@ -443,7 +457,7 @@ private:
 
                 if (i < keys.size() - 1)
                     output_ << ",";
-                output_ << "\n";
+                output_ << newline;
             }
             output_ << std::string(current_indent, ' ');
         }

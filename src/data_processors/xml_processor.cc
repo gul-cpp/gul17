@@ -71,6 +71,10 @@ private:
 
             // Parse attribute name
             auto attr_name = parse_attribute_name();
+            if (attr_name.empty())
+            {
+                throw std::runtime_error(gul17::cat("Malformed XML: attribute name cannot be empty at position ", pos_));
+            }
 
             skip_whitespace();
             expect('=');
@@ -127,7 +131,7 @@ private:
 
             if (closing_tag != tag_name)
             {
-                throw std::runtime_error(gul17::cat("Mismatched tags: ", tag_name, " vs ", closing_tag));
+                throw std::runtime_error(gul17::cat("Mismatched tags: ", tag_name, " vs ", closing_tag, " at position ", pos_));
             }
         }
 
@@ -163,7 +167,7 @@ private:
                 auto key = "@" + attr_name;
                 if (obj.find(key) != obj.end())
                 {
-                    throw std::runtime_error(gul17::cat("Duplicate attribute name: ", attr_name));
+                    throw std::runtime_error(gul17::cat("Duplicate attribute name: ", attr_name, " at position ", pos_));
                 }
                 obj[key] = attr_value;
             }
@@ -200,7 +204,7 @@ private:
             }
             else
             {
-                throw std::runtime_error(gul17::cat("Multiple text contents in simple element: ", tag_name));
+                throw std::runtime_error(gul17::cat("Multiple text contents in simple element at position ", pos_));
             }
         }
         else
@@ -247,7 +251,7 @@ private:
     {
         char quote_char = current_char();
         if (quote_char != '"' && quote_char != '\'')
-            throw std::runtime_error("Expected quote for attribute value");
+            throw std::runtime_error(gul17::cat("Expected quote for attribute value at position ", pos_));
 
         advance(); // skip opening quote
 

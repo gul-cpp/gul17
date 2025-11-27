@@ -351,8 +351,8 @@ public:
     }
 
     // Iterator return types, only works for arrays
-    using iterator = DataTree*;
-    using const_iterator = const DataTree*;
+    using iterator = std::vector<DataTree>::iterator;
+    using const_iterator = const std::vector<DataTree>::iterator;
 
     // Iterators
 
@@ -366,7 +366,7 @@ public:
         if (!is_array())
             throw std::runtime_error("DataTree is not an array");
         auto& arr = std::get<Array>(value_);
-        return arr.data();
+        return arr.begin();
     }
 
     /**
@@ -379,7 +379,7 @@ public:
         if (!is_array())
             throw std::runtime_error("DataTree is not an array");
         auto& arr = std::get<Array>(value_);
-        return arr.data() + arr.size();
+        return arr.end();
     }
 
     /**
@@ -585,6 +585,8 @@ public:
      * - int to double
      * - boolean to int
      * - int/double/boolean/null to string
+     *
+     * It is not possible to convert complex types (array/object) to primitive types.
      */
     template<typename T>
     T as() const
@@ -615,7 +617,6 @@ public:
             if (is_double()) return std::to_string(std::get<double>(value_));
             if (is_boolean()) return std::get<bool>(value_) ? "true" : "false";
             if (is_null()) return "null";
-            // TODO: Add conversion logic for other types to string if needed
         }
         else if constexpr (std::is_same_v<T, DataTree::Array>)
         {

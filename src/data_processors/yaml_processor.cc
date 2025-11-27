@@ -21,6 +21,7 @@
  */
 
 #include "gul17/data_processors.h"
+#include "gul17/cat.h"
 #include "gul17/join_split.h"
 
 #include <algorithm>
@@ -110,6 +111,14 @@ private:
             {
                 // Remove the sequence marker and parse the value
                 auto item_content = trim(content.substr(1)); // Remove '-'
+                if (!item_content.empty())
+                {
+                    // Simple scalar on same line
+                    sequence.push_back(parse_scalar(item_content));
+                    current_line_++;
+                    continue;
+                }
+
                 current_line_++;
 
                 // Check if this is a complex item (object or nested sequence)
@@ -268,6 +277,8 @@ private:
         size_t i = 0;
         while (i < line.length() && (line[i] == ' ' || line[i] == '\t'))
         {
+            if (line[i] == '\t')
+                throw std::runtime_error(gul17::cat("Tabs are not allowed for indentation in YAML at line ", current_line_ + 1));
             i++;
         }
 
@@ -276,9 +287,26 @@ private:
 
     std::string_view strip_comment(const std::string_view& line)
     {
-        auto comment_pos = line.find('#');
-        if (comment_pos != std::string::npos)
-            return line.substr(0, comment_pos);
+        bool in_single_quote = false;
+        bool in_double_quote = false;
+        for (size_t i = 0; i < line.size(); ++i)
+        {
+            char c = line[i];
+            if (c == '\'' && !in_double_quote)
+            {
+                in_single_quote = !in_single_quote;
+            }
+            else if (c == '"' && !in_single_quote)
+            {
+                // Only toggle if not escaped
+                if (i == 0 || line[i-1] != '\\')
+                    in_double_quote = !in_double_quote;
+            }
+            else if (c == '#' && !in_single_quote && !in_double_quote)
+            {
+                return line.substr(0, i);
+            }
+        }
 
         return line;
     }
@@ -301,10 +329,29 @@ private:
 
     bool is_mapping_item(const std::string_view& line)
     {
-        return line.find(':') != std::string::npos;
+        // Check for a colon outside of single or double quotes
+        bool in_single_quote = false;
+        bool in_double_quote = false;
+        for (size_t i = 0; i < line.length(); ++i)
+        {
+            char c = line[i];
+            if (c == '\'' && !in_double_quote)
+            {
+                in_single_quote = !in_single_quote;
+            }
+            else if (c == '"' && !in_single_quote)
+            {
+                in_double_quote = !in_double_quote;
+            }
+            else if (c == ':' && !in_single_quote && !in_double_quote)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
-    static std::string unescape_yaml_string(const std::string_view& str)
+    std::string unescape_yaml_string(const std::string_view& str)
     {
         // TODO - Implement full YAML string unescaping
 
@@ -313,7 +360,8 @@ private:
         {
             if (str[i] == '\\' && i + 1 < str.length())
             {
-                switch (str[i + 1])
+                auto esc = str[i + 1];
+                switch (esc)
                 {
                     case '"': result += '\"'; break;
                     case '\'': result += '\''; break;
@@ -339,12 +387,14 @@ private:
                         if (i + 3 < str.length())
                         {
                             auto hex = str.substr(i + 2, 2);
-                            try {
+                            try
+                            {
                                 auto ch = std::stoi(std::string(hex), nullptr, 16);
                                 result += static_cast<char>(ch);
                                 i += 2;
                             }
-                            catch (...) {
+                            catch (...)
+                            {
                                 result += str[i + 1]; // Invalid hex, treat as literal
                             }
                         }
@@ -355,45 +405,44 @@ private:
                         if (i + 5 < str.length())
                         {
                             auto num = str.substr(i + 2, 4);
-                            try {
-                                auto ch = std::stoi(std::string(num), nullptr, 16);
-                                if (ch < 0x80)
-                                {
-                                    result += static_cast<char>(ch);
-                                }
-                                else if (ch < 0x800)
-                                {
-                                    result += static_cast<char>(0xC0 | (ch >> 6));
-                                    result += static_cast<char>(0x80 | (ch & 0x3F));
-                                }
-                                else if (ch < 0x10000)
-                                {
-                                    result += static_cast<char>(0xE0 | (ch >> 12));
-                                    result += static_cast<char>(0x80 | ((ch >> 6) & 0x3F));
-                                    result += static_cast<char>(0x80 | (ch & 0x3F));
-                                }
-                                else
-                                {
-                                    result += static_cast<char>(0xF0 | (ch >> 18));
-                                    result += static_cast<char>(0x80 | ((ch >> 12) & 0x3F));
-                                    result += static_cast<char>(0x80 | ((ch >> 6) & 0x3F));
-                                    result += static_cast<char>(0x80 | (ch & 0x3F));
-                                }
-                                i += 4;
+                            unsigned int ch;
+                            try
+                            {
+                                ch = std::stoi(std::string(num), nullptr, 16);
                             }
-                            catch (...) {
-                                result += str[i + 1]; // Invalid number, treat as literal
+                            catch (...)
+                            {
+                                throw std::runtime_error(gul17::cat("Invalid number format in Unicode escape at line ", current_line_));
                             }
+
+                            if (ch < 0x80)
+                            {
+                                result += static_cast<char>(ch);
+                            }
+                            else if (ch < 0x800)
+                            {
+                                result += static_cast<char>(0xC0 | (ch >> 6));
+                                result += static_cast<char>(0x80 | (ch & 0x3F));
+                            }
+                            else if (ch < 0x10000)
+                            {
+                                result += static_cast<char>(0xE0 | (ch >> 12));
+                                result += static_cast<char>(0x80 | ((ch >> 6) & 0x3F));
+                                result += static_cast<char>(0x80 | (ch & 0x3F));
+                            }
+                            else
+                            {
+                                // Note: JSON \uXXXX escapes only support BMP (<= 0xFFFF).
+                                throw std::runtime_error(gul17::cat("Invalid Unicode code point at line ", current_line_));
+                            }
+                            i += 4;
                         }
                         break;
 
                     case 'U':
-                        // FIXME - Unicode escape sequences not implemented yet
-                        throw std::runtime_error("Unicode escape sequences not supported");
-
+                        // TODO - Unicode escape sequence (e.g., \UXXXXXXXX) not implemented yet
                     default:
-                        // Unknown escape - treat as literal character
-                        result += str[i + 1];
+                        throw std::runtime_error(gul17::cat("Invalid escape sequence: ", esc, " at line ", current_line_));
                 }
                 ++i; // Skip next character after escape `\`
             }
@@ -467,7 +516,15 @@ private:
             // Quote strings if they contain special characters
             if (str.empty() || str.find_first_of(":#{}[]&*!|>\"'%") != std::string::npos)
             {
-                output_ << "\"" << str << "\"";
+                output_ << "\"";
+                for (char c : str)
+                {
+                    if (c == '"')
+                        output_ << "\\\"";
+                    else
+                        output_ << c;
+                }
+                output_ << "\"";
             }
             else
             {
