@@ -99,7 +99,7 @@ key3: "\u0032\u0034"
     REQUIRE(tree["key2"].as<std::string>() == "\"value\\2\"");
 
     REQUIRE(tree["key3"].is_string());
-    REQUIRE(tree["key3"].as<std::string>() == " \"");
+    REQUIRE(tree["key3"].as<std::string>() == "24");
 }
 
 TEST_CASE("YamlDataProcessor: YAML parsing with errors", "[YamlDataProcessor]")

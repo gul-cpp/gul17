@@ -354,9 +354,9 @@ private:
                         // Unicode escape sequence (e.g., \uXXXX)
                         if (i + 5 < str.length())
                         {
-                            auto num = str.substr(i + 4, 4);
+                            auto num = str.substr(i + 2, 4);
                             try {
-                                auto ch = std::stoi(std::string(num), nullptr);
+                                auto ch = std::stoi(std::string(num), nullptr, 16);
                                 if (ch < 0x80)
                                 {
                                     result += static_cast<char>(ch);
