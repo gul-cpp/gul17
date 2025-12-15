@@ -50,6 +50,16 @@ std::string_view null_safe_string_view(const char* char_ptr)
     return result;
 }
 
+std::string_view null_safe_string_view(const char* char_ptr, std::size_t length)
+{
+    std::string_view result;
+
+    if (char_ptr)
+        result = std::string_view(char_ptr, length);
+
+    return result;
+}
+
 std::string repeat(std::string_view str, std::size_t n)
 {
     std::string result;

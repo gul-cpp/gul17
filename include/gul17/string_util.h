@@ -266,6 +266,30 @@ GUL_EXPORT
 std::string_view null_safe_string_view(const char* char_ptr);
 
 /**
+ * Safely construct a string_view from a char pointer and a length.
+ *
+ * If the pointer is null, an empty string_view is constructed. Otherwise, the function
+ * constructs a std::string_view with the specified length from it. Zero bytes in the
+ * input range do not terminate the string_view.
+ *
+ * \code
+ * auto a = null_safe_string_view(nullptr, 10); // a == ""sv
+ * auto b = null_safe_string_view("ABC", 4);    // b == "ABC\0"sv
+ * auto c = null_safe_string_view("AB\0CD", 4); // c == "AB\0C"sv
+ * \endcode
+ *
+ * \param char_ptr  Pointer to a string with at least \c length accessible bytes, or a
+ *                  null pointer
+ * \param length    Length of the generated string_view (unless the pointer is null)
+ *
+ * \see safe_string_view(), null_safe_string()
+ *
+ * \since version UNRELEASED
+ */
+GUL_EXPORT
+std::string_view null_safe_string_view(const char* char_ptr, std::size_t length);
+
+/**
  * Repeat a string N times.
  * \code
  * std::string str = repeat("du", 3); // str == "dududu"

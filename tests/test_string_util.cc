@@ -134,6 +134,20 @@ TEST_CASE("null_safe_string_view(const char*)", "[string_util]")
     REQUIRE(null_safe_string_view("hi\0there") == "hi"sv);
 }
 
+TEST_CASE("null_safe_string_view(const char*, std::size_t)", "[string_util]")
+{
+    using gul17::null_safe_string_view;
+
+    REQUIRE(null_safe_string_view(nullptr, 0ull) == std::string_view{});
+    REQUIRE(null_safe_string_view(nullptr, 10ull) == std::string_view{});
+    REQUIRE(null_safe_string_view("", 0ull) == ""sv);
+    REQUIRE(null_safe_string_view("", 1ull) == "\0"sv);
+    REQUIRE(null_safe_string_view("hello", 5ull) == "hello"sv);
+    REQUIRE(null_safe_string_view("hello", 2ull) == "he"sv);
+    REQUIRE(null_safe_string_view("hi\0there", 2ull) == "hi"sv);
+    REQUIRE(null_safe_string_view("hi\0there", 4ull) == "hi\0t"sv);
+}
+
 TEST_CASE("repeat()", "[string_util]")
 {
     REQUIRE(repeat("du", 3) == "dududu");
