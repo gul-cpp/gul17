@@ -230,14 +230,14 @@ hex_string(const Container& container, std::string_view separator = "")
  * to find a zero-terminated C string and constructs a std::string from it.
  *
  * \code
- * auto a = safe_string(nullptr);  // a == ""s
- * auto b = safe_string("ABC");    // b == "ABC"s
- * auto c = safe_string("AB\0CD"); // c == "AB"s
+ * auto a = null_safe_string(nullptr);  // a == ""s
+ * auto b = null_safe_string("ABC");    // b == "ABC"s
+ * auto c = null_safe_string("AB\0CD"); // c == "AB"s
  * \endcode
  *
  * \param char_ptr  Pointer to a null-terminated string or a null pointer
  *
- * \see safe_string(), null_safe_string_view()
+ * \see null_safe_string_view(), safe_string(), safe_string_view()
  *
  * \since version 25.7.0
  */
@@ -245,20 +245,20 @@ GUL_EXPORT
 std::string null_safe_string(const char* char_ptr);
 
 /**
- * Safely construct a string_view from a char pointer.
+ * Safely construct a string_view from a C string or a null pointer.
  *
- * If the pointer is null, an empty string_view is constructed.  Otherwise, the function
+ * If the pointer is null, an empty string_view is constructed. Otherwise, the function
  * assumes to find a zero-terminated C string and constructs a std::string_view from it.
  *
  * \code
- * auto a = safe_string_view(nullptr);  // a == ""sv
- * auto b = safe_string_view("ABC");    // b == "ABC"sv
- * auto c = safe_string_view("AB\0CD"); // c == "AB"sv
+ * auto a = null_safe_string_view(nullptr);  // a == ""sv
+ * auto b = null_safe_string_view("ABC");    // b == "ABC"sv
+ * auto c = null_safe_string_view("AB\0CD"); // c == "AB"sv
  * \endcode
  *
  * \param char_ptr  Pointer to a null-terminated string or a null pointer
  *
- * \see safe_string_view(), null_safe_string()
+ * \see null_safe_string(), safe_string(), safe_string_view()
  *
  * \since version 25.7.0
  */
@@ -266,7 +266,8 @@ GUL_EXPORT
 std::string_view null_safe_string_view(const char* char_ptr);
 
 /**
- * Safely construct a string_view from a char pointer and a length.
+ * Safely construct a string_view from a char pointer and a length; intermediate null
+ * bytes do not terminate the string.
  *
  * If the pointer is null, an empty string_view is constructed. Otherwise, the function
  * constructs a std::string_view with the specified length from it. Zero bytes in the
@@ -282,7 +283,7 @@ std::string_view null_safe_string_view(const char* char_ptr);
  *                  null pointer
  * \param length    Length of the generated string_view (unless the pointer is null)
  *
- * \see safe_string_view(), null_safe_string()
+ * \see null_safe_string(), safe_string(), safe_string_view()
  *
  * \since version UNRELEASED
  */
@@ -306,7 +307,8 @@ GUL_EXPORT
 std::string repeat(std::string_view str, std::size_t n);
 
 /**
- * Safely construct a std::string from a char pointer and a length.
+ * Safely construct a std::string from a char pointer and a length, respecting null
+ * termination in the style of a C string.
  *
  * If the pointer is null, an empty string is constructed. If there are no zero bytes in
  * the input range, a string of length \c length is constructed. Otherwise, the input
@@ -324,7 +326,7 @@ std::string repeat(std::string_view str, std::size_t n);
  *                  \c length accessible bytes, or a null pointer
  * \param length    Maximum length of the generated string
  *
- * \see null_safe_string(), safe_string_view()
+ * \see null_safe_string(), null_safe_string_view(), safe_string_view()
  *
  * \since GUL version 2.6
  */
@@ -332,7 +334,8 @@ GUL_EXPORT
 std::string safe_string(const char* char_ptr, std::size_t length);
 
 /**
- * Safely construct a string_view from a char pointer and a length.
+ * Safely construct a string_view from a char pointer and a length, respecting null
+ * termination in the style of a C string.
  *
  * If the pointer is null, an empty string_view is constructed. If there are no zero bytes
  * in the input range, a string_view of length \c length is constructed. Otherwise, the
@@ -350,7 +353,7 @@ std::string safe_string(const char* char_ptr, std::size_t length);
  *                  \c length accessible bytes, or a null pointer
  * \param length    Maximum length of the generated string_view
  *
- * \see null_safe_string_view(), safe_string()
+ * \see null_safe_string(), null_safe_string_view(), safe_string()
  *
  * \since GUL version 25.4.0
  */
