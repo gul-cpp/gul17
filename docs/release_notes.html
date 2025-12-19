@@ -48,10 +48,15 @@ $(function() {
 <p>For instance, the first release in March 2025 was called 25.3.0, the second could have been called 24.3.1. This is <em>not</em> semantic versioning.</p>
 <h1><a class="anchor" id="changelog_gul17"></a>
 GUL17 Versions</h1>
+<h2><a class="anchor" id="UNRELEASED"></a>
+To be released</h2>
+<ul>
+<li>Add <a class="el" href="group__string__util__h.html#ga141daad52ad2b2113f25c2b536feff9a" title="Safely construct a string_view from a char pointer and a length; intermediate null bytes do not termi...">gul17::null_safe_string_view(const char*, std::size_t)</a>, which returns an empty string_view if given a null pointer.</li>
+</ul>
 <h2><a class="anchor" id="V25_7_0"></a>
 Version 25.7.0</h2>
 <ul>
-<li>Add <a class="el" href="group__string__util__h.html#gafda947525327f2349ca3e269574ed39a" title="Safely construct a std::string from a C string or a null pointer.">gul17::null_safe_string(const char*)</a> and <a class="el" href="group__string__util__h.html#ga9cfc15d8a2d5689cc5410799842edeed" title="Safely construct a string_view from a char pointer.">gul17::null_safe_string_view(const char*)</a>. The new functions construct a string or string_view from a null-terminated C string and are safe against null pointers.</li>
+<li>Add <a class="el" href="group__string__util__h.html#gafda947525327f2349ca3e269574ed39a" title="Safely construct a std::string from a C string or a null pointer.">gul17::null_safe_string(const char*)</a> and <a class="el" href="group__string__util__h.html#ga9cfc15d8a2d5689cc5410799842edeed" title="Safely construct a string_view from a C string or a null pointer.">gul17::null_safe_string_view(const char*)</a>. The new functions construct a string or string_view from a null-terminated C string and are safe against null pointers.</li>
 <li>Allow <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">gul17::join()</a> on ranges of string-like types that do not have a size() member function (e.g. const char*).</li>
 <li>Add <a class="el" href="group__join__split__h.html#ga49ad2e9443ebdf9d949a6a8177ef2ad2" title="Concatenate all strings (or string-like elements) in a range, placing a delimiter between them.">gul17::join()</a> overloads for joining ranges of elements with a custom string conversion function.</li>
 <li>Reintroduce <a class="el" href="structgul17_1_1OverloadSet.html" title="A function object that works like an overload set of functions.">gul17::OverloadSet</a>. This class template allows creating an overload set from an arbitrary number of function objects. It was already part of GUL14 and is now included in an updated version with a C++17 template argument deduction guide.</li>
@@ -59,7 +64,7 @@ Version 25.7.0</h2>
 <h2><a class="anchor" id="V25_4_0"></a>
 Version 25.4.0</h2>
 <ul>
-<li>Add <a class="el" href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40" title="Safely construct a string_view from a char pointer and a length.">gul17::safe_string_view()</a>. The function constructs a string_view from a char pointer and a length. It is safe against null pointers and non-null-terminated strings.</li>
+<li>Add <a class="el" href="group__string__util__h.html#gacfccf2147c15e31159430174b85bfd40" title="Safely construct a string_view from a char pointer and a length, respecting null termination in the s...">gul17::safe_string_view()</a>. The function constructs a string_view from a char pointer and a length. It is safe against null pointers and non-null-terminated strings.</li>
 </ul>
 <h2><a class="anchor" id="V25_3_0"></a>
 Version 25.3.0</h2>
@@ -150,7 +155,7 @@ Version 2.7</h2>
 Version 2.6</h2>
 <ul>
 <li><em>Released with DOOCS 21.12.0 – 22.6.1</em></li>
-<li>Add <a class="el" href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b" title="Safely construct a std::string from a char pointer and a length.">safe_string()</a></li>
+<li>Add <a class="el" href="group__string__util__h.html#ga4fe2c31868743b301cb4e8bb9dde1e5b" title="Safely construct a std::string from a char pointer and a length, respecting null termination in the s...">safe_string()</a></li>
 <li>Add <a class="el" href="group__string__util__h.html#ga4625b22d58d7f8b7355f715cbec63269" title="Return the hexadecimal ASCII representation of an integer value.">hex_string()</a></li>
 <li>Add IsContainerLike&lt;&gt;</li>
 </ul>
