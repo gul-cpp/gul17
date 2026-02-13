@@ -160,8 +160,8 @@ public:
 template <typename ResultT = statistics_result_type,
           typename ContainerT,
           typename ElementT = typename ContainerT::value_type,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = typename std::decay_t<std::result_of_t<Accessor(ElementT)>>,
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = typename std::decay_t<std::invoke_result_t<Accessor, ElementT>>,
           typename = std::enable_if_t<IsContainerLike<ContainerT>::value>
          >
 auto mean(ContainerT const& container, Accessor accessor = ElementAccessor<ElementT>()) -> ResultT
@@ -198,8 +198,8 @@ auto mean(ContainerT const& container, Accessor accessor = ElementAccessor<Eleme
 template <typename ResultT = statistics_result_type,
           typename ContainerT,
           typename ElementT = typename ContainerT::value_type,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = typename std::decay_t<std::result_of_t<Accessor(ElementT)>>,
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = typename std::decay_t<std::invoke_result_t<Accessor, ElementT>>,
           typename = std::enable_if_t<IsContainerLike<ContainerT>::value>
          >
 auto rms(ContainerT const& container, Accessor accessor = ElementAccessor<ElementT>()) -> ResultT
@@ -239,8 +239,8 @@ auto rms(ContainerT const& container, Accessor accessor = ElementAccessor<Elemen
 template <typename ResultT = statistics_result_type,
           typename ContainerT,
           typename ElementT = typename ContainerT::value_type,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = typename std::decay_t<std::result_of_t<Accessor(ElementT)>>,
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = typename std::decay_t<std::invoke_result_t<Accessor, ElementT>>,
           typename = std::enable_if_t<IsContainerLike<ContainerT>::value>
          >
 auto median(ContainerT const& container, Accessor accessor = ElementAccessor<ElementT>()) -> ResultT
@@ -307,8 +307,8 @@ auto median(ContainerT const& container, Accessor accessor = ElementAccessor<Ele
  */
 template <typename ContainerT,
     typename ElementT = typename ContainerT::value_type,
-    typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-    typename DataT = typename std::decay_t<std::result_of_t<Accessor(ElementT)>>,
+    typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+    typename DataT = typename std::decay_t<std::invoke_result_t<Accessor, ElementT>>,
     typename = std::enable_if_t<IsContainerLike<ContainerT>::value>
 >
 auto maximum(ContainerT const& container, Accessor accessor = ElementAccessor<ElementT>()) -> DataT
@@ -361,8 +361,8 @@ auto maximum(ContainerT const& container, Accessor accessor = ElementAccessor<El
  */
 template <typename ContainerT,
     typename ElementT = typename ContainerT::value_type,
-    typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-    typename DataT = typename std::decay_t<std::result_of_t<Accessor(ElementT)>>,
+    typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+    typename DataT = typename std::decay_t<std::invoke_result_t<Accessor, ElementT>>,
     typename = std::enable_if_t<IsContainerLike<ContainerT>::value>
 >
 auto minimum(ContainerT const& container, Accessor accessor = ElementAccessor<ElementT>()) -> DataT
@@ -420,8 +420,8 @@ auto minimum(ContainerT const& container, Accessor accessor = ElementAccessor<El
  */
 template <typename ContainerT,
           typename ElementT = typename ContainerT::value_type,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = typename std::decay_t<std::result_of_t<Accessor(ElementT)>>,
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = typename std::decay_t<std::invoke_result_t<Accessor, ElementT>>,
           typename = std::enable_if_t<IsContainerLike<ContainerT>::value>
          >
 auto min_max(ContainerT const& container, Accessor accessor = ElementAccessor<ElementT>()) -> MinMax<DataT>
@@ -468,8 +468,8 @@ auto min_max(ContainerT const& container, Accessor accessor = ElementAccessor<El
  */
 template <typename ContainerT,
           typename ElementT = typename ContainerT::value_type,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = typename std::decay_t<std::result_of_t<Accessor(ElementT)>>,
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = typename std::decay_t<std::invoke_result_t<Accessor, ElementT>>,
           typename = std::enable_if_t<IsContainerLike<ContainerT>::value>
          >
 auto remove_outliers(ContainerT&& cont, std::size_t outliers,
@@ -492,8 +492,8 @@ auto remove_outliers(ContainerT&& cont, std::size_t outliers,
  */
 template <typename ContainerT,
           typename ElementT = typename ContainerT::value_type,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = typename std::decay_t<std::result_of_t<Accessor(ElementT)>>,
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = typename std::decay_t<std::invoke_result_t<Accessor, ElementT>>,
           typename = std::enable_if_t<IsContainerLike<ContainerT>::value>
          >
 auto remove_outliers(ContainerT const& cont, std::size_t outliers,
@@ -545,8 +545,8 @@ auto remove_outliers(ContainerT const& cont, std::size_t outliers,
 template <typename ResultT = statistics_result_type,
           typename ContainerT,
           typename ElementT = typename ContainerT::value_type,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = typename std::decay_t<std::result_of_t<Accessor(ElementT)>>,
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = typename std::decay_t<std::invoke_result_t<Accessor, ElementT>>,
           typename = std::enable_if_t<IsContainerLike<ContainerT>::value>
          >
 auto standard_deviation(ContainerT const& container, Accessor accessor = ElementAccessor<ElementT>()) -> StandardDeviationMean<ResultT>
@@ -598,8 +598,8 @@ auto standard_deviation(ContainerT const& container, Accessor accessor = Element
 template <typename ResultT = statistics_result_type,
           typename ContainerT,
           typename ElementT = typename ContainerT::value_type,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = typename std::decay_t<std::result_of_t<Accessor(ElementT)>>,
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = typename std::decay_t<std::invoke_result_t<Accessor, ElementT>>,
           typename OpClosure,
           typename = std::enable_if_t<IsContainerLike<ContainerT>::value>
          >
@@ -666,8 +666,8 @@ namespace {
 template <typename ResultT = statistics_result_type,
           typename IteratorT,
           typename ElementT = std::decay_t<decltype(*std::declval<IteratorT>())>,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = std::decay_t<std::result_of_t<Accessor(ElementT)>>>
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = std::decay_t<std::invoke_result_t<Accessor, ElementT>>>
 auto mean(IteratorT const& begin, IteratorT const& end,
         Accessor accessor = ElementAccessor<ElementT>()) -> ResultT
 {
@@ -686,8 +686,8 @@ auto mean(IteratorT const& begin, IteratorT const& end,
 template <typename ResultT = statistics_result_type,
           typename IteratorT,
           typename ElementT = std::decay_t<decltype(*std::declval<IteratorT>())>,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = std::decay_t<std::result_of_t<Accessor(ElementT)>>>
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = std::decay_t<std::invoke_result_t<Accessor, ElementT>>>
 auto rms(IteratorT const& begin, IteratorT const& end,
         Accessor accessor = ElementAccessor<ElementT>()) -> ResultT
 {
@@ -706,8 +706,8 @@ auto rms(IteratorT const& begin, IteratorT const& end,
 template <typename ResultT = statistics_result_type,
           typename IteratorT,
           typename ElementT = std::decay_t<decltype(*std::declval<IteratorT>())>,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = std::decay_t<std::result_of_t<Accessor(ElementT)>>>
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = std::decay_t<std::invoke_result_t<Accessor, ElementT>>>
 auto median(IteratorT const& begin, IteratorT const& end,
         Accessor accessor = ElementAccessor<ElementT>()) -> ResultT
 {
@@ -725,8 +725,8 @@ auto median(IteratorT const& begin, IteratorT const& end,
  */
 template <typename IteratorT,
     typename ElementT = std::decay_t<decltype(*std::declval<IteratorT>())>,
-    typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-    typename DataT = std::decay_t<std::result_of_t<Accessor(ElementT)>>>
+    typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+    typename DataT = std::decay_t<std::invoke_result_t<Accessor, ElementT>>>
     auto maximum(IteratorT const& begin, IteratorT const& end,
         Accessor accessor = ElementAccessor<ElementT>()) -> DataT
 {
@@ -744,8 +744,8 @@ template <typename IteratorT,
  */
 template <typename IteratorT,
     typename ElementT = std::decay_t<decltype(*std::declval<IteratorT>())>,
-    typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-    typename DataT = std::decay_t<std::result_of_t<Accessor(ElementT)>>>
+    typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+    typename DataT = std::decay_t<std::invoke_result_t<Accessor, ElementT>>>
     auto minimum(IteratorT const& begin, IteratorT const& end,
         Accessor accessor = ElementAccessor<ElementT>()) -> DataT
 {
@@ -763,8 +763,8 @@ template <typename IteratorT,
  */
 template <typename IteratorT,
           typename ElementT = std::decay_t<decltype(*std::declval<IteratorT>())>,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = std::decay_t<std::result_of_t<Accessor(ElementT)>>>
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = std::decay_t<std::invoke_result_t<Accessor, ElementT>>>
 auto min_max(IteratorT const& begin, IteratorT const& end,
         Accessor accessor = ElementAccessor<ElementT>()) -> MinMax<DataT>
 {
@@ -784,8 +784,8 @@ auto min_max(IteratorT const& begin, IteratorT const& end,
  */
 template <typename IteratorT,
           typename ElementT = std::decay_t<decltype(*std::declval<IteratorT>())>,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = std::decay_t<std::result_of_t<Accessor(ElementT)>>>
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = std::decay_t<std::invoke_result_t<Accessor, ElementT>>>
 auto remove_outliers(IteratorT const& begin, IteratorT const& end,
         std::size_t outliers, Accessor accessor = ElementAccessor<ElementT>()) -> std::vector<ElementT>
 {
@@ -805,8 +805,8 @@ auto remove_outliers(IteratorT const& begin, IteratorT const& end,
 template <typename ResultT = statistics_result_type,
           typename IteratorT,
           typename ElementT = std::decay_t<decltype(*std::declval<IteratorT>())>,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = std::decay_t<std::result_of_t<Accessor(ElementT)>>>
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = std::decay_t<std::invoke_result_t<Accessor, ElementT>>>
 auto standard_deviation(IteratorT const& begin, IteratorT const& end,
         Accessor accessor = ElementAccessor<ElementT>()) -> StandardDeviationMean<ResultT>
 {
@@ -827,8 +827,8 @@ auto standard_deviation(IteratorT const& begin, IteratorT const& end,
 template <typename ResultT = statistics_result_type,
           typename IteratorT,
           typename ElementT = std::decay_t<decltype(*std::declval<IteratorT>())>,
-          typename Accessor = std::result_of_t<decltype(ElementAccessor<ElementT>())(ElementT)>(*)(ElementT const&),
-          typename DataT = std::decay_t<std::result_of_t<Accessor(ElementT)>>,
+          typename Accessor = std::invoke_result_t<decltype(ElementAccessor<ElementT>()), ElementT>(*)(ElementT const&),
+          typename DataT = std::decay_t<std::invoke_result_t<Accessor, ElementT>>,
           typename OpClosure>
 auto accumulate(IteratorT const& begin, IteratorT const& end, OpClosure op,
         Accessor accessor = ElementAccessor<ElementT>()) -> ResultT
