@@ -285,7 +285,7 @@ std::string_view null_safe_string_view(const char* char_ptr);
  *
  * \see null_safe_string(), safe_string(), safe_string_view()
  *
- * \since version UNRELEASED
+ * \since version 26.2.0
  */
 GUL_EXPORT
 std::string_view null_safe_string_view(const char* char_ptr, std::size_t length);

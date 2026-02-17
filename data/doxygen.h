@@ -146,7 +146,7 @@ namespace gul17 {
  *
  * \section changelog_gul17 GUL17 Versions
  *
- * \subsection UNRELEASED To be released
+ * \subsection V26_2_0 Version 26.2.0
  *
  * - Add gul17::null_safe_string_view(const char*, std::size_t), which returns an empty
  *   string_view if given a null pointer.
