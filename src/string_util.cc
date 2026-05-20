@@ -4,7 +4,7 @@
  * \authors \ref contributors
  * \date    Created on 31 August 2018
  *
- * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2026 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -88,7 +88,7 @@ std::string_view safe_string_view(const char* char_ptr, std::size_t length)
 
     auto end_ptr = std::find(char_ptr, char_ptr + length, '\0');
 
-    return std::string_view(char_ptr, end_ptr - char_ptr);
+    return std::string_view(char_ptr, static_cast<std::size_t>(end_ptr - char_ptr));
 }
 
 } // namespace gul17
