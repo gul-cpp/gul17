@@ -151,12 +151,14 @@ template <typename Iterator>
 inline std::string
 hex_string(Iterator begin, Iterator end, std::string_view separator = "")
 {
-    const std::size_t n = std::distance(begin, end);
+    const auto range_length = std::distance(begin, end);
 
     std::string result;
 
-    if (n > 0)
+    if (range_length > 0)
     {
+        const auto n = static_cast<std::size_t>(range_length);
+
         result.reserve(2 * sizeof(*begin) * n + separator.size() * (n - 1));
 
         result += hex_string(*begin);
