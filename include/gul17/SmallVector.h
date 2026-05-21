@@ -4,7 +4,7 @@
  * \date    Created on August 17, 2020
  * \brief   Definition of the SmallVector class template.
  *
- * \copyright Copyright 2020-2023 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2020-2026 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -25,16 +25,19 @@
 
 #include <algorithm>
 #include <array>
+#include <cstddef>
 #include <cstdint>
 #include <initializer_list>
 #include <iterator>
 #include <limits>
 #include <memory>
+#include <new>
 #include <stdexcept>
 #include <type_traits>
 
-#include "gul17/internal.h"
 #include "gul17/cat.h"
+#include "gul17/finalizer.h"
+#include "gul17/internal.h"
 
 namespace gul17 {
 
@@ -422,9 +425,7 @@ public:
     ~SmallVector()
     {
         clear();
-
-        if (is_storage_allocated())
-            delete[] data_ptr_;
+        deallocate_storage();
     }
 
     /**
@@ -939,8 +940,7 @@ public:
         if (&other != this)
         {
             clear();
-            if (is_storage_allocated())
-                delete[] data_ptr_;
+            deallocate_storage();
             move_or_copy_all_elements_from(std::move(other));
         }
 
@@ -1075,17 +1075,17 @@ public:
         if (new_capacity <= capacity_)
             return;
 
-        auto new_data = std::make_unique<AlignedStorage[]>(new_capacity);
+        // Allocate aligned memory for the new "outer" capacity.
+        auto* new_data = new (alignment) std::byte[new_capacity * sizeof(ValueType)];
+        auto _ = finally([&new_data]() { ::operator delete[](new_data, alignment); });
 
-        const auto d_end = data_end();
-
-        uninitialized_move_or_copy(data(), d_end, reinterpret_cast<ValueType*>(new_data.get()));
+        auto* d_end = data_end();
+        uninitialized_move_or_copy(data(), d_end, reinterpret_cast<ValueType*>(new_data));
         destroy_range(data(), d_end);
 
-        if (is_storage_allocated())
-            delete[] data_ptr_;
-
-        data_ptr_ = new_data.release();
+        deallocate_storage();
+        data_ptr_ = new_data;
+        new_data = nullptr;
         capacity_ = new_capacity;
     }
 
@@ -1161,25 +1161,34 @@ public:
         if (new_capacity == capacity_)
             return;
 
-        AlignedStorage* new_data;
-        auto new_memory = std::unique_ptr<AlignedStorage[]>{};
+        std::byte* new_data{};
+        std::byte* allocation{};
+        auto _ = finally([&allocation]() { ::operator delete[](allocation, alignment); });
 
-        if (new_capacity == inner_capacity()) {
+        if (new_capacity == inner_capacity())
+        {
             new_data = internal_array_.data();
-        } else {
-            new_memory = std::make_unique<AlignedStorage[]>(new_capacity);
-            new_data = new_memory.get();
+        }
+        else
+        {
+            allocation = new (alignment) std::byte[new_capacity * sizeof(ValueType)];
+            new_data = allocation;
         }
 
-        const auto d_end = data_end();
-
+        auto* d_end = data_end();
         uninitialized_move_or_copy(data(), d_end, reinterpret_cast<ValueType*>(new_data));
         destroy_range(data(), d_end);
 
-        if (is_storage_allocated())
-            delete[] data_ptr_;
-
-        data_ptr_ = new_memory ? new_memory.release() : new_data;
+        deallocate_storage();
+        if (allocation)
+        {
+            data_ptr_ = allocation;
+            allocation = nullptr;
+        }
+        else
+        {
+            data_ptr_ = new_data;
+        }
         capacity_ = new_capacity;
     }
 
@@ -1212,17 +1221,17 @@ public:
     }
 
 private:
-    using AlignedStorage =
-        typename std::aligned_storage<sizeof(ValueType), alignof(ValueType)>::type;
+    static constexpr std::align_val_t alignment{ alignof(ValueType) };
 
     /**
-     * This union either holds the storage for the "internal" elements or, if the vector
-     * has grown beyond that size, a pointer to storage on the heap.
+     * Uninitialized storage for the internal elements (used only if size() <=
+     * inner_capacity()).
      */
-    std::array<AlignedStorage, in_capacity> internal_array_;
+    alignas(ValueType)
+    std::array<std::byte, in_capacity * sizeof(ValueType)> internal_array_;
 
     /// Pointer to internal or external contiguous data storage.
-    AlignedStorage* data_ptr_{ internal_array_.data() };
+    std::byte* data_ptr_{ internal_array_.data() };
 
     /// Capacity of the vector (i.e. number of elements that can be stored without
     /// enlarging the container)
@@ -1290,6 +1299,18 @@ private:
     constexpr const ValueType* data_end() const noexcept
     {
         return reinterpret_cast<const ValueType*>(data_ptr_) + size_;
+    }
+
+    /**
+     * Deallocate the data buffer if it is allocated on the heap.
+     * If that was the case, data_ptr_ dangles after this call.
+     */
+    void deallocate_storage() noexcept
+    {
+        if (!is_storage_allocated())
+            return;
+
+        ::operator delete[](data_ptr_, alignment);
     }
 
     /**
