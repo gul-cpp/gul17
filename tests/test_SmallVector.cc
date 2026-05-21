@@ -575,6 +575,68 @@ TEMPLATE_TEST_CASE("SmallVector: Iterator traits", "[SmallVector]",
         >::value == true);
 }
 
+namespace {
+
+struct OverAligned
+{
+    alignas(1024) char data[64];
+};
+
+template <typename VectorT>
+std::pair<std::uintptr_t, std::uintptr_t> get_front_and_back_pointers(VectorT& vec)
+{
+    if (vec.empty())
+        throw std::logic_error("Vector is empty");
+
+    return { reinterpret_cast<std::uintptr_t>(&vec.front()),
+             reinterpret_cast<std::uintptr_t>(&vec.back()) };
+}
+
+template <typename VectorT>
+void test_alignment_with()
+{
+    VectorT vec;
+    using ValueT = typename VectorT::ValueType;
+
+    CAPTURE(vec.inner_capacity());
+    CAPTURE(alignof(ValueT));
+
+    for (unsigned int i = 1u; i <= 50; ++i)
+    {
+        vec.push_back(ValueT{});
+        CAPTURE(vec.size());
+
+        auto [front_ptr, back_ptr] = get_front_and_back_pointers(vec);
+        REQUIRE(front_ptr % alignof(ValueT) == 0);
+        REQUIRE(back_ptr % alignof(ValueT) == 0);
+        REQUIRE(back_ptr - front_ptr == sizeof(ValueT) * (vec.size() - 1u));
+    }
+
+    while (vec.size() > 1u)
+    {
+        vec.pop_back();
+        vec.shrink_to_fit();
+        CAPTURE(vec.size());
+
+        auto [front_ptr, back_ptr] = get_front_and_back_pointers(vec);
+        REQUIRE(front_ptr % alignof(ValueT) == 0);
+        REQUIRE(back_ptr % alignof(ValueT) == 0);
+        REQUIRE(back_ptr - front_ptr == sizeof(ValueT) * (vec.size() - 1u));
+    }
+}
+
+} // anonymous namespace
+
+TEMPLATE_TEST_CASE("SmallVector: Correct alignment after push_back() and shrink_to_fit()",
+    "[SmallVector]", char, short, double, std::string, OverAligned)
+{
+    test_alignment_with<SmallVector<TestType, 0>>();
+    test_alignment_with<SmallVector<TestType, 1>>();
+    test_alignment_with<SmallVector<TestType, 2>>();
+    test_alignment_with<SmallVector<TestType, 3>>();
+    test_alignment_with<SmallVector<TestType, 4>>();
+}
+
 
 //
 // Tests for indiviual member functions (in alphabetical order)
