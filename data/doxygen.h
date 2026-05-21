@@ -4,7 +4,7 @@
  * \date    Created on August 24, 2018
  * \brief   Doxygen input file for the General Utility Library.
  *
- * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
+ * \copyright Copyright 2018-2026 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -145,6 +145,11 @@ namespace gul17 {
  * versioning.
  *
  * \section changelog_gul17 GUL17 Versions
+ *
+ * \subsection V26_X_X Unreleased
+ *
+ * - Avoid using std::result_of_t which is removed in C++20.
+ * - Avoid using std::aligned_storage which is deprecated in C++23.
  *
  * \subsection V26_2_0 Version 26.2.0
  *
