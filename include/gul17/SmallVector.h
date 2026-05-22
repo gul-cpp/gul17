@@ -425,7 +425,8 @@ public:
     ~SmallVector()
     {
         clear();
-        deallocate_storage();
+        if (is_storage_allocated())
+            deallocate_space_for_elements(data_ptr_);
     }
 
     /**
@@ -940,7 +941,8 @@ public:
         if (&other != this)
         {
             clear();
-            deallocate_storage();
+            if (is_storage_allocated())
+                deallocate_space_for_elements(data_ptr_);
             move_or_copy_all_elements_from(std::move(other));
         }
 
@@ -1083,7 +1085,9 @@ public:
         uninitialized_move_or_copy(data(), d_end, reinterpret_cast<ValueType*>(new_data));
         destroy_range(data(), d_end);
 
-        deallocate_storage();
+        if (is_storage_allocated())
+            deallocate_space_for_elements(data_ptr_);
+
         data_ptr_ = new_data;
         new_data = nullptr;
         capacity_ = new_capacity;
@@ -1179,7 +1183,9 @@ public:
         uninitialized_move_or_copy(data(), d_end, reinterpret_cast<ValueType*>(new_data));
         destroy_range(data(), d_end);
 
-        deallocate_storage();
+        if (is_storage_allocated())
+            deallocate_space_for_elements(data_ptr_);
+
         if (allocation)
         {
             data_ptr_ = allocation;
@@ -1315,20 +1321,6 @@ private:
     static void deallocate_space_for_elements(std::byte* ptr) noexcept
     {
         ::operator delete[](ptr, alignment);
-    }
-
-    /**
-     * Deallocate the data buffer if it is allocated on the heap.
-     * If that was the case, data_ptr_ is null after this call and must be reassigned to
-     * re-establish the class invariants.
-     */
-    void deallocate_storage() noexcept
-    {
-        if (!is_storage_allocated())
-            return;
-
-        deallocate_space_for_elements(data_ptr_);
-        data_ptr_ = nullptr;
     }
 
     /**
