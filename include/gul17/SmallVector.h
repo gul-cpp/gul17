@@ -1076,8 +1076,8 @@ public:
             return;
 
         // Allocate aligned memory for the new "outer" capacity.
-        auto* new_data = new (alignment) std::byte[new_capacity * sizeof(ValueType)];
-        auto _ = finally([&new_data]() { ::operator delete[](new_data, alignment); });
+        auto* new_data = allocate_space_for_elements(new_capacity);
+        auto _ = finally([&new_data]() { deallocate_space_for_elements(new_data); });
 
         auto* d_end = data_end();
         uninitialized_move_or_copy(data(), d_end, reinterpret_cast<ValueType*>(new_data));
@@ -1163,7 +1163,7 @@ public:
 
         std::byte* new_data{};
         std::byte* allocation{};
-        auto _ = finally([&allocation]() { ::operator delete[](allocation, alignment); });
+        auto _ = finally([&allocation]() { deallocate_space_for_elements(allocation); });
 
         if (new_capacity == inner_capacity())
         {
@@ -1171,7 +1171,7 @@ public:
         }
         else
         {
-            allocation = new (alignment) std::byte[new_capacity * sizeof(ValueType)];
+            allocation = allocate_space_for_elements(new_capacity);
             new_data = allocation;
         }
 
@@ -1240,6 +1240,16 @@ private:
     SizeType size_{ 0u };
 
     /**
+     * Allocate aligned, uninitialized memory for storing a certain number of elements.
+     * The memory has to be deallocated with deallocate_space_for_elements() after use.
+     */
+    static std::byte* allocate_space_for_elements(std::size_t num_elements)
+    {
+        return static_cast<std::byte*>(
+            ::operator new[](num_elements * sizeof(ValueType), alignment));
+    }
+
+    /**
      * Copy a range of values into uninitialized cells.
      *
      * If the element copy constructor throws an exception, all elements copied until this
@@ -1301,6 +1311,12 @@ private:
         return reinterpret_cast<const ValueType*>(data_ptr_) + size_;
     }
 
+    /// Deallocate aligned memory that was reserved with allocate_space_for_elements().
+    static void deallocate_space_for_elements(std::byte* ptr) noexcept
+    {
+        ::operator delete[](ptr, alignment);
+    }
+
     /**
      * Deallocate the data buffer if it is allocated on the heap.
      * If that was the case, data_ptr_ is null after this call and must be reassigned to
@@ -1311,7 +1327,7 @@ private:
         if (!is_storage_allocated())
             return;
 
-        ::operator delete[](data_ptr_, alignment);
+        deallocate_space_for_elements(data_ptr_);
         data_ptr_ = nullptr;
     }
 
