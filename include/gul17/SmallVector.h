@@ -1303,7 +1303,8 @@ private:
 
     /**
      * Deallocate the data buffer if it is allocated on the heap.
-     * If that was the case, data_ptr_ dangles after this call.
+     * If that was the case, data_ptr_ is null after this call and must be reassigned to
+     * re-establish the class invariants.
      */
     void deallocate_storage() noexcept
     {
@@ -1311,6 +1312,7 @@ private:
             return;
 
         ::operator delete[](data_ptr_, alignment);
+        data_ptr_ = nullptr;
     }
 
     /**
@@ -1509,6 +1511,8 @@ private:
      * performs no check for self-assignment.
      *
      * \pre `size() == 0 and is_allocated() == false and &other != this`
+     * \post `data_ptr_ != nullptr` (it either points to the allocated storage stolen from
+     *       `other` or to the internal array)
      */
     void move_or_copy_all_elements_from(SmallVector&& other)
         noexcept(std::is_nothrow_move_constructible<ValueType>::value)
