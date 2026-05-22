@@ -1186,16 +1186,9 @@ public:
         if (is_storage_allocated())
             deallocate_space_for_elements(data_ptr_);
 
-        if (allocation)
-        {
-            data_ptr_ = allocation;
-            allocation = nullptr;
-        }
-        else
-        {
-            data_ptr_ = new_data;
-        }
+        data_ptr_ = new_data;
         capacity_ = new_capacity;
+        allocation = nullptr; // Avoid deallocation by the "finally" guard
     }
 
     /// Return the number of elements that are currently stored.
