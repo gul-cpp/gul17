@@ -1220,8 +1220,6 @@ public:
     }
 
 private:
-    static constexpr std::align_val_t alignment{ alignof(ValueType) };
-
     /**
      * Uninitialized storage for the internal elements (used only if size() <=
      * inner_capacity()).
@@ -1245,7 +1243,8 @@ private:
     static std::byte* allocate_space_for_elements(std::size_t num_elements)
     {
         return static_cast<std::byte*>(
-            ::operator new[](num_elements * sizeof(ValueType), alignment));
+            ::operator new[](num_elements * sizeof(ValueType),
+                             std::align_val_t{ alignof(ValueType) }));
     }
 
     /**
@@ -1313,7 +1312,7 @@ private:
     /// Deallocate aligned memory that was reserved with allocate_space_for_elements().
     static void deallocate_space_for_elements(std::byte* ptr) noexcept
     {
-        ::operator delete[](ptr, alignment);
+        ::operator delete[](ptr, std::align_val_t{ alignof(ValueType) });
     }
 
     /**
