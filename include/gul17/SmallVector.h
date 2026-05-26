@@ -603,7 +603,7 @@ public:
      */
     constexpr ValueType* data() noexcept
     {
-        return reinterpret_cast<ValueType*>(data_ptr_);
+        return data_ptr_;
     }
 
     /**
@@ -612,7 +612,7 @@ public:
      */
     constexpr const ValueType* data() const noexcept
     {
-        return reinterpret_cast<const ValueType*>(data_ptr_);
+        return data_ptr_;
     }
 
     /**
@@ -1082,7 +1082,7 @@ public:
         auto _ = finally([&new_data]() { deallocate_space_for_elements(new_data); });
 
         auto* d_end = data_end();
-        uninitialized_move_or_copy(data(), d_end, reinterpret_cast<ValueType*>(new_data));
+        uninitialized_move_or_copy(data(), d_end, new_data);
         destroy_range(data(), d_end);
 
         if (is_storage_allocated())
@@ -1165,13 +1165,13 @@ public:
         if (new_capacity == capacity_)
             return;
 
-        std::byte* new_data{};
-        std::byte* allocation{};
+        ValueType* new_data{};
+        ValueType* allocation{};
         auto _ = finally([&allocation]() { deallocate_space_for_elements(allocation); });
 
         if (new_capacity == inner_capacity())
         {
-            new_data = internal_array_.data();
+            new_data = get_internal_array_pointer();
         }
         else
         {
@@ -1180,7 +1180,7 @@ public:
         }
 
         auto* d_end = data_end();
-        uninitialized_move_or_copy(data(), d_end, reinterpret_cast<ValueType*>(new_data));
+        uninitialized_move_or_copy(data(), d_end, new_data);
         destroy_range(data(), d_end);
 
         if (is_storage_allocated())
@@ -1228,7 +1228,7 @@ private:
     std::array<std::byte, in_capacity * sizeof(ValueType)> internal_array_;
 
     /// Pointer to internal or external contiguous data storage.
-    std::byte* data_ptr_{ internal_array_.data() };
+    ValueType* data_ptr_{ get_internal_array_pointer() };
 
     /// Capacity of the vector (i.e. number of elements that can be stored without
     /// enlarging the container)
@@ -1240,9 +1240,9 @@ private:
      * Allocate aligned, uninitialized memory for storing a certain number of elements.
      * The memory has to be deallocated with deallocate_space_for_elements() after use.
      */
-    static std::byte* allocate_space_for_elements(std::size_t num_elements)
+    static ValueType* allocate_space_for_elements(std::size_t num_elements)
     {
-        return static_cast<std::byte*>(
+        return static_cast<ValueType*>(
             ::operator new[](num_elements * sizeof(ValueType),
                              std::align_val_t{ alignof(ValueType) }));
     }
@@ -1297,20 +1297,20 @@ private:
             ::new(static_cast<void*>(p)) ValueType(value);
     }
 
-    /// Return a non-dereferencable pointer past the last element.
+    /// Return a non-dereferenceable pointer past the last element.
     constexpr ValueType* data_end() noexcept
     {
-        return reinterpret_cast<ValueType*>(data_ptr_) + size_;
+        return data_ptr_ + size_;
     }
 
-    /// Return a non-dereferencable pointer past the last element.
+    /// Return a non-dereferenceable pointer past the last element.
     constexpr const ValueType* data_end() const noexcept
     {
-        return reinterpret_cast<const ValueType*>(data_ptr_) + size_;
+        return data_ptr_ + size_;
     }
 
     /// Deallocate aligned memory that was reserved with allocate_space_for_elements().
-    static void deallocate_space_for_elements(std::byte* ptr) noexcept
+    static void deallocate_space_for_elements(ValueType* ptr) noexcept
     {
         ::operator delete[](ptr, std::align_val_t{ alignof(ValueType) });
     }
@@ -1395,6 +1395,18 @@ private:
         }
     }
 
+    /// Return a ValueType pointer to the internal array storage.
+    const ValueType* get_internal_array_pointer() const noexcept
+    {
+        return reinterpret_cast<const ValueType*>(internal_array_.data());
+    }
+
+    /// Return a ValueType pointer to the internal array storage.
+    ValueType* get_internal_array_pointer() noexcept
+    {
+        return reinterpret_cast<ValueType*>(internal_array_.data());
+    }
+
     /**
      * Increase the capacity of the vector, typically by ~50%.
      *
@@ -1453,7 +1465,7 @@ private:
     /// Determine if this vector is using allocated external storage.
     bool is_storage_allocated() const noexcept
     {
-        return data_ptr_ != internal_array_.data();
+        return data_ptr_ != get_internal_array_pointer();
     }
 
     /**
@@ -1520,13 +1532,18 @@ private:
         // Can we simply steal the complete allocated storage?
         if (other.is_storage_allocated())
         {
-            data_ptr_ = other.data_ptr_;    other.data_ptr_ = other.internal_array_.data();
-            capacity_ = other.capacity_;    other.capacity_ = other.inner_capacity();
-            size_ = other.size_;            other.size_ = 0u;
+            data_ptr_ = other.data_ptr_;
+            other.data_ptr_ = other.get_internal_array_pointer();
+
+            capacity_ = other.capacity_;
+            other.capacity_ = other.inner_capacity();
+
+            size_ = other.size_;
+            other.size_ = 0u;
         }
         else // otherwise fall back to moving (or at least copying) all elements
         {
-            data_ptr_ = internal_array_.data();
+            data_ptr_ = get_internal_array_pointer();
             capacity_ = in_capacity;
             uninitialized_move_or_copy(other.begin(), other.end(), data());
             size_ = other.size();
@@ -1554,12 +1571,11 @@ private:
      */
     static void swap_heap_with_internal(SmallVector &a, SmallVector &b)
     {
-        uninitialized_move_or_copy(b.begin(), b.end(),
-            reinterpret_cast<ValueType*>(a.internal_array_.data()));
+        uninitialized_move_or_copy(b.begin(), b.end(), a.get_internal_array_pointer());
         destroy_range(b.begin(), b.end());
 
         b.data_ptr_ = a.data_ptr_;
-        a.data_ptr_ = a.internal_array_.data();
+        a.data_ptr_ = a.get_internal_array_pointer();
 
         std::swap(a.capacity_, b.capacity_);
         std::swap(a.size_, b.size_);
