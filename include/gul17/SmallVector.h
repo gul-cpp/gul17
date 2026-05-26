@@ -34,6 +34,7 @@
 #include <new>
 #include <stdexcept>
 #include <type_traits>
+#include <utility>
 
 #include "gul17/cat.h"
 #include "gul17/finalizer.h"
@@ -1532,14 +1533,9 @@ private:
         // Can we simply steal the complete allocated storage?
         if (other.is_storage_allocated())
         {
-            data_ptr_ = other.data_ptr_;
-            other.data_ptr_ = other.get_internal_array_pointer();
-
-            capacity_ = other.capacity_;
-            other.capacity_ = other.inner_capacity();
-
-            size_ = other.size_;
-            other.size_ = 0u;
+            data_ptr_ = std::exchange(other.data_ptr_, other.get_internal_array_pointer());
+            capacity_ = std::exchange(other.capacity_, other.inner_capacity());
+            size_ = std::exchange(other.size_, 0u);
         }
         else // otherwise fall back to moving (or at least copying) all elements
         {
@@ -1574,8 +1570,7 @@ private:
         uninitialized_move_or_copy(b.begin(), b.end(), a.get_internal_array_pointer());
         destroy_range(b.begin(), b.end());
 
-        b.data_ptr_ = a.data_ptr_;
-        a.data_ptr_ = a.get_internal_array_pointer();
+        b.data_ptr_ = std::exchange(a.data_ptr_, a.get_internal_array_pointer());
 
         std::swap(a.capacity_, b.capacity_);
         std::swap(a.size_, b.size_);
