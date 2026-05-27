@@ -642,7 +642,7 @@ namespace {
 
         auto size() const noexcept -> std::size_t
         {
-            return std::distance(begin_, end_);
+            return static_cast<std::size_t>(std::distance(begin_, end_));
         }
     };
 
