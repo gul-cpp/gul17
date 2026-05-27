@@ -190,12 +190,12 @@ split(std::string_view text, const std::regex& delimiter,
             if (parts == previous and not parts->length())
                 break;
             auto const& match = parts->prefix();
-            insert_fct(result, std::string_view(match.first, match.length()));
+            insert_fct(result, std::string_view(match.first, static_cast<std::size_t>(match.length())));
             previous = parts;
         }
 
         auto const& match = previous->suffix();
-        insert_fct(result, std::string_view(match.first, match.length()));
+        insert_fct(result, std::string_view(match.first, static_cast<std::size_t>(match.length())));
     }
 
     return result;
