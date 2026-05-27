@@ -237,8 +237,8 @@ TEST_CASE("SlidingBuffer test", "[SlidingBuffer]")
         auto end = buff1.end();
         auto i = 0;
         for (; it != end; ++it, ++i) {
-            auto ref = buff1.at(i).val;
-            REQUIRE(buff1[i].val == ref);
+            auto ref = buff1.at(static_cast<std::size_t>(i)).val;
+            REQUIRE(buff1[static_cast<std::size_t>(i)].val == ref);
             REQUIRE((*it).val == ref);
             REQUIRE(it->val == ref);
         }
@@ -249,14 +249,14 @@ TEST_CASE("SlidingBuffer test", "[SlidingBuffer]")
         end2 = buff1.rend();
         i = 0;
         for (; it2 != end2; ++it2, ++i) {
-            auto ref = buff1.at(9-i).val;
+            auto ref = buff1.at(static_cast<std::size_t>(9 - i)).val;
             REQUIRE((*it2).val == ref);
         }
         REQUIRE(i == 10);
 
         auto j = 0;
         for (auto const& e : buff1) {
-            REQUIRE(e.val == buff1[j++].val);
+            REQUIRE(e.val == buff1[static_cast<std::size_t>(j++)].val);
         }
 
         auto x = buff1.begin();
@@ -913,8 +913,8 @@ TEST_CASE("SlidingBufferExposed test", "[SlidingBuffer]")
         REQUIRE(i == 10);
         auto index_data = std::vector<double>{ };
         while (i--) {
-            auto ref = buff1.at(i).val;
-            REQUIRE(buff1[i].val == ref);
+            auto ref = buff1.at(static_cast<std::size_t>(i)).val;
+            REQUIRE(buff1[static_cast<std::size_t>(i)].val == ref);
             index_data.push_back(ref);
         }
         std::sort(index_data.begin(), index_data.end());
@@ -1343,7 +1343,7 @@ TEST_CASE("SlidingBufferExposed: Shrinking behavior", "[SlidingBuffer]")
 TEST_CASE("SlidingBufferIterator: LegacyIterator requirements", "[SlidingBufferIterator]")
 {
     SlidingBuffer<int, 10> buf;
-    for (auto i = 0u; i < buf.capacity(); i++)
+    for (int i = 0; i < static_cast<int>(buf.capacity()); i++)
         buf.push_back(i);
 
     SECTION("prefix operator++ and dereferencing")
@@ -1361,7 +1361,7 @@ TEST_CASE("SlidingBufferIterator: LegacyForwardIterator requirements",
           "[SlidingBufferIterator]")
 {
     SlidingBuffer<int, 10> buf;
-    for (auto i = 0u; i < buf.capacity(); i++)
+    for (int i = 0; i < static_cast<int>(buf.capacity()); i++)
         buf.push_back(i);
 
     SECTION("postfix operator++")
@@ -1391,7 +1391,7 @@ TEST_CASE("SlidingBufferIterator: LegacyBidirectionalIterator requirements",
           "[SlidingBufferIterator]")
 {
     SlidingBuffer<int, 10> buf;
-    for (auto i = 0u; i < buf.capacity(); i++)
+    for (int i = 0; i < static_cast<int>(buf.capacity()); i++)
         buf.push_back(i);
 
     SECTION("prefix operator--")
@@ -1418,7 +1418,7 @@ TEST_CASE("SlidingBufferIterator: LegacyRandomAccessIterator requirements",
           "[SlidingBufferIterator]")
 {
     SlidingBuffer<int, 10> buf;
-    for (auto i = 0u; i < buf.capacity(); i++)
+    for (int i = 0; i < static_cast<int>(buf.capacity()); i++)
         buf.push_back(i);
 
     SECTION("operator+=")
@@ -1502,7 +1502,7 @@ TEST_CASE("SlidingBufferIterator: LegacyRandomAccessIterator requirements",
 
         ++it;
         for (int i = -1; i < static_cast<int>(buf.size()) - 1; ++i)
-            REQUIRE(it[i] == buf[i + 1]);
+            REQUIRE(it[i] == buf[static_cast<decltype(buf)::size_type>(i + 1)]);
     }
 
     SECTION("Comparison operators")
@@ -1525,7 +1525,7 @@ TEST_CASE("SlidingBufferIterator: LegacyRandomAccessIterator requirements",
 TEST_CASE("SlidingBufferIterator: std::distance()", "[SlidingBufferIterator]")
 {
     SlidingBuffer<int, 10> buf;
-    for (auto i = 0u; i < buf.capacity(); i++)
+    for (int i = 0; i < static_cast<int>(buf.capacity()); i++)
         buf.push_back(i);
 
     REQUIRE(std::distance(buf.begin(), buf.begin()) == 0);
