@@ -318,13 +318,13 @@ TEST_CASE("SmallVector: Move constructor", "[SmallVector]")
     }
 
     SECTION("Integers, capacity > inner_capacity") {
-        SmallVector<int, inner_capacity> ori;
-        for (int i = 0; i != 10; ++i)
+        SmallVector<unsigned int, inner_capacity> ori;
+        for (unsigned int i = 0; i != 10; ++i)
             ori.push_back(i);
         auto vec{ std::move(ori) };
         REQUIRE(ori.empty());
         REQUIRE(vec.size() == 10);
-        for (int i = 0; i != 10; ++i)
+        for (unsigned int i = 0; i != 10; ++i)
             REQUIRE(vec[i] == i);
     }
 
@@ -342,24 +342,24 @@ TEST_CASE("SmallVector: Move constructor", "[SmallVector]")
     }
 
     SECTION("unique_ptr, capacity == inner_capacity") {
-        SmallVector<std::unique_ptr<int>, inner_capacity> ori;
-        for (int i = 0; i != inner_capacity; ++i)
-            ori.push_back(std::make_unique<int>(i));
+        SmallVector<std::unique_ptr<unsigned int>, inner_capacity> ori;
+        for (unsigned int i = 0; i != inner_capacity; ++i)
+            ori.push_back(std::make_unique<unsigned int>(i));
         auto vec{ std::move(ori) };
         REQUIRE(ori.empty());
         REQUIRE(vec.size() == inner_capacity);
-        for (int i = 0; i != inner_capacity; ++i)
+        for (unsigned int i = 0; i != inner_capacity; ++i)
             REQUIRE(*vec[i] == i);
     }
 
     SECTION("unique_ptr, capacity > inner_capacity") {
-        SmallVector<std::unique_ptr<int>, inner_capacity> ori;
-        for (int i = 0; i != 10; ++i)
-            ori.push_back(std::make_unique<int>(i));
+        SmallVector<std::unique_ptr<unsigned int>, inner_capacity> ori;
+        for (unsigned int i = 0; i != 10; ++i)
+            ori.push_back(std::make_unique<unsigned int>(i));
         auto vec{ std::move(ori) };
         REQUIRE(ori.empty());
         REQUIRE(vec.size() == 10);
-        for (int i = 0; i != 10; ++i)
+        for (unsigned int i = 0; i != 10; ++i)
             REQUIRE(*vec[i] == i);
     }
 }
@@ -1221,7 +1221,7 @@ TEST_CASE("SmallVector: insert(ConstIterator, ValueType &&)", "[SmallVector]")
 
 TEST_CASE("SmallVector: insert(ConstIterator, SizeType, const ValueType &)", "[SmallVector]")
 {
-    SmallVector<int, 10> svec;
+    SmallVector<unsigned int, 10> svec;
     decltype(svec)::Iterator it;
 
     it = svec.insert(svec.begin(), 2, 42);
@@ -1247,18 +1247,18 @@ TEST_CASE("SmallVector: insert(ConstIterator, SizeType, const ValueType &)", "[S
     REQUIRE(svec[4] == 42);
 
     svec.clear();
-    std::vector<int> vec;
+    std::vector<unsigned int> vec;
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(0);
+    std::uniform_int_distribution<unsigned int> dist(0u);
 
     for (int n = 0; n != 50; ++n)
     {
-        int num_elements = dist(gen) % 10;
-        int insert_idx =
-            (vec.size() == 0) ? 0 : (dist(gen) % static_cast<int>(vec.size()));
-        int value = dist(gen) % 100;
+        unsigned int num_elements = dist(gen) % 10;
+        unsigned int insert_idx =
+            (vec.size() == 0) ? 0 : (dist(gen) % static_cast<unsigned int>(vec.size()));
+        unsigned int value = dist(gen) % 100;
 
         vec.insert(vec.begin() + insert_idx, num_elements, value);
 
@@ -1267,16 +1267,16 @@ TEST_CASE("SmallVector: insert(ConstIterator, SizeType, const ValueType &)", "[S
         REQUIRE(svec.size() == vec.size());
     }
 
-    for (int i = 0; i != static_cast<int>(vec.size()); ++i)
+    for (unsigned int i = 0; i != static_cast<unsigned int>(vec.size()); ++i)
         REQUIRE(vec[i] == svec[i]);
 }
 
 TEST_CASE("SmallVector: insert(ConstIterator, InputIterator, InputIterator)", "[SmallVector]")
 {
-    SmallVector<int, 10> svec;
+    SmallVector<unsigned int, 10> svec;
     decltype(svec)::Iterator it;
 
-    const auto val = std::vector<int>({ 1, 2, 3, 4, 5, 6 });
+    const auto val = std::vector<unsigned int>({ 1, 2, 3, 4, 5, 6 });
     it = svec.insert(svec.begin(), val.begin(), val.begin() + 2);
     REQUIRE(it == svec.begin());
     REQUIRE(svec.size() == 2);
@@ -1302,19 +1302,19 @@ TEST_CASE("SmallVector: insert(ConstIterator, InputIterator, InputIterator)", "[
     REQUIRE(svec[5] == 2);
 
     svec.clear();
-    std::vector<int> vec;
+    std::vector<unsigned int> vec;
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(0);
+    std::uniform_int_distribution<unsigned int> dist(0);
 
     for (int n = 0; n != 50; ++n)
     {
-        int num_elements = dist(gen) % 10;
-        int insert_idx =
-            (vec.size() == 0) ? 0 : (dist(gen) % static_cast<int>(vec.size()));
+        unsigned int num_elements = dist(gen) % 10;
+        unsigned int insert_idx =
+            (vec.size() == 0) ? 0 : (dist(gen) % vec.size());
 
-        std::vector<int> new_elements(num_elements);
+        std::vector<unsigned int> new_elements(num_elements);
         std::generate(new_elements.begin(), new_elements.end(), [&]() { return dist(gen) % 100; });
 
         vec.insert(vec.begin() + insert_idx, new_elements.cbegin(), new_elements.cend());
@@ -1324,7 +1324,7 @@ TEST_CASE("SmallVector: insert(ConstIterator, InputIterator, InputIterator)", "[
         REQUIRE(svec.size() == vec.size());
     }
 
-    for (int i = 0; i != static_cast<int>(vec.size()); ++i)
+    for (unsigned int i = 0; i != static_cast<unsigned int>(vec.size()); ++i)
         REQUIRE(vec[i] == svec[i]);
 }
 
@@ -1433,14 +1433,14 @@ TEST_CASE("SmallVector: operator=(SmallVector &&)", "[SmallVector]")
     }
 
     SECTION("Integers, capacity > inner_capacity") {
-        SmallVector<int, inner_capacity> ori;
-        for (int i = 0; i != 10; ++i)
+        SmallVector<unsigned int, inner_capacity> ori;
+        for (unsigned int i = 0; i != 10; ++i)
             ori.push_back(i);
-        SmallVector<int, inner_capacity> vec;
+        SmallVector<unsigned int, inner_capacity> vec;
         vec = std::move(ori);
         REQUIRE(ori.empty());
         REQUIRE(vec.size() == 10);
-        for (int i = 0; i != 10; ++i)
+        for (unsigned int i = 0; i != 10; ++i)
             REQUIRE(vec[i] == i);
     }
 
@@ -1461,33 +1461,33 @@ TEST_CASE("SmallVector: operator=(SmallVector &&)", "[SmallVector]")
     }
 
     SECTION("unique_ptr, capacity > inner_capacity") {
-        SmallVector<std::unique_ptr<int>, inner_capacity> ori;
+        SmallVector<std::unique_ptr<unsigned int>, inner_capacity> ori;
         for (int i = 0; i != 10; ++i)
-            ori.push_back(std::make_unique<int>(i));
+            ori.push_back(std::make_unique<unsigned int>(i));
 
-        SmallVector<std::unique_ptr<int>, inner_capacity> vec;
+        SmallVector<std::unique_ptr<unsigned int>, inner_capacity> vec;
         for (int i = 0; i != 20; ++i)
-            vec.push_back(std::make_unique<int>(42));
+            vec.push_back(std::make_unique<unsigned int>(42));
         vec = std::move(ori);
         REQUIRE(ori.empty());
         REQUIRE(vec.size() == 10);
-        for (int i = 0; i != 10; ++i)
+        for (unsigned int i = 0; i != 10; ++i)
             REQUIRE(*vec[i] == i);
     }
 
     SECTION("unique_ptr, capacity < inner_capacity") {
         // Move small vector into big
-        SmallVector<std::unique_ptr<int>, inner_capacity> ori;
-        for (int i = 0; i != inner_capacity; ++i)
-            ori.push_back(std::make_unique<int>(i));
+        SmallVector<std::unique_ptr<unsigned int>, inner_capacity> ori;
+        for (unsigned int i = 0; i != inner_capacity; ++i)
+            ori.push_back(std::make_unique<unsigned int>(i));
 
-        SmallVector<std::unique_ptr<int>, inner_capacity> vec;
-        for (int i = 0; i != inner_capacity * 2; ++i)
-            vec.push_back(std::make_unique<int>(42));
+        SmallVector<std::unique_ptr<unsigned int>, inner_capacity> vec;
+        for (unsigned int i = 0; i != inner_capacity * 2; ++i)
+            vec.push_back(std::make_unique<unsigned int>(42));
         vec = std::move(ori);
         REQUIRE(ori.empty());
         REQUIRE(vec.size() == inner_capacity);
-        for (int i = 0; i != inner_capacity; ++i)
+        for (unsigned int i = 0; i != inner_capacity; ++i)
             REQUIRE(*vec[i] == i);
     }
 }

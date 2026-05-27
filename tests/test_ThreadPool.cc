@@ -551,7 +551,7 @@ TEST_CASE("ThreadPool: Run 100 functions on a single thread, check order", "[Thr
     REQUIRE(output.size() == 100);
 
     for (int i = 0; i != 100; ++i)
-        REQUIRE(output[i] == i + 1);
+        REQUIRE(output[static_cast<std::size_t>(i)] == i + 1);
 
     // Make sure the pool is removed before any of the captured variables go out of scope
     pool.reset();
