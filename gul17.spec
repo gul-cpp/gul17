@@ -22,9 +22,9 @@
 Name:           gul17
 Version:        25.4.1
 Release:        1%{?dist}
-Summary:        General Utility Library
+Summary:        General Utility Library for C++17
 
-License:        LGPL-2.1+
+License:        BSL-1.0
 URL:            https://github.com/gul-cpp/gul17
 Source0:        gul17-%{version}.tar.xz
 
