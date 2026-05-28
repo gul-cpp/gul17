@@ -1,23 +1,12 @@
 /**
- * \file    time_util.h
- * \authors \ref contributors
- * \date    Created on September 7, 2018
- * \brief   Declaration of time related functions for the General Utility Library.
+ * \file  time_util.h
+ * \date  Created on September 7, 2018
+ * \brief Declaration of time related functions for the General Utility Library.
  *
  * \copyright Copyright 2018-2023 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published
- * by the Free Software Foundation, either version 2.1 of the license, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Distributed under the Boost Software License, Version 1.0 (see \ref license_boost_1_0
+ * or https://www.boost.org/LICENSE_1_0.txt).
  */
 
 #ifndef GUL17_TIME_UTIL_H_

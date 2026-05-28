@@ -1,23 +1,12 @@
 /**
- * \file    gul.h
- * \authors \ref contributors
- * \date    Created on August 24, 2018
- * \brief   Main include file for the General Utility Library.
+ * \file  gul.h
+ * \date  Created on August 24, 2018
+ * \brief Main include file for the General Utility Library.
  *
  * \copyright Copyright 2018-2025 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published
- * by the Free Software Foundation, either version 2.1 of the license, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Distributed under the Boost Software License, Version 1.0 (see \ref license_boost_1_0
+ * or https://www.boost.org/LICENSE_1_0.txt).
  */
 
 #ifndef GUL17_GUL_H_
@@ -39,7 +28,6 @@
 #include "gul17/bit_manip.h"
 #include "gul17/case_ascii.h"
 #include "gul17/cat.h"
-// #include "gul17/catch.h" not included because it is only useful for unit tests
 // #include "gul17/date.h" not included by default to reduce compile times
 #include "gul17/escape.h"
 #include "gul17/expected.h"
