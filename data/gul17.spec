@@ -1,5 +1,5 @@
 #
-# This file is used to build RPMS for gul17
+# This file is used to build RPMs for GUL17
 #
 # To use it do the following:
 #
@@ -10,7 +10,7 @@
 #   $ pkcon install rpmdevtools
 #   $ rpmdev-setuptree
 #   $ cp build/meson-dist/gul17-<version>.tar.xz ~/rpmbuild/SOURCES
-#   $ cp gul17.spec ~/rpmbuild/SPECS
+#   $ cp data/gul17.spec ~/rpmbuild/SPECS
 #
 # 3) Build the package
 #   $ cd ~/rpmbuild
@@ -22,9 +22,9 @@
 Name:           gul17
 Version:        25.4.1
 Release:        1%{?dist}
-Summary:        General Utility Library
+Summary:        General Utility Library for C++17
 
-License:        LGPL-2.1+
+License:        MIT
 URL:            https://github.com/gul-cpp/gul17
 Source0:        gul17-%{version}.tar.xz
 
