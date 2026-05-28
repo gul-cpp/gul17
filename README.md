@@ -191,3 +191,44 @@ for each release in that month.
 For instance, the first release in March 2025 is called `25.3.0`, the second one `25.3.1`.
 
 This is not semantic versioning.
+
+
+## Contributors and Copyright
+
+The following individuals contributed to the General Utility Library:
+
+> Jan Behrens, Lars Fröhlich, Sören Grunewald, Olaf Hensler, Fini Jastrow
+
+Additional code distributed with this library was written by the authors listed below.
+
+### Copyright & License
+
+* **General Utility Library for C++17 (GUL17):** Distributed under the
+  [MIT license](LICENSE.md).
+  ```
+  Copyright 2018-2026 Deutsches Elektronen-Synchrotron (DESY), Hamburg.
+  ```
+
+The following exceptions apply because this library contains third-party code that is
+distributed under its own copyright notice:
+
+* [date.h](include/gul17/date.h): Distributed under the
+  [MIT License](https://opensource.org/license/mit) (see file header for details).
+  ```
+  Copyright 2015, 2016, 2017 Howard Hinnant, 2016 Adrian Colomitchi, 2017 Florian
+  Dang, 2017 Paul Thompson, 2018, 2019 Tomasz Kamiński, 2019 Jiangang Zhuang.
+  ```
+* [expected.h](include/gul17/expected.h) Distributed under the
+  [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/)
+  (see file header for details).
+  ```
+  Written in 2017 by Sy Brand. To the extent possible under law, the author(s) have
+  dedicated all copyright and related and neighboring rights to this software to the
+  public domain worldwide. This software is distributed without any warranty.
+  ```
+* [span.h](include/gul17/span.h) Distributed under the
+  [Boost Software License, Version 1.0](https://www.boost.org/LICENSE_1_0.txt) (see file
+  header for details).
+  ```
+  Copyright 2018 Tristan Brindle.
+  ```
