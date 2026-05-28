@@ -1,8 +1,7 @@
 /**
- * \file    doxygen.h
- * \authors \ref contributors
- * \date    Created on August 24, 2018
- * \brief   Doxygen input file for the General Utility Library.
+ * \file  doxygen.h
+ * \date  Created on August 24, 2018
+ * \brief Doxygen input file for the General Utility Library.
  *
  * \copyright Copyright 2018-2026 Deutsches Elektronen-Synchrotron (DESY), Hamburg
  *
