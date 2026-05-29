@@ -146,7 +146,7 @@ namespace gul17 {
  *
  * \section changelog_gul17 GUL17 Versions
  *
- * \subsection V26_X_X Unreleased
+ * \subsection V26_5_0 Version 26.5.0
  *
  * - Avoid using std::result_of_t which is removed in C++20.
  * - Avoid using std::aligned_storage which is deprecated in C++23.
