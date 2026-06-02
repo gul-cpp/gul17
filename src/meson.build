@@ -45,18 +45,9 @@ add_cpp_args = [ ]
 if build_machine.system() == 'darwin'
     add_cpp_args += [ '-U_LIBCPP_ENABLE_ASSERTIONS' ]
 endif
-if meson.get_compiler('cpp').has_argument('-Wshadow') # msvc doesnt have
-    add_cpp_args += [ '-Wshadow' ]
-endif
-if meson.get_compiler('cpp').has_argument('-Wconversion') # msvc doesnt have
-    add_cpp_args += [ '-Wconversion' ]
-endif
-if meson.get_compiler('cpp').has_argument('-Wnrvo') # msvc: included in permissive-
-    add_cpp_args += [ '-Wnrvo' ]
-endif
-if meson.get_compiler('cpp').has_argument('-faligned-allocation') # Apple clang
-    add_cpp_args += [ '-faligned-allocation' ]
-endif
+
+add_cpp_args += meson.get_compiler('cpp').get_supported_arguments(
+    [ '-Wshadow', '-Wconversion', '-Wnrvo', '-faligned-allocation' ])
 
 deps = dependency('threads')
 
