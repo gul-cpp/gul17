@@ -54,6 +54,9 @@ endif
 if meson.get_compiler('cpp').has_argument('-Wnrvo') # msvc: included in permissive-
     add_cpp_args += [ '-Wnrvo' ]
 endif
+if meson.get_compiler('cpp').has_argument('-faligned-allocation') # Apple clang
+    add_cpp_args += [ '-faligned-allocation' ]
+endif
 
 deps = dependency('threads')
 
