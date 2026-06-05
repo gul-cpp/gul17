@@ -397,7 +397,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span> </div>
 <div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>        <span class="keyword">auto</span> size() const noexcept -&gt; std::<span class="keywordtype">size_t</span></div>
 <div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>        {</div>
-<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>            <span class="keywordflow">return</span> std::distance(begin_, end_);</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>std::size_t<span class="keyword">&gt;</span>(std::distance(begin_, end_));</div>
 <div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>        }</div>
 <div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>    };</div>
 <div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span> </div>
