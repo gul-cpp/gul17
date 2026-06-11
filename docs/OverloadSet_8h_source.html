@@ -54,27 +54,27 @@ $(document).ready(function() { init_codefold(0); });
 </div><!--header-->
 <div class="contents">
 <a href="OverloadSet_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#ifndef GUL17_OVERLOADSET_H_</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#define GUL17_OVERLOADSET_H_</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacegul17.html">gul17</a> {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Fcts&gt;</div>
-<div class="foldopen" id="foldopen00057" data-start="{" data-end="};">
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structgul17_1_1OverloadSet.html">   57</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structgul17_1_1OverloadSet.html">OverloadSet</a> : Fcts ...</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>{</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">using </span>Fcts::operator()...;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>};</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#ifndef GUL17_OVERLOADSET_H_</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#define GUL17_OVERLOADSET_H_</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacegul17.html">gul17</a> {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Fcts&gt;</div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="};">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structgul17_1_1OverloadSet.html">   60</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structgul17_1_1OverloadSet.html">OverloadSet</a> : Fcts ...</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>{</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">using </span>Fcts::operator()...;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>};</div>
 </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Fcts&gt;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><a class="code hl_struct" href="structgul17_1_1OverloadSet.html">OverloadSet</a>(Fcts...) -&gt; <a class="code hl_struct" href="structgul17_1_1OverloadSet.html">OverloadSet</a>&lt;Fcts...&gt;;</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>} <span class="comment">// namespace gul17</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="anamespacegul17_html"><div class="ttname"><a href="namespacegul17.html">gul17</a></div><div class="ttdoc">Namespace gul17 contains all functions and classes of the General Utility Library.</div><div class="ttdef"><b>Definition</b> doxygen.h:26</div></div>
-<div class="ttc" id="astructgul17_1_1OverloadSet_html"><div class="ttname"><a href="structgul17_1_1OverloadSet.html">gul17::OverloadSet</a></div><div class="ttdoc">A function object that works like an overload set of functions.</div><div class="ttdef"><b>Definition</b> OverloadSet.h:58</div></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Fcts&gt;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><a class="code hl_struct" href="structgul17_1_1OverloadSet.html">OverloadSet</a>(Fcts...) -&gt; <a class="code hl_struct" href="structgul17_1_1OverloadSet.html">OverloadSet</a>&lt;Fcts...&gt;;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>} <span class="comment">// namespace gul17</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="anamespacegul17_html"><div class="ttname"><a href="namespacegul17.html">gul17</a></div><div class="ttdoc">Namespace gul17 contains all functions and classes of the General Utility Library.</div><div class="ttdef"><b>Definition</b> doxygen.h:29</div></div>
+<div class="ttc" id="astructgul17_1_1OverloadSet_html"><div class="ttname"><a href="structgul17_1_1OverloadSet.html">gul17::OverloadSet</a></div><div class="ttdoc">A function object that works like an overload set of functions.</div><div class="ttdef"><b>Definition</b> OverloadSet.h:61</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.17-->
 <!-- start footer part -->

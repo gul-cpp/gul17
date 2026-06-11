@@ -54,48 +54,48 @@ $(document).ready(function() { init_codefold(0); });
 </div><!--header-->
 <div class="contents">
 <a href="traits_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#ifndef GUL17_TRAITS_H_</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#define GUL17_TRAITS_H_</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;functional&gt;</span> <span class="comment">// for std::invoke on C++17 compilers</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;<a class="code" href="internal_8h.html">gul17/internal.h</a>&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#ifndef GUL17_TRAITS_H_</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#define GUL17_TRAITS_H_</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;functional&gt;</span> <span class="comment">// for std::invoke on C++17 compilers</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacegul17.html">gul17</a> {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;<a class="code" href="internal_8h.html">gul17/internal.h</a>&quot;</span></div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> = <span class="keywordtype">int</span>&gt;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structgul17_1_1IsContainerLike.html">   56</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structgul17_1_1IsContainerLike.html">IsContainerLike</a> : std::false_type { };</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">struct </span><a class="code hl_struct" href="structgul17_1_1IsContainerLike.html">IsContainerLike</a> &lt;<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">T</a>,</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">typename</a> std::<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">enable_if_t</a>&lt;true,</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        decltype(std::declval&lt;T&gt;().cbegin(),</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            std::declval&lt;T&gt;().cend(),</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            std::declval&lt;typename T::value_type&gt;(),</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            0)</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    &gt;&gt;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    : std::true_type { };</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="group__traits__h.html#ga69f5f249acf2a036ee38a762b8ffd946">   78</a></span><span class="keyword">using </span><a class="code hl_typedef" href="group__traits__h.html#ga69f5f249acf2a036ee38a762b8ffd946">remove_cvref</a> = <span class="keyword">typename</span> std::remove_cv&lt;std::remove_reference_t&lt;T&gt;&gt;;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="group__traits__h.html#gae97da3df3a03f38d8db131b543ba769e">   90</a></span><span class="keyword">using </span><a class="code hl_typedef" href="group__traits__h.html#gae97da3df3a03f38d8db131b543ba769e">remove_cvref_t</a> = <span class="keyword">typename</span> <a class="code hl_typedef" href="group__traits__h.html#ga69f5f249acf2a036ee38a762b8ffd946">remove_cvref&lt;T&gt;::type</a>;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacegul17.html">gul17</a> {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> = <span class="keywordtype">int</span>&gt;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="structgul17_1_1IsContainerLike.html">   58</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structgul17_1_1IsContainerLike.html">IsContainerLike</a> : std::false_type { };</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">struct </span><a class="code hl_struct" href="structgul17_1_1IsContainerLike.html">IsContainerLike</a> &lt;<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">T</a>,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">typename</a> std::<a class="code hl_function" href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">enable_if_t</a>&lt;true,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        decltype(std::declval&lt;T&gt;().cbegin(),</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            std::declval&lt;T&gt;().cend(),</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            std::declval&lt;typename T::value_type&gt;(),</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            0)</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    &gt;&gt;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    : std::true_type { };</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="group__traits__h.html#ga69f5f249acf2a036ee38a762b8ffd946">   80</a></span><span class="keyword">using </span><a class="code hl_typedef" href="group__traits__h.html#ga69f5f249acf2a036ee38a762b8ffd946">remove_cvref</a> = <span class="keyword">typename</span> std::remove_cv&lt;std::remove_reference_t&lt;T&gt;&gt;;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="group__traits__h.html#gae97da3df3a03f38d8db131b543ba769e">   92</a></span><span class="keyword">using </span><a class="code hl_typedef" href="group__traits__h.html#gae97da3df3a03f38d8db131b543ba769e">remove_cvref_t</a> = <span class="keyword">typename</span> <a class="code hl_typedef" href="group__traits__h.html#ga69f5f249acf2a036ee38a762b8ffd946">remove_cvref&lt;T&gt;::type</a>;</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>} <span class="comment">// namespace gul17</span></div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>} <span class="comment">// namespace gul17</span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">// vi:ts=4:sw=4:sts=4:et</span></div>
-<div class="ttc" id="agroup__bit__manip__h_html_ga360badd8e0d73d0b45a028a10ec2d412"><div class="ttname"><a href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set</a></div><div class="ttdeci">auto constexpr bit_set(unsigned bit) noexcept -&gt; ReturnT</div><div class="ttdoc">Set a bit in an integral type.</div><div class="ttdef"><b>Definition</b> bit_manip.h:121</div></div>
-<div class="ttc" id="agroup__traits__h_html_ga69f5f249acf2a036ee38a762b8ffd946"><div class="ttname"><a href="group__traits__h.html#ga69f5f249acf2a036ee38a762b8ffd946">gul17::remove_cvref</a></div><div class="ttdeci">typename std::remove_cv&lt; std::remove_reference_t&lt; T &gt; &gt; remove_cvref</div><div class="ttdoc">A template metafunction that removes const, volatile, and reference qualifiers from a type.</div><div class="ttdef"><b>Definition</b> traits.h:78</div></div>
-<div class="ttc" id="agroup__traits__h_html_gae97da3df3a03f38d8db131b543ba769e"><div class="ttname"><a href="group__traits__h.html#gae97da3df3a03f38d8db131b543ba769e">gul17::remove_cvref_t</a></div><div class="ttdeci">typename remove_cvref&lt; T &gt;::type remove_cvref_t</div><div class="ttdoc">A template metafunction that removes const, volatile, and reference qualifiers from a type.</div><div class="ttdef"><b>Definition</b> traits.h:90</div></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">// vi:ts=4:sw=4:sts=4:et</span></div>
+<div class="ttc" id="agroup__bit__manip__h_html_ga360badd8e0d73d0b45a028a10ec2d412"><div class="ttname"><a href="group__bit__manip__h.html#ga360badd8e0d73d0b45a028a10ec2d412">gul17::bit_set</a></div><div class="ttdeci">auto constexpr bit_set(unsigned bit) noexcept -&gt; ReturnT</div><div class="ttdoc">Set a bit in an integral type.</div><div class="ttdef"><b>Definition</b> bit_manip.h:124</div></div>
+<div class="ttc" id="agroup__traits__h_html_ga69f5f249acf2a036ee38a762b8ffd946"><div class="ttname"><a href="group__traits__h.html#ga69f5f249acf2a036ee38a762b8ffd946">gul17::remove_cvref</a></div><div class="ttdeci">typename std::remove_cv&lt; std::remove_reference_t&lt; T &gt; &gt; remove_cvref</div><div class="ttdoc">A template metafunction that removes const, volatile, and reference qualifiers from a type.</div><div class="ttdef"><b>Definition</b> traits.h:80</div></div>
+<div class="ttc" id="agroup__traits__h_html_gae97da3df3a03f38d8db131b543ba769e"><div class="ttname"><a href="group__traits__h.html#gae97da3df3a03f38d8db131b543ba769e">gul17::remove_cvref_t</a></div><div class="ttdeci">typename remove_cvref&lt; T &gt;::type remove_cvref_t</div><div class="ttdoc">A template metafunction that removes const, volatile, and reference qualifiers from a type.</div><div class="ttdef"><b>Definition</b> traits.h:92</div></div>
 <div class="ttc" id="ainternal_8h_html"><div class="ttname"><a href="internal_8h.html">internal.h</a></div><div class="ttdoc">Definition of macros used internally by GUL.</div></div>
-<div class="ttc" id="anamespacegul17_html"><div class="ttname"><a href="namespacegul17.html">gul17</a></div><div class="ttdoc">Namespace gul17 contains all functions and classes of the General Utility Library.</div><div class="ttdef"><b>Definition</b> doxygen.h:26</div></div>
-<div class="ttc" id="astructgul17_1_1IsContainerLike_html"><div class="ttname"><a href="structgul17_1_1IsContainerLike.html">gul17::IsContainerLike</a></div><div class="ttdoc">Helper type trait object to determine if a type is a container.</div><div class="ttdef"><b>Definition</b> traits.h:56</div></div>
+<div class="ttc" id="anamespacegul17_html"><div class="ttname"><a href="namespacegul17.html">gul17</a></div><div class="ttdoc">Namespace gul17 contains all functions and classes of the General Utility Library.</div><div class="ttdef"><b>Definition</b> doxygen.h:29</div></div>
+<div class="ttc" id="astructgul17_1_1IsContainerLike_html"><div class="ttname"><a href="structgul17_1_1IsContainerLike.html">gul17::IsContainerLike</a></div><div class="ttdoc">Helper type trait object to determine if a type is a container.</div><div class="ttdef"><b>Definition</b> traits.h:58</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.17-->
 <!-- start footer part -->
