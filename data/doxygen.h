@@ -150,6 +150,12 @@ namespace gul17 {
  *
  * \section changelog_gul17 GUL17 Versions
  *
+ * \subsection UNRELEASED Unreleased Changes
+ *
+ * - The library is now licensed under the MIT license. For more details, please refer to
+ *   the [README file](https://github.com/gul-cpp/gul17/blob/main/README.md) in the
+ *   library repository.
+ *
  * \subsection V26_5_0 Version 26.5.0
  *
  * - Avoid using std::result_of_t which is removed in C++20.
