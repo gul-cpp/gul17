@@ -115,14 +115,20 @@ ninja -C "%REPO_ROOT%%FOLDER%" %TARGET%
         exit /B 1
     )
 
-    @IF EXIST "%VC_PREFIX%2022" (
+    @IF EXIST "%VC_PREFIX%18" (
+        @REM Visual Studio 2026 uses "18" instead of "2026" as a folder name
+        set VC_YEAR=18\
+    ) ELSE IF EXIST "%VC_PREFIX%2022" (
         set VC_YEAR=2022\
     ) ELSE IF EXIST "%VC_PREFIX%2019" (
         set VC_YEAR=2019\
     ) ELSE IF EXIST "%VC_PREFIX%2017" (
         set VC_YEAR=2017\
     ) ELSE (
-        echo "Can not find '%VC_PREFIX%2022', '2019', or '2017'"
+        echo "Can not find '%VC_PREFIX%18', '%VC_PREFIX%2022', '%VC_PREFIX%2019', or '%VC_PREFIX%2017'"
+        C:
+        chdir "%VC_PREFIX%"
+        dir
         exit /B 1
     )
 
