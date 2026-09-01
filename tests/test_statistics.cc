@@ -141,7 +141,7 @@ TEMPLATE_TEST_CASE("standard_deviation()", "[statistics]",
 
         auto std_mean = standard_deviation(arr1);
         REQUIRE(std::isnan(std_mean.sigma()));
-        REQUIRE(std_mean.mean() == TestType{ 42 });
+        REQUIRE(std_mean.mean() == 42.0);
     }
 
     SECTION("Container with 4 elements")
