@@ -1661,7 +1661,15 @@ private:
 
         while (src != src_end)
         {
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warray-bounds"
+#pragma GCC diagnostic ignored "-Wstringop-overflow"
+#endif
             ::new (static_cast<void*>(dest)) ValueType(std::move(*src));
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic pop
+#endif
             ++src;
             ++dest;
         }
