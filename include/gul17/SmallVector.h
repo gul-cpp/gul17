@@ -1301,6 +1301,15 @@ private:
             ::new(static_cast<void*>(p)) ValueType(value);
     }
 
+    // GCC 16's interprocedural array-bounds analysis can be confused when data_end() is
+    // inlined into code that constructs a SmallVector as an alternative of a
+    // std::variant. It then emits a false-positive "array subscript is outside array
+    // bounds" warning (see #57), so we silence -Warray-bounds.
+#if defined(__GNUC__) && !defined(__clang__)
+#   pragma GCC diagnostic push
+#   pragma GCC diagnostic ignored "-Warray-bounds"
+#endif
+
     /// Return a non-dereferenceable pointer past the last element.
     constexpr ValueType* data_end() noexcept
     {
@@ -1312,6 +1321,10 @@ private:
     {
         return data_ptr_ + size_;
     }
+
+#if defined(__GNUC__) && !defined(__clang__)
+#   pragma GCC diagnostic pop
+#endif
 
     /// Deallocate aligned memory that was reserved with allocate_space_for_elements().
     static void deallocate_space_for_elements(ValueType* ptr) noexcept
