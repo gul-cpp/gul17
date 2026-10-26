@@ -65,6 +65,9 @@ namespace gul17 {
  * // Join the sender thread
  * sender.join();
  * \endcode
+ *
+ * A ThreadSafeQueue is a synchronization tool for multiple threads. As such, it cannot be
+ * copied or moved.
  */
 template <typename MessageT>
 class ThreadSafeQueue
@@ -89,6 +92,12 @@ public:
                 "ThreadSafeQueue capacity must be greater than 0");
         }
     }
+
+    ~ThreadSafeQueue() = default;
+    ThreadSafeQueue(const ThreadSafeQueue&) = delete;
+    ThreadSafeQueue(ThreadSafeQueue&&) = delete;
+    ThreadSafeQueue& operator=(const ThreadSafeQueue&) = delete;
+    ThreadSafeQueue& operator=(ThreadSafeQueue&&) = delete;
 
     /**
      * Fetch the last message from the queue and return a copy of it.
