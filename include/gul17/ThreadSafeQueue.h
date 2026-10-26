@@ -30,6 +30,8 @@
 #include <mutex>
 #include <optional>
 #include <stdexcept>
+#include <type_traits>
+#include <utility>
 
 #include "gul17/SlidingBuffer.h"
 
