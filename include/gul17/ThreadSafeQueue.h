@@ -108,9 +108,7 @@ public:
     MessageType back() const
     {
         std::unique_lock lock{ mutex_ };
-
-        if (queue_.empty())
-            cv_message_available_.wait(lock, [this] { return not queue_.empty(); });
+        cv_message_available_.wait(lock, [this] { return not queue_.empty(); });
 
         auto msg = queue_.back();
         lock.unlock();
@@ -141,9 +139,7 @@ public:
     MessageType pop()
     {
         std::unique_lock lock{ mutex_ };
-
-        if (queue_.empty())
-            cv_message_available_.wait(lock, [this] { return not queue_.empty(); });
+        cv_message_available_.wait(lock, [this] { return not queue_.empty(); });
 
         auto msg = std::move(queue_.front());
         queue_.pop_front();
@@ -162,9 +158,7 @@ public:
     void push(MsgT&& msg)
     {
         std::unique_lock lock{ mutex_ };
-
-        if (queue_.filled())
-            cv_slot_available_.wait(lock, [this] { return not queue_.filled(); });
+        cv_slot_available_.wait(lock, [this] { return not queue_.filled(); });
 
         queue_.push_back(std::forward<MsgT>(msg));
         lock.unlock();
