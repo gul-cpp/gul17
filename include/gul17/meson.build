@@ -20,6 +20,7 @@ standalone_headers = [
     'string_util.h',
     'substring_checks.h',
     'ThreadPool.h',
+    'ThreadSafeQueue.h',
     'time_util.h',
     'to_number.h',
     'tokenize.h',
