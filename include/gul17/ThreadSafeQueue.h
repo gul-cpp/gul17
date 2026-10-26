@@ -70,6 +70,8 @@ namespace gul17 {
  * copied or moved. It also has no built-in termination mechanism: The user must make sure
  * that all threads using the queue can shut down properly; typically, this is done by
  * sending a special termination message through the queue.
+ *
+ * \since version UNRELEASED
  */
 template <typename MessageT>
 class ThreadSafeQueue

@@ -150,6 +150,10 @@ namespace gul17 {
  *
  * \section changelog_gul17 GUL17 Versions
  *
+ * \subsection UNRELEASED Unreleased
+ *
+ * - Add ThreadSafeQueue class
+ *
  * \subsection V26_10_0 Version 26.10.0
  *
  * - The library is now licensed under the MIT license. For more details, please refer to
@@ -469,6 +473,10 @@ namespace gul17 {
  *
  * <h3>Classes</h3>
  *
+ * \ref gul17::ThreadSafeQueue "ThreadSafeQueue":
+ *     A thread-safe queue with fixed maximum capacity for sending messages between
+ *     threads.
+ *
  * \ref gul17::ThreadPool "ThreadPool":
  *     A thread pool and task queue that allows executing tasks on a fixed number of
  *     worker threads.
@@ -737,6 +745,10 @@ namespace gul17 {
  * SmallVector:
  *     A resizable container with contiguous storage that can hold a specified number of
  *     elements without allocating memory on the heap.
+ *
+ * ThreadSafeQueue:
+ *     A thread-safe queue with fixed maximum capacity for sending messages between
+ *     threads.
  *
  * <h3>Single-Element and Special-Purpose Containers</h3>
  *
