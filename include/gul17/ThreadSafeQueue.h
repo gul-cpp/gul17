@@ -168,7 +168,18 @@ public:
         std::unique_lock lock{ mutex_ };
         cv_slot_available_.wait(lock, [this] { return not queue_.filled(); });
 
-        queue_.push_back(std::forward<MsgT>(msg));
+        try
+        {
+            queue_.push_back(std::forward<MsgT>(msg));
+        }
+        catch (...)
+        {
+            // Forward the "slot available" notification to another waiting thread.
+            lock.unlock();
+            cv_slot_available_.notify_one();
+            throw;
+        }
+
         lock.unlock();
         cv_message_available_.notify_all();
     }
