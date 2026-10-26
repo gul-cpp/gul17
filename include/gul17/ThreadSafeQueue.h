@@ -112,9 +112,7 @@ public:
         std::unique_lock lock{ mutex_ };
         cv_message_available_.wait(lock, [this] { return not queue_.empty(); });
 
-        auto msg = queue_.back();
-        lock.unlock();
-        return msg;
+        return queue_.back();
     }
 
     /// Return the maximal number of entries in the queue.
@@ -136,6 +134,10 @@ public:
      *
      * This call blocks until a message is available.
      *
+     * \exception
+     * If the move constructor of the message throws, the exception is rethrown and the
+     * element remains in the queue.
+     *
      * \see try_pop()
      */
     MessageType pop()
@@ -154,6 +156,10 @@ public:
      * Insert a message at the end of the queue.
      *
      * This call blocks until the queue has a free slot for the message.
+     *
+     * \exception
+     * If the move or copy assignment of the message throws, the exception is rethrown
+     * and no message is inserted.
      */
     template <typename MsgT,
         std::enable_if_t<std::is_convertible_v<MsgT, MessageType>, bool> = true>
@@ -164,7 +170,7 @@ public:
 
         queue_.push_back(std::forward<MsgT>(msg));
         lock.unlock();
-        cv_message_available_.notify_one();
+        cv_message_available_.notify_all();
     }
 
     /// Return the number of messages in the queue.
@@ -177,6 +183,10 @@ public:
     /**
      * If a message is available, remove it from the front of the queue and return it;
      * otherwise, return an empty optional.
+     *
+     * \exception
+     * If the move constructor of the message throws, the exception is rethrown and the
+     * element remains in the queue.
      *
      * \see pop()
      */
@@ -202,6 +212,10 @@ public:
      *
      * Messages given as an rvalue are only moved from if they can actually be inserted
      * into the queue.
+     *
+     * \exception
+     * If the move or copy assignment of the message throws, the exception is rethrown
+     * and no message is inserted.
      */
     template <typename MsgT,
         std::enable_if_t<std::is_convertible_v<MsgT, MessageType>, bool> = true>
@@ -214,7 +228,7 @@ public:
 
         queue_.push_back(std::forward<MsgT>(msg));
         lock.unlock();
-        cv_message_available_.notify_one();
+        cv_message_available_.notify_all();
         return true;
     }
 
