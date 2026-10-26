@@ -197,7 +197,7 @@ public:
         if (queue_.empty())
             return std::nullopt;
 
-        auto msg = std::move(queue_.front());
+        auto msg = std::optional<MessageType>{ std::move(queue_.front()) };
         queue_.pop_front();
         lock.unlock();
         cv_slot_available_.notify_one();
