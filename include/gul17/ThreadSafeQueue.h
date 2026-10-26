@@ -170,11 +170,10 @@ public:
     }
 
     /**
-     * Remove a message from the front of the queue and return it.
+     * If a message is available, remove it from the front of the queue and return it;
+     * otherwise, return an empty optional.
      *
-     * This call blocks until a message is available.
-     *
-     * \see try_pop()
+     * \see pop()
      */
     std::optional<MessageType> try_pop()
     {
