@@ -29,6 +29,7 @@
 #include <condition_variable>
 #include <mutex>
 #include <optional>
+#include <stdexcept>
 
 #include "gul17/SlidingBuffer.h"
 
@@ -72,10 +73,19 @@ public:
     using SizeType = std::size_t;
     using size_type = SizeType;
 
-    /// Construct a queue that is able to hold a given maximum number of entries.
+    /**
+     * Construct a queue that is able to hold a given maximum number of entries.
+     * \param capacity  The maximum number of entries the queue can hold
+     * \exception std::invalid_argument is thrown if the capacity is zero.
+     */
     ThreadSafeQueue(SizeType capacity)
         : queue_(capacity)
     {
+        if (capacity == 0)
+        {
+            throw std::invalid_argument(
+                "ThreadSafeQueue capacity must be greater than 0");
+        }
     }
 
     /**
