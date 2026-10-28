@@ -116,6 +116,25 @@ TEMPLATE_TEST_CASE("ThreadSafeQueue: pop() single-threaded", "[ThreadSafeQueue]"
     REQUIRE(queue.size() == 0);
 }
 
+TEMPLATE_TEST_CASE("ThreadSafeQueue: pop(T&) single-threaded", "[ThreadSafeQueue]", int,
+    std::string, Message, std::unique_ptr<Message>)
+{
+    ThreadSafeQueue<TestType> queue{ 10 };
+    REQUIRE(queue.size() == 0);
+
+    queue.push(TestType{});
+    queue.push(TestType{});
+    REQUIRE(queue.size() == 2u);
+
+    TestType msg;
+
+    queue.pop(msg);
+    REQUIRE(queue.size() == 1u);
+
+    queue.pop(msg);
+    REQUIRE(queue.size() == 0);
+}
+
 TEST_CASE("ThreadSafeQueue: push() single-threaded", "[ThreadSafeQueue]")
 {
     ThreadSafeQueue<Message> queue{ 10 };
@@ -196,6 +215,28 @@ TEST_CASE("ThreadSafeQueue: try_pop() single-threaded", "[ThreadSafeQueue]")
     opt = queue.try_pop();
     REQUIRE(opt.has_value());
     REQUIRE(*opt == 2);
+
+    REQUIRE(queue.try_pop() == std::nullopt);
+}
+
+TEST_CASE("ThreadSafeQueue: try_pop(T&) single-threaded", "[ThreadSafeQueue]")
+{
+    ThreadSafeQueue<int> queue{ 2 };
+    REQUIRE(queue.size() == 0);
+
+    int msg{ 42 };
+    REQUIRE(queue.try_pop(msg) == false);
+    REQUIRE(msg == 42); // value remains unchanged
+
+    queue.push(1);
+    queue.push(2);
+    REQUIRE(queue.size() == 2u);
+
+    REQUIRE(queue.try_pop(msg) == true);
+    REQUIRE(msg == 1);
+
+    REQUIRE(queue.try_pop(msg) == true);
+    REQUIRE(msg == 2);
 
     REQUIRE(queue.try_pop() == std::nullopt);
 }
