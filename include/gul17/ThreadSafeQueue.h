@@ -88,6 +88,13 @@ template <typename MessageT>
 class ThreadSafeQueue
 {
 public:
+    static_assert(std::is_default_constructible_v<MessageT>,
+        "Message type must be default-constructible");
+    static_assert(std::is_move_constructible_v<MessageT>,
+        "Message type must be move-constructible");
+    static_assert(
+        std::is_move_assignable_v<MessageT>, "Message type must be move-assignable");
+
     using MessageType = MessageT;
     using message_type = MessageT;
     using SizeType = std::size_t;
@@ -125,6 +132,9 @@ public:
      */
     MessageType back() const
     {
+        static_assert(std::is_copy_constructible_v<MessageT>,
+            "Message type must be copy-constructible to use back()");
+
         std::unique_lock lock{ mutex_ };
         cv_message_available_.wait(lock, [this] { return not queue_.empty(); });
 
