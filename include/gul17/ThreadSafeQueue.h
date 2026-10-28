@@ -160,11 +160,13 @@ public:
      *
      * This call blocks until a message is available.
      *
-     * \exception
-     * If the move constructor of the message throws, the exception is rethrown and the
-     * element remains in the queue.
+     * <h3>Exception Safety</h3>
+     * If an exception occurs while moving the message, the exception is rethrown. The
+     * queue remains in a valid state, but it is unspecified whether the message was
+     * actually removed from the queue or not. If that is a concern, use the
+     * pop(MessageType&) overload instead.
      *
-     * \see try_pop()
+     * \see pop(MessageType&), try_pop()
      */
     MessageType pop()
     {
@@ -179,12 +181,38 @@ public:
     }
 
     /**
+     * Remove a message from the front of the queue and return it via an output parameter.
+     *
+     * This call blocks until a message is available. Its main advantage over the
+     * parameter-free pop() overload is better exception safety if the move assignment of
+     * the message can throw. If that is not the case, prefer pop() for improved
+     * readability.
+     *
+     * <h3>Exception Safety</h3>
+     * If the move assignment of the message throws, the exception is rethrown. The
+     * element remains in the queue but its state depends on the guarantees of the message
+     * type.
+     *
+     * \see pop(), try_pop()
+     */
+    void pop(MessageType& msg)
+    {
+        std::unique_lock lock{ mutex_ };
+        cv_message_available_.wait(lock, [this] { return not queue_.empty(); });
+
+        msg = std::move(queue_.front());
+        queue_.pop_front();
+        lock.unlock();
+        cv_slot_available_.notify_one();
+    }
+
+    /**
      * Insert a message at the end of the queue.
      *
      * This call blocks until the queue has a free slot for the message.
      *
-     * \exception
-     * If the move or copy assignment of the message throws, the exception is rethrown
+     * <h3>Exception Safety</h3>
+     * If the assignment of the message into the queue throws, the exception is rethrown
      * and no message is inserted.
      */
     template <typename MsgT,
@@ -221,11 +249,13 @@ public:
      * If a message is available, remove it from the front of the queue and return it;
      * otherwise, return an empty optional.
      *
-     * \exception
-     * If the move constructor of the message throws, the exception is rethrown and the
-     * element remains in the queue.
+     * <h3>Exception Safety</h3>
+     * If an exception occurs while moving the message, the exception is rethrown. The
+     * queue remains in a valid state, but it is unspecified whether the message was
+     * actually removed from the queue or not. If that is a concern, use the
+     * try_pop(MessageType&) overload instead.
      *
-     * \see pop()
+     * \see try_pop(MessageType&), pop()
      */
     std::optional<MessageType> try_pop()
     {
@@ -242,6 +272,36 @@ public:
     }
 
     /**
+     * If a message is available, remove it from the front of the queue and return it via
+     * an output parameter with a function return value of true; otherwise, return false.
+     *
+     * \param msg  Output parameter to which the message is assigned if available; if the
+     *             queue is empty, the value of this parameter is not changed.
+     * \returns true if a message was successfully removed from the queue and assigned to
+     *          the output parameter; false if the queue was empty.
+     *
+     * <h3>Exception Safety</h3>
+     * If an exception occurs while moving the message, that exception is rethrown. The
+     * message remains in the queue, but its value and the value of the output parameter
+     * depend on the guarantees of the message type.
+     *
+     * \see try_pop(MessageType&), pop()
+     */
+    bool try_pop(MessageType& msg)
+    {
+        std::unique_lock lock{ mutex_ };
+
+        if (queue_.empty())
+            return false;
+
+        msg = std::move(queue_.front());
+        queue_.pop_front();
+        lock.unlock();
+        cv_slot_available_.notify_one();
+        return true;
+    }
+
+    /**
      * Try to insert a message at the end of the queue.
      *
      * This call returns true if the message was successfully enqueued or false if the
@@ -250,8 +310,8 @@ public:
      * Messages given as an rvalue are only moved from if they can actually be inserted
      * into the queue.
      *
-     * \exception
-     * If the move or copy assignment of the message throws, the exception is rethrown
+     * <h3>Exception Safety</h3>
+     * If the assignment of the message into the queue throws, the exception is rethrown
      * and no message is inserted.
      */
     template <typename MsgT,
