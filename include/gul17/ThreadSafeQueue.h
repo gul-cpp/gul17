@@ -38,11 +38,18 @@
 namespace gul17 {
 
 /**
- * A strictly bounded thread-safe message queue.
+ * A strictly bounded thread-safe message queue for N producers and M consumers that is
+ * not lock-free.
  *
- * Messages are added to the end of the queue with push() and taken from the start of the
- * queue with pop(). These calls block if the queue is full or if no messages are
- * available, respectively. try_push() and try_pop() are non-blocking alternatives.
+ * The queue uses mutexes and condition variables to synchronize access between multiple
+ * producers and consumers. It typically performs well under low contention (low numbers
+ * of producers and consumers, reasonably low message rate) but may not be the optimal
+ * choice for low-latency applications.
+ *
+ * Messages may be of any type that is default-constructible and movable. They are added
+ * to the end of the queue with push() and taken from the start of the queue with pop().
+ * These calls block if the queue is full or if no messages are available, respectively.
+ * try_push() and try_pop() are non-blocking alternatives.
  *
  * \code{.cpp}
  * // Set up queue with capacity for 10 integers
@@ -66,10 +73,14 @@ namespace gul17 {
  * sender.join();
  * \endcode
  *
+ * For convenience, the queue also provides a back() member function that blocks until a
+ * message is available and then returns a copy of the last message without removing it
+ * from the queue. Obviously, use of back() requires the message type to be copyable.
+ *
  * A ThreadSafeQueue is a synchronization tool for multiple threads. As such, it cannot be
  * copied or moved. It also has no built-in termination mechanism: The user must make sure
  * that all threads using the queue can shut down properly; typically, this is done by
- * sending a special termination message through the queue.
+ * sending one or more special termination messages through the queue.
  *
  * \since version UNRELEASED
  */
@@ -108,6 +119,9 @@ public:
      * The message is not removed from the queue.
      *
      * This call blocks until a message is available.
+     *
+     * \note
+     * Obviously, this function requires the message to be copyable.
      */
     MessageType back() const
     {
