@@ -38,6 +38,7 @@ tests = [
     'test_string_util.cc',
     'test_substring_checks.cc',
     'test_ThreadPool.cc',
+    'test_ThreadSafeQueue.cc',
     'test_time_util.cc',
     'test_to_number.cc',
     'test_tokenize.cc',

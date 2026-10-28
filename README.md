@@ -197,7 +197,7 @@ This is not semantic versioning.
 
 The following individuals contributed to the General Utility Library:
 
-> Jan Behrens, Lars Fröhlich, Sören Grunewald, Olaf Hensler, Fini Jastrow
+> Jan Behrens, Lars Fröhlich, Sören Grunewald, Olaf Hensler, Fini Jastrow, Marcus Walla
 
 Additional code distributed with this library was written by the authors listed below.
 
