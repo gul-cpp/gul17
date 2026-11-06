@@ -463,10 +463,11 @@ TEMPLATE_TEST_CASE("general accumulate()", "[statistics]",
         v.push_back(5);
         v.push_back(3);
         v.push_back(9);
+        auto const expectation = TestType{ 18 };
         REQUIRE(std::accumulate(v.cbegin(), v.cend(), TestType{ },
-                [](TestType a, TestType el) { return a + el; }) == 18);
+                [](TestType a, TestType el) { return a + el; }) == expectation);
         REQUIRE(gul17::accumulate<TestType>(v,
-                [](TestType a, TestType el) { return a + el; }) == 18);
+                [](TestType a, TestType el) { return a + el; }) == expectation);
     }
     SECTION("pointer accumulate") {
         auto a = TestType{ 4 };
@@ -478,10 +479,11 @@ TEMPLATE_TEST_CASE("general accumulate()", "[statistics]",
         v.push_back(&b);
         v.push_back(&c);
         v.push_back(&d);
+        auto const expectation = TestType{ 14 };
         REQUIRE(std::accumulate(v.cbegin(), v.cend(), TestType{ },
-                [](TestType accu, TestType* el) { return accu + *el; }) == 14);
+                [](TestType accu, TestType* el) { return accu + *el; }) == expectation);
         REQUIRE(gul17::accumulate<TestType>(v,
-                [](TestType accu, TestType* el) { return accu + *el; }) == 14);
+                [](TestType accu, TestType* el) { return accu + *el; }) == expectation);
     }
     SECTION("user type accumulate") {
         struct UserType {
@@ -495,10 +497,11 @@ TEMPLATE_TEST_CASE("general accumulate()", "[statistics]",
         v.emplace_back(TestType{ 2 }, true);
         v.emplace_back(TestType{ 3 }, true);
         v.emplace_back(TestType{ 7 }, true);
+        auto const expectation = TestType{ 19 };
         REQUIRE(std::accumulate(v.cbegin(), v.cend(), TestType{ },
-                [](TestType accu, UserType const& el) { return accu + el.e; }) == 19);
+                [](TestType accu, UserType const& el) { return accu + el.e; }) == expectation);
         REQUIRE(gul17::accumulate<TestType>(v,
-                [](TestType accu, UserType const& el) { return accu + el.e; }) == 19);
+                [](TestType accu, UserType const& el) { return accu + el.e; }) == expectation);
     }
 }
 
