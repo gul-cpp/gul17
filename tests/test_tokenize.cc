@@ -77,7 +77,8 @@ TEMPLATE_TEST_CASE("tokenize(): \" Hello World\" with odd whitespace", "[tokeniz
 {
     auto token = std::vector<TestType>{
         tokenize<TestType>("\t Hello\n\rWorld\t\t  "),
-        tokenize_sv<TestType>("\t Hello\n\rWorld\t\t  ")
+        tokenize_sv<TestType>("\t Hello\n\rWorld\t\t  "),
+        tokenize<TestType>("\t Hello World\t\t  ")
     };
     TEST_BOTH_INTO(tokens) {
         TEST_BOTH_MESSAGE();
