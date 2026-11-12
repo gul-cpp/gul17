@@ -31,6 +31,7 @@
 #include <cstdint>
 #include <cstdlib>
 #include <exception>
+#include <functional>
 #include <limits>
 #include <optional>
 #include <string_view>
